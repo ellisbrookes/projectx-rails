@@ -70,4 +70,18 @@ Rails.application.configure do
 
   # hotwire livereload
   config.hotwire_livereload.listen_paths << Rails.root.join("app/assets/builds")
+  config.action_mailer.delivery_method = :smtp
+
+  # devise
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # mailtrap
+  config.action_mailer.smtp_settings = {
+    :user_name => 'a3ad3f28b0982c',
+    :password => '64f3d499b1d6d2',
+    :address => 'sandbox.smtp.mailtrap.io',
+    :host => 'sandbox.smtp.mailtrap.io',
+    :port => '2525',
+    :authentication => :cram_md5
+  }
 end

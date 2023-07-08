@@ -76,3 +76,6 @@ end
 
 gem "hotwire-rails", "~> 0.1.3"
 gem "hotwire-livereload", "~> 1.2"
+gem "foreman", "~> 0.87.2"
+
+gem "devise", "~> 4.9"
