@@ -1,5 +1,5 @@
 <nav class="fixed flex flex-col top-0 left-0 w-24 h-full bg-neutral-100 md:w-60">
-  <%= link_to "Project X", root_path, class: "w-full bg-nepal-400 px-2 py-6 text-center text-xs font-bold uppercase border-b-2 border-r-2 border-solid border-black" %>
+  <%= link_to "Project X", root_path, class: "w-full bg-nepal-500 px-2 py-6 text-center text-xs font-bold uppercase border-b-2 border-r-2 border-solid border-black" %>
 
   <div class="flex flex-col h-full text-sm p-4 border-r-2 border-solid border-black">
     <div class="flex-1">
@@ -33,7 +33,9 @@
         <%= heroicon "user-circle", variant: :outline %>
         <div class="hidden h-full md:block md:mx-1">|</div>
         <span class="hidden md:block">
-          <%= current_user.email %>
+          <% if current_user.present?%>
+            <%= current_user.email %>
+          <% end %>
         </span>
       <% end %>
     </div>
