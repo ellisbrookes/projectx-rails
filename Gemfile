@@ -79,3 +79,5 @@ gem "hotwire-livereload", "~> 1.2"
 gem "foreman", "~> 0.87.2"
 
 gem "devise", "~> 4.9"
+
+gem "heroicon", "~> 1.0"

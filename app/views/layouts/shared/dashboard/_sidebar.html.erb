@@ -1,0 +1,41 @@
+<nav class="fixed flex flex-col top-0 left-0 w-24 h-full bg-neutral-100 md:w-60">
+  <%= link_to "Project X", root_path, class: "w-full bg-nepal-400 px-2 py-6 text-center text-xs font-bold uppercase border-b-2 border-r-2 border-solid border-black" %>
+
+  <div class="flex flex-col h-full text-sm p-4 border-r-2 border-solid border-black">
+    <div class="flex-1">
+      <%= link_to root_path, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+        <%= heroicon "home-modern", variant: :outline %>
+        <div class="hidden h-full md:block md:mx-1">|</div>
+        <span class="hidden md:block">Home</span>
+      <% end %>
+      
+      <%= link_to root_path, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+        <%= heroicon "list-bullet", variant: :outline %>
+        <div class="hidden h-full md:block md:mx-1">|</div>
+        <span class="hidden md:block">My Tasks</span>
+      <% end %>
+      
+      <%= link_to root_path, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+        <%= heroicon "archive-box-arrow-down", variant: :outline %>
+        <div class="hidden h-full md:block md:mx-1">|</div>
+        <span class="hidden md:block">Recent</span>
+      <% end %>
+
+      <%= link_to root_path, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+        <%= heroicon "clipboard", variant: :outline %>
+        <div class="hidden h-full md:block md:mx-1">|</div>
+        <span class="hidden md:block">changelog</span>
+      <% end %>
+    </div>
+
+    <div>
+      <%= link_to edit_user_registration_path, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+        <%= heroicon "user-circle", variant: :outline %>
+        <div class="hidden h-full md:block md:mx-1">|</div>
+        <span class="hidden md:block">
+          <%= current_user.email %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</nav>
