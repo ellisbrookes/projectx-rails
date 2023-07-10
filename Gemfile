@@ -49,7 +49,13 @@ gem "bootsnap", require: false
 # gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
+
+gem "hotwire-rails", "~> 0.1.3"
+gem "hotwire-livereload", "~> 1.2"
+gem "foreman", "~> 0.87.2"
+gem "devise", "~> 4.9"
+gem "heroicon", "~> 1.0"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -73,11 +79,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-gem "hotwire-rails", "~> 0.1.3"
-gem "hotwire-livereload", "~> 1.2"
-gem "foreman", "~> 0.87.2"
-
-gem "devise", "~> 4.9"
-
-gem "heroicon", "~> 1.0"
