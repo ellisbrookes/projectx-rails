@@ -60,6 +60,7 @@ gem "heroicon", "~> 1.0"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "solargraph", "~> 0.49.0"
 end
 
 group :development do
@@ -79,3 +80,8 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# run "rubocop -a" to run
+# https://docs.rubocop.org/rubocop/index.html
+gem "rubocop", "~> 1.54"
+gem "rubocop-shopify", "~> 2.14"
