@@ -2,26 +2,26 @@
   <%= link_to "Project X", dashboard_path, class: "w-full bg-nepal-500 px-2 py-6 text-center text-xs font-bold uppercase border-b-2 border-r-2 border-solid border-black" %>
 
   <div class="flex flex-col h-full text-sm p-4 border-r-2 border-solid border-black">
-    <div class="flex-1">
-      <%= link_to dashboard_path, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+    <div class="flex-1 space-y-2">
+      <%= active_link_to dashboard_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
         <%= heroicon "home-modern", variant: :outline %>
         <div class="hidden h-full md:block md:mx-1">|</div>
         <span class="hidden md:block">Home</span>
       <% end %>
       
-      <%= link_to root_path, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+      <%= active_link_to root_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
         <%= heroicon "list-bullet", variant: :outline %>
         <div class="hidden h-full md:block md:mx-1">|</div>
         <span class="hidden md:block">My Tasks</span>
       <% end %>
       
-      <%= link_to root_path, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+      <%= active_link_to root_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
         <%= heroicon "archive-box-arrow-down", variant: :outline %>
         <div class="hidden h-full md:block md:mx-1">|</div>
         <span class="hidden md:block">Recent</span>
       <% end %>
 
-      <%= link_to root_path, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+      <%= active_link_to root_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
         <%= heroicon "clipboard", variant: :outline %>
         <div class="hidden h-full md:block md:mx-1">|</div>
         <span class="hidden md:block">changelog</span>
@@ -29,9 +29,11 @@
     </div>
 
     <div>
-      <%= link_to edit_user_registration_path, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+      <%= active_link_to edit_user_registration_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
         <% if current_user.avatar.attached? %>
           <%= image_tag current_user.avatar, alt: "#{current_user.full_name}", class: "h-8 w-8 rounded-full" %>
+        <% else %>
+          <%= heroicon "user-circle", variant: :outline %>
         <% end%>
 
         <div class="hidden h-full md:block md:mx-1">|</div>

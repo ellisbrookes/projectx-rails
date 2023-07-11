@@ -85,3 +85,5 @@ end
 # https://docs.rubocop.org/rubocop/index.html
 gem "rubocop", "~> 1.54"
 gem "rubocop-shopify", "~> 2.14"
+
+gem "active_link_to", "~> 1.0"

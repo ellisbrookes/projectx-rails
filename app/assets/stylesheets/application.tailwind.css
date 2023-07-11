@@ -22,12 +22,12 @@ svg {
   width: 1.5rem;
 }
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
+.active {
+  @apply bg-neutral-200;
 }
 
-*/
+/* @layer components {
+  .active {
+    @apply bg-natural-300;
+  }
+} */
