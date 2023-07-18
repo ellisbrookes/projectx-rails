@@ -6,10 +6,8 @@ Rails.application.routes.draw do
 
   resources :dashboard, only: [:index] do
     collection do
-      # add companies resources and set compnay as path and uri
-      # prefix   URI    controller
-      # as       path   companies 
-      resources :companies, path: 'company', as: 'company', controller: :companies
+      # add companies resources
+      resources :companies
     end
   end
 end
