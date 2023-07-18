@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_company, only: %i[show edit update destroy]
+  before_action :set_company, only: %i[ show edit update destroy ]
 
   layout 'dashboard'
 
@@ -19,7 +19,7 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
 
     if @company.save
-      redirect_to @company
+      redirect_to company_url(@company), notice: "Company was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,7 +30,7 @@ class CompaniesController < ApplicationController
 
   def update
     if @company.update(company_params)
-      redirect_to @company
+      redirect_to company_url(@company), notice: "Company was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -39,16 +39,16 @@ class CompaniesController < ApplicationController
   def destroy
     @company.destroy
 
-    redirect_to root_path, status: :see_other
+    redirect_to companies_url, notice: "Company was successfully destroyed."
   end
 
   private
 
-  def set_company
-    @company = Company.find(params[:id])
-  end
+    def set_company
+      @company = Company.find(params[:id])
+    end
 
-  def company_params
-    params.require(:company).permit(:name, :description, :email)
-  end
+    def company_params
+      params.require(:company).permit(:name, :description, :email, :user_id)
+    end
 end

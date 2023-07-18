@@ -1,32 +1,37 @@
-<%= form_with model: company do |f| %>
-  <div>
+<%= form_with(model: company, class: "contents") do |f| %>
+  <% if company.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+        <% company.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
     <%= f.label :name %>
-    <%= f.text_field :name %>
-
-    <% company.errors.full_messages_for(:name).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <%= f.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div>
+  <div class="my-5">
     <%= f.label :description %>
-    <%= f.text_field :description %>
-
-    <% company.errors.full_messages_for(:description).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <%= f.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div>
+  <div class="my-5">
     <%= f.label :email %>
-    <%= f.email_field :email %>
-
-    <% company.errors.full_messages_for(:email).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <%= f.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div>
-    <%= f.submit %>
+  <div class="my-5">
+    <%= f.label :user_id %>
+    <%= f.text_field :user_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-black inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
