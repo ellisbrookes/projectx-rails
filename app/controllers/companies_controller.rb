@@ -16,8 +16,7 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @company = Company.new(company_params)
-    @company.user = current_user
+    @company = current_user.companies.build(company_params)
 
     if @company.save
       redirect_to company_url(@company), notice: "Company was successfully created."
@@ -30,7 +29,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    @company.user = current_user
+    @company = current_user.companies.build(company_params)
 
     if @company.update(company_params)
       redirect_to company_url(@company), notice: "Company was successfully updated."
