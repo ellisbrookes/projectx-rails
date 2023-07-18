@@ -17,6 +17,7 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
+    @company.user = current_user
 
     if @company.save
       redirect_to company_url(@company), notice: "Company was successfully created."
@@ -29,6 +30,8 @@ class CompaniesController < ApplicationController
   end
 
   def update
+    @company.user = current_user
+
     if @company.update(company_params)
       redirect_to company_url(@company), notice: "Company was successfully updated."
     else
@@ -49,6 +52,6 @@ class CompaniesController < ApplicationController
     end
 
     def company_params
-      params.require(:company).permit(:name, :description, :email, :user_id)
+      params.require(:company).permit(:name, :description, :email)
     end
 end
