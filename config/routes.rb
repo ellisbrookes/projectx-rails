@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   
   root 'pages#home'
 
-  get "/teams", to: "teams#index"
+  get "dashboard/teams", to: "teams#index"
 
   resources :dashboard, only: [:index] do
     collection do
