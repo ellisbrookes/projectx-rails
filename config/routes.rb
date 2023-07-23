@@ -3,5 +3,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations/registrations' }
   
   root 'pages#home'
-  get 'dashboard', to: 'dashboard#index'
+
+  get "/teams", to: "teams#index"
+
+  resources :dashboard, only: [:index] do
+    collection do
+      # add companies resources
+      resources :companies
+    end
+  end
 end
