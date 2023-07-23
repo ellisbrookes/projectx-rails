@@ -1,0 +1,21 @@
+<div id="<% dom_id team %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= team.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Description:</strong>
+    <%= team.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Team Email:</strong>
+    <%= team.team_email %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this team", team, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this team", edit_team_path(team), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <% end %>
+</div>
