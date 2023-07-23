@@ -26,6 +26,12 @@
         <div class="hidden h-full md:block md:mx-1">|</div>
         <span class="hidden md:block">Companies</span>
       <% end %>
+
+      <%= active_link_to teams_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+        <%= heroicon "globe-alt", variant: :outline %>
+        <div class="hidden h-full md:block md:mx-1">|</div>
+        <span class="hidden md:block">Teams</span>
+      <% end %>
     </div>
 
     <div>
