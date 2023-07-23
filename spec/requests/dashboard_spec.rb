@@ -8,7 +8,7 @@ RSpec.describe("Dashboards", type: :request) do
     end
 
     it "should show that the dashboard has a title" do
-      get dashboard_path
+      get dashboard_index_path
 
       expect(response).to(be_successful)
       expect(response.body).to(include("Dashboard"))

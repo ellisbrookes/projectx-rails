@@ -15,14 +15,14 @@
 
   <body>
     <main>
-      <%= render "layouts/shared/dashboard/sidebar" %>
-      <%= render "layouts/shared/dashboard/navigation" %>
+      <section class="relative h-screen">
+        <%= render "shared/dashboard/sidebar" %>
+        <%= render "shared/dashboard/navigation" %>
 
-      <section class="relative mt-24 ml-28 mr-4 flex h-screen flex-col overflow-x-hidden md:ml-64">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-
-        <%= yield %>
+        <section class="relative mt-24 ml-28 mr-4 flex h-screen flex-col overflow-x-hidden md:ml-64">
+          <%= render partial: 'shared/alerts' %>
+          <%= yield %>
+        </section>
       </section>
     </main>
   </body>

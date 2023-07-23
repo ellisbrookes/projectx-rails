@@ -65,8 +65,6 @@ group :development, :test do
   
   # run "rubocop -a" to run
   # https://docs.rubocop.org/rubocop/index.html
-  gem "rubocop", "~> 1.54"
-  gem "rubocop-shopify", "~> 2.14"
 
   # rspec and factory bot
   gem "rspec-rails", "~> 6.0"
@@ -94,4 +92,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
