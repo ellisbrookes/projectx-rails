@@ -28,7 +28,7 @@
 
   <div class="my-5">
     <%= f.label :team_members %>
-    <%= f.select :team_members, options_for_select([["Ben Bagley", "option1"], ["Sharnia Robertson", "option2"], ["Bradley Cross", "option3"]]), { include_blank: "Select an member" }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
+    <%= f.collection_select :team_members, User.order(:full_name), :id, :full_name, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
   </div>
 
 
