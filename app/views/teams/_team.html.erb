@@ -16,10 +16,18 @@
 
   <p class="my-5">
     <strong class="block font-medum mb-1">Team Members</strong>
+  <ul>
+    <% @team.member.each do |team_member| %>
+      <li>
+        <%= team_member.full_name %>
+      </li>
+    <% end %>
+  </ul>
   </p>
 
   <p class="my-5">
     <strong class="block font-medum mb-1">Company</strong>
+    <%= team.company.name %>
   </p>
 
   <% if action_name != "show" %>
