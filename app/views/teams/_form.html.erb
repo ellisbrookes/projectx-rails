@@ -31,6 +31,11 @@
     <%= f.collection_select :team_members, User.order(:full_name), :id, :full_name, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
   </div>
 
+  <div class="my-5">
+    <%= f.label :company_name %>
+    <%= f.collection_select :company_name, Company.order(:name), :id, :name, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
+  </div>
+
 
    <div class="inline">
     <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
