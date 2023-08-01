@@ -19,7 +19,7 @@
     <ul>
       <% @team.team_members.each do |team_member| %>
       <li>
-        <%= team_member.full_name %>
+        <%= team_member.user.full_name %>
       </li>
       <% end %>
     </ul>

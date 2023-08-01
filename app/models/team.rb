@@ -2,7 +2,7 @@
 class Team < ApplicationRecord
   belongs_to :company
   has_many :team_members
-  has_many :users, through: :team_members
+  accepts_nested_attributes_for :team_members
 
   validates :name, presence: true
   validates :description, presence: true
