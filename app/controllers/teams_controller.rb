@@ -26,6 +26,7 @@ class TeamsController < ApplicationController
   end
 
   def edit
+    @team.team_members.build
   end
 
   def update
@@ -45,10 +46,10 @@ class TeamsController < ApplicationController
   private
 
     def set_team
-      @team = Team.find(params[:id])
+      @team = @company.teams.find(params[:id])
     end
 
     def team_params
-      params.require(:team).permit(:name, :description, :team_email, :company_id, team_members_ids: [])
+      params.require(:team).permit(:name, :description, :team_email, :company_id, team_members_attributes: [:id, :user_id])
     end
 end

@@ -1,7 +1,8 @@
 # app/models/team.rb
 class Team < ApplicationRecord
   belongs_to :company
-  has_many :team_members, foreign_key: "team_id"
+  has_many :team_members
+  has_many :users, through: :team_members
 
   validates :name, presence: true
   validates :description, presence: true
