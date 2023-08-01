@@ -17,7 +17,7 @@
   <p class="my-5">
     <strong class="block font-medum mb-1">Team Members</strong>
   <ul>
-    <% @team.member.each do |team_member| %>
+    <% @team.team_members.each do |team_member| %>
       <li>
         <%= team_member.full_name %>
       </li>
