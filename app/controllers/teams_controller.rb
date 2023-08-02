@@ -13,6 +13,7 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
+    @team.team_members.build
   end
 
   def create
@@ -26,6 +27,7 @@ class TeamsController < ApplicationController
   end
 
   def edit
+    @team.team_members.build
   end
 
   def update
