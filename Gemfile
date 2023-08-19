@@ -33,6 +33,9 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
 
+# Brakeman Gem
+gem "brakeman"
+
 # bundler audit gem
 gem "bundler-audit"
 
