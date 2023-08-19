@@ -69,12 +69,6 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "solargraph", "~> 0.49.0"
-<<<<<<< HEAD
-  
-  # run "rubocop -a" to run
-  # https://docs.rubocop.org/rubocop/index.html
-=======
->>>>>>> b1f3610958359b4b8ada8aa956934d56f39b2ac8
 
   # rspec and factory bot
   gem "rspec-rails", "~> 6.0"
