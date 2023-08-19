@@ -36,6 +36,10 @@ gem "redis", "~> 4.0"
 # bundler audit gem
 gem "bundler-audit"
 
+# rubocop gem
+gem "rubocop"
+gem "rubocop-shopify"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -65,11 +69,6 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "solargraph", "~> 0.49.0"
-
-  # run "rubocop -a" to run
-  # https://docs.rubocop.org/rubocop/index.html
-  gem "rubocop", "~> 1.54"
-  gem "rubocop-shopify", "~> 2.14"
 
   # rspec and factory bot
   gem "rspec-rails", "~> 6.0"

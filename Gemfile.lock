@@ -372,8 +372,8 @@ DEPENDENCIES
   rails (~> 7.0.6)
   redis (~> 4.0)
   rspec-rails (~> 6.0)
-  rubocop (~> 1.54)
-  rubocop-shopify (~> 2.14)
+  rubocop
+  rubocop-shopify
   selenium-webdriver
   solargraph (~> 0.49.0)
   sprockets-rails
