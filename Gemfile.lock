@@ -85,6 +85,9 @@ GEM
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    bundler-audit (0.9.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     capybara (3.39.2)
       addressable
       matrix
@@ -183,6 +186,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.3-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.15.3-x86_64-linux)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.23.0)
     parser (3.2.2.3)
@@ -190,7 +195,7 @@ GEM
       racc
     pg (1.5.3)
     public_suffix (5.0.1)
-    puma (5.6.6)
+    puma (5.6.7)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.7)
@@ -310,6 +315,8 @@ GEM
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.29-x86_64-darwin)
       railties (>= 6.0.0)
+    tailwindcss-rails (2.0.29-x86_64-linux)
+      railties (>= 6.0.0)
     thor (1.2.2)
     tilt (2.2.0)
     timeout (0.4.0)
@@ -344,12 +351,14 @@ PLATFORMS
   aarch64-linux
   arm64-darwin-22
   x86_64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   active_link_to (~> 1.0)
   better_errors (~> 2.10)
   binding_of_caller (~> 1.0)
   bootsnap
+  bundler-audit
   capybara
   debug
   devise (~> 4.9)
@@ -362,10 +371,12 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   pg (~> 1.1)
-  puma (~> 5.0)
+  puma (~> 5.6.7)
   rails (~> 7.0.6)
   redis (~> 4.0)
   rspec-rails (~> 6.0)
+  rubocop
+  rubocop-shopify
   selenium-webdriver
   solargraph (~> 0.49.0)
   sprockets-rails

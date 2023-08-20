@@ -28,14 +28,14 @@ require 'support/factory_bot'
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
-  abort e.to_s.strip
+  abort(e.to_s.strip)
 end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{Rails.root}/spec/fixtures"
 
   # Devise Testing
-  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include(Devise::Test::IntegrationHelpers, type: :request)
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
