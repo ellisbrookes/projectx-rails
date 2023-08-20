@@ -19,9 +19,9 @@ class CompaniesController < ApplicationController
     @company = current_user.companies.build(company_params)
 
     if @company.save
-      redirect_to company_url(@company), notice: "Company was successfully updated."
+      redirect_to(company_url(@company), { notice: "Company was successfully updated." })
     else
-      render :new, status: :unprocessable_entity
+      render(:new, status: :unprocessable_entity)
     end
   end
 
@@ -30,15 +30,16 @@ class CompaniesController < ApplicationController
 
   def update
     if @company.update(company_params)
-      redirect_to company_url(@company), notice: "Company was successfully updated."
+      redirect_to(company_url(@company), notice: "Company was successfully updated.")
     else
-      render :edit, status: :unprocessable_entity
+      render(:edit, status: :unprocessable_entity)
     end
   end
 
   def destroy
     @company.destroy
-    redirect_to companies_url, notice: "Company was successfully destroyed."
+
+    redirect_to(companies_url, notice: "Company was successfully destroyed.")
   end
 
   private
