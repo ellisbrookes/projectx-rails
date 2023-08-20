@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_team, only: %i[ show edit update destroy]
+  before_action :set_team, only: %i[show edit update destroy]
 
   layout 'dashboard'
 
@@ -20,9 +20,9 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
 
     if @team.save
-      redirect_to team_url(@team), notice: "Team was successfully created."
+      redirect_to(team_url(@team), notice: "Team was successfully created.")
     else
-      render :new, status: :unprocessable_entity
+      render(:new, status: :unprocessable_entity)
     end
   end
 
@@ -32,16 +32,16 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
-      redirect_to team_url(@team), notice: "Team was successfully updated."
+      redirect_to(team_url(@team), notice: "Team was successfully updated.")
     else
-      render :edit, status: :unprocessable_entity
+      render(:edit, status: :unprocessable_entity)
     end
   end
 
   def destroy
     @team.destroy
-    
-    redirect_to teams_url, notice: "Team was successfully destroyed"
+
+    redirect_to(teams_url, notice: "Team was successfully destroyed")
   end
 
   private
@@ -50,7 +50,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
   end
 
-    def team_params
-      params.require(:team).permit(:name, :description, :team_email, :company_id, team_members_attributes: [:id, :user_id])
-    end
+  def team_params
+    params.require(:team).permit(:name, :description, :team_email, :company_id, team_members_attributes: [:id, :user_id])
+  end
 end
