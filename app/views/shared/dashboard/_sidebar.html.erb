@@ -1,9 +1,9 @@
 <nav class="fixed flex flex-col top-0 left-0 w-24 h-full bg-neutral-100 md:w-60">
-  <%= link_to "Project X", dashboard_path, class: "w-full bg-nepal-500 px-2 py-6 text-center text-xs font-bold uppercase border-b-2 border-r-2 border-solid border-black" %>
+  <%= link_to "Project X", dashboard_index_path, class: "w-full bg-nepal-500 px-2 py-6 text-center text-xs font-bold uppercase border-b-2 border-r-2 border-solid border-black" %>
 
   <div class="flex flex-col h-full text-sm p-4 border-r-2 border-solid border-black">
     <div class="flex-1 space-y-2">
-      <%= active_link_to dashboard_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+      <%= active_link_to dashboard_index_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
         <%= heroicon "home-modern", variant: :outline %>
         <div class="hidden h-full md:block md:mx-1">|</div>
         <span class="hidden md:block">Home</span>
@@ -21,10 +21,16 @@
         <span class="hidden md:block">Recent</span>
       <% end %>
 
-      <%= active_link_to root_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
-        <%= heroicon "clipboard", variant: :outline %>
+      <%= active_link_to companies_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+        <%= heroicon "globe-alt", variant: :outline %>
         <div class="hidden h-full md:block md:mx-1">|</div>
-        <span class="hidden md:block">changelog</span>
+        <span class="hidden md:block">Companies</span>
+      <% end %>
+
+      <%= active_link_to teams_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+        <%= heroicon "user-group", variant: :outline %>
+        <div class="hidden h-full md:block md:mx-1">|</div>
+        <span class="hidden md:block">Teams</span>
       <% end %>
     </div>
 

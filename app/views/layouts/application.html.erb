@@ -16,27 +16,7 @@
   <body>
     <main>
       <section class="relative h-screen">
-        <% if notice || alert %>
-          <div class="relative">
-            <div class="absolute flex items-center bg-nepal-300 px-6 py-4 w-full">
-              <p class="text-sm text-center leading-6 text-gray-900 w-full">
-                <a href="#">
-                  <% if notice %>
-                    <%= notice %>
-                  <% elsif alert %>
-                    <%= alert %>
-                  <% end %>
-                </a>
-              </p>
-
-              <div class="flex flex-1 justify-end">
-                <button type="button" class="-m-3 p-3 focus-visible:outline-offset-[-4px]">
-                  <%= heroicon "x-mark", variant: :outline %>
-                </button>
-              </div>
-            </div>
-          </div>
-        <% end %>
+        <%= render partial: 'shared/alerts' %>
 
         <%= yield %>
       </section>

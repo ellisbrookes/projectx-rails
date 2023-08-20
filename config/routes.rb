@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   devise_for :users, controllers: { registrations: 'registrations/registrations' }
-  
+
   root 'pages#home'
-  get 'dashboard', to: 'dashboard#index'
+
+  resources :teams
+
+  resources :dashboard, only: [:index] do
+    collection do
+      # add companies resources
+      resources :companies
+    end
+  end
 end
