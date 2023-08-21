@@ -32,9 +32,13 @@ svg {
   }
 } */
 
-body.light-mode {
+.light {
+  background-color: #ffffff;
+  color: #000000;
 }
 
 /* Dark Mode */
-body.dark-mode {
+.dark {
+  background-color: #121212;
+  color: #ffffff;
 }
