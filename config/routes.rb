@@ -6,8 +6,6 @@ Rails.application.routes.draw do
 
   resources :teams
 
-  patch '/update_dark_mode_preference', to: 'darkmode#update_dark_mode_preference'
-
   resources :dashboard, only: [:index] do
     collection do
       # add companies resources
