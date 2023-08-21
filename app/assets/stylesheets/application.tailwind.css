@@ -31,3 +31,10 @@ svg {
     @apply bg-natural-300;
   }
 } */
+
+body.light-mode {
+}
+
+/* Dark Mode */
+body.dark-mode {
+}
