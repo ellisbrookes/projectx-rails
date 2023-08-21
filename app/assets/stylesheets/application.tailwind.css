@@ -32,13 +32,13 @@ svg {
   }
 } */
 
-.light {
+body.light {
   background-color: #ffffff;
   color: #000000;
 }
 
 /* Dark Mode */
-.dark {
-  background-color: #121212;
-  color: #ffffff;
+body.dark {
+  background-color: rgb(30 41 59);
+  color: rgb(148 163 184);
 }
