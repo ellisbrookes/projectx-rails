@@ -1,7 +1,7 @@
 <nav class="fixed flex flex-col top-0 left-0 w-24 h-full bg-neutral-100 md:w-60 dark:bg-slate-800 dark:text-white">
-  <%= link_to "Project X", dashboard_index_path, class: "w-full bg-nepal-500 px-2 py-6 text-center text-xs font-bold uppercase border-b-2 border-r-2 border-solid border-black dark:bg-slate-700" %>
+  <%= link_to "Project X", dashboard_index_path, class: "w-full bg-nepal-500 px-2 py-6 text-center text-xs font-bold uppercase border-b-2 border-r-2 border-solid border-black dark:bg-slate-700 dark:border-white" %>
 
-  <div class="flex flex-col h-full text-sm p-4 border-r-2 border-solid border-black">
+  <div class="flex flex-col h-full text-sm p-4 border-r-2 border-solid border-black dark:border-white">
     <div class="flex-1 space-y-2">
       <%= active_link_to dashboard_index_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md dark:hover:bg-slate-600" do %>
         <%= heroicon "home-modern", variant: :outline %>
