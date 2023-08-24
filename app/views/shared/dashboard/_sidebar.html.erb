@@ -34,11 +34,17 @@
       <% end %>
     </div>
 
-     <div class="mr-auto">
-      <button id="darkModeToggle" class="color-black">
-      <%= heroicon "moon", variant: :outline %>
-      </button>
-    </div>
+      <div class="flex justify-center ">
+        <h1 class="my-5">User Controls</h1>
+      </div>
+
+      <div class="flex justify-center mb-5 gap-3">
+          <%= heroicon "cog", variant: :outline %>
+        <button id="darkModeToggle">
+          <%= heroicon "moon", variant: :outline %>
+        </button>
+      </div>
+
 
     <div>
       <%= active_link_to edit_user_registration_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md  dark:hover:bg-slate-600" do %>
