@@ -40,13 +40,19 @@
 
     <input type="checkbox" id="darkModeToggle">
 
-  <label for="darkModeToggle" class="darkmode_toggle">
-    <div id="star">
-      <div class="star" id="star-1">★</div>
-      <div class="star" id="star-2">★</div>
-    </div>
-    <div id="moon"></div>
-  </label>
+  <label for="darkModeToggle" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" role="switch" aria-checked="false">
+				<span class="sr-only">Use setting</span>
+
+				<span class="translate-x-0 pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out icons-wrapper">
+					<span class="opacity-100 duration-200 ease-in absolute inset-0 flex h-full w-full items-center justify-center transition-opacity sun-span" aria-hidden="true">
+						<%= heroicon "sun", variant: :outline, options: { class: "h-3 w-3" } %>
+					</span>
+					
+					<span class="opacity-0 duration-100 ease-out absolute inset-0 flex h-full w-full items-center justify-center transition-opacity moon-span" aria-hidden="true">
+						<%= heroicon "moon", variant: :outline, options: { class: "h-3 w-3 text-indigo-600" } %>
+					</span>
+				</span>
+			</label>
 
     <div>
       <%= active_link_to edit_user_registration_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md  dark:hover:bg-slate-600" do %>
