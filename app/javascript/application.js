@@ -40,9 +40,9 @@ darkModeToggle.addEventListener('click', function () {
   button?.addEventListener('click', () => {
     // replace background
     if (button.classList.contains('bg-gray-200')) {
-      button?.classList.replace('bg-gray-200', 'bg-indigo-400')
+      button?.classList.replace('bg-gray-200', 'bg-slate-700')
     } else {
-      button?.classList.replace('bg-indigo-400', 'bg-gray-200')
+      button?.classList.replace('bg-slate-700', 'bg-gray-200')
     }
 
     // move toggle slider
