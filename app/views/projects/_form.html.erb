@@ -24,7 +24,14 @@
   <%= f.fields_for :team do |tm_form| %>
     <div class="my-5">
       <%= tm_form.label :team %>
-      <%= tm_form.collection_select :user_id, User.order(:full_name), :id, :full_name, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
+      <%= tm_form.collection_select :team_id, Team.order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
+    </div>
+  <% end %>
+
+  <%= f.fields_for :company do |tm_form| %>
+    <div class="my-5">
+      <%= tm_form.label :company %>
+      <%= tm_form.collection_select :company_id, Company.order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
     </div>
   <% end %>
 

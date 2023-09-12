@@ -11,12 +11,17 @@
 
    <p class="my-5">
     <strong class="block font-medium mb-1">Estimated Date</strong>
-    <%= project.estimated_completion_date %>
+    <%= project.estimated_completion_date.strftime('%d/%m/%Y') %>
   </p>
 
     <p class="my-5">
     <strong class="block font-medium mb-1">Completion Date</strong>
-    <%= project.completion_date %>
+    <%= project.completion_date.strftime('%d/%m/%Y') %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Team</strong>
+    <%= @project.team.name %>
   </p>
 
   <% if action_name != "show" %>

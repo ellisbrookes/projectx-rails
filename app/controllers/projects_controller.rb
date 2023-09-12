@@ -17,6 +17,8 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.team = Team.find(params[:team][:team_id])
+    @project.company = Company.find(params[:company][:company_id])
 
     if @project.save
       redirect_to(project_url(@project), notice: "Project was successfully created.")
@@ -46,11 +48,9 @@ class ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
-    @project.estimated_completion_date.strftime('%d/%m/%Y')
-    @project.completion_date.strftime('%d/%m/%Y')
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :estimated_completion_date, :completion_date)
+    params.require(:project).permit(:name, :description, :estimated_completion_date, :completion_date, :team_id)
   end
 end
