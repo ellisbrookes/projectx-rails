@@ -55,6 +55,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_002519) do
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.date "estimated_completion_date"
+    t.date "completion_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

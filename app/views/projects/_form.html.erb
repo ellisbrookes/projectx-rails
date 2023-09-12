@@ -20,6 +20,23 @@
     <%= f.label :description %>
     <%= f.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
+
+  <%= f.fields_for :team do |tm_form| %>
+    <div class="my-5">
+      <%= tm_form.label :team %>
+      <%= tm_form.collection_select :user_id, User.order(:full_name), :id, :full_name, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= f.label :estimated_completion_date %>
+    <%= f.date_field :estimated_completion_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= f.label :completion_date %>
+    <%= f.date_field :completion_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
   
   <div class="inline">
     <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>

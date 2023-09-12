@@ -1,2 +1,0 @@
-class CreatedProject < ApplicationRecord
-end
