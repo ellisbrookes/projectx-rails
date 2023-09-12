@@ -1,6 +1,4 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_project, only: %i[show edit update destroy]
 
   layout 'dashboard'
 
@@ -17,8 +15,8 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.team = Team.find(params[:team][:team_id])
-    @project.company = Company.find(params[:company][:company_id])
+    @project.company = Company.find_by(id: params[:project][:company_id])
+    @project.team = Team.find_by(id: params[:project][:team_id])
 
     if @project.save
       redirect_to(project_url(@project), notice: "Project was successfully created.")
@@ -41,7 +39,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
 
-    redirect_to(projects_url, notice: "Project was successfully destroyed")
+    redirect_to(project_url, notice: "Project was successfully destroyed")
   end
 
   private
@@ -51,6 +49,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :estimated_completion_date, :completion_date, :team_id)
+    params.require(:project).permit(:name, :description, :estimated_completion_date, :completion_date, :company_id, :team_id)
   end
 end

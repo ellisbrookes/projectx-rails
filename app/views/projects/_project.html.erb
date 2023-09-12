@@ -21,7 +21,12 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Team</strong>
-    <%= @project.team.name %>
+    <%= @project.team.id %>
+  </p>
+
+   <p class="my-5">
+    <strong class="block font-medium mb-1">Company</strong>
+    <%= @project.company.id %>
   </p>
 
   <% if action_name != "show" %>
