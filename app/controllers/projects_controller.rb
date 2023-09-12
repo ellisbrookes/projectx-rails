@@ -5,34 +5,32 @@ class ProjectsController < ApplicationController
   layout 'dashboard'
 
   def index
-    @projects = Projects.all
+    @projects = Project.all
   end
 
   def show
   end
 
   def new
-    @project = project.new
-    @project.project.build
+    @project = Project.new
   end
 
   def create
-    @projects = Project.new(team_params)
+    @project = Project.new(project_params)
 
     if @project.save
-      redirect_to(projects_url(@project), notice: "Project was successfully created.")
+      redirect_to(project_url(@project), notice: "Project was successfully created.")
     else
       render(:new, status: :unprocessable_entity)
     end
   end
 
   def edit
-    @project.project.build
   end
 
   def update
     if @project.update(project_params)
-      redirect_to(project_url(@team), notice: "Project was successfully updated.")
+      redirect_to(project_url(@project), notice: "Project was successfully updated.")
     else
       render(:edit, status: :unprocessable_entity)
     end
