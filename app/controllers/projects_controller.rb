@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-
   layout 'dashboard'
 
   def index
