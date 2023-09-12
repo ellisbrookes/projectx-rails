@@ -46,6 +46,8 @@ class ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
+    @project.estimated_completion_date.strftime('%d/%m/%Y')
+    @project.completion_date.strftime('%d/%m/%Y')
   end
 
   def project_params
