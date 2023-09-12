@@ -4,6 +4,6 @@ class Projects < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
-  validate :estimated_completion_date, presence: true
-  validate :completion_date, presence: true
+  validates :estimated_completion_date, presence: true
+  validates :completion_date, presence: true
 end
