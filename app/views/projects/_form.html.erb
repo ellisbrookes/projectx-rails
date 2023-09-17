@@ -1,4 +1,4 @@
-<%= form_with(model: project, class: "contents") do |f| %>
+<%= form_with(model: @project, class: "contents") do |f| %>
   <% if project.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -23,14 +23,14 @@
 
   <%= f.fields_for :team do |tm_form| %>
     <div class="my-5">
-      <%= tm_form.label :team %>
+      <%= tm_form.label :team_id %>
       <%= tm_form.collection_select :team_id, Team.order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
     </div>
   <% end %>
 
   <%= f.fields_for :company do |tm_form| %>
     <div class="my-5">
-      <%= tm_form.label :company %>
+      <%= tm_form.label :company_id %>
       <%= tm_form.collection_select :company_id, Company.order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
     </div>
   <% end %>

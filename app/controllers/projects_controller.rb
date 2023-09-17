@@ -14,8 +14,6 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.company = Company.find_by(id: params[:project][:company_id])
-    @project.team = Team.find_by(id: params[:project][:team_id])
 
     if @project.save
       redirect_to(project_url(@project), notice: "Project was successfully created.")
@@ -48,6 +46,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :estimated_completion_date, :completion_date, :company_id, :team_id)
+    params.require(:project).permit(:name, :description, :estimated_completion_date, :completion_date, :company_id, :team_id, team_attributes: [:team_id], company_attributes: [:company_id])
   end
 end
