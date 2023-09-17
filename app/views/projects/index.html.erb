@@ -19,6 +19,8 @@
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Description</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Estimated Date</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Completion Date</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Team</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Company</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-0">Actions
                 <span class="sr-only">Show</span>
                 <span class="sr-only">Edit</span>
@@ -44,6 +46,14 @@
 
                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                   <div class="text-gray-900"><%= project.completion_date.strftime('%d/%m/%Y') %></div>
+                </td>
+
+                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                  <div class="text-gray-900"><%= project.team.name %></div>
+                </td>
+
+                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                  <div class="text-gray-900"><%= project.company.name %></div>
                 </td>
 
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
