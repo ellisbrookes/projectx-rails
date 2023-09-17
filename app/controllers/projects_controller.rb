@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   layout 'dashboard'
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
     @projects = Project.all
@@ -46,6 +47,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :estimated_completion_date, :completion_date, team_attributes: [:team_id], company_attributes: [:company_id])
+    params.require(:project).permit(:name, :description, :estimated_completion_date, :completion_date, :team_id, :company_id)
   end
 end

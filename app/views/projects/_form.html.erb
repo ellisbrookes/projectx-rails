@@ -21,19 +21,15 @@
     <%= f.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <%= f.fields_for :team do |tm_form| %>
-    <div class="my-5">
-      <%= tm_form.label :team_id %>
-      <%= tm_form.collection_select :team_id, Team.order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
-    </div>
-  <% end %>
+  <div class="my-5">
+    <%= f.label :team_id %>
+    <%= f.collection_select :team_id, Team.order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
+  </div>
 
-  <%= f.fields_for :company do |tm_form| %>
-    <div class="my-5">
-      <%= tm_form.label :company_id %>
-      <%= tm_form.collection_select :company_id, Company.order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
-    </div>
-  <% end %>
+  <div class="my-5">
+    <%= f.label :company_id %>
+    <%= f.collection_select :company_id, Company.order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
+  </div>
 
   <div class="my-5">
     <%= f.label :estimated_completion_date %>
