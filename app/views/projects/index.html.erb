@@ -15,9 +15,9 @@
         <table class="min-w-full divide-y divide-gray-300">
           <thead>
             <tr>
-              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Projet Name</th>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Projet Title</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Description</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Estimated Date</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Start Date</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Completion Date</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Team</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Company</th>
@@ -33,7 +33,7 @@
             <% @projects.each do |project| %>
               <tr>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900"><%= project.name %></div>
+                  <div class="text-gray-900"><%= project.title %></div>
                 </td>
 
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
@@ -41,7 +41,7 @@
                 </td>
 
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900"><%= project.estimated_completion_date.strftime('%d/%m/%Y') %></div>
+                  <div class="text-gray-900"><%= project.start_date.strftime('%d/%m/%Y') %></div>
                 </td>
 
                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">

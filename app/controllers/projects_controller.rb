@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
 
-    redirect_to(project_url, notice: "Project was successfully destroyed")
+    redirect_to(projects_url, notice: "Project was successfully destroyed")
   end
 
   private
@@ -47,6 +47,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :estimated_completion_date, :completion_date, :team_id, :company_id)
+    params.require(:project).permit(:id, :title, :description, :start_date, :completion_date, :estimated_budget, :actual_budget, :team_id, :company_id)
   end
 end
