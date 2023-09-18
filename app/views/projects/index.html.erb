@@ -19,6 +19,8 @@
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Description</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Start Date</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Completion Date</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Estimated Budget</th>
+               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Budget</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Team</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Company</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-0">Actions
@@ -46,6 +48,18 @@
 
                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                   <div class="text-gray-900"><%= project.completion_date.strftime('%d/%m/%Y') %></div>
+                </td>
+
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                  <div class="text-gray-900">
+                  <%= number_to_currency(project.estimated_budget.to_f, unit: '£') %>
+                  </div>
+                </td>
+
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                  <div class="text-gray-900">
+                  <%= number_to_currency(project.actual_budget.to_f, unit: '£') %>
+                  </div>
                 </td>
 
                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
