@@ -1,33 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-details > summary {
-  justify-content: space-between;
-  list-style: none;
-  display: flex;
-}
-
-details > summary > div {
-  align-items: center;
-  display: flex;
-}
-
-details > summary::-webkit-details-marker {
-  display: none;
-}
-
-svg {
-  height: 1.5rem;
-  width: 1.5rem;
-}
-
-.active {
-  @apply bg-neutral-200;
-}
-
-/* @layer components {
-  .active {
-    @apply bg-natural-300;
-  }
-} */
+@tailwind base; @tailwind components; @tailwind utilities; details > summary {
+justify-content: space-between; list-style: none; display: flex; } details >
+summary > div { align-items: center; display: flex; } details >
+summary::-webkit-details-marker { display: none; } svg { height: 1.5rem; width:
+1.5rem; } .active { @apply bg-neutral-200; } /* @layer components { .active {
+@apply bg-natural-300; } } */

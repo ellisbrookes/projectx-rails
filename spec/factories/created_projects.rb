@@ -1,6 +1,2 @@
-FactoryBot.define do
-  factory :created_project do
-    name { "MyString" }
-    description { "MyString" }
-  end
-end
+FactoryBot.define do factory :created_project do name { "MyString" } description
+{ "MyString" } end end

@@ -1,5 +1,2 @@
-inherit_from: .rubocop_todo.yml
-inherit_gem:
-  rubocop-shopify: rubocop.yml
-Layout/LineLength:
-  Max: 200
+inherit_from: .rubocop_todo.yml inherit_gem: rubocop-shopify: rubocop.yml
+Layout/LineLength: Max: 200
