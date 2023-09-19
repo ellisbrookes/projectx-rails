@@ -1,27 +1,27 @@
 <!doctype html>
 <html>
-  <head>
-    <title>ProjectxRails</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <%= csrf_meta_tags %> <%= csp_meta_tag %> <%= stylesheet_link_tag
-    "tailwind", "inter-font", "data-turbo-track": "reload" %> <%=
-    stylesheet_link_tag "application", "data-turbo-track": "reload" %> <%=
-    javascript_importmap_tags %> <%= hotwire_livereload_tags if
-    Rails.env.development? %>
-  </head>
+    <head>
+        <title>ProjectxRails</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <%= csrf_meta_tags %> <%= csp_meta_tag %> <%= stylesheet_link_tag
+        "tailwind", "inter-font", "data-turbo-track": "reload" %> <%=
+        stylesheet_link_tag "application", "data-turbo-track": "reload" %> <%=
+        javascript_importmap_tags %> <%= hotwire_livereload_tags if
+        Rails.env.development? %>
+    </head>
 
-  <body>
-    <main>
-      <section class="relative h-screen">
-        <%= render "shared/dashboard/sidebar" %> <%= render
-        "shared/dashboard/navigation" %>
+    <body>
+        <main>
+            <section class="relative h-screen">
+                <%= render "shared/dashboard/sidebar" %> <%= render
+                "shared/dashboard/navigation" %>
 
-        <section
-          class="relative mt-24 ml-28 mr-4 flex h-screen flex-col overflow-x-hidden md:ml-64"
-        >
-          <%= render partial: 'shared/alerts' %> <%= yield %>
-        </section>
-      </section>
-    </main>
-  </body>
+                <section
+                    class="relative mt-24 ml-28 mr-4 flex h-screen flex-col overflow-x-hidden md:ml-64"
+                >
+                    <%= render partial: 'shared/alerts' %> <%= yield %>
+                </section>
+            </section>
+        </main>
+    </body>
 </html>
