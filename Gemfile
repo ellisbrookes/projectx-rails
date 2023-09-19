@@ -36,6 +36,8 @@ gem "redis", "~> 4.0"
 # bundler audit gem
 gem "bundler-audit"
 
+gem 'kamal', '~> 1.0.0'
+
 # rubocop gem
 gem "rubocop"
 gem "rubocop-shopify"
