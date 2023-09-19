@@ -32,6 +32,12 @@
         <div class="hidden h-full md:block md:mx-1">|</div>
         <span class="hidden md:block">Teams</span>
       <% end %>
+
+      <%= active_link_to projects_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+        <%= heroicon "map", variant: :outline %>
+        <div class="hidden h-full md:block md:mx-1">|</div>
+        <span class="hidden md:block">Projects</span>
+      <% end %>
     </div>
 
       <div class="flex justify-center ">
