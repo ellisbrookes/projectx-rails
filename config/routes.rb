@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :teams
 
+  resources :projects
+
   resources :dashboard, only: [:index] do
     collection do
       # add companies resources
