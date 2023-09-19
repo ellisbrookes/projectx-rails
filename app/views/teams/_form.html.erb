@@ -1,57 +1,56 @@
 <%= form_with(model: [team], class: "contents") do |f| %> <% if team.errors.any?
 %>
 <div
-    id="error_explanation"
-    class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3"
+  id="error_explanation"
+  class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3"
 >
-    <h2>
-        <%= pluralize(team.errors.count, "error") %> prohibited this team from
-        being saved:
-    </h2>
+  <h2>
+    <%= pluralize(team.errors.count, "error") %> prohibited this team from being
+    saved:
+  </h2>
 
-    <ul>
-        <% team.errors.each do |error| %>
-        <li><%= error.full_message %></li>
-        <% end %>
-    </ul>
+  <ul>
+    <% team.errors.each do |error| %>
+    <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
 </div>
 <% end %>
 
 <div class="my-5">
-    <%= f.label :name %> <%= f.text_field :name, class: "block shadow rounded-md
-    border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <%= f.label :name %> <%= f.text_field :name, class: "block shadow rounded-md
+  border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
 </div>
 
 <div class="my-5">
-    <%= f.label :description %> <%= f.text_area :description, rows: 4, class:
-    "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2
-    w-full" %>
+  <%= f.label :description %> <%= f.text_area :description, rows: 4, class:
+  "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2
+  w-full" %>
 </div>
 
 <div class="my-5">
-    <%= f.label :team_email %> <%= f.text_field :team_email, class: "block
-    shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
-    %>
+  <%= f.label :team_email %> <%= f.text_field :team_email, class: "block shadow
+  rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
 </div>
 
 <%= f.fields_for :team_members do |tm_form| %>
 <div class="my-5">
-    <%= tm_form.label :team_members %> <%= tm_form.collection_select :user_id,
-    User.order(:full_name), :id, :full_name, { prompt: true, multiple: true }, {
-    class: "block shadow rounded-md border border-gray-200 outline-none px-3
-    py-2 mt-2 w-full appearance-none" } %>
+  <%= tm_form.label :team_members %> <%= tm_form.collection_select :user_id,
+  User.order(:full_name), :id, :full_name, { prompt: true, multiple: true }, {
+  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2
+  mt-2 w-full appearance-none" } %>
 </div>
 <% end %>
 
 <div class="my-5">
-    <%= f.label :companies %> <%= f.collection_select :company_id,
-    Company.order(:name), :id, :name, { prompt: true, multiple: true }, { class:
-    "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2
-    w-full appearance-none" } %>
+  <%= f.label :companies %> <%= f.collection_select :company_id,
+  Company.order(:name), :id, :name, { prompt: true, multiple: true }, { class:
+  "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2
+  w-full appearance-none" } %>
 </div>
 
 <div class="inline">
-    <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white
-    inline-block font-medium cursor-pointer" %>
+  <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block
+  font-medium cursor-pointer" %>
 </div>
 <% end %>

@@ -1,46 +1,46 @@
 <div id="<%= dom_id project %>">
-    <p class="my-5">
-        <strong class="block font-medium mb-1">Name:</strong>
-        <%= project.title %>
-    </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= project.title %>
+  </p>
 
-    <p class="my-5">
-        <strong class="block font-medium mb-1">Description:</strong>
-        <%= project.description %>
-    </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= project.description %>
+  </p>
 
-    <p class="my-5">
-        <strong class="block font-medium mb-1">Start Date</strong>
-        <%= project.start_date.strftime('%d/%m/%Y') %>
-    </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Start Date</strong>
+    <%= project.start_date.strftime('%d/%m/%Y') %>
+  </p>
 
-    <p class="my-5">
-        <strong class="block font-medium mb-1">Completion Date</strong>
-        <%= project.completion_date.strftime('%d/%m/%Y') %>
-    </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Completion Date</strong>
+    <%= project.completion_date.strftime('%d/%m/%Y') %>
+  </p>
 
-    <p class="my-5">
-        <strong class="block font-medium mb-1">Estimated Budget</strong>
-        <%= number_to_currency(project.estimated_budget, unit: '£') %>
-    </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Estimated Budget</strong>
+    <%= number_to_currency(project.estimated_budget, unit: '£') %>
+  </p>
 
-    <p class="my-5">
-        <strong class="block font-medium mb-1">Budget</strong>
-        <%= number_to_currency(project.actual_budget, unit: '£') %>
-    </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Budget</strong>
+    <%= number_to_currency(project.actual_budget, unit: '£') %>
+  </p>
 
-    <p class="my-5">
-        <strong class="block font-medium mb-1">Team</strong>
-        <%= @project.team.name %>
-    </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Team</strong>
+    <%= @project.team.name %>
+  </p>
 
-    <p class="my-5">
-        <strong class="block font-medium mb-1">Company</strong>
-        <%= @project.company.name %>
-    </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Company</strong>
+    <%= @project.company.name %>
+  </p>
 
-    <% if action_name != "show" %> <%= link_to "Show this project", project,
-    class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %> <%=
-    link_to 'Edit this project', edit_project_path(project), class: "rounded-lg
-    py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %> <% end %>
+  <% if action_name != "show" %> <%= link_to "Show this project", project,
+  class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %> <%=
+  link_to 'Edit this project', edit_project_path(project), class: "rounded-lg
+  py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %> <% end %>
 </div>
