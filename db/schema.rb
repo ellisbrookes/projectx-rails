@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_17_235932) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_20_204005) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_235932) do
     t.integer "company_id"
     t.decimal "estimated_budget", precision: 10, scale: 2
     t.decimal "actual_budget", precision: 10, scale: 2
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.date "start_date"
+    t.date "completion_date"
+    t.string "assigned_to"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "team_members", force: :cascade do |t|
