@@ -1,10 +1,10 @@
 <%= form_with(model: @task, class: "contents") do |f| %>
-  <% if project.errors.any? %>
+  <% if task.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this project from being saved:</h2>
 
       <ul>
-        <% project.errors.each do |error| %>
+        <% task.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -19,16 +19,6 @@
   <div class="my-5">
     <%= f.label :description %>
     <%= f.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= f.label :user  %>
-    <%= f.collection_select :user_id, User.order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
-  </div>
-
-  <div class="my-5">
-    <%= f.label :project %>
-    <%= f.collection_select :project, Project.order(:title), :id, :title, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
   </div>
 
   <div class="my-5">
@@ -50,7 +40,7 @@
   <%= f.fields_for :assigned_to do |tm_form| %>
     <div class="my-5">
       <%= tm_form.label :assigned_to %>
-      <%= tm_form.collection_select :user_id, User.order(:full_name), :id, :full_name, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
+      <%= tm_form.collection_select :assigned_to, User.order(:full_name), :id, :full_name, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
     </div>
   <% end %>
   
