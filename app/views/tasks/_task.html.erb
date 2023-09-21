@@ -1,0 +1,52 @@
+<div id="<% dom_id task %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= task.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Description:</strong>
+    <%= task.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">User:</strong>
+    <%= task.user_full_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Project:</strong>
+    <%= task.project_title %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Start Date:</strong>
+    <%= task.start_date %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Project:</strong>
+    <%= task.completion_date_date %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Status</strong>
+    <%= task.status %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Assigned To:</strong>
+    <ul>
+      <% @task.user.each do |user| %>
+      <li>
+        <%= task.user.full_name %>
+      </li>
+      <% end %>
+    </ul>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this task", task, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this task", edit_task_path(task), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <% end %>
+</div>
