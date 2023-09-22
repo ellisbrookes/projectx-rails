@@ -10,18 +10,13 @@
   </p>
   
   <p class="my-5">
-    <strong class="block font-medum mb-1">Project:</strong>
-    <%# task.project_title %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medum mb-1">Start Date:</strong>
-    <%= task.start_date %>
+    <strong class="block font-medum mb-1">Due Date:</strong>
+    <%= task.due_date %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medum mb-1">Project:</strong>
-    <%= task.completion_date_date %>
+    <%= task.project.title %>
   </p>
 
   <p class="my-5">
@@ -30,14 +25,8 @@
   </p>
 
   <p class="my-5">
-    <strong class="block font-medum mb-1">Assigned To:</strong>
-    <ul>
-      <% @task.user.each do |user| %>
-      <li>
-        <%= task.user.full_name %>
-      </li>
-      <% end %>
-    </ul>
+    <strong class="block font-medium mb-1">Assigned To</strong>
+    <%= task.assigned_to %>
   </p>
 
   <% if action_name != "show" %>
