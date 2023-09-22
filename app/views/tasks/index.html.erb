@@ -23,6 +23,8 @@
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Assigned To</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Team</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Company</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Created At</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Updated At</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-0">Actions
                 <span class="sr-only">Show</span>
                 <span class="sr-only">Edit</span>
@@ -64,6 +66,14 @@
 
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                   <div class="text-gray-900"><%= task.company.name %></div>
+                </td>
+
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                  <div class="text-gray-900"><%= task.created_at.strftime('%d/%m/%Y %H:%M') %></div>
+                </td>
+
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                  <div class="text-gray-900"><%= task.updated_at.strftime('%d/%m/%Y %H:%M') %></div>
                 </td>
 
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
