@@ -15,14 +15,14 @@
         <table class="min-w-full divide-y divide-gray-300">
           <thead>
             <tr>
-              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Task Title</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Task Description</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Task Start Date</th>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Due Date</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Task Status</th>
-               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Assigned To</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Team</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Project Company</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Assigned To</th>
+              <%# <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Team</th> %>
+              <%# <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Company</th> %>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-0">Actions
                 <span class="sr-only">Show</span>
                 <span class="sr-only">Edit</span>
@@ -43,21 +43,13 @@
                 </td>
 
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900"><%= task.user_full_name %></div>
+                  <div class="text-gray-900"><%= task.due_date.strftime('%d/%m/%Y') %></div>
                 </td>
 
                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900"><%= task.project %></div>
+                  <div class="text-gray-900"><%= task.project.title %></div>
                 </td>
-
-                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900"><%= task.start_date('%d/%m/%Y') %></div>
-                </td>
-
-                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900"><%= task.project %></div>
-                </td>
-
+          
                  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                   <div class="text-gray-900"><%= task.status %></div>
                 </td>
