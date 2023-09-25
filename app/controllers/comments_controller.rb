@@ -1,21 +1,21 @@
 class CommentsController < ApplicationController
-  before_action :set_task, only: %i[create destroy] 
+  before_action :set_task, only: %i[create destroy]
 
   def create
     @comment = @task.comments.build(comment_params)
     @comment.user = current_user
-    
+
     if @comment.save
-      redirect_to @task, notice: "comment was created successfully"
+      redirect_to(@task, notice: "comment was created successfully")
     else
-      redirect_to @task, alert: "comment was not saved successfully"
+      redirect_to(@task, alert: "comment was not saved successfully")
     end
   end
 
   def destory
     @comment = @task.comments.find(params[:id])
     @comment.destory
-    redirect_to @task
+    redirect_to(@task)
   end
 
   private
