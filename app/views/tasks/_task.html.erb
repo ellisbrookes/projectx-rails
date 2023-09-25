@@ -1,0 +1,56 @@
+<div id="<% dom_id task %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= task.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Description:</strong>
+    <%= task.description %>
+  </p>
+  
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Due Date:</strong>
+    <%= task.due_date.strftime('%d/%m/%Y') %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Project:</strong>
+    <%= task.project.title %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Status</strong>
+    <%= task.status %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Assigned To</strong>
+    <%= task.assigned_to.full_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Reporter</strong>
+    <%= task.reporter.full_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Team</strong>
+    <%= task.team.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Created At:</strong>
+    <%= task.created_at.strftime('%d/%m/%Y %H:%M') %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Updated At:</strong>
+    <%= task.updated_at.strftime('%d/%m/%Y %H:%M') %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this task", task, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this task", edit_task_path(task), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <% end %>
+</div>
