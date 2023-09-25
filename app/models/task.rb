@@ -4,6 +4,8 @@ class Task < ApplicationRecord
   belongs_to :assigned_to, class_name: "User"
   belongs_to :project
   belongs_to :team
+  
+  has_many :comments
 
   validates :name, presence: true
   validates :description, presence: true

@@ -1,4 +1,4 @@
-<div id="<% dom_id task %>">
+<div id="<%= dom_id task %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">Name:</strong>
     <%= task.name %>
@@ -48,6 +48,26 @@
     <strong class="block font-medium mb-1">Updated At:</strong>
     <%= task.updated_at.strftime('%d/%m/%Y %H:%M') %>
   </p>
+
+  <h2>Add comment</h2>
+
+  <%= form_with(model: [task, Comment.new], class: "contents") do |f| %>
+    <%= f.label :body %>
+    <%= f.text_area :body, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none", rows: 4, placeholder: "Enter your comment here" %>
+    <%= f.submit "Submit Comment", class: "block bg-blue-500 text-white rounded-md px-3 py-2 mt-2" %>
+  <% end %>
+
+  <h2>Task Comments</h2>
+
+  <% @comments.each do |comment| %>
+    <div class="row">
+      <hr>
+      <p>
+      	<%= comment.user.full_name %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small>
+      </p>
+      <p><%= comment.body %></p>
+      </div>
+    <% end %>
 
   <% if action_name != "show" %>
     <%= link_to "Show this task", task, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

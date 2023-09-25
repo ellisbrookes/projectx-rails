@@ -8,6 +8,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    @comments = @task.comments.order(created_at: :desc)
   end
 
   def new
