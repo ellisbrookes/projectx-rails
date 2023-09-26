@@ -15,12 +15,12 @@
         <table class="min-w-full divide-y divide-gray-300">
           <thead>
             <tr>
-              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-white sm:pl-0">Team Name</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Team Email</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Team Description</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white sm:pr-0">Actions
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Team Members</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Company</th>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Team Name</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Team Email</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Team Description</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Team Members</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Company</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-0">Actions
                 <span class="sr-only">Show</span>
                 <span class="sr-only">Edit</span>
                 <span class="sr-only">Destroy</span>
@@ -44,9 +44,25 @@
                 </td>
 
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <%= link_to "Show", team, class: "text-indigo-600 hover:text-indigo-900 dark:text-white dark:hover:text-gray-300" %>
-                  <%= link_to 'Edit', edit_team_path(team), class: "text-indigo-600 hover:text-indigo-900 dark:text-white dark:hover:text-gray-300" %>
-                  <%= link_to 'Destroy', team_path(team), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-indigo-600 hover:text-indigo-900 dark:text-white dark:hover:text-gray-300" %>
+                  <div class="text-gray-900">
+                    <% team.team_members.each do |tm| %>
+                      <% if tm.user.avatar.attached? %>
+                        <%= image_tag tm.user.avatar, alt: "#{tm.user.full_name}", class: "h-8 w-8 rounded-full" %>
+                      <% else %>
+                        <%= heroicon "user-circle", variant: :outline %>
+                      <% end%>
+                    <% end %>
+                  </div>
+                </td>
+
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                  <div class="text-gray-900"><%= team.company.name %></div>
+                </td>
+
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                  <%= link_to "Show", team, class: "text-indigo-600 hover:text-indigo-900" %>
+                  <%= link_to 'Edit', edit_team_path(team), class: "text-indigo-600 hover:text-indigo-900" %>
+                  <%= link_to 'Destroy', team_path(team), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-indigo-600 hover:text-indigo-900" %>
                 </td>
               </tr>
             <% end %>
