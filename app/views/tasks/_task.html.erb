@@ -1,41 +1,41 @@
-<div id="<%= dom_id task %>">
+<div id="<%= dom_id(task) %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">Name:</strong>
     <%= task.name %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medum mb-1">Description:</strong>
+    <strong class="block font-medium mb-1">Description:</strong>
     <%= task.description %>
   </p>
-  
+
   <p class="my-5">
-    <strong class="block font-medum mb-1">Due Date:</strong>
+    <strong class="block font-medium mb-1">Due Date:</strong>
     <%= task.due_date.strftime('%d/%m/%Y') %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medum mb-1">Project:</strong>
+    <strong class="block font-medium mb-1">Project:</strong>
     <%= task.project.title %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medum mb-1">Status</strong>
+    <strong class="block font-medium mb-1">Status:</strong>
     <%= task.status %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Assigned To</strong>
+    <strong class="block font-medium mb-1">Assigned To:</strong>
     <%= task.assigned_to.full_name %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Reporter</strong>
+    <strong class="block font-medium mb-1">Reporter:</strong>
     <%= task.reporter.full_name %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Team</strong>
+    <strong class="block font-medium mb-1">Team:</strong>
     <%= task.team.name %>
   </p>
 
@@ -49,35 +49,45 @@
     <%= task.updated_at.strftime('%d/%m/%Y %H:%M') %>
   </p>
 
-  <h2>Add comment</h2>
+
+ <h2>Task Comments</h2>
+
+  <div class="bg-gray-300 bg-opacity-20 rounded-lg p-4 mb-4">
+    <% @comments.each do |comment| %>
+      <div class="row flex items-center">
+        <% if comment.user.avatar.attached? %>
+          <div class="avatar mr-2">
+            <%= image_tag comment.user.avatar, alt: "#{comment.user.full_name}", class: "h-8 w-8 rounded-full" %>
+          </div>
+        <% else %>
+          <div class="avatar mr-2">
+            <%= heroicon "user-circle", variant: :outline, class: "h-8 w-8 rounded-full" %>
+          </div>
+        <% end %>
+        
+        <div class="comment">
+          <p>
+            <span><%= comment.user.full_name %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small></span>
+            <br>
+            <%= comment.body %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="flex justify-center mt-4">
+    <%= pagy_nav(@pagy).html_safe %>
+  </div>
+
+  <h2>Add Comment</h2>
 
   <%= form_with(model: [task, Comment.new], class: "contents") do |f| %>
-    <%= f.label :body %>
+    <%= f.label :body, class:"hidden"%>
     <%= f.text_area :body, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none", rows: 4, placeholder: "Enter your comment here" %>
     <%= f.submit "Submit Comment", class: "block bg-blue-500 text-white rounded-md px-3 py-2 mt-2" %>
   <% end %>
 
-  <h2>Task Comments</h2>
-
-  <% @comments.each do |comment| %>
-    <div class="row">
-      <hr>
-      <p>
-        <% if comment.user.avatar.attached? %>
-          <%= image_tag comment.user.avatar, alt: "#{comment.user.full_name}", class: "h-8 w-8 rounded-full mr-2" %>
-        <% else %>
-         <%= heroicon "user-circle", variant: :outline %>
-      <% end%>
-       
-      	<%= comment.user.full_name %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small>
-      </p>
-      <p><%= comment.body %></p>
-      </div>
-    <% end %>
-
-    <div class="flex justify-center mt-4">
-      <%= pagy_nav(@pagy).html_safe %>
-    </div>
 
   <% if action_name != "show" %>
     <%= link_to "Show this task", task, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
