@@ -52,7 +52,7 @@
 
  <h2>Task Comments</h2>
 
-  <div class="bg-gray-300 bg-opacity-20 rounded-lg p-4 mb-4">
+  <div class="bg-gray-200 bg-opacity-20 rounded-lg p-4 mb-4">
     <% @comments.each do |comment| %>
       <div class="row flex items-center">
         <% if comment.user.avatar.attached? %>
@@ -82,12 +82,13 @@
 
   <h2>Add Comment</h2>
 
-  <%= form_with(model: [task, Comment.new], class: "contents") do |f| %>
-    <%= f.label :body, class:"hidden"%>
-    <%= f.text_area :body, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none", rows: 4, placeholder: "Enter your comment here" %>
-    <%= f.submit "Submit Comment", class: "block bg-blue-500 text-white rounded-md px-3 py-2 mt-2" %>
+   <%= form_with(model: [task, Comment.new], class: "contents") do |f| %>
+    <div class="relative">
+      <%= f.label :body, class: "hidden" %>  
+      <%= f.text_area :body, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none", rows: 4, placeholder: "Enter your comment here" %>
+      <%= f.submit "Submit Comment", class: "absolute right-0 bottom-0 bg-blue-500 text-white rounded-md px-3 py-2 mt- mr-2 cursor-pointer" %>
+    </div>
   <% end %>
-
 
   <% if action_name != "show" %>
     <%= link_to "Show this task", task, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
