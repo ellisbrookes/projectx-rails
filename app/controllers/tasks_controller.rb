@@ -10,7 +10,7 @@ class TasksController < ApplicationController
 
   def show
     @comments = @task.comments.order(created_at: :desc)
-    @pagy, @paginated_comments = pagy(@comments)
+    @pagy, @comments = pagy(@comments, items: 5)
   end
 
   def new
