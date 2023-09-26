@@ -63,6 +63,12 @@
     <div class="row">
       <hr>
       <p>
+        <% if comment.user.avatar.attached? %>
+          <%= image_tag comment.user.avatar, alt: "#{comment.user.full_name}", class: "h-8 w-8 rounded-full mr-2" %>
+        <% else %>
+         <%= heroicon "user-circle", variant: :outline %>
+      <% end%>
+       
       	<%= comment.user.full_name %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small>
       </p>
       <p><%= comment.body %></p>
