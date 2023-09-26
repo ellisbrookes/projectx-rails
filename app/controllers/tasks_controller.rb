@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  include Pagy::Backend
   layout 'dashboard'
   before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
@@ -9,6 +10,7 @@ class TasksController < ApplicationController
 
   def show
     @comments = @task.comments.order(created_at: :desc)
+    @pagy, @paginated_comments = pagy(@comments)
   end
 
   def new
