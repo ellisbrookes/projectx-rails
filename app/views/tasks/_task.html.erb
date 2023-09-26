@@ -89,7 +89,7 @@
    <%= form_with(model: [task, Comment.new], class: "contents") do |f| %>
     <div class="relative">
       <%= f.label :body, class: "hidden" %>  
-      <%= f.text_area :body, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none", rows: 3, placeholder: "Enter your comment here", style: "resize: none;"%>
+      <%= f.text_area :body, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none", rows: 4, placeholder: "Enter your comment here", style: "resize: none;"%>
       <%= f.submit "Submit Comment", class: "absolute right-0 bottom-0 bg-blue-500 text-white rounded-md px-3 py-2 mt- mr-2 cursor-pointer" %>
     </div>
   <% end %>
