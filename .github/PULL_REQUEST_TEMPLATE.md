@@ -21,14 +21,6 @@
 - [ ] I have resolved any merge conflicts.
 - [ ] I have assigned this PR to the appropriate reviewers.
 
-**For Reviewers:**
-- [ ] I have reviewed the changes and provided constructive feedback.
-- [ ] I have verified that the code changes are correct and fulfill the PR's purpose.
-- [ ] I have confirmed that the code follows the project's coding standards.
-- [ ] I have checked for any potential security issues.
-- [ ] I have verified that all tests pass successfully.
-- [ ] I have approved the PR or requested further changes if needed.
-
 <!-- Add any additional context or information about the changes if necessary. -->
 ## Additional Information
 
