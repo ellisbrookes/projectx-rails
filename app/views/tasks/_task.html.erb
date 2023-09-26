@@ -52,7 +52,6 @@
 
  <h2>Task Comments</h2>
 
-
   <div class="bg-gray-200 bg-opacity-20 rounded-lg p-4 mb-4">
   <% if @comments.empty? %>
     <p>There are no comments on this task.</p>
@@ -84,7 +83,6 @@
     <% end %>
   <% end %>
 </div>
-
 
   <div class="flex justify-center mt-4">
     <%= pagy_nav(@pagy).html_safe %>
