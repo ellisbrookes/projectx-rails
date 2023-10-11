@@ -13,43 +13,43 @@
 
   <div class="my-5">
     <%= f.label :name %>
-    <%= f.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= f.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
   </div>
 
   <div class="my-5">
     <%= f.label :description %>
-    <%= f.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= f.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
   </div>
 
   <div class="my-5">
     <%= f.label :due_date %>
-    <%= f.date_field :due_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= f.date_field :due_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
   </div>
 
   <div class="my-5">
     <%= f.label :status %>
   <div class="flex items-center space-x-3">
-    <%= f.select :status, options_for_select(['pending', 'in_progress', 'complete'], 'pending'), class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2" %>
+    <%= f.select :status, options_for_select(['pending', 'in_progress', 'complete'], 'pending'), class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2 dark:text-white dark:border-black dark:bg-slate-600" %>
   </div>
 
     <div class="my-5">
       <%= f.label :assigned_to_id %>
-      <%= f.collection_select :assigned_to_id, User.order(:full_name), :id, :full_name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
+      <%= f.collection_select :assigned_to_id, User.order(:full_name), :id, :full_name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
     </div>
 
     <div class="my-5">
       <%= f.label :reporter_id %>
-      <%= f.collection_select :reporter_id, User.order(:full_name), :id, :full_name, { prompt: true, selected: current_user.id }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
+      <%= f.collection_select :reporter_id, User.order(:full_name), :id, :full_name, { prompt: true, selected: current_user.id }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
     </div>
 
     <div class="my-5">
       <%= f.label :project_id %>
-      <%= f.collection_select :project_id, Project.order(:title), :id, :title, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
+      <%= f.collection_select :project_id, Project.order(:title), :id, :title, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
     </div>
 
      <div class="my-5">
       <%= f.label :team_id %>
-      <%= f.collection_select :team_id, Team.order(:name), :id, :name, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
+      <%= f.collection_select :team_id, Team.order(:name), :id, :name, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
     </div>
   
   <div class="inline">
