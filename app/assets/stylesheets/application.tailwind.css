@@ -21,13 +21,3 @@ svg {
   height: 1.5rem;
   width: 1.5rem;
 }
-
-.active {
-  @apply bg-neutral-200;
-}
-
-/* @layer components {
-  .active {
-    @apply bg-natural-300;
-  }
-} */

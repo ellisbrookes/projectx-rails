@@ -7,6 +7,7 @@
 # ignore editor files
 .vscode
 .idea
+config/master.key
 
 # Ignore bundler config.
 /.bundle
