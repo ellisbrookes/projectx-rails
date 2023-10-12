@@ -28,7 +28,7 @@
 
     <div class="my-5">
       <%= f.label :team_members %>
-      <%= f.collection_select :user_id, User.order(:full_name), :id, :full_name, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
+      <%= f.collection_select :user_id, User.order(:full_name), :id, :full_name, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:bg-slate-600" } %>
     </div>
 
   <div class="my-5">
