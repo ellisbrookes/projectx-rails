@@ -9,6 +9,7 @@ class CreateSubTask < ActiveRecord::Migration[7.0]
       t.references :project
       t.references :team
       t.references :reporter
+      t.references :task
 
       t.timestamps
     end

@@ -38,6 +38,11 @@
     </div>
 
     <div class="my-5">
+      <%= f.label :task_id %>
+      <%= f.collection_select :task_id, Task.order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
+    </div>
+
+    <div class="my-5">
       <%= f.label :reporter_id %>
       <%= f.collection_select :reporter_id, User.order(:full_name), :id, :full_name, { prompt: true, selected: current_user.id }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none" } %>
     </div>

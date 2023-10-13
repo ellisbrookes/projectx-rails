@@ -1,4 +1,4 @@
-<div id="<% dom_id sub_task %>">
+<div id="<% dom_id(sub_task) %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">Name:</strong>
     <%= sub_task.name %>
@@ -37,6 +37,11 @@
   <p class="my-5">
     <strong class="block font-medium mb-1">Team</strong>
     <%= sub_task.team.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Task</strong>
+    <%= sub_task.task.name %>
   </p>
 
   <p class="my-5">

@@ -84,11 +84,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_13_192951) do
     t.bigint "project_id"
     t.bigint "team_id"
     t.bigint "reporter_id"
+    t.bigint "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["assigned_to_id"], name: "index_sub_tasks_on_assigned_to_id"
     t.index ["project_id"], name: "index_sub_tasks_on_project_id"
     t.index ["reporter_id"], name: "index_sub_tasks_on_reporter_id"
+    t.index ["task_id"], name: "index_sub_tasks_on_task_id"
     t.index ["team_id"], name: "index_sub_tasks_on_team_id"
   end
 
