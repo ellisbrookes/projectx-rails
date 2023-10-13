@@ -1,7 +1,7 @@
 <div class="px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-gray-900">Tasks</h1>
+      <h1 class="text-base font-semibold leading-6 text-gray-900">Sub Tasks</h1>
       <p class="mt-2 text-sm text-gray-700">A list of the sub tasks in your account including its name, description, status.</p>
     </div>
     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
@@ -34,7 +34,7 @@
           </thead>
 
           <tbody class="divide-y divide-gray-200 bg-white">
-            <% @sub_tasks.each do |task| %>
+            <% @sub_tasks.each do |sub_task| %>
               <tr>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                   <div class="text-gray-900"><%= sub_task.name %></div>

@@ -1,24 +1,24 @@
 class SubTasksController < ApplicationController
   layout 'dashboard'
   before_action :authenticate_user!
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_sub_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @sub_tasks = Sub_Task.all
+    @sub_tasks = SubTask.all
   end
 
   def show
   end
 
   def new
-    @sub_task = Sub_Task.new
+    @sub_task = SubTask.new
   end
 
   def create
-    @task = Sub_Task.new(task_params)
+    @sub_task = SubTask.new(sub_task_params)
 
     if @sub_task.save
-      redirect_to(task_url(@sub_task), notice: "Task was successfully created.")
+      redirect_to(sub_task_url(@sub_task), notice: "Task was successfully created.")
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -28,7 +28,7 @@ class SubTasksController < ApplicationController
   end
 
   def update
-    if @sub_task.update(task_params)
+    if @sub_task.update(sub_task_params)
       redirect_to(sub_task_url(@sub_task), notice: "Task was successfully updated.")
     else
       render(:edit, status: :unprocessable_entity)
@@ -44,7 +44,7 @@ class SubTasksController < ApplicationController
   private
 
   def set_sub_task
-    @task = Sub_Task.find(params[:id])
+    @sub_task = SubTask.find(params[:id])
   end
 
   def sub_task_params
