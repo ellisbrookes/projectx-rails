@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
+  resources :sub_tasks
+
   resources :dashboard, only: [:index] do
     collection do
       # add companies resources
