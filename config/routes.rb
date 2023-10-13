@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :tasks
 
+  resources :sub_tasks
+
   resources :dashboard, only: [:index] do
     collection do
       # add companies resources

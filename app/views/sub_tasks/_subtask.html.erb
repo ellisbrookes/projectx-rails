@@ -1,0 +1,56 @@
+<div id="<% dom_id sub_task %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= sub_task.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Description:</strong>
+    <%= sub_task.description %>
+  </p>
+  
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Due Date:</strong>
+    <%= sub_task.due_date.strftime('%d/%m/%Y') %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Project:</strong>
+    <%= sub_task.project.title %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medum mb-1">Status</strong>
+    <%= sub_task.status %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Assigned To</strong>
+    <%= sub_task.assigned_to.full_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Reporter</strong>
+    <%= sub_task.reporter.full_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Team</strong>
+    <%= sub_task.team.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Created At:</strong>
+    <%= sub_task.created_at.strftime('%d/%m/%Y %H:%M') %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Updated At:</strong>
+    <%= sub_task.updated_at.strftime('%d/%m/%Y %H:%M') %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this task", sub_task, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this task", edit_sub_task_path(task), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <% end %>
+</div>
