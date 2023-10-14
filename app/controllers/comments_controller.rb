@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_task, only: %i[create destroy]
+  before_action :set_comment, only: %i[destroy]
 
   def create
     @comment = @task.comments.build(comment_params)
@@ -12,9 +13,9 @@ class CommentsController < ApplicationController
     end
   end
 
-  def destory
+  def destroy
     @comment = @task.comments.find(params[:id])
-    @comment.destory
+    @comment.destroy
     redirect_to(@task)
   end
 
@@ -22,6 +23,10 @@ class CommentsController < ApplicationController
 
   def set_task
     @task = Task.find(params[:task_id])
+  end
+
+  def set_comment
+    @comment = Comment.find(params[:id])
   end
 
   def comment_params
