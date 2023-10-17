@@ -5,14 +5,14 @@
       <p class="mt-2 text-sm text-gray-700 dark:text-white">A list of the companies in your account including its name, description, assigned email and status.</p>
     </div>
     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-      <%= link_to "New company", new_company_path, class: "dark:text-white dark:bg-slate-700 block rounded-md bg-nepal-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-nepal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"  %>
+      <%= link_to "New company", new_company_path, class: "dark:text-white dark:bg-slate-700 block rounded-md bg-nepal-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm dark:hover:bg-slate-600 hover:bg-nepal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"  %>
     </div>
   </div>
 
   <div class="mt-8 flow-root">
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-        <table class="min-w-full divide-y divide-gray-400 dark:divide-white table-auto">
+        <table class="min-w-full divide-y divide-black dark:divide-white bg-gray-400 table-auto">
           <thead>
             <tr>
               <th scope="col" class="p-3 dark:bg-slate-600 dark:text-white text-black border border-gray-300 lg:table-cell">Name</th>
@@ -26,7 +26,7 @@
             </tr>
           </thead>
 
-          <tbody class="divide-y divide-black dark:divide-wh bg-gray-200 dark:bg-slate-700">
+          <tbody class="divide-y divide-black dark:divide-white bg-gray-200 dark:bg-slate-700">
             <% @companies.each do |company| %>
               <tr>
                 <td class="whitespace-nowrap px-3 py-5 text-sm">
