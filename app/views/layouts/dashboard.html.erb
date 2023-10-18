@@ -13,13 +13,13 @@
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
 
-  <body>
+  <body class="dark:bg-slate-800">
     <main>
-      <section class="relative h-screen dark:bg-slate-800 dark:text-white">
+      <section class="relative h-screen dark:text-white">
         <%= render "shared/dashboard/sidebar" %>
         <%= render "shared/dashboard/navigation" %>
 
-        <section class="relative mt-16 ml-28 mr-4 flex h-screen flex-col overflow-x-hidden md:ml-64">
+        <section class="relative mt-24 ml-28 mr-4 flex h-screen flex-col overflow-x-hidden md:ml-64">
           <%= render partial: 'shared/alerts' %>
           <%= yield %>
         </section>
