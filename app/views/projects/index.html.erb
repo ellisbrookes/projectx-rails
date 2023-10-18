@@ -1,53 +1,53 @@
 <div class="px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">Projects</h1>
-      <p class="mt-2 text-sm text-gray-700 dark:text-white">A list of the projects in your account including its name, description, estimated completion and completion date</p>
+      <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">Companies</h1>
+      <p class="mt-2 text-sm text-gray-700 dark:text-white">A list of the projects in your company including its name, description, estimated completion date and completion date</p>
     </div>
     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-      <%= link_to "New project", new_project_path, class: "dark:text-white dark:bg-slate-700 block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"  %>
+      <%= link_to "New Project", new_project_path, class: "dark:text-white dark:bg-slate-900 block rounded-md bg-nepal-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm dark:hover:bg-slate-700 hover:bg-nepal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
     </div>
   </div>
 
   <div class="mt-8 flow-root">
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-        <table class="min-w-full divide-y divide-gray-300">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-slate-700 table-auto">
           <thead>
             <tr>
-              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0 dark:text-white">Projet Title</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Project Description</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Project Start Date</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Project Completion Date</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Project Estimated Budget</th>
-               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Project Budget</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Project Team</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-white">Project Company</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-0 dark:text-white">Actions
+              <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Title</th>
+              <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Description</th>
+              <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Start Date</th>
+              <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Completion Date</th>
+              <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Estimated Budget</th>
+              <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Budget</th>
+              <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Team</th>
+              <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white  text-gray-900 lg:table-cell">Company</th>
+              <th scope="col" class="bg-gray-100 dark:bg-slate-900 dark:text-white  text-gray-900 lg:table-cell">Actions
                 <span class="sr-only">Show</span>
                 <span class="sr-only">Edit</span>
-                <span class="sr-only">Destroy</span>
+                <span class="sr-only">Destroy</span>  
               </th>
             </tr>
           </thead>
 
-          <tbody class="divide-y divide-gray-200 bg-white dark:bg-slate-800">
+          <tbody>
             <% @projects.each do |project| %>
-              <tr>
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900 dark:text-white"><%= project.title %></div>
+              <tr class="even:bg-gray-100 dark:even:bg-slate-900">
+                <td class="whitespace-nowrap px-3 py-5 text-sm">
+                  <div class="text-gray-900 dark:text-white text-center"><%= project.title %></div>
                 </td>
 
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900 dark:text-white"><%= project.description %></div>
+                <td class="whitespace-nowrap px-3 py-5 text-sm">
+                  <div class="text-gray-900 dark:text-white text-center"><%= project.description %></div>
                 </td>
 
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900 dark:text-white"><%= project.start_date.strftime('%d/%m/%Y') %></div>
+                <td class="whitespace-nowrap px-3 py-5 text-sm">
+                  <div class="text-gray-900 dark:text-white text-center"><%= project.start_date.strftime('%d/%m/%Y') %></div>
                 </td>
 
-                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900 dark:text-white"><%= project.completion_date.strftime('%d/%m/%Y') %></div>
+                <td class="whitespace-nowrap px-3 py-5 text-sm">
+                  <div class="text-gray-900 dark:text-white text-center"><%= project.completion_date.strftime('%d/%m/%Y') %></div>
                 </td>
 
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
@@ -62,18 +62,18 @@
                   </div>
                 </td>
 
-                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900 dark:text-white"><%= project.team.name %></div>
+                <td class="whitespace-nowrap px-3 py-5 text-sm">
+                  <div class="text-gray-900 dark:text-white text-center"><%= project.team.name %></div>
                 </td>
 
-                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900 dark:text-white"><%= project.company.name %></div>
+                <td class="whitespace-nowrap px-3 py-5 text-sm">
+                  <div class="text-gray-900 dark:text-white text-center"><%= project.company.name %></div>
                 </td>
 
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <%= link_to "Show", project, class: "text-indigo-600 hover:text-indigo-900 dark:text-white dark:hover:text-gray-300" %>
-                  <%= link_to 'Edit', edit_project_path(project), class: "text-indigo-600 hover:text-indigo-900 dark:text-white dark:hover:text-gray-300" %>
-                  <%= link_to 'Destroy', project_path(project), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-indigo-600 hover:text-indigo-900 dark:text-white dark:hover:text-gray-300" %>
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-center">
+                  <%= link_to "Show", project, class: "text-nepal-500 hover:text-nepal-400 hover:underline dark:text-white dark:hover:text-gray-300" %>
+                  <%= link_to 'Edit', edit_project_path(project), class: "text-nepal-500 hover:text-nepal-400 hover:underline dark:text-white dark:hover:text-gray-300" %>
+                  <%= link_to 'Destroy', project_path(project), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-nepal-500 hover:text-nepal-400 hover:underline dark:text-white dark:hover:text-gray-300" %>
                 </td>
               </tr>
             <% end %>
