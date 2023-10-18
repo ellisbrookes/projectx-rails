@@ -3,37 +3,37 @@
 
   <div class="flex flex-col h-full text-sm p-4">
     <div class="flex-1 space-y-2">
-      <%= active_link_to dashboard_index_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md dark:hover:bg-slate-600" do %>
+      <%= active_link_to dashboard_index_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200 dark:hover:bg-slate-600" do %>
         <%= heroicon "home-modern", variant: :outline %>
         <div class="hidden h-full md:block md:mx-1">|</div>
         <span class="hidden md:block">Home</span>
       <% end %>
       
-      <%= active_link_to tasks_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+      <%= active_link_to tasks_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200 dark:hover:bg-slate-600" do %>
         <%= heroicon "list-bullet", variant: :outline %>
         <div class="hidden h-full md:block md:mx-1">|</div>
         <span class="hidden md:block">My Tasks</span>
       <% end %>
 
-      <%= active_link_to sub_tasks_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200" do %>
+      <%= active_link_to sub_tasks_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200 dark:hover:bg-slate-600" do %>
         <%= heroicon "list-bullet", variant: :outline %>
         <div class="hidden h-full md:block md:mx-1">|</div>
         <span class="hidden md:block">Sub Tasks</span>
       <% end %>
       
-      <%= active_link_to root_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md dark:hover:bg-slate-600" do %>
+      <%= active_link_to root_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200 dark:hover:bg-slate-600" do %>
         <%= heroicon "archive-box-arrow-down", variant: :outline %>
         <div class="hidden h-full md:block md:mx-1">|</div>
         <span class="hidden md:block">Recent</span>
       <% end %>
 
-      <%= active_link_to companies_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md dark:hover:bg-slate-600" do %>
+      <%= active_link_to companies_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200 dark:hover:bg-slate-600" do %>
         <%= heroicon "globe-alt", variant: :outline %>
         <div class="hidden h-full md:block md:mx-1">|</div>
         <span class="hidden md:block">Companies</span>
       <% end %>
 
-      <%= active_link_to teams_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md dark:hover:bg-slate-600" do %>
+      <%= active_link_to teams_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200 dark:hover:bg-slate-600" do %>
         <%= heroicon "user-group", variant: :outline %>
         <div class="hidden h-full md:block md:mx-1">|</div>
         <span class="hidden md:block">Teams</span>
@@ -67,7 +67,7 @@
 			</label>
 
     <div>
-      <%= active_link_to edit_user_registration_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md  dark:hover:bg-slate-600" do %>
+      <%= active_link_to edit_user_registration_path, active: :exclusive, class: "flex cursor-pointer items-center p-4 rounded-md hover:bg-neutral-200 dark:hover:bg-slate-600" do %>
         <% if current_user.avatar.attached? %>
           <%= image_tag current_user.avatar, alt: "#{current_user.full_name}", class: "h-8 w-8 rounded-full" %>
         <% else %>
