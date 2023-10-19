@@ -9,11 +9,6 @@
             <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Name</th>
             <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white  text-gray-900 lg:table-cell">Email</th>
             <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Description</th>
-            <th scope="col" class="bg-gray-100 dark:bg-slate-900 dark:text-white  text-gray-900 lg:table-cell">Actions
-              <span class="sr-only">Show</span>
-              <span class="sr-only">Edit</span>
-              <span class="sr-only">Destroy</span>  
-            </th>
           </tr>
         </thead>
 
@@ -21,7 +16,7 @@
           <% @companies.each do |company| %>
             <tr class="even:bg-gray-100 dark:even:bg-slate-900">
               <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center"><%= company.name %></div>
+                <div class="text-gray-900 dark:text-white text-center hover:underline"><%= link_to company.name, company %></div>
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm">
@@ -30,12 +25,6 @@
 
               <td class="whitespace-nowrap px-3 py-5 text-sm">
                 <div class="text-gray-900 dark:text-white text-center"><%= company.description %></div>
-              </td>
-
-              <td class="whitespace-nowrap px-3 py-5 text-sm text-center">
-                <%= link_to "Show", company, class: "text-nepal-500 hover:text-nepal-400 hover:underline dark:text-white dark:hover:text-gray-300" %>
-                <%= link_to 'Edit', edit_company_path(company), class: "text-nepal-500 hover:text-nepal-400 hover:underline dark:text-white dark:hover:text-gray-300" %>
-                <%= link_to 'Destroy', company_path(company), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-nepal-500 hover:text-nepal-400 hover:underline dark:text-white dark:hover:text-gray-300" %>
               </td>
             </tr>
           <% end %>
