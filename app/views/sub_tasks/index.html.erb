@@ -1,12 +1,4 @@
-<div class="sm:flex sm:items-center">
-  <div class="sm:flex-auto">
-    <h1 class="font-bold text-2xl leading-6 text-gray-900 dark:text-white"> Sub Tasks</h1>
-    <p class="mt-4 text-sm font-semibold text-gray-700 dark:text-white">A list of Sub tasks in your project including its name, description, status.</p>
-  </div>
-  <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-    <%= link_to "New Sub Task", new_sub_task_path, class: "dark:text-white dark:bg-slate-900 block rounded-md bg-nepal-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm dark:hover:bg-slate-700 hover:bg-nepal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"  %>
-  </div>
-</div>
+<%= render HeadingComponent.new(title: "Sub Tasks", text: "A list of Sub Tasks in your project including its name, description, status.", link_title: "New Sub Task", link_path: new_sub_task_path) %>
 
 <div class="mt-8 flow-root">
   <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -24,11 +16,6 @@
             <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Team</th>
             <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Created At</th>
             <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Updated At</th>
-            <th scope="col" class="bg-gray-100 dark:bg-slate-900 dark:text-white  text-gray-900 lg:table-cell">Actions
-              <span class="sr-only">Show</span>
-              <span class="sr-only">Edit</span>
-              <span class="sr-only">Destroy</span>  
-            </th>
           </tr>
         </thead>
 
@@ -36,7 +23,7 @@
           <% @sub_tasks.each do |sub_task| %>
             <tr class="even:bg-gray-100 dark:even:bg-slate-900">
               <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center"><%= sub_task.name %></div>
+                <div class="text-gray-900 dark:text-white text-center hover:underline"><%= link_to sub_task.name, sub_task %></div>
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm">
@@ -73,12 +60,6 @@
 
               <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                 <div class="text-gray-900 dark:text-white text-center"><%= sub_task.updated_at.strftime('%d/%m/%Y %H:%M') %></div>
-              </td>
-
-              <td class="whitespace-nowrap px-3 py-5 text-sm text-center">
-                <%= link_to "Show", sub_task, class: "text-nepal-500 hover:text-nepal-400 hover:underline dark:text-white dark:hover:text-gray-300" %>
-                <%= link_to 'Edit', edit_sub_task_path(sub_task), class: "text-nepal-500 hover:text-nepal-400 hover:underline dark:text-white dark:hover:text-gray-300" %>
-                <%= link_to 'Destroy', sub_task_path(sub_task), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-nepal-500 hover:text-nepal-400 hover:underline dark:text-white dark:hover:text-gray-300" %>
               </td>
             </tr>
           <% end %>
