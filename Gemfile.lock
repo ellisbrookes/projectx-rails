@@ -386,7 +386,7 @@ DEPENDENCIES
   solargraph (~> 0.49.0)
   sprockets-rails
   stimulus-rails
-  tailwindcss-rails
+  tailwindcss-rails (~> 2.0)
   turbo-rails
   tzinfo-data
   view_component (~> 3.6)
