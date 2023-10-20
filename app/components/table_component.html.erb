@@ -1,0 +1,27 @@
+<div class="mt-8 flow-root">
+  <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+      <table class="min-w-full divide-y divide-gray-200 dark:divide-slate-700 table-auto">
+        <thead>
+          <tr>
+            <% @headers.each do |header| %>
+              <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell"><%= header %></th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @rows.each do |row| %>
+            <tr class="even:bg-gray-100 dark:even:bg-slate-900">
+              <% row.each do |cell| %>
+                <td class="whitespace-nowrap px-3 py-5 text-sm">
+                  <div class="text-gray-900 dark:text-white text-center hover:underline"><%= cell.html_safe %></div>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
