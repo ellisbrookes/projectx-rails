@@ -1,4 +1,9 @@
-<%= render HeadingComponent.new(title: "Tasks", text: "A list of the tasks in your account including its name, description, status.", link_title: "New Task", link_path: new_task_path) %>
+<%= render HeadingComponent.new(
+  title: "Tasks",
+  text: "A list of the tasks in your account including its name, description, status.",
+  link_title: "New Task",
+  link_path: new_task_path
+) %>
 
 <div class="mt-8 flow-root">
   <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -31,14 +36,14 @@
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                <div class="text-gray-900 dark:text-white text-center"><%= task.due_date.strftime('%d/%m/%Y %H:%M') %></div>
+                <div class="text-gray-900 dark:text-white text-center"><%= task.due_date.strftime("%d/%m/%Y %H:%M") %></div>
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                 <div class="text-gray-900 dark:text-white text-center"><%= task.project.title %></div>
               </td>
 
-                <td class="whitespace-nowrap px-3 py-5 text-sm">
+              <td class="whitespace-nowrap px-3 py-5 text-sm">
                 <div class="text-gray-900 dark:text-white text-center"><%= task.status %></div>
               </td>
 
@@ -55,11 +60,11 @@
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                <div class="text-gray-900 dark:text-white text-center"><%= task.created_at.strftime('%d/%m/%Y %H:%M') %></div>
+                <div class="text-gray-900 dark:text-white text-center"><%= task.created_at.strftime("%d/%m/%Y %H:%M") %></div>
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                <div class="text-gray-900 dark:text-white text-center"><%= task.updated_at.strftime('%d/%m/%Y %H:%M') %></div>
+                <div class="text-gray-900 dark:text-white text-center"><%= task.updated_at.strftime("%d/%m/%Y %H:%M") %></div>
               </td>
             </tr>
           <% end %>

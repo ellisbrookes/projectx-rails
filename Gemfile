@@ -99,3 +99,5 @@ end
 gem "view_component", "~> 3.6"
 
 gem "tailwindcss-rails", "~> 2.0"
+
+gem "erb-formatter", "~> 0.4.3"
