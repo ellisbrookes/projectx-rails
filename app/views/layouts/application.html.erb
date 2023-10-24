@@ -8,7 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    
+
     <%= javascript_importmap_tags %>
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
@@ -16,7 +16,7 @@
   <body>
     <main>
       <section class="relative h-screen">
-        <%= render partial: 'shared/alerts' %>
+        <%= render partial: "shared/alerts" %>
 
         <%= yield %>
       </section>

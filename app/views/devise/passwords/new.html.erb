@@ -1,37 +1,89 @@
-<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8 dark:bg-slate-800">
+<div
+  class="
+    flex
+    min-h-full
+    flex-col
+    justify-center
+    py-12
+    sm:px-6
+    lg:px-8
+    dark:bg-slate-800
+  "
+>
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <img class="mx-auto h-10 w-auto dark:invert dark:filter" src="https://tailwindui.com/img/logos/mark.svg?color=nepal&shade=500" alt="Your Company">
-    <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">Forgot your password?</h2>
+    <img
+      class="mx-auto h-10 w-auto dark:invert dark:filter"
+      src="https://tailwindui.com/img/logos/mark.svg?color=nepal&shade=500"
+      alt="Your Company"
+    >
+    <h2
+      class="
+        mt-6
+        text-center
+        text-2xl
+        font-bold
+        leading-9
+        tracking-tight
+        text-gray-900
+        dark:text-white
+      "
+    >Forgot your password?</h2>
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-    <div class="bg-white dark:bg-slate-700 px-6 py-12 shadow sm:rounded-lg sm:px-12">
+    <div
+      class="
+        bg-white
+        dark:bg-slate-700
+        px-6
+        py-12
+        shadow
+        sm:rounded-lg
+        sm:px-12
+      "
+    >
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'space-y-6' }) do |f| %>
         <div>
-          <%= f.label :email, class: 'dark:text-white block text-sm font-medium leading-6 text-gray-900' %>
+          <%= f.label :email,
+                  class:
+                    "dark:text-white block text-sm font-medium leading-6 text-gray-900" %>
 
           <div class="mt-2">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'dark:bg-slate-600 dark:text-white block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nepal-500 sm:text-sm sm:leading-6' %>
+            <%= f.email_field :email,
+                          autofocus: true,
+                          autocomplete: "email",
+                          class:
+                            "dark:bg-slate-600 dark:text-white block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nepal-500 sm:text-sm sm:leading-6" %>
           </div>
         </div>
 
         <div>
-          <%= f.submit "Send me reset password instructions", class: 'flex cursor-pointer w-full justify-center rounded-md bg-nepal-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-nepal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-nepal-500' %>
+          <%= f.submit "Send me reset password instructions",
+                   class:
+                     "flex cursor-pointer w-full justify-center rounded-md bg-nepal-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-nepal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-nepal-500" %>
         </div>
       <% end %>
 
       <p class="flex flex-col mt-10 text-center text-sm text-gray-500">
-        <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "dark:hover:text-nepal-500 dark:text-white font-semibold leading-6 text-nepal-500 hover:text-nepal-500" %>
-        <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class: "dark:hover:text-nepal-500 dark:text-white font-semibold leading-6 text-nepal-500 hover:text-nepal-500" %>
+        <%= link_to "Didn't receive confirmation instructions?",
+        new_confirmation_path(resource_name),
+        class:
+          "dark:hover:text-nepal-500 dark:text-white font-semibold leading-6 text-nepal-500 hover:text-nepal-500" %>
+        <%= link_to "Didn't receive unlock instructions?",
+        new_unlock_path(resource_name),
+        class:
+          "dark:hover:text-nepal-500 dark:text-white font-semibold leading-6 text-nepal-500 hover:text-nepal-500" %>
       </p>
     </div>
 
     <p class="mt-10 text-center text-sm text-gray-500 dark:text-white">
       Not a member?
-      <%= link_to "Sign up", new_user_registration_path, class: "font-semibold leading-6 text-nepal-500 hover:text-nepal-500 dark:text-white dark:hover:text-nepal-500" %>
+      <%= link_to "Sign up",
+      new_user_registration_path,
+      class:
+        "font-semibold leading-6 text-nepal-500 hover:text-nepal-500 dark:text-white dark:hover:text-nepal-500" %>
     </p>
   </div>
 </div>
-

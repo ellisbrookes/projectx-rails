@@ -1,4 +1,15 @@
-<%= render HeadingComponent.new(title: "Companies", text: "A list of the companies in your account including its name, description, assigned email and status.", link_title: "New Company", link_path: new_company_path) %>
+<%= render HeadingComponent.new(
+  title: "Companies",
+  text:
+    "A list of the companies in your account including its name, description, assigned email and status.",
+  link_title: "New Company",
+  link_path: new_company_path
+) %>
 
-<%= render TableComponent.new(headers: ["Name", "Email", "Description"], rows: @companies.map { |company| [link_to(company.name, company), company.email, company.description] }) %>
-
+<%= render TableComponent.new(
+  headers: %w[Name Email Description],
+  rows:
+    @companies.map do |company|
+      [link_to(company.name, company), company.email, company.description]
+    end
+) %>

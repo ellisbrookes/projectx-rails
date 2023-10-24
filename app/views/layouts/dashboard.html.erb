@@ -8,7 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    
+
     <%= javascript_importmap_tags %>
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
@@ -19,8 +19,22 @@
         <%= render "shared/dashboard/sidebar" %>
         <%= render "shared/dashboard/navigation" %>
 
-        <section class="relative mt-16 ml-24 md:ml-60 flex h-screen flex-col overflow-x-hidden p-4 sm:p-6 lg:p-8">
-          <%= render partial: 'shared/alerts' %>
+        <section
+          class="
+            relative
+            mt-16
+            ml-24
+            md:ml-60
+            flex
+            h-screen
+            flex-col
+            overflow-x-hidden
+            p-4
+            sm:p-6
+            lg:p-8
+          "
+        >
+          <%= render partial: "shared/alerts" %>
           <%= yield %>
         </section>
       </section>

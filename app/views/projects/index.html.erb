@@ -1,19 +1,113 @@
-<%= render HeadingComponent.new(title: "Projects", text: "A list of the projects in your company including its name, description, estimated completion date and completion date", link_title: "New Project", link_path: new_project_path) %>
+<%= render HeadingComponent.new(
+  title: "Projects",
+  text:
+    "A list of the projects in your company including its name, description, estimated completion date and completion date",
+  link_title: "New Project",
+  link_path: new_project_path
+) %>
 
 <div class="mt-8 flow-root">
   <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-      <table class="min-w-full divide-y divide-gray-200 dark:divide-slate-700 table-auto">
+      <table
+        class="
+          min-w-full
+          divide-y
+          divide-gray-200
+          dark:divide-slate-700
+          table-auto
+        "
+      >
         <thead>
           <tr>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Title</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Description</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Start Date</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Completion Date</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Estimated Budget</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Budget</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Team</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white  text-gray-900 lg:table-cell">Company</th>
+            <th
+              scope="col"
+              class="
+                bg-gray-100
+                p-3
+                dark:bg-slate-900
+                dark:text-white
+                text-gray-900
+                lg:table-cell
+              "
+            >Title</th>
+            <th
+              scope="col"
+              class="
+                bg-gray-100
+                p-3
+                dark:bg-slate-900
+                dark:text-white
+                text-gray-900
+                lg:table-cell
+              "
+            >Description</th>
+            <th
+              scope="col"
+              class="
+                bg-gray-100
+                p-3
+                dark:bg-slate-900
+                dark:text-white
+                text-gray-900
+                lg:table-cell
+              "
+            >Start Date</th>
+            <th
+              scope="col"
+              class="
+                bg-gray-100
+                p-3
+                dark:bg-slate-900
+                dark:text-white
+                text-gray-900
+                lg:table-cell
+              "
+            >Completion Date</th>
+            <th
+              scope="col"
+              class="
+                bg-gray-100
+                p-3
+                dark:bg-slate-900
+                dark:text-white
+                text-gray-900
+                lg:table-cell
+              "
+            >Estimated Budget</th>
+            <th
+              scope="col"
+              class="
+                bg-gray-100
+                p-3
+                dark:bg-slate-900
+                dark:text-white
+                text-gray-900
+                lg:table-cell
+              "
+            >Budget</th>
+            <th
+              scope="col"
+              class="
+                bg-gray-100
+                p-3
+                dark:bg-slate-900
+                dark:text-white
+                text-gray-900
+                lg:table-cell
+              "
+            >Team</th>
+            <th
+              scope="col"
+              class="
+                bg-gray-100
+                p-3
+                dark:bg-slate-900
+                dark:text-white
+                text-gray-900
+                lg:table-cell
+              "
+            >Company</th>
           </tr>
         </thead>
 
@@ -29,22 +123,22 @@
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center"><%= project.start_date.strftime('%d/%m/%Y') %></div>
+                <div class="text-gray-900 dark:text-white text-center"><%= project.start_date.strftime("%d/%m/%Y") %></div>
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center"><%= project.completion_date.strftime('%d/%m/%Y') %></div>
+                <div class="text-gray-900 dark:text-white text-center"><%= project.completion_date.strftime("%d/%m/%Y") %></div>
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                 <div class="text-gray-900 dark:text-white text-center">
-                <%= number_to_currency(project.estimated_budget.to_f, unit: '£') %>
+                  <%= number_to_currency(project.estimated_budget.to_f, unit: "£") %>
                 </div>
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                 <div class="text-gray-900 dark:text-white text-center">
-                <%= number_to_currency(project.actual_budget.to_f, unit: '£') %>
+                  <%= number_to_currency(project.actual_budget.to_f, unit: "£") %>
                 </div>
               </td>
 
