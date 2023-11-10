@@ -7,15 +7,16 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-     mysql:
-    image: mysql:latest
-    ports:
-      - '3306:3306'
-    env:
-      MYSQL_DATABASE: rails_test
-      MYSQL_USER: rails
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: rootpassword
+    services:
+      postgres:
+        image: mysql:lastest
+        ports:
+          - '3306:3306'
+        env:
+          MYSQL_DATABASE: rails_test
+          MYSQL_USER: rails
+          MYSQL_PASSWORD: password
+          MYSQL_ROOT_PASSWORD: rootpassword
     env:
       RAILS_ENV: test
       DATABASE_URL: 'mysql2://rails:password@localhost:3306/rails_test'
