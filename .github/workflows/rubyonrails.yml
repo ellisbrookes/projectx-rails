@@ -14,11 +14,8 @@ jobs:
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
         with:
           bundler-cache: true
-      - name: Set up database schema
-        run: bin/rails db:schema:load
       - name: Run tests
         run: bin/rake
-
   lint:
     runs-on: ubuntu-latest
     steps:
