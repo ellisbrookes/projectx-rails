@@ -8,7 +8,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     services:
-      postgres:
+      mysql:
         image: mysql:latest
         ports:
           - '3306:3306'
