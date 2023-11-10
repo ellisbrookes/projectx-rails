@@ -17,7 +17,7 @@ jobs:
           MYSQL_USER: rails
           MYSQL_PASSWORD: password
           MYSQL_ROOT_PASSWORD: rootpassword
-
+          MYSQL_UNIX_PORT: /tmp/mysql.sock
     env:
       RAILS_ENV: test
       DATABASE_URL: 'mysql2://rails:password@localhost:3306/rails_testt?unix_socket=/tmp/mysql.sock'
