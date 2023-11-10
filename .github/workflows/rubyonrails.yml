@@ -17,9 +17,10 @@ jobs:
           MYSQL_USER: rails
           MYSQL_PASSWORD: password
           MYSQL_ROOT_PASSWORD: rootpassword
+
     env:
       RAILS_ENV: test
-      DATABASE_URL: 'mysql2://rails:password@localhost:3306/rails_test'
+      DATABASE_URL: 'mysql2://rails:password@localhost:3306/rails_testt?unix_socket=/tmp/mysql.sock'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
