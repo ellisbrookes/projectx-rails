@@ -20,7 +20,7 @@ jobs:
           MYSQL_UNIX_PORT: /var/run/mysqld/mysqld.sock
     env:
       RAILS_ENV: test
-      DATABASE_URL: 'mysql2://rails:password/rails_test'
+      DATABASE_URL: 'mysql2://rails:rootpassword/rails_test'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
