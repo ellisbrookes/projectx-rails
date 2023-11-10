@@ -14,10 +14,10 @@ jobs:
           - '33306:3306'
         env:
           MYSQL_DATABASE: rails_test
-          MYSQL_USER: rails
+          MYSQL_USER: root
           MYSQL_PASSWORD: password
           MYSQL_ROOT_PASSWORD: rootpassword
-          MYSQL_UNIX_PORT: /tmp/mysql.sock
+          MYSQL_UNIX_PORT: /var/run/mysqld/mysqld.sock
     env:
       RAILS_ENV: test
       DATABASE_URL: 'mysql2://rails:password@localhost:3306/rails_test'
