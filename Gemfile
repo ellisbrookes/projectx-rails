@@ -1,4 +1,4 @@
-source "https://rubygems.org" 
+source "https://rubygems.org"
 
 ruby "3.2.2"
 
@@ -67,7 +67,7 @@ gem "active_link_to", "~> 1.0"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
-  gem "solargraph", "~> 0.49.0"  
+  gem "solargraph", "~> 0.49.0"
 
   # rspec and factory bot
   gem "rspec-rails", "~> 6.0"
