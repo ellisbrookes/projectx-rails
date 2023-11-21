@@ -42,6 +42,11 @@
         sm:px-12
       "
     >
+
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= render "shared/alerts" %>
+
+      
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'space-y-6' }) do |f| %>
         <div>
           <%= f.label :email,
