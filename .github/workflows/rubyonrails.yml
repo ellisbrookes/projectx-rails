@@ -1,4 +1,3 @@
-ear
 name: "Ruby on Rails CI"
 on:
   push:
