@@ -10,13 +10,13 @@ user2 = User.create(full_name: 'Jane Doe', email: 'jane@example.com', password: 
 
 puts 'Seeded database with users: John Doe and Jane Doe.'
 
+# Create project
+Project.create(title: 'ProjectX')
+Project.create(title: 'ProjectY')
+
+puts 'Seeded database with Projects: ProjectX and ProjectY'
+
 # Create tasks with description etc.
 Task.create(name: 'Sort out DNS', description: 'Login to Namecheap', due_date: '23/11/2023', project: 'ProjectX', status: 'pending', reporter: 'John Doe', assigned_to: 'John Doe', team: 'Development')
 
 puts 'Seeded database with Task: Sort out DNS'
-
-# Create project
-Project.create(name: 'ProjectX', user: user1)
-Project.create(name: 'ProjectY', user: user2)
-
-puts 'Seeded database with Projects: ProjectX and ProjectY'
