@@ -7,51 +7,57 @@ on:
 jobs:
   verify:
     uses: setup-rails/setup-rails/.github/workflows/verify.yml@v1
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
-        with:
-          bundler-cache: true
-      - name: Run bundle install
-        run: bundle install
-      - name: Security audit dependencies
-        run: bundle exec bundler-audit --update
-      - name: Lint Ruby files
-        run: bundle exec rubocop --parallel
-  test:
-    runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:latest
-        ports:
-          - '3306:3306'
-        env:
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_DB: rails_test
-          MYSQL_USER: root
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_PASSWORD:
-    env:
-      RAILS_ENV: test
-      DATABASE_PORT: 3306
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
-        with:
-          bundler-cache: true
-      - name: Run bundle install
-        run: bundle install
-      - name: Security audit dependencies
-        run: bundle exec bundler-audit --update
-      - name: Creating a database
-        run: rails db:create
-      - name: Set up database schema
-        run: rails db:schema:load
-      - name: Run tests
-        run: rails test
+    with:
+      brakeman: true
+      bundler-audit: true
+      rspec: true
+      rubocop: true
+      standard: true
+  # lint:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+  #     - name: Install Ruby and gems
+  #       uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
+  #       with:
+  #         bundler-cache: true
+  #     - name: Run bundle install
+  #       run: bundle install
+  #     - name: Security audit dependencies
+  #       run: bundle exec bundler-audit --update
+  #     - name: Lint Ruby files
+  #       run: bundle exec rubocop --parallel
+  # test:
+  #   runs-on: ubuntu-latest
+  #   services:
+  #     mysql:
+  #       image: mysql:latest
+  #       ports:
+  #         - '3306:3306'
+  #       env:
+  #         MYSQL_HOST: 127.0.0.1
+  #         MYSQL_DB: rails_test
+  #         MYSQL_USER: root
+  #         MYSQL_ALLOW_EMPTY_PASSWORD: yes
+  #         MYSQL_PASSWORD:
+  #   env:
+  #     RAILS_ENV: test
+  #     DATABASE_PORT: 3306
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
+  #     - name: Install Ruby and gems
+  #       uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
+  #       with:
+  #         bundler-cache: true
+  #     - name: Run bundle install
+  #       run: bundle install
+  #     - name: Security audit dependencies
+  #       run: bundle exec bundler-audit --update
+  #     - name: Creating a database
+  #       run: rails db:create
+  #     - name: Set up database schema
+  #       run: rails db:schema:load
+  #     - name: Run tests
+  #       run: rails test
