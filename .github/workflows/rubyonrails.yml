@@ -49,4 +49,4 @@ jobs:
     - name: Precompile assets
       run: rails assets:precompile
     - name: Run tests
-      run: rspec --format doc
+      run: bin/rspec --format doc
