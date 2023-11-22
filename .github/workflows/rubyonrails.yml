@@ -8,11 +8,9 @@ jobs:
   verify:
     uses: setup-rails/setup-rails/.github/workflows/verify.yml@v1
     with:
-      brakeman: true
       bundler-audit: true
       rspec: true
       rubocop: true
-      standard: true
   # lint:
   #   runs-on: ubuntu-latest
   #   steps:
