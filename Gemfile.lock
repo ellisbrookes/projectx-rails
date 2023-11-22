@@ -99,6 +99,7 @@ GEM
     bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
+    byebug (11.1.3)
     capybara (3.39.2)
       addressable
       matrix
@@ -308,14 +309,6 @@ GEM
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -394,6 +387,7 @@ DEPENDENCIES
   binding_of_caller (~> 1.0)
   bootsnap
   bundler-audit
+  byebug (~> 11.1)
   capybara
   debug
   devise (~> 4.9)
@@ -413,7 +407,6 @@ DEPENDENCIES
   rspec-rails (~> 6.0)
   rubocop
   rubocop-shopify
-  sassc-rails
   selenium-webdriver
   solargraph (~> 0.49.0)
   sprockets-rails
