@@ -5,6 +5,8 @@ on:
   pull_request:
     branches: ["main"]
 jobs:
+  verify:
+    uses: setup-rails/setup-rails/.github/workflows/verify.yml@v1
   lint:
     runs-on: ubuntu-latest
     steps:
