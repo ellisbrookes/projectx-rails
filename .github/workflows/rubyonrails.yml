@@ -1,9 +1,9 @@
-name: "Ruby on Rails CI"
+name: 'Ruby on Rails CI'
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
   pull_request:
-    branches: ["main"]
+    branches: ['main']
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -26,29 +26,29 @@ jobs:
       RAILS_ENV: test
       DATABASE_PORT: 3306
     steps:
-    - uses: actions/checkout@v4
-    - uses: shogo82148/actions-setup-mysql@v1
-      with:
-        mysql-version: "8.0"
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Install Ruby and gems
-      uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
-      with:
-        bundler-cache: true
-    - name: Run bundle install
-      run: bundle install
-    - name: Security audit dependencies
-      run: bundle exec bundler-audit --update
-    - name: Install rails
-      run: gem install rails
-    - name: Creating a database
-      run: rails db:create
-    - name: Setup database schema
-      run: rails db:schema:load
-    - name: Setup database seed
-      run: rails db:seed
-    - name: Precompile assets
-      run: rails assets:precompile
-    - name: Run tests
-      run: bin/rspec --format doc
+      - uses: actions/checkout@v4
+      - uses: shogo82148/actions-setup-mysql@v1
+        with:
+          mysql-version: '8.0'
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
+        with:
+          bundler-cache: true
+      - name: Run bundle install
+        run: bundle install
+      - name: Security audit dependencies
+        run: bundle exec bundler-audit --update
+      - name: Install rails
+        run: gem install rails
+      - name: Creating a database
+        run: rails db:create
+      - name: Setup database schema
+        run: rails db:schema:load
+      - name: Setup database seed
+        run: rails db:seed
+      - name: Precompile assets
+        run: rails assets:precompile
+      - name: Run tests
+        run: bin/rspec --format doc
