@@ -1,18 +1,30 @@
 # db/seeds.rb
+require 'faker'
 
-# Clear existing data from the users table
-User.destroy_all
-# Project.destroy_all
+# Create 4 non admin users
+4.times do |n|
+  u = User.create(full_name: Faker::Name.name, email: Faker::Internet.email, password: 'password123')
+  u.skip_confirmation!
+  u.save
+end
 
-# Create two users with full names
-user1 = User.create(full_name: 'John Doe', email: 'john@example.com', password: 'password123')
-user2 = User.create(full_name: 'Jane Doe', email: 'jane@example.com', password: 'password456')
+# Create admin user
+u = User.create(full_name: Faker::Name.name, email: Faker::Internet.email, password: 'admin123', is_admin: '1')
+u.skip_confirmation!
+u.save
 
-puts 'Seeded database with users: John Doe and Jane Doe.'
+puts 'Seeded 5 into the database'
+
+# Create a company with a title and description
+10.times do |n|
+  Company.create(name: Faker::Company.name, description: Faker::Company.catch_phrase, email: Faker::Internet.email, user_id: Faker::Number.within(range: 1..6))
+end
+
+puts 'Seeded 10 into the database'
 
 # Create project
-# Project.create(title: 'ProjectX')
-# Project.create(title: 'ProjectY')
+Project.create(title: 'ProjectX')
+Project.create(title: 'ProjectY')
 
 # puts 'Seeded database with Projects: ProjectX and ProjectY'
 
