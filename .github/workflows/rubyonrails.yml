@@ -46,8 +46,6 @@ jobs:
         run: rails db:create
       - name: Setup database schema
         run: rails db:schema:load
-      - name: Setup database seed
-        run: rails db:seed
       - name: Precompile assets
         run: rails assets:precompile
       - name: Run tests
