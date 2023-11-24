@@ -54,21 +54,6 @@ puts 'Seeded 10 companies into the database'
 
   puts 'Seeded 10 team_members in the database'
 
-  # Create tasks with description etc.
-  10.times do |n|
-    Task.create(
-      name: Faker::Company.name, 
-      description: Faker::Company.catch_phrase,
-      due_date: Faker::Date.backward(days: 30),
-      project_id: Faker::Number.within(range: 1..9),
-      status: Faker::Lorem.word,
-      reporter_id: Faker::Number.within(range: 1..9),
-      assigned_to_id: Faker::Number.within(range: 1..9),
-      team_id: Faker::Number.within(range: 1..9)
-    )
-  end
-  
-  puts 'Seeded 10 tasks into the database'
   
   # Create project
   10.times do |n|
@@ -86,4 +71,19 @@ puts 'Seeded 10 companies into the database'
   
   puts 'Seeded 10 projects into the database'
   
+  # Create tasks with description etc.
+  10.times do |n|
+    Task.create(
+      name: Faker::Company.name, 
+      description: Faker::Company.catch_phrase,
+      due_date: Faker::Date.backward(days: 30),
+      project_id: Faker::Number.within(range: 1..9),
+      status: Faker::Lorem.word,
+      reporter: Faker::Number.within(range: 1..9),
+      assigned_to: Faker::Number.within(range: 1..9),
+      team_id: Faker::Number.within(range: 1..9)
+    )
+  end
+  
+  puts 'Seeded 10 tasks into the database'
   
