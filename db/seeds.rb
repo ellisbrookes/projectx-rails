@@ -79,11 +79,28 @@ puts 'Seeded 10 companies into the database'
       due_date: Faker::Date.backward(days: 30),
       project_id: Faker::Number.within(range: 1..9),
       status: Faker::Lorem.word,
-      reporter: Faker::Number.within(range: 1..9),
-      assigned_to: Faker::Number.within(range: 1..9),
+      reporter_id: Faker::Number.within(range: 1..9),
+      assigned_to_id: Faker::Number.within(range: 1..9),
       team_id: Faker::Number.within(range: 1..9)
     )
   end
   
   puts 'Seeded 10 tasks into the database'
+
+  # Create sub tasks with description etc.
+  10.times do |n|
+    SubTask.create(
+      name: Faker::Company.name, 
+      description: Faker::Company.catch_phrase,
+      due_date: Faker::Date.backward(days: 30),
+      project_id: Faker::Number.within(range: 1..9),
+      status: Faker::Lorem.word,
+      reporter_id: Faker::Number.within(range: 1..9),
+      assigned_to_id: Faker::Number.within(range: 1..9),
+      team_id: Faker::Number.within(range: 1..9),
+      task_id: Faker::Number.within(range: 1..9)
+    )
+  end
+  
+  puts 'Seeded 10 sub_tasks into the database'
   

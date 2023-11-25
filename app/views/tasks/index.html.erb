@@ -5,6 +5,8 @@
   link_path: new_task_path
 ) %>
 
+<h1>tasks for <%= @project.name %></h1>
+
 <div class="mt-8 flow-root">
   <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -38,7 +40,7 @@
               <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                 <div class="text-gray-900 dark:text-white text-center"><%= task.due_date.strftime("%d/%m/%Y %H:%M") %></div>
               </td>
-
+              
               <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                 <div class="text-gray-900 dark:text-white text-center"><%= task.project.title %></div>
               </td>
@@ -48,11 +50,11 @@
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center"><%= task.reporter.full_name %></div>
+                <div class="text-gray-900 dark:text-white text-center"><% task.reporter.full_name %></div>
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center"><%= task.assigned_to.full_name %></div>
+                <div class="text-gray-900 dark:text-white text-center"><% task.assigned_to.full_name %></div>
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm">
