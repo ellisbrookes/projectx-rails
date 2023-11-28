@@ -12,9 +12,12 @@ Rails.application.routes.draw do
     collection do
       resources :companies
       resources :teams
-      resources :projects
-      resources :sub_tasks
-      resources :tasks
+
+      resources :projects do
+        resources :tasks do
+          resources :sub_tasks
+        end
+      end
     end
   end
 end

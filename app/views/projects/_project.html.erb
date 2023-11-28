@@ -1,4 +1,9 @@
 <div id="<%= dom_id project %>">
+  <%= render HeadingComponent.new(
+    title: project.title,
+    text: project.description,
+  ) %>
+
   <p class="my-5">
     <strong class="block font-medium mb-1">Title</strong>
     <%= project.title %>

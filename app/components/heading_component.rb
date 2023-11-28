@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class HeadingComponent < ViewComponent::Base
-  def initialize(title:, text:, link_title:, link_path:)
+  def initialize(title:, text:, link_title: nil, link_path: nil)
     super
 
     @title = title

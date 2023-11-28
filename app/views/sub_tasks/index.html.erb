@@ -1,4 +1,4 @@
-<%= render HeadingComponent.new(title: "Sub Tasks", text: "A list of Sub Tasks in your project including its name, description, status.", link_title: "New Sub Task", link_path: new_sub_task_path) %>
+<%= render HeadingComponent.new(title: "Sub Tasks", text: "A list of Sub Tasks in your project including its name, description, status.", link_title: "New Sub Task", link_path: new_project_task_sub_task_path) %>
 
 <div class="mt-8 flow-root">
   <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -23,7 +23,7 @@
           <% @sub_tasks.each do |sub_task| %>
             <tr class="even:bg-gray-100 dark:even:bg-slate-900">
               <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center hover:underline"><%= link_to sub_task.name, sub_task %></div>
+                <div class="text-gray-900 dark:text-white text-center hover:underline"><%# link_to sub_task.name, sub_task %></div>
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm">

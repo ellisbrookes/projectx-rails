@@ -5,7 +5,7 @@ class TasksController < ApplicationController
 
   def index
     @project = Project.find(params[:project_id])
-    @tasks = @project.tasks
+    @tasks = Task.where(project_id: @project)
   end
 
   def show

@@ -4,7 +4,8 @@ class SubTasksController < ApplicationController
   before_action :set_sub_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @sub_tasks = SubTask.all
+    @task = Task.find(params[:task_id])
+    @sub_tasks = SubTask.where(task_id: @task)
   end
 
   def show
