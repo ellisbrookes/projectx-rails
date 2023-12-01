@@ -8,6 +8,11 @@ require 'faker'
     email: Faker::Internet.email, 
     password: 'password123')
   u.skip_confirmation!
+
+  avatar_io = StringIO.new(Faker::Avatar.image(size: "50x50", format: "jpg"))
+  avatar_io.rewind
+
+  u.avatar.attach(io: avatar_io, filename: 'avatar.jpg', content_type: "image/jpg")
   u.save
 end
 
