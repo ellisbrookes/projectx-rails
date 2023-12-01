@@ -3,16 +3,16 @@
     <%= render @project %>
 
     <%= link_to "Edit this project",
-    edit_project_path(@project),
+    edit_company_project_path(@company, @project),
     class:
       "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700 dark:hover:bg-slate-600" %>
     <%= link_to "Back to projects",
-    projects_path,
+    company_projects_path,
     class:
       "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700 dark:hover:bg-slate-600" %>
     <div class="inline-block ml-2">
       <%= link_to "Destroy this project",
-      project_path(@project),
+      company_project_path(@company),
       data: {
         turbo_method: :delete,
         turbo_confirm: "Are you sure?"

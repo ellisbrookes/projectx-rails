@@ -5,7 +5,8 @@ class TeamsController < ApplicationController
   layout 'dashboard'
 
   def index
-    @teams = Team.all
+    @company = Company.find(params[:company_id])
+    @teams = Team.where(company_id: @company)
   end
 
   def show

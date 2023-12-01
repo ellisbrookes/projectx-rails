@@ -3,7 +3,7 @@
   text:
     "A list of the projects in your company including its name, description, estimated completion date and completion date",
   link_title: "New Project",
-  link_path: new_project_path
+  link_path: new_company_project_path
 ) %>
 
 <div class="mt-8 flow-root">
@@ -115,7 +115,7 @@
           <% @projects.each do |project| %>
             <tr class="even:bg-gray-100 dark:even:bg-slate-900">
               <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center hover:underline"><%= link_to project.title, project %></div>
+                <div class="text-gray-900 dark:text-white text-center hover:underline"><%= link_to project.title, company_project_path(@company, project) %></div>
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm">

@@ -1,4 +1,4 @@
-<%= render HeadingComponent.new(title: "Teams", text: "A list of the teams in your company including its name, description, assigned members", link_title: "New Team", link_path: new_team_path) %>
+<%= render HeadingComponent.new(title: "Teams", text: "A list of the teams in your company including its name, description, assigned members", link_title: "New Team", link_path: new_company_team_path) %>
 
 <div class="mt-8 flow-root">
   <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -18,7 +18,7 @@
           <% @teams.each do |team| %>
             <tr class="even:bg-gray-100 dark:even:bg-slate-900">
               <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center hover:underline"><%= link_to team.name, team %></div>
+                <div class="text-gray-900 dark:text-white text-center hover:underline"><%# link_to team.name, team %></div>
               </td>
 
               <td class="whitespace-nowrap px-3 py-5 text-sm">

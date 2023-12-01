@@ -10,12 +10,13 @@ Rails.application.routes.draw do
 
   resources :dashboard, only: [:index] do
     collection do
-      resources :companies
-      resources :teams
-
-      resources :projects do
-        resources :tasks do
-          resources :sub_tasks
+      resources :companies do
+        resources :teams
+        
+        resources :projects do
+          resources :tasks do
+            resources :sub_tasks
+          end
         end
       end
     end
