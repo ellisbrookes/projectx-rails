@@ -8,17 +8,17 @@ jobs:
   test:
     runs-on: ubuntu-latest
     services:
-      postgres:
-        image: postgres:15
+      mysql:
+        image: mysql:latest
         ports:
-          - '5432:5432'
+          - '33306:3306'
         env:
-          POSTGRES_DB: rails_test
-          POSTGRES_USER: rails
-          POSTGRES_PASSWORD: password
+          MYSQL_DATABASE: rails_test
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_UNIX_PORT: /var/run/mysqld/mysqld.sock
     env:
       RAILS_ENV: test
-      DATABASE_URL: 'postgres://rails:password@localhost:5432/rails_test'
+      DATABASE_URL: 'mysql2://rails:root@localhost:3306/rails_test'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
