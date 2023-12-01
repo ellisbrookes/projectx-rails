@@ -1,14 +1,17 @@
-<div class="bg-nepal-500 h-screen dark:bg-slate-800 dark:text-white">
-  <h1 class="font-bold text-4xl">Pages#home</h1>
-  <p>Find me in app/views/pages/home.html.erb</p>
+<body class="bg-neutral-100 dark:bg-slate-800 dark:text-black">
 
-  <% if user_signed_in? %>
-    <p>Hello, you are signed in</p>
-    <%= link_to "Account Settings", edit_user_registration_path %>
-    <%= button_to "Sign out", destroy_user_session_path, method: :delete, data: [ confirm: "Are you sure?" ] %>
-  <% else %>
-    <%= button_to "Sign in", new_user_session_path %>
-  <% end %>
+  <nav class="bg-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="#" class="text-black font-bold text-xl">ProjectX</a>
+      <ul class="flex space-x-4">
+        <%= active_link_to("Home", root_path, class: "text-black") %>
+        <%= active_link_to("Dashboard", dashboard_index_path, class: "text-black") %>
+      </ul>
+    </div>
+  </nav>
 
-  <%= link_to "Dashboard", dashboard_index_path %>
-</div>
+
+  <div class="container mx-auto mt-8">
+    <%= yield %>
+  </div>
+</body>
