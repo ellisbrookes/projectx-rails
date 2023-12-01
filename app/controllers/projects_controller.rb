@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
     @project.destroy
     redirect_to(company_projects_url(@company), notice: "Project was successfully destroyed")
   end
-  
+
   private
 
   def set_company
