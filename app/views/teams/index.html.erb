@@ -1,53 +1,14 @@
-<%= render HeadingComponent.new(title: "Teams", text: "A list of the teams in your company including its name, description, assigned members", link_title: "New Team", link_path: new_company_team_path) %>
+<%= render HeadingComponent.new(title: "Teams", text: "A list of the teams in your company including its name, description, assigned members",
+ link_title: "New Team", 
+ link_path: new_company_team_path
+ ) %>
 
-<div class="mt-8 flow-root">
-  <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-      <table class="min-w-full divide-y divide-gray-200 dark:divide-slate-700 table-auto">
-        <thead>
-          <tr>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Name</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white  text-gray-900 lg:table-cell">Email</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Description</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Members</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Company</th>
-          </tr>
-        </thead>
+<%= render TableComponent.new(
+  headers: %w[Name Email Description Members Company],
+  rows:
+    @teams.map do |team|
+      [link_to(team.name, company_team_path(@company, team)), team.team_email, team.description, team.team_members.first.user.full_name, team.company.name ]
+      #[link_to(project.title, company_project_path(@company, project)), project.description, project.start_date.strftime("%d/%m/%Y"), project.completion_date.strftime("%d/%m/%Y"), number_to_currency(project.estimated_budget, unit: '£'), number_to_currency(project.actual_budget, unit: '£'), project.team.name, project.company.name ]
+    end
+) %>
 
-        <tbody>
-          <% @teams.each do |team| %>
-            <tr class="even:bg-gray-100 dark:even:bg-slate-900">
-              <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center hover:underline"><%# link_to team.name, team %></div>
-              </td>
-
-              <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center"><%= team.team_email %></div>
-              </td>
-
-              <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center"><%= team.description %></div>
-              </td>
-
-              <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                <div class="text-gray-900">
-                  <% team.team_members.each do |tm| %>
-                    <% if tm.user.avatar.attached? %>
-                      <%= image_tag tm.user.avatar, alt: "#{tm.user.full_name}", class: "h-8 w-8 rounded-full" %>
-                    <% else %>
-                      <%= heroicon "user-circle", variant: :outline %>
-                    <% end%>
-                  <% end %>
-                </div>
-              </td>
-
-                <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center"><%= team.company.name %></div>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
