@@ -1,70 +1,14 @@
-<%= render HeadingComponent.new(title: "Sub Tasks", text: "A list of Sub Tasks in your project including its name, description, status.", link_title: "New Sub Task", link_path: new_project_task_sub_task_path) %>
+<%= render HeadingComponent.new(
+  title: "Sub Tasks", 
+  text: "A list of Sub Tasks in your project including its name, description, status.", 
+  link_title: "New Sub Task", 
+  link_path: new_project_task_sub_task_path
+) %>
 
-<div class="mt-8 flow-root">
-  <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-      <table class="min-w-full divide-y divide-gray-200 dark:divide-slate-700 table-auto">
-        <thead>
-          <tr>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Name</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Description</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Due Date</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Project</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Status</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Reporter</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Assigned To</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Team</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Created At</th>
-            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Updated At</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @sub_tasks.each do |sub_task| %>
-            <tr class="even:bg-gray-100 dark:even:bg-slate-900">
-              <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center hover:underline"><%# link_to sub_task.name, sub_task %></div>
-              </td>
-
-              <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center"><%= sub_task.description %></div>
-              </td>
-
-              <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                <div class="text-gray-900 dark:text-white text-center"><%= sub_task.due_date.strftime('%d/%m/%Y %H:%M') %></div>
-              </td>
-
-              <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                <div class="text-gray-900 dark:text-white text-center"><%= sub_task.project.title %></div>
-              </td>
-
-                <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center"><%= sub_task.status %></div>
-              </td>
-
-              <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center"><%= sub_task.reporter.full_name %></div>
-              </td>
-
-              <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center"><%= sub_task.assigned_to.full_name %></div>
-              </td>
-
-              <td class="whitespace-nowrap px-3 py-5 text-sm">
-                <div class="text-gray-900 dark:text-white text-center"><%= sub_task.team.name %></div>
-              </td>
-
-              <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                <div class="text-gray-900 dark:text-white text-center"><%= sub_task.created_at.strftime('%d/%m/%Y %H:%M') %></div>
-              </td>
-
-              <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                <div class="text-gray-900 dark:text-white text-center"><%= sub_task.updated_at.strftime('%d/%m/%Y %H:%M') %></div>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+<%= render TableComponent.new(
+  headers: %w[Name Description Due_Date Title Status Reporter Assigned_to Team Created_at Updated_at],
+  rows:
+    @sub_tasks.map do |sub_task|
+      [link_to(sub_task.name, project_task_sub_task_pathh(@sub_task, task)), sub_task.description, sub_task.due_date.strftime("%d/%m/%Y %H:%M"), sub_task.project.title, sub_task.status, sub_task.reporter.full_name, sub_task.assigned_to.full_name, sub_task.team.name, sub_task.created_at.strftime("%d/%m/%Y %H:%M"), sub_task.updated_at.strftime("%d/%m/%Y %H:%M") ]
+    end
+) %>
