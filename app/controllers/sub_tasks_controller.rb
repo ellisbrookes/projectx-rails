@@ -60,7 +60,7 @@ class SubTasksController < ApplicationController
 
   def set_task_sub_task
     @task = Task.find(params[:task_id])
-    @sub_task = @task.sub_tasks.find(params{:id})
+    @sub_task = @task.sub_tasks.find(params[:id])
   end
 
   def sub_task_params
