@@ -1,14 +1,17 @@
 class SubTasksController < ApplicationController
   layout 'dashboard'
   before_action :authenticate_user!
-  before_action :set_sub_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_company
+  before_action :set_project
+  before_action :set_task
+  before_action :set_task_sub_task, only: [:edit, :update, :destroy]
 
   def index
-    @task = Task.find(params[:task_id])
-    @sub_tasks = SubTask.where(task_id: @task)
+    @sub_tasks = @task.sub_tasks
   end
 
   def show
+    @sub_task = SubTask.find(params[:id])
   end
 
   def new
@@ -19,7 +22,7 @@ class SubTasksController < ApplicationController
     @sub_task = SubTask.new(sub_task_params)
 
     if @sub_task.save
-      redirect_to(sub_task_url(@sub_task), notice: "Task was successfully created.")
+      redirect_to(company_project_task_sub_tasks_url(@company, @project, @task, @sub_task), notice: "Task was successfully created.")
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -30,7 +33,7 @@ class SubTasksController < ApplicationController
 
   def update
     if @sub_task.update(sub_task_params)
-      redirect_to(sub_task_url(@sub_task), notice: "Task was successfully updated.")
+      redirect_to(company_project_task_sub_tasks_url(@company, @project, @task, @sub_task), notice: "Task was successfully updated.")
     else
       render(:edit, status: :unprocessable_entity)
     end
@@ -38,14 +41,26 @@ class SubTasksController < ApplicationController
 
   def destroy
     @sub_task.destroy
-
-    redirect_to(sub_tasks_url, notice: "Task was successfully destroyed")
+    redirect_to(company_project_task_sub_tasks_url(@company, @project, @task), notice: "Task was successfully destroyed")
   end
 
   private
 
-  def set_sub_task
-    @sub_task = SubTask.find(params[:id])
+  def set_company
+    @company = Company.find(params[:company_id])
+  end
+
+  def set_project
+    @project = Project.find(params[:project_id])
+  end
+
+  def set_task
+    @task = Task.find(params[:task_id])
+  end
+
+  def set_task_sub_task
+    @task = Task.find(params[:task_id])
+    @sub_task = @task.sub_tasks.find(params{:id})
   end
 
   def sub_task_params
