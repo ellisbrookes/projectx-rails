@@ -7,4 +7,6 @@ class User < ApplicationRecord
 
   has_many :companies, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :team_members
+  has_many :teams, through: :team_members
 end

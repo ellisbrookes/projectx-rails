@@ -2,10 +2,10 @@
   <div class="mx-auto">
     <%= render @sub_task %>
 
-    <%= link_to 'Edit this task', edit_sub_task_path(@sub_task), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this sub task', edit_company_project_task_sub_task_path(@company, @project, @task, @sub_task), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700 dark:hover:bg-slate-600" %>
+    <%= link_to 'Back to sub tasks', company_project_task_sub_tasks_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700 dark:hover:bg-slate-600" %>
     <div class="inline-block ml-2">
-      <%= link_to 'Destroy this task', sub_task_path(@sub_task), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= link_to 'Destroy this sub task', company_project_task_sub_task_path(@company, @project, @task, @sub_task), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium bg-red-500 dark:bg-red-500 dark:hover:bg-red-400" %>
     </div>
-    <%= link_to 'Back to tasks', sub_tasks_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

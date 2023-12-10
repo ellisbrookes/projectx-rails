@@ -10,12 +10,15 @@ Rails.application.routes.draw do
 
   resources :dashboard, only: [:index] do
     collection do
-      resources :companies
-      resources :teams
-      resources :projects
-      resources :sub_tasks
-      resources :tasks do
-        resources :comments, only: [:create, :destroy]
+      resources :companies do
+        resources :teams
+
+        resources :projects do
+          resources :tasks do
+            resources :sub_tasks
+            resources :comments, only: [:create, :destroy]
+          end
+        end
       end
     end
   end
