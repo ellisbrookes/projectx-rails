@@ -29,7 +29,7 @@ function updateButtonAndIcons() {
   const moon = iconsWrapper?.querySelector('.moon-span');
   const isDarkMode = getPreferredTheme() === 'dark';
 
-  button?.classList.toggle('bg-gray-200', !isDarkMode);
+  button?.classList.toggle('bg-white', !isDarkMode);
   button?.classList.toggle('bg-slate-700', isDarkMode);
 
   iconsWrapper?.classList.toggle('translate-x-0', !isDarkMode);
