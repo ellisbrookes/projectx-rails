@@ -13,12 +13,13 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
-    @comments = @task.comments.order(created_at: :desc)
-    @pagy, @comments = pagy(@comments, items: 5)
+    # @comments = @task.comments.order(created_at: :desc)
+    # @pagy, @comments = pagy(@comments, items: 5)
   end
 
   def new
-    @task = Project.tasks.build
+    @task = Task.new
+    # @task = Project.tasks.build
   end
 
   def create
