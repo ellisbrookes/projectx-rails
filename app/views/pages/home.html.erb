@@ -5,7 +5,7 @@
   <% if user_signed_in? %>
     <p>Hello, you are signed in</p>
     <%= link_to "Account Settings", edit_user_registration_path %>
-    <%= button_to "Sign out", destroy_user_session_path, method: :delete, data: [ confirm: "Are you sure?" ] %>
+    <%= button_to "Sign out", destroy_user_session_path, method: :delete, data: [confirm: "Are you sure?"] %>
   <% else %>
     <%= button_to "Sign in", new_user_session_path %>
   <% end %>

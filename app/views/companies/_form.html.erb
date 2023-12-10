@@ -1,7 +1,8 @@
 <%= form_with(model: company, class: "contents") do |f| %>
   <% if company.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
+      <h2><%= pluralize(company.errors.count, "error") %>
+        prohibited this company from being saved:</h2>
 
       <ul>
         <% company.errors.each do |error| %>
@@ -27,6 +28,6 @@
   </div>
 
   <div class="inline">
-    <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer dark:bg-slate-600" %>
+    <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer dark:bg-slate-700 dark:hover:bg-slate-600" %>
   </div>
 <% end %>

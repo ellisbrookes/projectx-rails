@@ -8,18 +8,17 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
-  resources :teams
-
-  resources :projects
-
-  resources :tasks
-
-  resources :sub_tasks
-
   resources :dashboard, only: [:index] do
     collection do
-      # add companies resources
-      resources :companies
+      resources :companies do
+        resources :teams
+        
+        resources :projects do
+          resources :tasks do
+            resources :sub_tasks
+          end
+        end
+      end
     end
   end
 end

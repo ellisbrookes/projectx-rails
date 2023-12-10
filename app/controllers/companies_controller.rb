@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
   layout 'dashboard'
 
   def index
-    @companies = Company.all
+    @companies = Company.where(user: current_user)
   end
 
   def show
