@@ -7,7 +7,7 @@
   headers: %w[Name Email Description Members Company],
   rows:
     @teams.map do |team|
-      [link_to(team.name, company_team_path(@company, team)), team.team_email, team.description, team.team_members, team.company.name ]
+      [link_to(team.name, company_team_path(@company, team)), team.team_email, team.description, team.team_members.first.user.full_name, team.company.name ]
     end
 ) %>
 
