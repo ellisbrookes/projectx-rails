@@ -1,10 +1,5 @@
 tabWidth: 2
-semi: false
+semi: true
 singleQuote: true
 trailingComma: 'none'
-
-rubyArrayLiteral: true
-rubyHashLabel: true
-rubyModifier: true
-rubySingleQuote: true
-rubyToProc: false
+# printWidth: 1000

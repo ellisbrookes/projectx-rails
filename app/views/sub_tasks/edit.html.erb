@@ -1,8 +1,8 @@
 <div class="mx-auto md:w-2/3 w-full">
   <h1 class="font-bold text-4xl">Editing <%= @sub_task.name %></h1>
 
-  <%= render "form", task: @sub_task %>
+  <%= render "form", sub_task: @sub_task %>
 
-  <%= link_to "Show this task", @sub_task, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to tasks", sub_tasks_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Show this sub task", company_project_task_sub_task_path(@sub_task), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700 dark:hover:bg-slate-600" %>
+  <%= link_to "Back to sub tasks", company_project_task_sub_tasks_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700 dark:hover:bg-slate-600" %>
 </div>

@@ -5,32 +5,6 @@ on:
   pull_request:
     branches: ['main']
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:latest
-        ports:
-          - '33306:3306'
-        env:
-          MYSQL_DATABASE: rails_test
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_UNIX_PORT: /var/run/mysqld/mysqld.sock
-    env:
-      RAILS_ENV: test
-      DATABASE_URL: 'mysql2://rails:root@localhost:3306/rails_test'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
-        with:
-          bundler-cache: true
-      - name: Set up database schema
-        run: bin/rails db:schema:load
-      - name: Run tests
-        run: bin/rake
-
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -46,3 +20,33 @@ jobs:
         run: bundle exec bundler-audit --update
       - name: Lint Ruby files
         run: bundle exec rubocop --parallel
+  test:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+      DATABASE_PORT: 3306
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shogo82148/actions-setup-mysql@v1
+        with:
+          mysql-version: '8.0'
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf
+        with:
+          bundler-cache: true
+      - name: Run bundle install
+        run: bundle install
+      - name: Security audit dependencies
+        run: bundle exec bundler-audit --update
+      - name: Install rails
+        run: gem install rails
+      - name: Creating a database
+        run: rails db:create
+      - name: Setup database schema
+        run: rails db:schema:load
+      - name: Precompile assets
+        run: rails assets:precompile
+      - name: Run tests
+        run: bin/rspec --format doc

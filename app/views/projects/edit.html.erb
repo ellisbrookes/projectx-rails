@@ -1,8 +1,9 @@
 <div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing <%= @project.title %></h1>
+  <h1 class="font-bold text-4xl">Editing
+    <%= @project.title %></h1>
 
   <%= render "form", project: @project %>
 
-  <%= link_to "Show this project", @project, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700" %>
-  <%= link_to "Back to projects", projects_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700" %>
+  <%= link_to "Show this project", company_project_path(@company, @project), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700 dark:hover:bg-slate-600" %>
+  <%= link_to "Back to projects", company_projects_path(@company), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700 dark:hover:bg-slate-600" %>
 </div>

@@ -1,74 +1,14 @@
-<div class="px-4 sm:px-6 lg:px-8">
-  <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">Teams</h1>
-      <p class="mt-2 text-sm text-gray-700 dark:text-white">A list of the teams in your company including its name, description, assigned members.</p>
-    </div>
-    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-      <%= link_to "New Team", new_team_path, class: "dark:text-white dark:bg-slate-700 block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
-    </div>
-  </div>
+<%= render HeadingComponent.new(title: "Teams", text: "A list of the teams in your company including its name, description, assigned members",
+ link_title: "New Team", 
+ link_path: new_company_team_path
+ ) %>
 
-  <div class="mt-8 flow-root">
-    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-        <table class="min-w-full divide-y divide-gray-300">
-          <thead>
-            <tr>
-              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Team Name</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Team Email</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Team Description</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Team Members</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Company</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-0">Actions
-                <span class="sr-only">Show</span>
-                <span class="sr-only">Edit</span>
-                <span class="sr-only">Destroy</span>
-              </th>
-            </tr>
-          </thead>
+<%= render TableComponent.new(
+  headers: %w[Name Email Description Members Company],
+  rows:
+    @teams.map do |team|
+      [link_to(team.name, company_team_path(@company, team)), team.team_email, team.description, team.team_members.first.user.full_name, team.company.name ]
+      #[link_to(project.title, company_project_path(@company, project)), project.description, project.start_date.strftime("%d/%m/%Y"), project.completion_date.strftime("%d/%m/%Y"), number_to_currency(project.estimated_budget, unit: '£'), number_to_currency(project.actual_budget, unit: '£'), project.team.name, project.company.name ]
+    end
+) %>
 
-          <tbody class="divide-y divide-gray-200 bg-white dark:bg-slate-800">
-            <% @teams.each do |team| %>
-              <tr>
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900 dark:text-white"><%= team.name %></div>
-                </td>
-
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900 dark:text-white"><%= team.team_email %></div>
-                </td>
-
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900 dark:text-white"><%= team.description %></div>
-                </td>
-
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900">
-                    <% team.team_members.each do |tm| %>
-                      <% if tm.user.avatar.attached? %>
-                        <%= image_tag tm.user.avatar, alt: "#{tm.user.full_name}", class: "h-8 w-8 rounded-full" %>
-                      <% else %>
-                        <%= heroicon "user-circle", variant: :outline %>
-                      <% end%>
-                    <% end %>
-                  </div>
-                </td>
-
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <div class="text-gray-900"><%= team.company.name %></div>
-                </td>
-
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                  <%= link_to "Show", team, class: "text-indigo-600 hover:text-indigo-900" %>
-                  <%= link_to 'Edit', edit_team_path(team), class: "text-indigo-600 hover:text-indigo-900" %>
-                  <%= link_to 'Destroy', team_path(team), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-indigo-600 hover:text-indigo-900" %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>

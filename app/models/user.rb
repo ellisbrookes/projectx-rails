@@ -6,4 +6,6 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   has_many :companies, dependent: :destroy
+  has_many :team_members
+  has_many :teams, through: :team_members
 end
