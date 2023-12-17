@@ -1,15 +1,13 @@
-<body class="bg-neutral-100 dark:bg-slate-800 dark:text-black">
-  <nav class="bg-white p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <a href="#" class="text-black font-bold text-xl">ProjectX</a>
-      <ul class="flex space-x-4">
-        <%= active_link_to("Home", root_path, class: "text-black") %>
-        <%= active_link_to("Dashboard", dashboard_index_path, class: "text-black") %>
-      </ul>
+<div class="h-full w-full bg-white">
+  <nav class="flex items-center justify-between bg-neutral-200 p-4">
+    <div class="text-black text-lg font-semibold">
+      ProjectX
+    </div>
+    <div class="flex items-center space-x-4 gap-4">
+      <%= link_to "Home", root_path, class: "text-black hover:underline" %>
     </div>
   </nav>
-
-  <div class="container mx-auto mt-8">
-    <%= yield %>
+  <div>
+    <h1>ProjectX</h1>
   </div>
-</body>
+</div>
