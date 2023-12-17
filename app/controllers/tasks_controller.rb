@@ -44,7 +44,7 @@ class TasksController < ApplicationController
   end
 
   private
-  
+
   def set_company
     @company = Company.find(params[:company_id])
   end
