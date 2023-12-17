@@ -1,6 +1,4 @@
 <body class="bg-neutral-100 dark:bg-slate-800 dark:text-black">
-
-<<<<<<< HEAD
   <nav class="bg-white p-4">
     <div class="container mx-auto flex justify-between items-center">
       <a href="#" class="text-black font-bold text-xl">ProjectX</a>
@@ -10,16 +8,6 @@
       </ul>
     </div>
   </nav>
-=======
-  <% if user_signed_in? %>
-    <p>Hello, you are signed in</p>
-    <%= link_to "Account Settings", edit_user_registration_path %>
-    <%= button_to "Sign out", destroy_user_session_path, method: :delete, data: [confirm: "Are you sure?"] %>
-  <% else %>
-    <%= button_to "Sign in", new_user_session_path %>
-  <% end %>
->>>>>>> 5604f6e0698b84f5986c6f0915e2ead0e46bd6d7
-
 
   <div class="container mx-auto mt-8">
     <%= yield %>
