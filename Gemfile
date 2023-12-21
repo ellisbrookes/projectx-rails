@@ -104,3 +104,5 @@ gem "erb-formatter", "~> 0.4.3"
 gem "byebug", "~> 11.1"
 
 gem "faker", "~> 3.2"
+
+gem "rails-controller-testing", "~> 1.0"
