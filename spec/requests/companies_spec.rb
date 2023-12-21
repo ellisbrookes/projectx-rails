@@ -55,9 +55,7 @@ RSpec.describe("Companies", type: :request) do
 
       expect(response).to(render_template(:new))
 
-      error_message = "Email can't be blank"
-      decoded_error_message = CGI.unescapeHTML(error_message)
-      expect(response.body).to(include(decoded_error_message))
+      expect(response.body).to(include("Email can&#39;t be blank"))
     end
   end
 end
