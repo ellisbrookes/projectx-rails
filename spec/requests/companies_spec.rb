@@ -11,7 +11,7 @@ RSpec.describe("Companies", type: :request) do
     it "should show that the company page has a title" do
       get companies_path
 
-      # expect the index page to include the word companies 
+      # expect the index page to include the word companies
       expect(response).to(be_successful)
       expect(response.body).to(include("Companies"))
     end
@@ -72,9 +72,9 @@ RSpec.describe("Companies", type: :request) do
 
       # update email
       new_email = Faker::Internet.email
-      company_params = { company: { email: new_email }}
-      patch company_path(@company), params: company_params 
-      
+      company_params = { company: { email: new_email } }
+      patch company_path(@company), params: company_params
+
       # Redirect to company
       expect(response).to(have_http_status(:redirect))
       follow_redirect!
