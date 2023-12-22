@@ -3,13 +3,14 @@ require 'rails_helper'
 RSpec.describe("Teams", type: :request) do
   before do
     @user = FactoryBot.create(:user)
+    @company = FactoryBot.create(:company)
     sign_in(@user)
   end
 
-  describe "GET /index" do
+  describe "GET /dashboard/company/:id/teams" do
     it "should show that the team page has a title" do
-    get company_teams_path(company_id: @company)
-    
+    get company_teams_path
+
     # expect the index page to include the word teams
       expect(response).to(be_successful)
       expect(response.body).to(include("Teams"))
@@ -17,10 +18,11 @@ RSpec.describe("Teams", type: :request) do
   end
 
   # describe "POST /new" do
-  #   it "Should be able to render new company page" do
-  #     get new_company_path
+  #   it "Should be able to render new teams page" do
+  #     get new_company_teams_path
   #     expect(response).to(render_template(:new))
   #   end
+  # end
 
   #   it "Should be able to create a company" do
   #     get new_company_path
