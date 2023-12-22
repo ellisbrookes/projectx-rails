@@ -4,7 +4,7 @@ SimpleCov.start do
   add_filter "/helpers"
   add_filter "/config"
   add_filter "/spec"
-  
+
   add_group "Controllers", "app/controllers"
   add_group "Models", "app/models"
 end
