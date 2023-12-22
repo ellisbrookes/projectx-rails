@@ -19,7 +19,7 @@ class CompaniesController < ApplicationController
     @company = current_user.companies.build(company_params)
 
     if @company.save
-      redirect_to(company_url(@company), notice: "Company was successfully updated.")
+      redirect_to(company_url(@company), notice: "Company was successfully created.")
     else
       render(:new, status: :unprocessable_entity)
     end
