@@ -11,8 +11,12 @@ Rails.application.routes.draw do
   resources :dashboard, only: [:index] do
     collection do
       resources :companies do
+        member do
+          patch 'update_users'
+        end
+
         resources :teams
-        
+
         resources :projects do
           resources :tasks do
             resources :sub_tasks
