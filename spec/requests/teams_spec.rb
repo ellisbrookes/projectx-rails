@@ -3,48 +3,50 @@ require 'rails_helper'
 RSpec.describe("Teams", type: :request) do
   before do
     @user = FactoryBot.create(:user)
-    @company = FactoryBot.create(:company)
+    @company = FactoryBot.create(:company, user_id: @user.id)
     sign_in(@user)
   end
 
-  describe "GET /dashboard/company/:id/teams" do
+  describe "GET /dashboard/companies/:id/teams" do
     it "should show that the team page has a title" do
-    get company_teams_path
+      get company_teams_path(company_id: @company.id)
 
-    # expect the index page to include the word teams
+      # expect the index page to include the word teams
       expect(response).to(be_successful)
       expect(response.body).to(include("Teams"))
     end
   end
 
-  # describe "POST /new" do
-  #   it "Should be able to render new teams page" do
-  #     get new_company_teams_path
-  #     expect(response).to(render_template(:new))
-  #   end
-  # end
+  describe "GET /dashboard/companies/:id/teams/new" do
+    it "Should be able to render new teams page" do
+      get new_company_team_path(company_id: @company.id)
+      expect(response).to(render_template(:new))
+    end
 
-  #   it "Should be able to create a company" do
-  #     get new_company_path
-  #     expect(response).to(render_template(:new))
+    it "Should be able to create a team" do
+      get new_company_team_path(company_id: @company.id)
+      expect(response).to(render_template(:new))
 
-  #     # Create the company
-  #     company_params = FactoryBot.attributes_for(:company)
-  #     post companies_path, params: { company: company_params }
+      # Create the team
+      team_params = FactoryBot.attributes_for(:team, team_members_attributes: [{user_id: @user.id}], company_id: @company.id, user_id: @user.id)
+      post new_company_team_path, params: { team: team_params }
 
-  #     # Redirect to company
-  #     expect(response).to(have_http_status(:redirect))
-  #     follow_redirect!
+      # Redirect to the team
+      debugger
+      expect(response).to(have_http_status(:redirect))
+      follow_redirect!
 
-  #     # Render the show page
-  #     expect(response).to(render_template(:show))
-  #     expect(response.body).to(include("Company was successfully created."))
+      # Render the show page
+      # expect(response).to(render_template(:show))
+      # expect(response.body).to(include("Team was successfully created."))
 
-  #     # Testing company data
-  #     expect(response.body).to(include(company_params[:name]))
-  #     expect(response.body).to(include(company_params[:description]))
-  #     expect(response.body).to(include(company_params[:email]))
-  #   end
+      # Testing company data
+      # expect(response.body).to(include(company_params[:name]))
+      # expect(response.body).to(include(company_params[:description]))
+      # expect(response.body).to(include(company_params[:team_email]))
+      # expect(response.body).to(include(company_params[:company_id]))
+    end
+  end
 
   #   it "should not be able to create a company" do
   #     get new_company_path

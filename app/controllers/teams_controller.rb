@@ -10,16 +10,16 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team = Team.find(params[:id])
+    @team = @company.teams.find(params[:id])
   end
 
   def new
-    @team = Team.new
+    @team = @company.teams.new
     @team.team_members.build
   end
 
   def create
-    @team = Team.new(team_params)
+    @team = @company.teams.new(team_params)
 
     if @team.save
       redirect_to(company_team_url(@company, @team), notice: "Team was successfully created.")
@@ -33,7 +33,7 @@ class TeamsController < ApplicationController
   end
 
   def update
-    if @team.update(team_params)
+    if @company.teams.update(team_params)
       redirect_to(company_team_url(@company, @team), notice: "Team was successfully updated.")
     else
       render(:edit, status: :unprocessable_entity)
@@ -57,6 +57,6 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :description, :team_email, :company_id, team_members_attributes: [:id, :user_id])
+    params.require(:team).permit(:name, :description, :team_email, :company_id, team_members_attributes: [:id, :user_id, :_destory])
   end
 end

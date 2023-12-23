@@ -7,8 +7,7 @@
   headers: %w[Name Email Description Members Company],
   rows:
     @teams.map do |team|
-      [link_to(team.name, company_team_path(@company, team)), team.team_email, team.description, team.team_members.first.user.full_name, team.company.name ]
-      #[link_to(project.title, company_project_path(@company, project)), project.description, project.start_date.strftime("%d/%m/%Y"), project.completion_date.strftime("%d/%m/%Y"), number_to_currency(project.estimated_budget, unit: '£'), number_to_currency(project.actual_budget, unit: '£'), project.team.name, project.company.name ]
+      [link_to(team.name, company_team_path(@company, team)), team.team_email, team.description, team.team_members.pluck(:user_id).map {|tm| User.find(tm).full_name}.join(', ').html_safe, team.company.name ]
     end
 ) %>
 

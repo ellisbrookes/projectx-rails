@@ -17,10 +17,9 @@
   <p class="mt-5">
     <strong class="block font-medum mb-1">Team Members</strong>
     <ul>
-      <% @team.team_members.each do |team_member| %>
+      <% @team.team_members.each do |tm| %>
       <li>
-        <%= team_member.user.full_name %>
-        <%= team_member.user.name %>
+        <%= tm.user.full_name %>
       </li>
       <% end %>
     </ul>
