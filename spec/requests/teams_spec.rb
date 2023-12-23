@@ -32,7 +32,6 @@ RSpec.describe("Teams", type: :request) do
       post new_company_team_path, params: { team: team_params }
 
       # Redirect to the team
-      debugger
       expect(response).to(have_http_status(:redirect))
       follow_redirect!
 
