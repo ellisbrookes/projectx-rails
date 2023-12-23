@@ -28,7 +28,7 @@ RSpec.describe("Teams", type: :request) do
       expect(response).to(render_template(:new))
 
       # Create the team
-      team_params = FactoryBot.attributes_for(:team, team_members_attributes: [{user_id: @user.id}], company_id: @company.id, user_id: @user.id)
+      team_params = FactoryBot.attributes_for(:team, team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
       post new_company_team_path, params: { team: team_params }
 
       # Redirect to the team
