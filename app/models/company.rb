@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
-  has_many :user
+  has_many :users
   has_many :teams, dependent: :destroy
   has_many :projects
 

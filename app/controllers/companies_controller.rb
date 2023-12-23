@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_company, only: %i[show edit update destroy update_users]
+  before_action :set_company, only: %i[show edit update destroy]
 
   layout 'dashboard'
 
@@ -40,14 +40,6 @@ class CompaniesController < ApplicationController
     @company.destroy
 
     redirect_to(companies_url, notice: "Company was successfully destroyed.")
-  end
-
-  # custom methods
-  def update_users
-    user = User.find(params[:company][:id])
-    @company.users << user unless @company.users.include?(user)
-
-    redirect_to(@company, notice: 'User added to the company.')
   end
 
   private

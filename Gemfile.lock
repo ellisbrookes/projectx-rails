@@ -123,6 +123,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_invitable (2.0.9)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     diff-lcs (1.5.0)
     docile (1.4.0)
     drb (2.2.0)
@@ -205,6 +208,8 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.6.0)
+    nokogiri (1.15.5-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.15.5-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.15.5-x86_64-darwin)
@@ -358,6 +363,8 @@ GEM
     stringio (3.0.9)
     syntax_tree (6.2.0)
       prettier_print (>= 1.2.0)
+    tailwindcss-rails (2.0.32-aarch64-linux)
+      railties (>= 6.0.0)
     tailwindcss-rails (2.0.32-arm64-darwin)
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.32-x86_64-darwin)
@@ -400,7 +407,9 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin-22
+  arm64-darwin-23
   x86_64-darwin-23
   x86_64-linux
 
@@ -414,6 +423,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9)
+  devise_invitable (~> 2.0)
   erb-formatter (~> 0.4.3)
   factory_bot_rails (~> 6.2)
   faker (~> 3.2)
