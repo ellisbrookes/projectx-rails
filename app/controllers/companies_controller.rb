@@ -9,6 +9,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
+    @users = @company.users
   end
 
   def new
@@ -40,6 +41,19 @@ class CompaniesController < ApplicationController
     @company.destroy
 
     redirect_to(companies_url, notice: "Company was successfully destroyed.")
+  end
+
+  # users func methods
+  def add_user
+    user = User.find(params[:user_id])
+    @company.add_user(user)
+    redirect_to(@company, notice: 'User added to the company.')
+  end
+
+  def remove_user
+    user = User.find(params[:user_id])
+    @company.remove_user(user)
+    redirect_to(@company, notice: 'User removed from the company.')
   end
 
   private

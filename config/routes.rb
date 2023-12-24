@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   resources :dashboard, only: [:index] do
     collection do
       resources :companies do
+        member do
+          post 'add_user/:user_id', to: 'companies#add_user', as: :add_user
+          delete 'remove_user/:user_id', to: 'companies#remove_user', as: :remove_user
+        end
+
         resources :teams
 
         resources :projects do

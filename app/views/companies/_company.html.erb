@@ -10,6 +10,18 @@
   </p>
 
   <p class="my-5">
+    <strong class="block font-medium mb-1">Users:</strong>
+    <%= @company.user_id %>
+    <% @users.each do |cu| %>
+      <li>
+        <%= cu.full_name %>
+      </li>
+     <% end %>
+  </p>
+
+  <%= link_to "add user", add_user_company_path(user_id: 1) %>
+
+  <p class="my-5">
     <strong class="block font-medium mb-1">Email:</strong>
     <%= company.email %>
   </p>
