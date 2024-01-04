@@ -29,20 +29,20 @@ RSpec.describe("Teams", type: :request) do
 
       # Create the team
       team_params = FactoryBot.attributes_for(:team, team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
-      post new_company_team_path, params: { team: team_params }
+      post company_teams_path, params: { company: @company, team: team_params }
 
       # Redirect to the team
       expect(response).to(have_http_status(:redirect))
       follow_redirect!
 
       # Render the show page
-      # expect(response).to(render_template(:show))
-      # expect(response.body).to(include("Team was successfully created."))
+      expect(response).to(render_template(:show))
+      expect(response.body).to(include("Team was successfully created."))
 
-      # Testing company data
-      # expect(response.body).to(include(company_params[:name]))
-      # expect(response.body).to(include(company_params[:description]))
-      # expect(response.body).to(include(company_params[:team_email]))
+      # Testing team data
+      expect(response.body).to(include(team_params[:name]))
+      expect(response.body).to(include(team_params[:description]))
+      expect(response.body).to(include(team_params[:team_email]))
       # expect(response.body).to(include(company_params[:company_id]))
     end
   end
