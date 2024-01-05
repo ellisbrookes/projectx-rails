@@ -12,10 +12,11 @@ Rails.application.routes.draw do
     collection do
       resources :companies do
         resources :teams
-        
+
         resources :projects do
           resources :tasks do
             resources :sub_tasks
+            resources :comments, only: [:create, :destroy]
           end
         end
       end
