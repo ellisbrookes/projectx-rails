@@ -365,6 +365,7 @@ GEM
       prettier_print (>= 1.2.0)
     tailwindcss-rails (2.0.32-aarch64-linux)
       railties (>= 6.0.0)
+    tailwindcss-rails (2.0.33-arm64-darwin)
     tailwindcss-rails (2.0.32-arm64-darwin)
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.32-x86_64-darwin)
