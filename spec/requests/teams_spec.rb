@@ -51,7 +51,7 @@ RSpec.describe("Teams", type: :request) do
 
       # create team without an email
       team_params = FactoryBot.attributes_for(:team, team_email: "", team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
-      
+
       post company_teams_path, params: { company: @company, team: team_params }
 
       # render error message
@@ -80,12 +80,12 @@ RSpec.describe("Teams", type: :request) do
       expect(response).to(have_http_status(:redirect))
       follow_redirect!
     end
-    
+
     it "Should be able to update a team" do
       @team = Team.first
       get edit_company_team_path(company_id: @company.id, team_id: @team.id)
       expect(response).to(render_template(:edit))
-      
+
       # update email
       new_email = Faker::Internet.email
       team_params = { team: { team_email: new_email } }
@@ -94,7 +94,7 @@ RSpec.describe("Teams", type: :request) do
       # Redirect to team
       expect(response).to(have_http_status(:redirect))
       follow_redirect!
-      
+
       # Render the show page
       expect(response).to(render_template(:show))
       expect(response.body).to(include(new_email))
