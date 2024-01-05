@@ -69,10 +69,7 @@
           <button class="text-nepal-500 dark:text-white font-bold py-1 px-2 rounded-sm text-xs">
             Reply
           </button>
-          <button class="text-nepal-500 dark:text-white font-bold py-1 px-2 rounded-sm text-xs">
-            Delete
-          </button>
-          <%= link_to 'Destroy', task_comment_path(comment.task, comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-nepal-500 dark:text-white font-bold py-1 px-2 rounded-sm text-xs" %>
+          <%= link_to 'Delete', company_project_task_comment_path(@company, @project, comment.task.id, comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-nepal-500 dark:text-white font-bold py-1 px-2 rounded-sm text-xs" %>
         </div>
       </div>
     <% end %>

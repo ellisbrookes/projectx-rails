@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :set_task, only: %i[create destroy]
+  before_action :set_company
+  before_action :set_project
+  before_action :set_task
   before_action :set_comment, only: %i[destroy]
 
   def create
@@ -15,11 +17,23 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = @task.comments.find(params[:id])
-    @comment.destroy
-    redirect_to(@task)
+
+    @comment.transaction do
+      @comment.destroy
+    end
+
+    redirect_to(company_project_task_path(@company, @project, @task), notice: "comment was successfully destroyed")
   end
 
   private
+
+  def set_company
+    @company = Company.find(params[:company_id])
+  end
+
+  def set_project
+    @project = Project.find(params[:project_id])
+  end
 
   def set_task
     @task = Task.find(params[:task_id])
