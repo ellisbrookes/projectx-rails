@@ -1,4 +1,4 @@
-<div id="<%= dom_id task %>">
+<div id="<%= dom_id(task) %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">Name:</strong>
     <%= task.name %>
@@ -47,10 +47,10 @@
  <h2>Task Comments</h2>
 
   <div class="bg-opacity-20 rounded-lg p-4 mb-4">
-  <% if @comments.empty? %>
+  <% if @comments.present? %>
     <p>There are no comments on this task.</p>
   <% else %>
-    <% @comments.each do |comment| %>
+    <% @comments.present? do |comment| %>
       <div class="row flex items-center">
         <% if comment.user.avatar.attached? %>
           <div class="avatar mr-2">
@@ -72,14 +72,14 @@
           <button class="text-nepal-500 dark:text-white font-bold py-1 px-2 rounded-sm text-xs">
             Delete
           </button>
-          <%= link_to 'Destroy', task_comment_path(comment.task, comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-nepal-500 dark:text-white font-bold py-1 px-2 rounded-sm text-xs" %>
+          <%= link_to 'Destroy', company_project_task_comment_path(comment.task, comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-nepal-500 dark:text-white font-bold py-1 px-2 rounded-sm text-xs" %>
         </div>
       </div>
     <% end %>
   <% end %>
 
   <div class="flex justify-center mt-4">
-    <%= pagy_nav(@pagy).html_safe %>
+    <%= pagy_nav(@pagy).html_safe if @pagy %>
   </div>
 
   <h2>Add Comment</h2>
@@ -93,7 +93,7 @@
   <% end %>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this task", task, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this task", edit_task_path(task), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Show this task", company_project_tasks(@company, @project, @task), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this task", edit_company_project_task(@company, @project, @task), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   <% end %>
 </div>
