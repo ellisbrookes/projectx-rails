@@ -7,9 +7,9 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to(@task, notice: "comment was created successfully")
+      redirect_to(company_project_task_path(@company, @project, @task), notice: "comment was created successfully")
     else
-      redirect_to(@task, alert: "comment was not saved successfully")
+      redirect_to(company_project_task_path(@company, @project, @task), alert: "comment was not saved successfully")
     end
   end
 

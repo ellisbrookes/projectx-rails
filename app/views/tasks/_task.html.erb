@@ -47,7 +47,7 @@
  <h2>Task Comments</h2>
 
   <div class="bg-opacity-20 rounded-lg p-4 mb-4">
-  <% if @comments.empty? %>
+  <% if @comments.nil? %>
     <p>There are no comments on this task.</p>
   <% else %>
     <% @comments.each do |comment| %>
@@ -79,12 +79,12 @@
   <% end %>
 
   <div class="flex justify-center mt-4">
-    <%= pagy_nav(@pagy).html_safe %>
+    <%# pagy_nav(@pagy).html_safe %>
   </div>
 
   <h2>Add Comment</h2>
 
-   <%= form_with(model: [task, Comment.new], class: "contents") do |f| %>
+   <%= form_with(model: [task, Comment.new], class: "contents", url: company_project_task_comments_path(task_id: @task.id)) do |f| %>
     <div class="relative">
       <%= f.label :body, class: "hidden" %>
       <%= f.text_area :body, class: "dark:bg-slate-700 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none", rows: 4, placeholder: "Enter your comment here", style: "resize: none;"%>
