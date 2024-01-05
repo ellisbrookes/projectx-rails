@@ -1,5 +1,5 @@
 <%= render HeadingComponent.new(title: "Teams", text: "A list of the teams in your company including its name, description, assigned members",
- link_title: "New Team",
+ link_title: "New Team", 
  link_path: new_company_team_path
  ) %>
 
@@ -11,3 +11,4 @@
       #[link_to(project.title, company_project_path(@company, project)), project.description, project.start_date.strftime("%d/%m/%Y"), project.completion_date.strftime("%d/%m/%Y"), number_to_currency(project.estimated_budget, unit: '£'), number_to_currency(project.actual_budget, unit: '£'), project.team.name, project.company.name ]
     end
 ) %>
+
