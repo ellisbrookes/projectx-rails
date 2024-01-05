@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe("Dashboards", type: :request) do
-  describe "GET /index" do
+RSpec.describe("Homepage", type: :request) do
+  describe "GET /home" do
     it "should show that the homepage has a title" do
       get root_path
 

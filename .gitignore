@@ -46,4 +46,6 @@ config/master.key
 
 .byebug_history
 
+coverage
+
 node_modules
