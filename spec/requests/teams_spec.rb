@@ -43,71 +43,83 @@ RSpec.describe("Teams", type: :request) do
       expect(response.body).to(include(team_params[:name]))
       expect(response.body).to(include(team_params[:description]))
       expect(response.body).to(include(team_params[:team_email]))
-      # expect(response.body).to(include(company_params[:company_id]))
+    end
+
+    it "should not be able to create a team" do
+      get new_company_team_path(company_id: @company.id)
+      expect(response).to(render_template(:new))
+
+      # create team without an email
+      team_params = FactoryBot.attributes_for(:team, team_email: "", team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
+      
+      post company_teams_path, params: { company: @company, team: team_params }
+
+      # render error message
+      expect(response).to(have_http_status(:unprocessable_entity))
+
+      # render team new page
+      expect(response).to(render_template(:new))
+
+      # render error message saying team email can't be blank
+      expect(response.body).to(include("Team email can&#39;t be blank"))
     end
   end
 
-  #   it "should not be able to create a company" do
-  #     get new_company_path
-  #     expect(response).to(render_template(:new))
+  describe "PUT /edit" do
+    before do
+      # @team = FactoryBot.create(:team, team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
 
-  #     # create company without an email
-  #     company_params = FactoryBot.attributes_for(:company, email: "")
-  #     post companies_path, params: { company: company_params }
+      get new_company_team_path(company_id: @company.id)
+      expect(response).to(render_template(:new))
 
-  #     # render error message
-  #     expect(response).to(have_http_status(:unprocessable_entity))
+      # Create the team
+      team_params = FactoryBot.attributes_for(:team, team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
+      post company_teams_path, params: { company: @company, team: team_params }
 
-  #     # render company new page
-  #     expect(response).to(render_template(:new))
+      # Redirect to the team
+      expect(response).to(have_http_status(:redirect))
+      follow_redirect!
+    end
+    
+    it "Should be able to update a team" do
+      @team = Team.first
+      get edit_company_team_path(company_id: @company.id, team_id: @team.id)
+      expect(response).to(render_template(:edit))
+      
+      # update email
+      new_email = Faker::Internet.email
+      team_params = { team: { team_email: new_email } }
+      put company_team_path(@company, @team), params: team_params
 
-  #     # render error message saying email can't be blank
-  #     expect(response.body).to(include("Email can&#39;t be blank"))
-  #   end
-  # end
+      # Redirect to team
+      expect(response).to(have_http_status(:redirect))
+      follow_redirect!
+      
+      # Render the show page
+      expect(response).to(render_template(:show))
+      expect(response.body).to(include(new_email))
+      expect(response.body).to(include("Team was successfully updated."))
+    end
 
-  # describe "PUT /edit" do
-  #   before do
-  #     @company = FactoryBot.create(:company, user_id: @user.id)
-  #   end
+    it "should not be able to update a team" do
+      @team = Team.first
+      get edit_company_team_path(company_id: @company.id, team_id: @team.id)
+      expect(response).to(render_template(:edit))
 
-  #   it "Should be able to update a company" do
-  #     get edit_company_path(@company)
-  #     expect(response).to(render_template(:edit))
+      # update team without an email
+      team_params = FactoryBot.attributes_for(:team, team_email: "", team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
+      put company_team_path(@company, @team), params: team_params
 
-  #     # update email
-  #     new_email = Faker::Internet.email
-  #     company_params = { company: { email: new_email } }
-  #     put company_path(@company), params: company_params
+      # render error message
+      expect(response).to(have_http_status(:unprocessable_entity))
 
-  #     # Redirect to company
-  #     expect(response).to(have_http_status(:redirect))
-  #     follow_redirect!
+      # render team edit page
+      expect(response).to(render_template(:edit))
 
-  #     # Render the show page
-  #     expect(response).to(render_template(:show))
-  #     expect(response.body).to(include(new_email))
-  #     expect(response.body).to(include("Company was successfully updated."))
-  #   end
-
-  #   it "should not be able to update a company" do
-  #     get edit_company_path(@company)
-  #     expect(response).to(render_template(:edit))
-
-  #     # update company without an email
-  #     company_params = FactoryBot.attributes_for(:company, email: "")
-  #     put company_path(@company), params: { company: company_params }
-
-  #     # render error message
-  #     expect(response).to(have_http_status(:unprocessable_entity))
-
-  #     # render company edit page
-  #     expect(response).to(render_template(:edit))
-
-  #     # render error message saying email can't be blank
-  #     expect(response.body).to(include("Email can&#39;t be blank"))
-  #   end
-  # end
+      # render error message saying email can't be blank
+      expect(response.body).to(include("Team email can&#39;t be blank"))
+    end
+  end
 
   # describe "DELETE /show" do
   #   it "Should be able to delete a company" do
