@@ -13,8 +13,8 @@ RSpec.describe("Tasks", type: :request) do
       get company_project_tasks_path(company_id: @company.id, project_id: @project.id)
 
       # expect the index page to be successful
-      expect(response).to be_successful
-      expect(response.body).to include("Tasks")
+      expect(response).to(be_successful)
+      expect(response.body).to(include("Tasks"))
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe("Tasks", type: :request) do
       expect(response).to(render_template(:new))
 
       # create a task without a name
-      task_params = FactoryBot.attributes_for(:task, name:"", team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, project_id: @project.id)
+      task_params = FactoryBot.attributes_for(:task, name: "", team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, project_id: @project.id)
       post company_project_task_path(company_id: @company.id, project_id: @project.id)
 
       # render error message
