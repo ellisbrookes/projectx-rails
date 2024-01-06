@@ -4,7 +4,8 @@ RSpec.describe("Tasks", type: :request) do
   before do
     @user = FactoryBot.create(:user)
     @company = FactoryBot.create(:company, user_id: @user.id)
-    @project = FactoryBot.create(:project, company: @company)
+    @team = FactoryBot.create(:team, company: @company)
+    @project = FactoryBot.create(:project, company: @company, team: @team)
     sign_in(@user)
   end
 
@@ -26,7 +27,7 @@ RSpec.describe("Tasks", type: :request) do
 
     it "should be able to create a new task" do
       get new_company_project_task_path(company_id: @company.id, project_id: @project.id)
-      expect(response).to(render(:new))
+      expect(response).to(render_template(:new))
 
       # create the task
       task_params = FactoryBot.attributes_for(:task, team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, project_id: @project.id)
