@@ -14,16 +14,16 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @comments = @task.comments.order(created_at: :desc)
-    # @pagy, @comments = pagy(@comments, items: 5)
+    @pagy, @comments = pagy(@comments, items: 5)
   end
 
   def new
     @task = Task.new
-    # @task = Project.tasks.build
   end
-
+  
   def create
-    @task = Task.new(task_params)
+    @task = @project.tasks.build(task_params)
+    # @task = Task.new(task_params)
 
     if @task.save
       redirect_to(company_project_task_url(@company, @project, @task), notice: "Task was successfully created.")

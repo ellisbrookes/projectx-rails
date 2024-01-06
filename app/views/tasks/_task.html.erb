@@ -47,9 +47,7 @@
  <h2>Task Comments</h2>
 
   <div class="bg-opacity-20 rounded-lg p-4 mb-4">
-  <% if @comments.nil? %>
-    <p>There are no comments on this task.</p>
-  <% else %>
+  <% if @comments.present? %>
     <% @comments.each do |comment| %>
       <div class="row flex items-center">
         <% if comment.user.avatar.attached? %>
@@ -73,11 +71,15 @@
         </div>
       </div>
     <% end %>
+  <% else %>
+    <p>There are no comments on this task.</p>
   <% end %>
 
-  <div class="flex justify-center mt-4">
-    <%# pagy_nav(@pagy).html_safe %>
-  </div>
+  <% if @comments.present? %>
+    <div class="flex justify-center mt-4">
+      <%= pagy_nav(@pagy).html_safe %>
+    </div>
+  <% end %>
 
   <h2>Add Comment</h2>
 

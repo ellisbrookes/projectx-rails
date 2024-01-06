@@ -2,8 +2,8 @@
 class Task < ApplicationRecord
   belongs_to :reporter, class_name: "User"
   belongs_to :assigned_to, class_name: "User"
-  belongs_to :project, required: false
-  belongs_to :team, required: false
+  belongs_to :project
+  belongs_to :team
 
   has_many :sub_tasks
   has_many :comments, dependent: :destroy
