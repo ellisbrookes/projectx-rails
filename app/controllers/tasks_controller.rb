@@ -20,7 +20,7 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
   end
-  
+
   def create
     @task = @project.tasks.build(task_params)
     # @task = Task.new(task_params)
