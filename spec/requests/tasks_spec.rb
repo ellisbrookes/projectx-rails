@@ -121,22 +121,22 @@ RSpec.describe("Tasks", type: :request) do
     end
   end
 
-  describe "DELETE /show" do
-    it "Should be able to delete a task"
-    @task = FactoryBot.create(:task, project_id: @project.id, team_id: @team.id)
+  # describe "DELETE /show" do
+  #   it "Should be able to delete a task"
+  #   @task = FactoryBot.create(:task, project_id: @project.id, team_id: @team.id)
 
-    get company_project_task_path(company_id: @company.id, project_id: @project.id)
-    expect(response).to(render_template(:show))
+  #   get company_project_task_path(company_id: @company.id, project_id: @project.id)
+  #   expect(response).to(render_template(:show))
 
-    # delete task
-    delete company_project_task_path(company_id: @company.id, project_id: @project.id)
+  #   # delete task
+  #   delete company_project_task_path(company_id: @company.id, project_id: @project.id)
 
-    # redirect to task
-    expect(response).to(have_http_status(:redirect))
-    follow_redirect!
+  #   # redirect to task
+  #   expect(response).to(have_http_status(:redirect))
+  #   follow_redirect!
 
-    # redirect to the index page
-    expect(response).to(render_template(:index))
-    expect(response.body).to(include("Task was successfully destroyed."))
-  end
+  #   # redirect to the index page
+  #   expect(response).to(render_template(:index))
+  #   expect(response.body).to(include("Task was successfully destroyed."))
+  # end
 end

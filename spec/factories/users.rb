@@ -1,11 +1,7 @@
 FactoryBot.define do
-  sequence "email" do |n|
-    "person#{n}@example.com"
-  end
-
   factory :user do
     full_name { "John Doe" }
-    email
+    email { Faker::Internet.unique.email }
     password { "testing1234" }
     confirmed_at { Time.now }
     is_admin { false }
@@ -13,7 +9,7 @@ FactoryBot.define do
 
   factory :admin do
     full_name { "John Admin" }
-    email
+    email { Faker::Internet.unique.email }
     password { "admin1234" }
     confirmed_at { Time.now }
     is_admin { true }
