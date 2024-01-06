@@ -1,5 +1,5 @@
 <%= render HeadingComponent.new(title: "Teams", text: "A list of the teams in your company including its name, description, assigned members",
- link_title: "New Team",
+ link_title: "New Team", 
  link_path: new_company_team_path
  ) %>
 
@@ -10,3 +10,4 @@
       [link_to(team.name, company_team_path(@company, team)), team.team_email, team.description, team.team_members.pluck(:user_id).map {|tm| User.find(tm).full_name}.join(', ').html_safe, team.company.name ]
     end
 ) %>
+

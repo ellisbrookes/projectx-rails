@@ -1,7 +1,5 @@
 class TasksController < ApplicationController
-  include Pagy::Backend
   layout 'dashboard'
-
   before_action :authenticate_user!
   before_action :set_company
   before_action :set_project
@@ -13,13 +11,10 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
-    # @comments = @task.comments.order(created_at: :desc)
-    # @pagy, @comments = pagy(@comments, items: 5)
   end
 
   def new
-    @task = Task.new
-    # @task = Project.tasks.build
+    @task = Project.tasks.build
   end
 
   def create
