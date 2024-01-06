@@ -97,6 +97,17 @@ end
 
 puts 'Seeded 10 tasks into the database'
 
+# Create tasks with description etc.
+10.times do |_n|
+  Comment.create(
+    body: Faker::Quote.jack_handey,
+    user_id: Faker::Number.within(range: 1..9),
+    task_id: Faker::Number.within(range: 1..9),
+  )
+end
+
+puts 'Seeded 10 comments into the database'
+
 # Create sub tasks with description etc.
 10.times do |_n|
   SubTask.create(
