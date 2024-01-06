@@ -73,7 +73,7 @@ RSpec.describe("Tasks", type: :request) do
       expect(response).to(render_template(:new))
 
       # create the task
-      task_params = FactoryBot.attributes_for(:task, team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, project_id: @project.id)
+      FactoryBot.attributes_for(:task, team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, project_id: @project.id)
       post company_project_task_path(company_id: @company.id, project_id: @project.id)
 
       # redirect to the team
@@ -88,7 +88,7 @@ RSpec.describe("Tasks", type: :request) do
 
       # update name
       new_name = Faker::Company.name
-      task_params = { task: { task_name: new_name }}
+      task_params = { task: { task_name: new_name } }
       put company_project_task_path(company_id: @company.id, project_id: @project.id), params: task_params
 
       # redirect to the task
