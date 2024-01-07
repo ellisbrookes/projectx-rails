@@ -34,7 +34,7 @@ RSpec.describe("Tasks", type: :request) do
       post company_project_tasks_path(@company, @project), params: { task: task_params }
 
       task = Task.first
-      
+
       # Redirect to task
       expect(response).to(have_http_status(:redirect))
       follow_redirect!
@@ -91,7 +91,6 @@ RSpec.describe("Tasks", type: :request) do
 
       # update name
       new_name = Faker::Company.name
-      debugger
       task_params = { task: { task_name: new_name } }
       put company_project_task_path(@company, @project, @task), params: task_params
 
