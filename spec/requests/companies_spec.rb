@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'cgi'
 
 RSpec.describe("Companies", type: :request) do
   before do

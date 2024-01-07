@@ -97,7 +97,7 @@ end
 
 puts 'Seeded 10 tasks into the database'
 
-# Create tasks with description etc.
+# Create comment with body, user_id and task_id.
 10.times do |_n|
   Comment.create(
     body: Faker::Quote.jack_handey,

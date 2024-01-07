@@ -104,7 +104,7 @@ gem "tailwindcss-rails", "~> 2.0"
 
 gem "erb-formatter", "~> 0.4.3"
 
-gem "byebug", "~> 11.1"
+gem "pry-byebug"
 
 gem "faker", "~> 3.2"
 
