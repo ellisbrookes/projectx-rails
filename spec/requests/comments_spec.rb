@@ -9,16 +9,16 @@ RSpec.describe("Comments", type: :request) do
     sign_in(@user)
   end
 
-  xit "should be able to create a new comment" do
+  it "should be able to create a new comment" do
     get company_team_project_task_comments_path(@company, @team, @project, @task, @comments)
     expect(response).to(render_template(:new))
 
     # create the comment
     comment_params = FactoryBot.attributes_for(:comment, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, company_id: @company.id, project_id: @project.id, task_id: @task.id)
     post company_team_project_task_comments_path(@company, @team, @project, @task, @comments), params: { comment: comment_params }
-    task = Task.first
+    Comment.first
 
-    # Redirect to task
+    # Redirect to comment
     expect(response).to(have_http_status(:redirect))
     follow_redirect!
 
