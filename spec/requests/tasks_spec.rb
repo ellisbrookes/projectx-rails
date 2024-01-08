@@ -4,8 +4,9 @@ RSpec.describe("Tasks", type: :request) do
   before do
     @user = FactoryBot.create(:user)
     @company = FactoryBot.create(:company, user_id: @user.id)
-    @team = FactoryBot.create(:team, company: @company)
-    @project = FactoryBot.create(:project, company: @company, team: @team)
+    @team = FactoryBot.create(:team, company_id: @company.id)
+    @project = FactoryBot.create(:project, company_id: @company.id, team_id: @team.id)
+
     sign_in(@user)
   end
 
@@ -32,6 +33,7 @@ RSpec.describe("Tasks", type: :request) do
       # create the task
       task_params = FactoryBot.attributes_for(:task, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, company_id: @company.id, project_id: @project.id)
       post company_team_project_tasks_path(@company, @team, @project), params: { task: task_params }
+
       task = Task.first
 
       # Redirect to task
@@ -58,91 +60,71 @@ RSpec.describe("Tasks", type: :request) do
       expect(response).to(render_template(:new))
 
       # create a task without a name
-      task_params = FactoryBot.attributes_for(:task, name: "", reporter_id: @user, assigned_to_id: @user, team_id: @team, company_id: @company, project_id: @project)
+      task_params = FactoryBot.attributes_for(:task, name: nil, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, company_id: @company.id, project_id: @project.id)
       post company_team_project_tasks_path(@company, @project), params: { task: task_params }
 
       # render error message
+      expect(response).to(have_http_status(:unprocessable_entity))
       expect(response).to(render_template(:new))
-
-      # render error message saying name can't be blank
       expect(response.body).to(include("Name can&#39;t be blank<"))
     end
   end
 
   describe "PUT /edit" do
     before do
-      get new_company_team_project_task_path(@company, @team, @project)
-      expect(response).to(render_template(:new))
-
-      # create the task
-      task_params = FactoryBot.attributes_for(:task, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, company_id: @company.id, project_id: @project.id)
-      post company_team_project_tasks_path(@company, @team, @project), params: { task: task_params }
-
-      # redirect to the task
-      expect(response).to(have_http_status(:redirect))
-      follow_redirect!
+      @task = FactoryBot.create(:task, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, project_id: @project.id)
     end
 
-    xit "Should be able to update a task" do
-      @task = Task.first
+    it "Should be able to update a task" do
       get edit_company_team_project_task_path(@company, @team, @project, @task)
       expect(response).to(render_template(:edit))
 
       # update name
       new_name = Faker::Company.name
-      task_params = { task: { task_name: new_name } }
+      task_params = { task: { name: new_name } }
       put company_team_project_task_path(@company, @team, @project, @task), params: task_params
 
-      # redirect to the task
+      # redirect to task
       expect(response).to(have_http_status(:redirect))
       follow_redirect!
 
-      # render show page
+      # render the show page
       expect(response).to(render_template(:show))
       expect(response.body).to(include(new_name))
       expect(response.body).to(include("Task was successfully updated."))
     end
 
-    xit "Should not be able to update a task" do
-      @task = Task.first
+    it "Should not be able to update a task" do
       get edit_company_team_project_task_path(@company, @team, @project, @task)
       expect(response).to(render_template(:edit))
 
-      # update task without a name
-      task_params = FactoryBot.attributes_for(:task, name: "", reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, company_id: @company.id, project_id: @project.id)
+      # update name
+      task_params = { task: { name: nil } }
       put company_team_project_task_path(@company, @team, @project, @task), params: task_params
 
-      # render error message
-      expect(response).to(render_template(:unprocessable_entity))
+      # redirect to task
+      expect(response).to(have_http_status(:unprocessable_entity))
 
       # render task edit page
       expect(response).to(render_template(:edit))
 
-      # render error message saying name can't be blank
-      expect(response.body).to(include("Task name can&#39;t be blank"))
+      # render the edit page
+      expect(response).to(render_template(:edit))
+      expect(response.body).to(include("Name can&#39;t be blank"))
     end
   end
 
-  describe "DELETE /show" do
+  describe "DELETE /delete" do
     before do
-      get new_company_team_project_task_path(@company, @team, @project)
-      expect(response).to(render_template(:new))
-
-      # create the task
-      task_params = FactoryBot.attributes_for(:task, reporter_id: @user, assigned_to_id: @user, team_id: @team, company_id: @company, project_id: @project)
-      post company_team_project_tasks_path(@company, @team, @project), params: { task: task_params }
-
-      # redirect to the task
-      expect(response).to(have_http_status(:redirect))
-      follow_redirect!
+      @task = FactoryBot.create(:task, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, project_id: @project.id)
     end
 
-    xit "Should be able to delete a task" do
-      get company_team_project_task_path(@company, @team, @project)
+    it "Should be able to delete a task" do
+      get company_team_project_task_path(@company, @team, @project, @task)
       expect(response).to(render_template(:show))
 
       # delete task
-      delete company_team_project_task_path(@company, @team, @project)
+      delete company_team_project_task_path(@company, @team, @project, @task)
 
       # redirect to task
       expect(response).to(have_http_status(:redirect))
@@ -150,7 +132,7 @@ RSpec.describe("Tasks", type: :request) do
 
       # redirect to the index page
       expect(response).to(render_template(:index))
-      expect(response.body).to(include("Task was successfully destroyed."))
+      expect(response.body).to(include("Task was successfully destroyed"))
     end
   end
 end
