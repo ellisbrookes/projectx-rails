@@ -4,6 +4,7 @@ class TasksController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_company
+  before_action :set_team
   before_action :set_project
   before_action :set_project_task, only: [:edit, :update, :destroy]
 
@@ -26,7 +27,7 @@ class TasksController < ApplicationController
     # @task = Task.new(task_params)
 
     if @task.save
-      redirect_to(company_project_task_url(@company, @project, @task), notice: "Task was successfully created.")
+      redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Task was successfully created.")
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -37,7 +38,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to(company_project_task_url(@company, @project, @task), notice: "Task was successfully updated.")
+      redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Task was successfully updated.")
     else
       render(:edit, status: :unprocessable_entity)
     end
@@ -45,13 +46,17 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to(company_project_tasks_url(@company, @project), notice: "Task was successfully destroyed")
+    redirect_to(company_team_project_tasks_path(@company, @team, @project), notice: "Task was successfully destroyed")
   end
 
   private
 
   def set_company
     @company = Company.find(params[:company_id])
+  end
+
+  def set_team
+    @team = Team.find(params[:team_id])
   end
 
   def set_project

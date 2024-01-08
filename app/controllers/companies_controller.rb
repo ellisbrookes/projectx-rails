@@ -9,6 +9,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
+    @teams = Team.where(company_id: @company.id)
   end
 
   def new

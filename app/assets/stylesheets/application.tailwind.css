@@ -2,18 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-details > summary {
+a:hover {
+  text-decoration: underline;
+}
+
+details>summary {
   justify-content: space-between;
   list-style: none;
   display: flex;
 }
 
-details > summary > div {
+details>summary>div {
   align-items: center;
   display: flex;
 }
 
-details > summary::-webkit-details-marker {
+details>summary::-webkit-details-marker {
   display: none;
 }
 

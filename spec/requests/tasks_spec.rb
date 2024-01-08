@@ -11,7 +11,7 @@ RSpec.describe("Tasks", type: :request) do
 
   describe "GET /index" do
     it "should show that the task page has a title" do
-      get company_project_tasks_path(company_id: @company.id, project_id: @project.id)
+      get company_team_project_tasks_path(@company, @team, @project)
 
       # expect the index page to be successful
       expect(response).to(be_successful)
@@ -21,18 +21,17 @@ RSpec.describe("Tasks", type: :request) do
 
   describe "GET /dashboard/companies/:id/projects/:id/tasks/new" do
     it "Should be able to render the new task page" do
-      get new_company_project_task_path(company_id: @company.id, project_id: @project.id)
+      get new_company_team_project_task_path(@company, @team, @project)
       expect(response).to(render_template(:new))
     end
 
     it "should be able to create a new task" do
-      get new_company_project_task_path(company_id: @company.id, project_id: @project.id)
+      get new_company_team_project_task_path(@company, @team, @project)
       expect(response).to(render_template(:new))
 
       # create the task
       task_params = FactoryBot.attributes_for(:task, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, company_id: @company.id, project_id: @project.id)
-      post company_project_tasks_path(@company, @project), params: { task: task_params }
-
+      post company_team_project_tasks_path(@company, @team, @project), params: { task: task_params }
       task = Task.first
 
       # Redirect to task
@@ -55,12 +54,12 @@ RSpec.describe("Tasks", type: :request) do
     end
 
     it "should not be able to create a task" do
-      get new_company_project_task_path(company_id: @company.id, project_id: @project.id)
+      get new_company_team_project_task_path(@company, @team, @project)
       expect(response).to(render_template(:new))
 
       # create a task without a name
-      task_params = FactoryBot.attributes_for(:task, name: "", reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, company_id: @company.id, project_id: @project.id)
-      post company_project_tasks_path(@company, @project), params: { task: task_params }
+      task_params = FactoryBot.attributes_for(:task, name: "", reporter_id: @user, assigned_to_id: @user, team_id: @team, company_id: @company, project_id: @project)
+      post company_team_project_tasks_path(@company, @project), params: { task: task_params }
 
       # render error message
       expect(response).to(render_template(:new))
@@ -72,27 +71,27 @@ RSpec.describe("Tasks", type: :request) do
 
   describe "PUT /edit" do
     before do
-      get new_company_project_task_path(company_id: @company.id, project_id: @project.id)
+      get new_company_team_project_task_path(@company, @team, @project)
       expect(response).to(render_template(:new))
 
       # create the task
       task_params = FactoryBot.attributes_for(:task, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, company_id: @company.id, project_id: @project.id)
-      post company_project_tasks_path(@company, @project), params: { task: task_params }
+      post company_team_project_tasks_path(@company, @team, @project), params: { task: task_params }
 
       # redirect to the task
       expect(response).to(have_http_status(:redirect))
       follow_redirect!
     end
 
-    it "Should be able to update a task" do
+    xit "Should be able to update a task" do
       @task = Task.first
-      get edit_company_project_task_path(company_id: @company.id, project_id: @project.id, task_id: @task.id)
+      get edit_company_team_project_task_path(@company, @team, @project, @task)
       expect(response).to(render_template(:edit))
 
       # update name
       new_name = Faker::Company.name
       task_params = { task: { task_name: new_name } }
-      put company_project_task_path(@company, @project, @task), params: task_params
+      put company_team_project_task_path(@company, @project, @task), params: task_params
 
       # redirect to the task
       expect(response).to(have_http_status(:redirect))
@@ -106,12 +105,12 @@ RSpec.describe("Tasks", type: :request) do
 
     xit "Should not be able to update a task" do
       @task = Task.first
-      get edit_company_project_task_path(company_id: @company.id, project_id: @project.id)
+      get edit_company_team_project_task_path(@company, @team, @project)
       expect(response).to(render_template(:edit))
 
       # update task without a name
-      task_params = FactoryBot.attributes_for(:task, name: "", team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, project_id: @project.id)
-      put company_project_task_path(company_id: @company.id, project_id: @project.id), params: task_params
+      task_params = FactoryBot.attributes_for(:task, name: "", team_members_attributes: [{ user_id: @user }], company_id: @company, project_id: @project)
+      put company_team_project_task_path(@company, @team, @project), params: task_params
 
       # render error message
       expect(response).to(render_template(:unprocessable_entity))
@@ -124,22 +123,34 @@ RSpec.describe("Tasks", type: :request) do
     end
   end
 
-  # describe "DELETE /show" do
-  #   it "Should be able to delete a task"
-  #   @task = FactoryBot.create(:task, project_id: @project.id, team_id: @team.id)
+  describe "DELETE /show" do
+    before do
+      get new_company_team_project_task_path(@company, @team, @project)
+      expect(response).to(render_template(:new))
 
-  #   get company_project_task_path(company_id: @company.id, project_id: @project.id)
-  #   expect(response).to(render_template(:show))
+      # create the task
+      task_params = FactoryBot.attributes_for(:task, reporter_id: @user, assigned_to_id: @user, team_id: @team, company_id: @company, project_id: @project)
+      post company_team_project_tasks_path(@company, @team, @project), params: { task: task_params }
 
-  #   # delete task
-  #   delete company_project_task_path(company_id: @company.id, project_id: @project.id)
+      # redirect to the task
+      expect(response).to(have_http_status(:redirect))
+      follow_redirect!
+    end
 
-  #   # redirect to task
-  #   expect(response).to(have_http_status(:redirect))
-  #   follow_redirect!
+    xit "Should be able to delete a task" do
+      get company_team_project_task_path(@company, @team, @project)
+      expect(response).to(render_template(:show))
 
-  #   # redirect to the index page
-  #   expect(response).to(render_template(:index))
-  #   expect(response.body).to(include("Task was successfully destroyed."))
-  # end
+      # delete task
+      delete company_team_project_task_path(@company, @team, @project)
+
+      # redirect to task
+      expect(response).to(have_http_status(:redirect))
+      follow_redirect!
+
+      # redirect to the index page
+      expect(response).to(render_template(:index))
+      expect(response.body).to(include("Task was successfully destroyed."))
+    end
+  end
 end

@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   layout 'dashboard'
   before_action :authenticate_user!
   before_action :set_company
+  before_action :set_team
   before_action :set_company_project, only: [:edit, :update, :destroy]
 
   def index
@@ -20,7 +21,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
-      redirect_to(company_project_url(@company, @project), notice: "Project was successfully created.")
+      redirect_to(company_team_project_url(@company, @team, @project), notice: "Project was successfully created.")
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -31,7 +32,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to(company_project_url(@company, @project), notice: "Project was successfully updated.")
+      redirect_to(company_team_project_url(@company, @team, @project), notice: "Project was successfully updated.")
     else
       render(:edit, status: :unprocessable_entity)
     end
@@ -39,13 +40,17 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
-    redirect_to(company_projects_url(@company), notice: "Project was successfully destroyed")
+    redirect_to(company_team_projects_url(@company, @team), notice: "Project was successfully destroyed")
   end
 
   private
 
   def set_company
     @company = Company.find(params[:company_id])
+  end
+
+  def set_team
+    @team = Team.find(params[:team_id])
   end
 
   def set_company_project

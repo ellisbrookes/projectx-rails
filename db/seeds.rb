@@ -49,7 +49,7 @@ puts 'Seeded 10 companies into the database'
   Team.create(
     name: Faker::Team.name,
     description: Faker::Company.catch_phrase,
-    team_email: Faker::Internet.email,
+    email: Faker::Internet.email,
     company_id: Faker::Number.within(range: 1..9),
   )
 end

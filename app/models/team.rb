@@ -8,5 +8,11 @@ class Team < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
-  validates :team_email, presence: true
+  validates :email, presence: true
+
+  def get_team_members
+    if self.team_members.present?
+      self.team_members.first.user.full_name
+    end
+  end
 end

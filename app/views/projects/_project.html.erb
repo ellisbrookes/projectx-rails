@@ -36,12 +36,12 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Team</strong>
-    <%= @project.team.name %>
+    <%= link_to @project.team.name, company_team_path(@company, @team) %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Company</strong>
-    <%= @project.company.name %>
+    <%= link_to @project.company.name, company_path(@company) %>
   </p>
 
   <% if action_name != "show" %>
