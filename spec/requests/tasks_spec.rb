@@ -91,7 +91,7 @@ RSpec.describe("Tasks", type: :request) do
       # update name
       new_name = Faker::Company.name
       task_params = { task: { task_name: new_name } }
-      put company_team_project_task_path(@company, @project, @task), params: task_params
+      put company_team_project_task_path(@company, @team, @project, @task), params: task_params
 
       # redirect to the task
       expect(response).to(have_http_status(:redirect))
@@ -105,12 +105,12 @@ RSpec.describe("Tasks", type: :request) do
 
     xit "Should not be able to update a task" do
       @task = Task.first
-      get edit_company_team_project_task_path(@company, @team, @project)
+      get edit_company_team_project_task_path(@company, @team, @project, @task)
       expect(response).to(render_template(:edit))
 
       # update task without a name
-      task_params = FactoryBot.attributes_for(:task, name: "", team_members_attributes: [{ user_id: @user }], company_id: @company, project_id: @project)
-      put company_team_project_task_path(@company, @team, @project), params: task_params
+      task_params = FactoryBot.attributes_for(:task, name: "", reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, company_id: @company.id, project_id: @project.id)
+      put company_team_project_task_path(@company, @team, @project, @task), params: task_params
 
       # render error message
       expect(response).to(render_template(:unprocessable_entity))
