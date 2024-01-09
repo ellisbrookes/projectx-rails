@@ -5,7 +5,10 @@ class CommentsController < ApplicationController
   before_action :set_task
   before_action :set_comment, only: %i[edit update destroy]
 
+  layout 'dashboard'
+
   def new
+    @comment = Comment.new
   end
 
   def create

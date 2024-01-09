@@ -44,6 +44,16 @@
     <%= link_to @project.company.name, company_path(@company) %>
   </p>
 
+  <div class="my-5">
+    <strong class="font-medium mb-1">Tasks</strong>
+
+    <ul>
+      <% @tasks.each do |t| %>
+        <li><%= link_to t.name, company_team_project_task_path(@company, @team, @project, t) %></li>
+      <% end %>
+    </ul>
+  </div>
+
   <% if action_name != "show" %>
     <%= link_to "Show this project", project, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Edit this project", edit_project_path(project), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
