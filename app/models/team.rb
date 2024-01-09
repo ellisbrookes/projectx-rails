@@ -10,9 +10,11 @@ class Team < ApplicationRecord
   validates :description, presence: true
   validates :email, presence: true
 
-  def team_members
-    if team_members.present?
+  def team_member_full_name
+    if team_members&.first&.user&.present?
       team_members.first.user.full_name
+    else
+      "No team members or user data available"
     end
   end
 end

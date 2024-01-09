@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_team
   before_action :set_project
   before_action :set_task
-  before_action :set_comment, only: %i[destroy]
+  before_action :set_comment, only: %i[edit update destroy]
 
   def create
     @comment = @task.comments.build(comment_params)
@@ -12,7 +12,19 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Comment was created successfully")
     else
-      redirect_to(company_team_project_task_path(@company, @team, @project, @task), alert: "Comment was not saved successfully")
+      render(:show, status: :unprocessable_entity)
+      end
+  end
+
+  def edit
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    if @comment.update(comment_params)
+      redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Comment was updated successfully")
+    else
+      render(:show, status: :unprocessable_entity)
     end
   end
 

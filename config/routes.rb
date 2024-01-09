@@ -15,7 +15,7 @@ Rails.application.routes.draw do
           resources :projects do
             resources :tasks do
               resources :sub_tasks
-              resources :comments, only: [:create, :destroy]
+              resources :comments, only: [:create, :edit, :update, :destroy]
             end
           end
         end
