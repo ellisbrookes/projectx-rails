@@ -106,7 +106,7 @@ RSpec.describe("Teams", type: :request) do
       get edit_company_team_path(company_id: @company.id, team_id: @team.id)
       expect(response).to(render_template(:edit))
 
-      # update team without an email
+      # update team without an email 
       team_params = FactoryBot.attributes_for(:team, team_email: "", team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
       put company_team_path(@company, @team), params: team_params
 
