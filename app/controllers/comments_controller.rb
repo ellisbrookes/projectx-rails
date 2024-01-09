@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Comment was created successfully")
     else
-      render(:show, status: :unprocessable_entity)
+      render(:new, status: :unprocessable_entity)
     end
   end
 
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Comment was updated successfully")
     else
-      render(:show, status: :unprocessable_entity)
+      render(:edit, status: :unprocessable_entity)
     end
   end
 
