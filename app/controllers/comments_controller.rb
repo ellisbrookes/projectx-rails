@@ -10,9 +10,9 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "comment was created successfully")
+      redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Comment was created successfully")
     else
-      redirect_to(company_team_project_task_path(@company, @team, @project, @task), alert: "comment was not saved successfully")
+      redirect_to(company_team_project_task_path(@company, @team, @project, @task), alert: "Comment was not saved successfully")
     end
   end
 
@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
       @comment.destroy
     end
 
-    redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "comment was successfully destroyed")
+    redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Comment was successfully destroyed")
   end
 
   private

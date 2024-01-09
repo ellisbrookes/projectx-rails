@@ -31,7 +31,7 @@ RSpec.describe("Tasks", type: :request) do
       expect(response).to(render_template(:new))
 
       # create the task
-      task_params = FactoryBot.attributes_for(:task, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, company_id: @company.id, project_id: @project.id)
+      task_params = FactoryBot.attributes_for(:task, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, project_id: @project.id)
       post company_team_project_tasks_path(@company, @team, @project), params: { task: task_params }
 
       task = Task.first
@@ -60,7 +60,7 @@ RSpec.describe("Tasks", type: :request) do
       expect(response).to(render_template(:new))
 
       # create a task without a name
-      task_params = FactoryBot.attributes_for(:task, name: nil, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, company_id: @company.id, project_id: @project.id)
+      task_params = FactoryBot.attributes_for(:task, name: nil, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, project_id: @project.id)
       post company_team_project_tasks_path(@company, @project), params: { task: task_params }
 
       # render error message
