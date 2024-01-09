@@ -30,4 +30,21 @@ RSpec.describe("Comments", type: :request) do
     # Testing task data
     expect(response.body).to(include(comment_params[:body]))
   end
+
+  describe "DELETE /show" do
+    it "should be able to delete a comment" do
+      @comment = FactoryBot.create(:comment, user_id: @user.id, task_id: @task.id)
+      get company_team_project_task_path(@company, @team, @project, @task)
+
+      # delete comment
+      delete company_team_project_task_comment_path(@company, @team, @project, @task, @comment)
+
+      # redirect to the comment
+      expect(response).to(have_http_status(:redirect))
+      follow_redirect!
+
+      # redirect to index page
+      expect(response.body).to(include("Comment was successfully destroyed"))
+    end
+  end
 end
