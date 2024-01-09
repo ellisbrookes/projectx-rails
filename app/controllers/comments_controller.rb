@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
       redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Comment was created successfully")
     else
       render(:show, status: :unprocessable_entity)
-      end
+    end
   end
 
   def edit
