@@ -5,6 +5,9 @@ class CommentsController < ApplicationController
   before_action :set_task
   before_action :set_comment, only: %i[edit update destroy]
 
+  def new
+  end
+
   def create
     @comment = @task.comments.build(comment_params)
     @comment.user = current_user
