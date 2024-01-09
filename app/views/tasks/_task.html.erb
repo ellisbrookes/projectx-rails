@@ -64,7 +64,11 @@
           <span><%= comment.user.full_name %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small></span>
           <br>
 
-          <%= comment.body %>
+          <% frame_id = dom_id(comment, "edit_comment") %>
+          <%= turbo_frame_tag frame_id do %>
+            <%= comment.body %>
+            <%= link_to 'Edit Comment', edit_company_team_project_task_comment_path(@company, @team, @project, comment.task.id, comment), class: "text-nepal-500 dark:text-white font-bold py-1 px-2 rounded-sm text-xs" %>
+          <% end %>
 
           <br>
 
@@ -72,7 +76,6 @@
             Reply
           </button>
 
-          <%= link_to 'Edit', edit_company_team_project_task_comment_path(@company, @team, @project, comment.task.id, comment), class: "text-nepal-500 dark:text-white font-bold py-1 px-2 rounded-sm text-xs" %>
           <%= link_to 'Delete', company_team_project_task_comment_path(@company, @team, @project, comment.task.id, comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-red-500 dark:text-red-500 font-bold py-1 px-2 rounded-sm text-xs" %>
         </div>
       </div>
@@ -87,7 +90,10 @@
     </div>
   <% end %>
 
-  <%= link_to "Add comment", new_company_team_project_task_comment_path(task_id: @task) %>
+  <% frame_id = dom_id(Comment.new, "new_comment") %>
+  <%= turbo_frame_tag frame_id do %>
+    <%= link_to "Add comment", new_company_team_project_task_comment_path(task_id: @task) %>
+  <% end %>
 
   <% if action_name != "show" %>
     <%= link_to "Show this task", task, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

@@ -3,7 +3,10 @@
     New Comment for <%= @task.name %>
   </h1>
 
-  <%= render "form", comment: @comment %>
+  <% frame_id = dom_id(Comment.new, "new_comment") %>
+  <%= turbo_frame_tag frame_id do %>
+    <%= render "form", comment: @comment %>
+  <% end %>
 
   <%= link_to "Back to task", company_team_project_task_path(@company, @team, @project, @task), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700 dark:hover:bg-slate-600" %>
 </div>
