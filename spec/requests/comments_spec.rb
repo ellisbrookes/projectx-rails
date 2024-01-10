@@ -11,28 +11,51 @@ RSpec.describe("Comments", type: :request) do
     sign_in(@user)
   end
 
-  it "should be able to create a new comment" do
-    get company_team_project_task_path(@company, @team, @project, @task)
-    expect(response).to(render_template(:show))
+  describe "POST /tasks/new" do
+    it "should be able to create a new comment using the inline form on the tasks show page" do
+      get company_team_project_task_path(@company, @team, @project, @task)
+      expect(response).to(render_template(:show))
 
-    # create the comment
-    comment_params = FactoryBot.attributes_for(:comment, user_id: @user.id, task_id: @task.id)
-    post company_team_project_task_comments_path(task_id: @task), params: { comment: comment_params }
+      # create the comment
+      comment_params = FactoryBot.attributes_for(:comment, user_id: @user.id, task_id: @task.id)
+      post company_team_project_task_comments_path(task_id: @task), params: { comment: comment_params }
 
-    # Redirect to comment
-    expect(response).to(have_http_status(:redirect))
-    follow_redirect!
+      # redirect to comment
+      expect(response).to(have_http_status(:redirect))
+      follow_redirect!
 
-    # Render the show page
-    expect(response).to(render_template(:show))
-    expect(response.body).to(include("Comment was created successfully"))
+      # render the show page
+      expect(response).to(render_template(:show))
+      expect(response.body).to(include("Comment was created successfully"))
 
-    # Testing task data
-    expect(response.body).to(include(comment_params[:body]))
+      # testing task data
+      expect(response.body).to(include(comment_params[:body]))
+    end
   end
 
-  describe "DELETE /show" do
-    it "should be able to delete a comment" do
+  describe "PUT /tasks/edit" do
+    it "should be able to edit a comment using the edit button on the tasks show page" do
+      @comment = FactoryBot.create(:comment, user_id: @user.id, task_id: @task.id)
+      get company_team_project_task_path(@company, @team, @project, @task)
+
+      # update the comment
+      new_comment = Faker::Quote.jack_handey
+      comment_params = { comment: { body: new_comment } }
+      put company_team_project_task_comment_path(@company, @team, @project, @task, @comment)
+
+      # redirect back to task
+      expect(response).to(have_http_status(:redirect))
+      follow_redirect!
+
+      # render the tasks show page
+      expect(response).to(render_template(:show))
+      expect(response.body).to(include(new_comment))
+      expect(response.body).to(include("Comment was successfully updated"))
+    end
+  end
+
+  describe "DELETE /tasks/show" do
+    it "should be able to delete a comment using the delete comment button on the tasks show page" do
       @comment = FactoryBot.create(:comment, user_id: @user.id, task_id: @task.id)
       get company_team_project_task_path(@company, @team, @project, @task)
 

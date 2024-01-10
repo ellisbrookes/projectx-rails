@@ -20,13 +20,13 @@ RSpec.describe("Tasks", type: :request) do
     end
   end
 
-  describe "GET /dashboard/companies/:id/projects/:id/tasks/new" do
-    it "Should be able to render the new task page" do
+  describe "/new" do
+    it "GET /new - hould be able to render the new task page" do
       get new_company_team_project_task_path(@company, @team, @project)
       expect(response).to(render_template(:new))
     end
 
-    it "should be able to create a new task" do
+    it "POST /new - should be able to create a new task" do
       get new_company_team_project_task_path(@company, @team, @project)
       expect(response).to(render_template(:new))
 
@@ -55,7 +55,7 @@ RSpec.describe("Tasks", type: :request) do
       expect(response.body).to(include(task.team.name))
     end
 
-    it "should not be able to create a task" do
+    it "POST /new - should not be able to create a task" do
       get new_company_team_project_task_path(@company, @team, @project)
       expect(response).to(render_template(:new))
 
@@ -70,12 +70,17 @@ RSpec.describe("Tasks", type: :request) do
     end
   end
 
-  describe "PUT /edit" do
+  describe "/edit" do
     before do
       @task = FactoryBot.create(:task, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, project_id: @project.id)
     end
 
-    it "Should be able to update a task" do
+    it "GET /edit - should be able to render the edit page of a task" do
+      get edit_company_team_project_task_path(@company, @team, @project, @task)
+      expect(response).to(render_template(:edit))
+    end
+
+    it "PUT /edit - hould be able to update a task" do
       get edit_company_team_project_task_path(@company, @team, @project, @task)
       expect(response).to(render_template(:edit))
 
@@ -94,7 +99,7 @@ RSpec.describe("Tasks", type: :request) do
       expect(response.body).to(include("Task was successfully updated."))
     end
 
-    it "Should not be able to update a task" do
+    it "PUT /edit - should not be able to update a task" do
       get edit_company_team_project_task_path(@company, @team, @project, @task)
       expect(response).to(render_template(:edit))
 
