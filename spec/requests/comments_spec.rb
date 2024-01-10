@@ -70,7 +70,7 @@ RSpec.describe("Comments", type: :request) do
 
       # render the tasks show page
       expect(response).to(render_template(:show))
-      expect(response.body).to include(new_comment)
+      expect(response.body).to(include(new_comment))
       expect(response.body).to(include("Comment was updated successfully"))
     end
 
