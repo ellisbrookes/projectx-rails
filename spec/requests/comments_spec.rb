@@ -60,7 +60,7 @@ RSpec.describe("Comments", type: :request) do
 
     it "PUT - should be able to edit a comment using the edit button on the tasks show page" do
       # update the comment
-      new_comment = Faker::Quote.jack_handey
+      new_comment = CGI.unescapeHTML(Faker::Lorem.sentence(word_count: 20).gsub(/[^0-9a-zA-Z\s]/, ''))
       comment_params = { comment: { body: new_comment } }
       put company_team_project_task_comment_path(@company, @team, @project, @task, @comment), params: comment_params
 
