@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-  include Pagy::Backend
   layout 'dashboard'
 
   before_action :authenticate_user!
