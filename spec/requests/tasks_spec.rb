@@ -42,7 +42,7 @@ RSpec.describe("Tasks", type: :request) do
 
       # Render the show page
       expect(response).to(render_template(:show))
-      expect(response.body).to(include("Task was successfully created."))
+      expect(response.body).to(include("Task was successfully created"))
 
       # Testing task data
       expect(response.body).to(include(task_params[:name]))
@@ -63,10 +63,12 @@ RSpec.describe("Tasks", type: :request) do
       task_params = FactoryBot.attributes_for(:task, name: nil, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, project_id: @project.id)
       post company_team_project_tasks_path(@company, @project), params: { task: task_params }
 
-      # render error message
+      # redirect back to task
       expect(response).to(have_http_status(:unprocessable_entity))
+
+      # render error message
       expect(response).to(render_template(:new))
-      expect(response.body).to(include("Name can&#39;t be blank<"))
+      expect(response.body).to(include("Name can&#39;t be blank"))
     end
   end
 
@@ -96,7 +98,7 @@ RSpec.describe("Tasks", type: :request) do
       # render the show page
       expect(response).to(render_template(:show))
       expect(response.body).to(include(new_name))
-      expect(response.body).to(include("Task was successfully updated."))
+      expect(response.body).to(include("Task was successfully updated"))
     end
 
     it "PUT /edit - should not be able to update a task" do
@@ -109,9 +111,6 @@ RSpec.describe("Tasks", type: :request) do
 
       # redirect to task
       expect(response).to(have_http_status(:unprocessable_entity))
-
-      # render task edit page
-      expect(response).to(render_template(:edit))
 
       # render the edit page
       expect(response).to(render_template(:edit))

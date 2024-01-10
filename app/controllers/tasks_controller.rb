@@ -27,7 +27,7 @@ class TasksController < ApplicationController
     # @task = Task.new(task_params)
 
     if @task.save
-      redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Task was successfully created.")
+      redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Task was successfully created")
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -38,7 +38,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Task was successfully updated.")
+      redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Task was successfully updated")
     else
       render(:edit, status: :unprocessable_entity)
     end

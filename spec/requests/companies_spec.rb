@@ -38,7 +38,7 @@ RSpec.describe("Companies", type: :request) do
 
       # render the show page
       expect(response).to(render_template(:show))
-      expect(response.body).to(include("Company was successfully created."))
+      expect(response.body).to(include("Company was successfully created"))
 
       # testing company data
       expect(response.body).to(include(company_params[:name]))
@@ -95,7 +95,7 @@ RSpec.describe("Companies", type: :request) do
       # render the show page
       expect(response).to(render_template(:show))
       expect(response.body).to(include(new_email))
-      expect(response.body).to(include("Company was successfully updated."))
+      expect(response.body).to(include("Company was successfully updated"))
     end
 
     it "should not be able to update a company" do
@@ -130,7 +130,7 @@ RSpec.describe("Companies", type: :request) do
 
       # redirect to index page
       expect(response).to(render_template(:index))
-      expect(response.body).to(include("Company was successfully destroyed."))
+      expect(response.body).to(include("Company was successfully destroyed"))
     end
   end
 end

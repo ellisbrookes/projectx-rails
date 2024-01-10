@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'cgi'
 
 RSpec.describe("Comments", type: :request) do
   before do
@@ -11,11 +12,13 @@ RSpec.describe("Comments", type: :request) do
     sign_in(@user)
   end
 
-  describe "POST /tasks/new" do
-    it "should be able to create a new comment using the inline form on the tasks show page" do
+  describe "/tasks/new" do
+    before do
       get company_team_project_task_path(@company, @team, @project, @task)
       expect(response).to(render_template(:show))
+    end
 
+    it "POST /tasks/new - should be able to create a new comment using the inline form on the tasks show page" do
       # create the comment
       comment_params = FactoryBot.attributes_for(:comment, user_id: @user.id, task_id: @task.id)
       post company_team_project_task_comments_path(task_id: @task), params: { comment: comment_params }
@@ -31,26 +34,57 @@ RSpec.describe("Comments", type: :request) do
       # testing task data
       expect(response.body).to(include(comment_params[:body]))
     end
+
+    it "POST /tasks/new - should not be able to create a new comment using the inline form on the tasks show page" do
+      # create the comment
+      comment_params = FactoryBot.attributes_for(:comment, body: "", user_id: @user.id, task_id: @task.id)
+      post company_team_project_task_comments_path(task_id: @task), params: { comment: comment_params }
+
+      # redirect to comment
+      expect(response).to(have_http_status(:unprocessable_entity))
+
+      # render the show page
+      expect(response).to(render_template(:new))
+      expect(response.body).to(include("Body can&#39;t be blank"))
+
+      # testing task data
+      expect(response.body).to(include(comment_params[:body]))
+    end
   end
 
-  describe "PUT /tasks/edit" do
-    it "should be able to edit a comment using the edit button on the tasks show page" do
+  describe "/tasks/edit" do
+    before do
       @comment = FactoryBot.create(:comment, user_id: @user.id, task_id: @task.id)
       get company_team_project_task_path(@company, @team, @project, @task)
+    end
 
+    it "PUT - should be able to edit a comment using the edit button on the tasks show page" do
       # update the comment
       new_comment = Faker::Quote.jack_handey
-      { comment: { body: new_comment } }
-      put company_team_project_task_comment_path(@company, @team, @project, @task, @comment)
+      comment_params = { comment: { body: new_comment } }
+      put company_team_project_task_comment_path(@company, @team, @project, @task, @comment), params: comment_params
 
-      # redirect back to task
+      # redirect back to comment
       expect(response).to(have_http_status(:redirect))
       follow_redirect!
 
       # render the tasks show page
       expect(response).to(render_template(:show))
-      expect(response.body).to(include(new_comment))
-      expect(response.body).to(include("Comment was successfully updated"))
+      expect(response.body).to include(new_comment)
+      expect(response.body).to(include("Comment was updated successfully"))
+    end
+
+    it "PUT - should not be able to create a new comment using the inline form on the tasks show page" do
+      # update the comment
+      comment_params = { comment: { body: "" } }
+      put company_team_project_task_comment_path(@company, @team, @project, @task, @comment), params: comment_params
+
+      # redirect to comment
+      expect(response).to(have_http_status(:unprocessable_entity))
+
+      # render the show page
+      expect(response).to(render_template(:edit))
+      expect(response.body).to(include("Body can&#39;t be blank"))
     end
   end
 
