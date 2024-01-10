@@ -32,7 +32,7 @@ RSpec.describe("Comments", type: :request) do
       expect(response.body).to(include("Comment was created successfully"))
 
       # testing task data
-      expect(response.body).to(include(comment_params[:body]))
+      expect(response.body).to(match(comment_params[:body]))
     end
 
     it "POST /tasks/new - should not be able to create a new comment using the inline form on the tasks show page" do
