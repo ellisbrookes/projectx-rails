@@ -16,7 +16,7 @@ RSpec.describe("Comments", type: :request) do
     it "should be able to create a new comment for a task" do
       get new_company_team_project_task_comment_path(@company, @team, @project, @task)
       expect(response).to(render_template(:new))
-      
+
       # create the comment
       comment_params = FactoryBot.attributes_for(:comment, user_id: @user.id, task_id: @task.id)
       post company_team_project_task_comments_path(task_id: @task), params: { comment: comment_params }
@@ -74,7 +74,7 @@ RSpec.describe("Comments", type: :request) do
     end
   end
 
-  describe "/tasks/comments/:id/edit" do 
+  describe "/tasks/comments/:id/edit" do
     it "PUT - should be able to edit a comment using /tasks/comment/:id/edit page" do
       @comment = FactoryBot.create(:comment, user_id: @user.id, task_id: @task.id)
       get edit_company_team_project_task_comment_path(@company, @team, @project, @task, @comment)
