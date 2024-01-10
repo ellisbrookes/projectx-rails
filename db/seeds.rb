@@ -100,7 +100,7 @@ puts 'Seeded 10 tasks into the database'
 # Create comment with body, user_id and task_id.
 10.times do |_n|
   Comment.create(
-    body:  Faker::Lorem.sentence(word_count: 10).gsub(/[^0-9a-zA-Z\s]/, '')
+    body: Faker::Lorem.sentence(word_count: 20).gsub(/[^0-9a-zA-Z\s]/, '')
     user_id: Faker::Number.within(range: 1..9),
     task_id: Faker::Number.within(range: 1..9),
   )
