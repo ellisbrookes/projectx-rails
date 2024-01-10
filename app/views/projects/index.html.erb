@@ -3,13 +3,22 @@
   text:
     "A list of the projects in your company including its name, description, estimated completion date and completion date",
   link_title: "New Project",
-  link_path: new_company_project_path
+  link_path: new_company_team_project_path
 ) %>
 
 <%= render TableComponent.new(
   headers: %w[Title Description Start_Date Completion_Date Estimated_Budget Actual_Budget Team Company],
   rows:
     @projects.map do |project|
-      [link_to(project.title, company_project_path(@company, project)), project.description, project.start_date.strftime("%d/%m/%Y"), project.completion_date.strftime("%d/%m/%Y"), number_to_currency(project.estimated_budget, unit: '£'), number_to_currency(project.actual_budget, unit: '£'), project.team.name, project.company.name ]
+      [
+        link_to(project.title, company_team_project_path(@company, @team, project)),
+        project.description,
+        project.start_date.strftime("%d/%m/%Y"),
+        project.completion_date.strftime("%d/%m/%Y"),
+        number_to_currency(project.estimated_budget, unit: '£'),
+        number_to_currency(project.actual_budget, unit: '£'),
+        link_to(project.team.name, company_team_path(@company, @team)),
+        link_to(project.company.name, company_path(@company))
+      ]
     end
 ) %>

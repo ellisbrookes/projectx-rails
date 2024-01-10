@@ -14,6 +14,16 @@
     <%= company.email %>
   </p>
 
+  <ul>
+    <h2>Teams</h2>
+
+    <% @teams.each do |t| %>
+      <li>
+        <%= link_to t.name, company_team_path(@company, t) %>
+      </li>
+    <% end %>
+  </ul>
+
   <% if action_name != "show" %>
     <%= link_to "Show this company", company, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Edit this company", edit_company_path(company), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>

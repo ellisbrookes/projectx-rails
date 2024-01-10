@@ -12,7 +12,7 @@ gem "sprockets-rails"
 gem "mysql2", "~> 0.5"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem 'puma', '~> 6.4'
+gem 'puma', '~> 6.4.2'
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -63,6 +63,9 @@ gem "devise", "~> 4.9"
 gem "heroicon", "~> 1.0"
 gem "active_link_to", "~> 1.0"
 
+# Pagy
+gem "pagy"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
@@ -95,13 +98,13 @@ group :test do
   gem "webdrivers"
 end
 
-gem "view_component", "~> 3.6"
+gem "view_component", "~> 3.9"
 
 gem "tailwindcss-rails", "~> 2.0"
 
 gem "erb-formatter", "~> 0.4.3"
 
-gem "byebug", "~> 11.1"
+gem "pry-byebug"
 
 gem "faker", "~> 3.2"
 
