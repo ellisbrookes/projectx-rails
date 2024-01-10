@@ -40,7 +40,7 @@ RSpec.describe("Comments", type: :request) do
 
       # update the comment
       new_comment = Faker::Quote.jack_handey
-      comment_params = { comment: { body: new_comment } }
+      { comment: { body: new_comment } }
       put company_team_project_task_comment_path(@company, @team, @project, @task, @comment)
 
       # redirect back to task
