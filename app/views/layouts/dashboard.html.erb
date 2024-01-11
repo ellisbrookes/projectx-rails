@@ -15,11 +15,11 @@
 
   <body class="dark:bg-slate-800">
     <main>
-      <section class="relative h-screen dark:text-white">
+      <section class="relative dark:text-white">
         <%= render "shared/dashboard/sidebar" %>
         <%= render "shared/dashboard/navigation" %>
 
-        <section class="relative mt-16 ml-24 md:ml-60 flex h-screen flex-col overflow-hidden p-4 sm:p-6 lg:p-8">
+        <section class="relative mt-16 ml-24 md:ml-60 flex flex-col p-4 sm:p-6 lg:p-8">
           <%= render partial: "shared/alerts" %>
           <%= yield %>
         </section>

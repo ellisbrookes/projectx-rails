@@ -35,7 +35,7 @@ puts 'Seeded 9 users and 1 admin user into the database'
 10.times do |_n|
   Company.create(
     name: Faker::Company.name,
-    description: Faker::Company.catch_phrase,
+    description: Faker::Lorem.sentence(word_count: 20),
     email: Faker::Internet.email,
     user_id:
         Faker::Number.within(range: 1..9),
@@ -48,8 +48,8 @@ puts 'Seeded 10 companies into the database'
 10.times do |_n|
   Team.create(
     name: Faker::Team.name,
-    description: Faker::Company.catch_phrase,
-    team_email: Faker::Internet.email,
+    description: Faker::Lorem.sentence(word_count: 20),
+    email: Faker::Internet.email,
     company_id: Faker::Number.within(range: 1..9),
   )
 end
@@ -69,7 +69,7 @@ puts 'Seeded 10 team_members in the database'
 10.times do |_n|
   Project.create(
     title: Faker::Company.name,
-    description: Faker::Company.catch_phrase,
+    description: Faker::Lorem.sentence(word_count: 20),
     start_date: Faker::Date.backward(days: 30),
     completion_date: Faker::Date.forward(days: 30),
     team_id: Faker::Number.within(range: 1..9),
@@ -85,7 +85,7 @@ puts 'Seeded 10 projects into the database'
 10.times do |_n|
   Task.create(
     name: Faker::Company.name,
-    description: Faker::Company.catch_phrase,
+    description: Faker::Lorem.sentence(word_count: 20),
     due_date: Faker::Date.backward(days: 30),
     project_id: Faker::Number.within(range: 1..9),
     status: Faker::Lorem.word,
@@ -97,11 +97,22 @@ end
 
 puts 'Seeded 10 tasks into the database'
 
+# Create comment with body, user_id and task_id.
+10.times do |_n|
+  Comment.create(
+    body: Faker::Lorem.sentence(word_count: 20).gsub(/[^0-9a-zA-Z\s]/, ''),
+    user_id: Faker::Number.within(range: 1..9),
+    task_id: Faker::Number.within(range: 1..9),
+  )
+end
+
+puts 'Seeded 10 comments into the database'
+
 # Create sub tasks with description etc.
 10.times do |_n|
   SubTask.create(
     name: Faker::Company.name,
-    description: Faker::Company.catch_phrase,
+    description: Faker::Lorem.sentence(word_count: 20),
     due_date: Faker::Date.backward(days: 30),
     project_id: Faker::Number.within(range: 1..9),
     status: Faker::Lorem.word,
