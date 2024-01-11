@@ -21,7 +21,7 @@ RSpec.describe("Tasks", type: :request) do
   end
 
   describe "/new" do
-    it "GET /new - hould be able to render the new task page" do
+    it "GET /new - should be able to render the new task page" do
       get new_company_team_project_task_path(@company, @team, @project)
       expect(response).to(render_template(:new))
     end
@@ -61,7 +61,7 @@ RSpec.describe("Tasks", type: :request) do
 
       # create a task without a name
       task_params = FactoryBot.attributes_for(:task, name: nil, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, project_id: @project.id)
-      post company_team_project_tasks_path(@company, @project), params: { task: task_params }
+      post company_team_project_tasks_path(@company, @team, @project), params: { task: task_params }
 
       # redirect back to task
       expect(response).to(have_http_status(:unprocessable_entity))
@@ -87,7 +87,7 @@ RSpec.describe("Tasks", type: :request) do
       expect(response).to(render_template(:edit))
 
       # update name
-      new_name = Faker::Company.name
+      new_name = Faker::Company.name.gsub(/[^0-9a-zA-Z\s]/, '')
       task_params = { task: { name: new_name } }
       put company_team_project_task_path(@company, @team, @project, @task), params: task_params
 
