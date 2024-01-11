@@ -42,7 +42,7 @@ RSpec.describe("Teams", type: :request) do
       # Testing team data
       expect(response.body).to(include(team_params[:name]))
       expect(response.body).to(include(team_params[:description]))
-      expect(response.body).to(include(team_params[:team_email]))
+      expect(response.body).to(include(team_params[:email]))
     end
 
     it "should not be able to create a team" do
@@ -50,7 +50,7 @@ RSpec.describe("Teams", type: :request) do
       expect(response).to(render_template(:new))
 
       # create team without an email
-      team_params = FactoryBot.attributes_for(:team, team_email: "", team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
+      team_params = FactoryBot.attributes_for(:team, email: "", team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
 
       post company_teams_path, params: { company: @company, team: team_params }
 
@@ -61,7 +61,7 @@ RSpec.describe("Teams", type: :request) do
       expect(response).to(render_template(:new))
 
       # render error message saying team email can't be blank
-      expect(response.body).to(include("Team email can&#39;t be blank"))
+      expect(response.body).to(include("Email can&#39;t be blank"))
     end
   end
 
@@ -88,7 +88,7 @@ RSpec.describe("Teams", type: :request) do
 
       # update email
       new_email = Faker::Internet.email
-      team_params = { team: { team_email: new_email } }
+      team_params = { team: { email: new_email } }
       put company_team_path(@company, @team), params: team_params
 
       # Redirect to team
@@ -107,7 +107,8 @@ RSpec.describe("Teams", type: :request) do
       expect(response).to(render_template(:edit))
 
       # update team without an email 
-      team_params = FactoryBot.attributes_for(:team, team_email: "", team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
+      team_params = FactoryBot.attributes_for(:team, email: "", team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
+      debugger
       put company_team_path(@company, @team), params: team_params
 
       # render error message
@@ -117,7 +118,7 @@ RSpec.describe("Teams", type: :request) do
       expect(response).to(render_template(:edit))
 
       # render error message saying email can't be blank
-      expect(response.body).to(include("Team email can&#39;t be blank"))
+      expect(response.body).to(include("Email can&#39;t be blank"))
     end
   end
 
