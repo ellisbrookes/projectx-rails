@@ -108,7 +108,6 @@ RSpec.describe("Teams", type: :request) do
 
       # update team without an email 
       team_params = FactoryBot.attributes_for(:team, email: "", team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
-      debugger
       put company_team_path(@company, @team), params: team_params
 
       # render error message

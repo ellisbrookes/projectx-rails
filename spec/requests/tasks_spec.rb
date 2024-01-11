@@ -82,7 +82,7 @@ RSpec.describe("Tasks", type: :request) do
       expect(response).to(render_template(:edit))
     end
 
-    it "PUT /edit - hould be able to update a task" do
+    it "PUT /edit - should be able to update a task" do
       get edit_company_team_project_task_path(@company, @team, @project, @task)
       expect(response).to(render_template(:edit))
 

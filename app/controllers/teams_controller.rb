@@ -53,7 +53,7 @@ class TeamsController < ApplicationController
 
   def set_company_team
     @company = Company.find(params[:company_id])
-    @team = @company.teams.find(params[:id])
+    @team = @company.teams.find(params[:team_id])
   end
 
   def team_params
