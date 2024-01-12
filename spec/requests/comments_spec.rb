@@ -59,7 +59,7 @@ RSpec.describe("Comments", type: :request) do
 
     it "POST - should not be able to create a new comment using the inline form on the tasks show page" do
       # create the comment
-      comment_params = FactoryBot.attributes_for(:comment, body: "", user_id: @user.id, task_id: @task.id)
+      comment_params = FactoryBot.attributes_for(:comment, body: nil, user_id: @user.id, task_id: @task.id)
       post company_team_project_task_comments_path(task_id: @task), params: { comment: comment_params }
 
       # redirect to comment
@@ -116,7 +116,7 @@ RSpec.describe("Comments", type: :request) do
 
     it "PUT - should not be able to create a new comment using the inline form on the tasks show page" do
       # update the comment
-      comment_params = { comment: { body: "" } }
+      comment_params = { comment: { body: nil } }
       put company_team_project_task_comment_path(@company, @team, @project, @task, @comment), params: comment_params
 
       # redirect to comment

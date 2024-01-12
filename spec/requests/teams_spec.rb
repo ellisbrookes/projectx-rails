@@ -28,7 +28,7 @@ RSpec.describe("Teams", type: :request) do
       expect(response).to(render_template(:new))
 
       # create the team
-      team_params = FactoryBot.attributes_for(:team, team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
+      team_params = FactoryBot.attributes_for(:team, company_id: @company.id)
       post company_teams_path(@company), params: { team: team_params }
 
       # redirect to the team
@@ -50,7 +50,7 @@ RSpec.describe("Teams", type: :request) do
       expect(response).to(render_template(:new))
 
       # create team without an email
-      team_params = FactoryBot.attributes_for(:team, email: "", team_members_attributes: [{ user_id: @user.id }], company_id: @company.id, user_id: @user.id)
+      team_params = FactoryBot.attributes_for(:team, email: nil, company_id: @company.id)
       post company_teams_path(@company), params: { team: team_params }
 
       # render error message
@@ -96,6 +96,7 @@ RSpec.describe("Teams", type: :request) do
       expect(response).to(render_template(:edit))
 
       # update team without an email
+      # team_params = FactoryBot.attributes_for(:team, email: nil, company_id: @company.id)
       team_params = { team: { email: nil } }
       put company_team_path(@company, @team), params: team_params
 
