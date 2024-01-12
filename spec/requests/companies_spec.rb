@@ -6,8 +6,8 @@ RSpec.describe("Companies", type: :request) do
     sign_in(@user)
   end
 
-  describe "GET /index" do
-    it "should show that the company page has a title" do
+  describe "/index" do
+    it "GET - should show that the company page has a title" do
       get companies_path
 
       # expect the index page to include the word companies
@@ -16,15 +16,16 @@ RSpec.describe("Companies", type: :request) do
     end
   end
 
-  describe "GET /new" do
-    it "should be able to render new company page" do
+  describe "/new" do
+    it "GET - should be able to render new company page" do
       get new_company_path
-      expect(response).to(render_template(:new))
-    end
-  end
 
-  describe "POST /new" do
-    it "should be able to create a company" do
+      # expect the index page to be successful
+      expect(response).to(be_successful)
+      expect(response.body).to(include("Companies"))
+    end
+
+    it "POST - should be able to create a company" do
       get new_company_path
       expect(response).to(render_template(:new))
 
@@ -46,12 +47,12 @@ RSpec.describe("Companies", type: :request) do
       expect(response.body).to(include(company_params[:email]))
     end
 
-    it "should not be able to create a company" do
+    it "POST - should not be able to create a company" do
       get new_company_path
       expect(response).to(render_template(:new))
 
       # create company without an email
-      company_params = FactoryBot.attributes_for(:company, email: "")
+      company_params = { company: { email: nil } }
       post companies_path, params: { company: company_params }
 
       # render error message
@@ -63,23 +64,17 @@ RSpec.describe("Companies", type: :request) do
     end
   end
 
-  describe "GET /edit" do
+  describe "/edit" do
     before do
       @company = FactoryBot.create(:company, user_id: @user.id)
     end
 
-    it "should be able to render the edit page" do
+    it "GET - should be able to render the edit page" do
       get edit_company_path(@company)
       expect(response).to(render_template(:edit))
     end
-  end
 
-  describe "PUT /edit" do
-    before do
-      @company = FactoryBot.create(:company, user_id: @user.id)
-    end
-
-    it "should be able to update a company" do
+    it "PUT - should be able to update a company" do
       get edit_company_path(@company)
       expect(response).to(render_template(:edit))
 
@@ -98,12 +93,12 @@ RSpec.describe("Companies", type: :request) do
       expect(response.body).to(include("Company was successfully updated"))
     end
 
-    it "should not be able to update a company" do
+    it "PUT - should not be able to update a company" do
       get edit_company_path(@company)
       expect(response).to(render_template(:edit))
 
       # update company without an email
-      company_params = FactoryBot.attributes_for(:company, email: "")
+      company_params = { company: { email: nil } }
       put company_path(@company), params: { company: company_params }
 
       # render error message
@@ -115,8 +110,8 @@ RSpec.describe("Companies", type: :request) do
     end
   end
 
-  describe "DELETE /show" do
-    it "should be able to delete a company" do
+  describe "/delete" do
+    it "DELETE - should be able to delete a company" do
       @company = FactoryBot.create(:company, user_id: @user.id)
       get company_path(@company)
       expect(response).to(render_template(:show))
