@@ -80,8 +80,7 @@ RSpec.describe("Companies", type: :request) do
 
       # update email
       new_email = Faker::Internet.email
-      company_params = FactoryBot.attributes_for(:company, email: new_email)
-      # company_params = { company: { email: new_email } }
+      company_params = { company: { email: new_email } }
       put company_path(@company), params: company_params
 
       # redirect to company

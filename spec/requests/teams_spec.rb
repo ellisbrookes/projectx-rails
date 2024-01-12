@@ -96,8 +96,7 @@ RSpec.describe("Teams", type: :request) do
       expect(response).to(render_template(:edit))
 
       # update team without an email
-      # team_params = FactoryBot.attributes_for(:team, email: nil, company_id: @company.id)
-      team_params = { team: { email: nil } }
+      team_params = FactoryBot.attributes_for(:team, email: nil, company_id: @company.id)
       put company_team_path(@company, @team), params: team_params
 
       # render error message
