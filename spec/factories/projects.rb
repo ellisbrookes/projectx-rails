@@ -8,7 +8,5 @@ FactoryBot.define do
     company_id { 1 }
     estimated_budget { Faker::Commerce.price }
     actual_budget { Faker::Commerce.price }
-
-    association :team
   end
 end

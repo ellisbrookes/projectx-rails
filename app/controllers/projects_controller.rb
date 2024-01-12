@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
-      redirect_to(company_team_project_url(@company, @team, @project), notice: "Project was successfully created.")
+      redirect_to(company_team_project_url(@company, @team, @project), notice: "Project was successfully created")
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to(company_team_project_url(@company, @team, @project), notice: "Project was successfully updated.")
+      redirect_to(company_team_project_url(@company, @team, @project), notice: "Project was successfully updated")
     else
       render(:edit, status: :unprocessable_entity)
     end
