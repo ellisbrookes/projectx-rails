@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_company
   before_action :set_team
-  before_action :set_company_project, only: [:edit, :update, :destroy]
+  before_action :set_project, only: [:edit, :update, :destroy]
 
   def index
     @projects = @company.projects
@@ -54,9 +54,8 @@ class ProjectsController < ApplicationController
     @team = Team.find(params[:team_id])
   end
 
-  def set_company_project
-    @company = Company.find(params[:company_id])
-    @project = @company.projects.find(params[:id])
+  def set_project
+    @project = Project.find(params[:id])
   end
 
   def project_params
