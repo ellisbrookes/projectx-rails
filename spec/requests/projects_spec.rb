@@ -31,7 +31,6 @@ RSpec.describe("Projects", type: :request) do
       # create the project
       project_params = FactoryBot.attributes_for(:project, company_id: @company.id, team_id: @team.id)
       post company_team_projects_path(@company, @team), params: { project: project_params }
-debugger
 
       # redirect to project
       expect(response).to(have_http_status(:redirect))
