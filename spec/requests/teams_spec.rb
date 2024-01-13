@@ -49,8 +49,8 @@ RSpec.describe("Teams", type: :request) do
       get new_company_team_path(@company)
       expect(response).to(render_template(:new))
 
-      # create team without an email
-      team_params = FactoryBot.attributes_for(:team, email: nil, company_id: @company.id)
+      # create team without a name
+      team_params = FactoryBot.attributes_for(:team, name: nil, company_id: @company.id)
       post company_teams_path(@company), params: { team: team_params }
 
       # render error message
@@ -58,7 +58,7 @@ RSpec.describe("Teams", type: :request) do
 
       # render team new page
       expect(response).to(render_template(:new))
-      expect(response.body).to(include("Email can&#39;t be blank"))
+      expect(response.body).to(include("Name can&#39;t be blank"))
     end
   end
 
@@ -76,10 +76,10 @@ RSpec.describe("Teams", type: :request) do
       get edit_company_team_path(@company, @team)
       expect(response).to(render_template(:edit))
 
-      # update email
-      new_email = Faker::Internet.email
-      team_params = { team: { email: new_email } }
-      put company_team_path(@company), params: team_params
+      # update name
+      new_name = Faker::Company.name.gsub(/[^0-9a-zA-Z\s]/, '')
+      team_params = { team: { name: new_name } }
+      put company_team_path(@company, @team), params: team_params
 
       # Redirect to team
       expect(response).to(have_http_status(:redirect))
@@ -87,7 +87,7 @@ RSpec.describe("Teams", type: :request) do
 
       # Render the show page
       expect(response).to(render_template(:show))
-      expect(response.body).to(include(new_email))
+      expect(response.body).to(include(new_name))
       expect(response.body).to(include("Team was successfully updated"))
     end
 
@@ -95,16 +95,16 @@ RSpec.describe("Teams", type: :request) do
       get edit_company_team_path(@company, @team)
       expect(response).to(render_template(:edit))
 
-      # update team without an email
-      team_params = FactoryBot.attributes_for(:team, email: nil)
+      # update team without a name
+      team_params = { team: { name: nil } }
       put company_team_path(@company, @team), params: team_params
 
       # render error message
       expect(response).to(have_http_status(:unprocessable_entity))
 
-      # render team edit page
+      # render the edit page
       expect(response).to(render_template(:edit))
-      expect(response.body).to(include("Email can&#39;t be blank"))
+      expect(response.body).to(include("Name can&#39;t be blank"))
     end
   end
 

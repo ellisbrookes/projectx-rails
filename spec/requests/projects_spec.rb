@@ -96,7 +96,7 @@ RSpec.describe("Projects", type: :request) do
       expect(response).to(render_template(:edit))
 
       # update project without a title
-      project_params = FactoryBot.attributes_for(:project, title: nil)
+      project_params = { project: { title: nil } }
       put company_team_project_path(@company, @team, @project), params: project_params
 
       # render error message
