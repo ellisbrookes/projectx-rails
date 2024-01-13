@@ -23,7 +23,7 @@ RSpec.describe("Teams", type: :request) do
       expect(response).to(render_template(:new))
     end
 
-    it "POST -should be able to create a team" do
+    it "POST - should be able to create a team" do
       get new_company_team_path(@company)
       expect(response).to(render_template(:new))
 
