@@ -1,10 +1,11 @@
-<div class="h-full w-full bg-white">
-  <nav class="flex items-center justify-between bg-neutral-200 p-4">
+<div class="h-full w-full">
+  <nav class="flex items-center justify-between bg-nepal-500 p-4">
     <div class="text-black text-lg font-semibold">
-      ProjectX
+      <%= link_to "ProjectX", root_path, class: "text-black hover:underline" %>
     </div>
     <div class="flex items-center space-x-4 gap-4">
       <%= link_to "Home", root_path, class: "text-black hover:underline" %>
+      <%= link_to "Dashboard", dashboard_index_path, class: "text-black hover:underline" %>
     </div>
   </nav>
   <div>
