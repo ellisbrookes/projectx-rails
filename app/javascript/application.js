@@ -3,26 +3,22 @@ import 'controllers';
 
 const darkModeToggle = document.getElementById('darkModeToggle');
 
-function setTheme(theme) {
+const setTheme = theme => {
   localStorage.setItem('theme', theme);
   document.documentElement.classList.toggle('dark', theme === 'dark');
-}
+};
 
-function getPreferredTheme() {
-  return localStorage.getItem('theme') || 'light';
-}
+const getPreferredTheme = () => localStorage.getItem('theme') || 'light';
 
-function initializeTheme() {
-  const preferredTheme = getPreferredTheme();
+const initializeTheme = () => {
   const isDarkModePreferred =
-    preferredTheme === 'dark' ||
-    (!preferredTheme &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches);
+    getPreferredTheme() === 'dark' ||
+    (!getPreferredTheme() && window.matchMedia('(prefers-color-scheme: dark)').matches);
   setTheme(isDarkModePreferred ? 'dark' : 'light');
   updateButtonAndIcons();
-}
+};
 
-function updateButtonAndIcons() {
+const updateButtonAndIcons = () => {
   const button = document.querySelector('label');
   const iconsWrapper = button?.querySelector('.icons-wrapper');
   const sun = iconsWrapper?.querySelector('.sun-span');
@@ -48,15 +44,14 @@ function updateButtonAndIcons() {
   moon?.classList.toggle('duration-200', !isDarkMode);
   moon?.classList.toggle('ease-out', isDarkMode);
   moon?.classList.toggle('ease-in', !isDarkMode);
-}
+};
 
-function toggleTheme() {
+const toggleTheme = () => {
   const currentTheme = getPreferredTheme();
   const newTheme = currentTheme === 'light' ? 'dark' : 'light';
   setTheme(newTheme);
   updateButtonAndIcons();
-}
+};
 
 document.addEventListener('turbo:load', initializeTheme);
-
 darkModeToggle.addEventListener('click', toggleTheme);
