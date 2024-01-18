@@ -11,7 +11,7 @@
 
   <p class="my-5">
     <strong class="block font-medum mb-1">Team Email:</strong>
-    <%= team.team_email %>
+    <%= team.email %>
   </p>
 
   <p class="mt-5">
@@ -20,7 +20,6 @@
       <% @team.team_members.each do |team_member| %>
       <li>
         <%= team_member.user.full_name %>
-        <%= team_member.user.name %>
       </li>
       <% end %>
     </ul>
@@ -28,7 +27,18 @@
 
   <p class="my-5">
     <strong class="block font-medum mb-1">Company</strong>
-    <%= team.company.name %>
+    <%= link_to team.company.name, company_path(@company) %>
+  </p>
+
+  <p class="mt-5">
+    <strong class="block font-medum mb-1">Projects</strong>
+    <ul>
+      <% @team.projects.each do |p| %>
+      <li>
+        <%= link_to p.title, company_team_project_path(@company, @team, p) %>
+      </li>
+      <% end %>
+    </ul>
   </p>
 
   <% if action_name != "show" %>

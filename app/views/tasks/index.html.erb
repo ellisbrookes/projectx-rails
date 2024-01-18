@@ -2,13 +2,24 @@
   title: "Tasks",
   text: "A list of the tasks in your account including its name, description, status.",
   link_title: "New Task",
-  link_path: new_company_project_task_path
+  link_path: new_company_team_project_task_path
 ) %>
 
 <%= render TableComponent.new(
   headers: %w[Name Description Due_Date Title Status Reporter Assigned_to Team Created_at Updated_at],
   rows:
     @tasks.map do |task|
-      [link_to(task.name, company_project_task_path(@company, @project, task)), task.description, task.due_date.strftime("%d/%m/%Y %H:%M"), task.project.title, task.status, task.reporter.full_name, task.assigned_to.full_name, task.team.name, task.created_at.strftime("%d/%m/%Y %H:%M"), task.updated_at.strftime("%d/%m/%Y %H:%M") ]
+      [
+        link_to(task.name, company_team_project_task_path(@company, @team, @project, task)),
+        task.description,
+        task.due_date.strftime("%d/%m/%Y %H:%M"),
+        task.project.title,
+        task.status,
+        task.reporter.full_name,
+        task.assigned_to.full_name,
+        task.team.name,
+        task.created_at.strftime("%d/%m/%Y %H:%M"),
+        task.updated_at.strftime("%d/%m/%Y %H:%M")
+      ]
     end
 ) %>
