@@ -10,16 +10,16 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team = @company.teams.find(params[:id])
+    @team = Team.find(params[:id])
   end
 
   def new
-    @team = @company.teams.new
+    @team = Team.new
     @team.team_members.build
   end
 
   def create
-    @team = @company.teams.new(team_params)
+    @team = Team.new(team_params)
 
     if @team.save
       redirect_to(company_team_url(@company, @team), notice: "Team was successfully created")
@@ -33,7 +33,7 @@ class TeamsController < ApplicationController
   end
 
   def update
-    if @company.teams.update(team_params)
+    if @team.update(team_params)
       redirect_to(company_team_url(@company, @team), notice: "Team was successfully updated")
     else
       render(:edit, status: :unprocessable_entity)
