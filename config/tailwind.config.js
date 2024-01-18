@@ -8,7 +8,7 @@ module.exports = {
     './app/views/**/*.{erb,haml,html,slim}',
     './app/components/**/*'
   ],
-  darkMode: 'class',
+  darkMode: 'class ',
   theme: {
     extend: {
       fontFamily: {
