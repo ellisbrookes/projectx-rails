@@ -15,12 +15,13 @@ Rails.application.routes.draw do
           post 'add_user/:user_id', to: 'companies#add_user', as: :add_user
           delete 'remove_user/:user_id', to: 'companies#remove_user', as: :remove_user
         end
-
-        resources :teams
         
-        resources :projects do
-          resources :tasks do
-            resources :sub_tasks
+        resources :teams do
+          resources :projects do
+            resources :tasks do
+              resources :sub_tasks
+              resources :comments, only: [:new, :create, :edit, :update, :destroy]
+            end
           end
         end
       end

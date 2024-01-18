@@ -11,7 +11,7 @@ RSpec.describe("Dashboards", type: :request) do
       get dashboard_index_path
 
       expect(response).to(be_successful)
-      expect(response.body).to(include("Dashboard"))
+      expect(response.body).to(include("ProjectxRails"))
     end
   end
 end

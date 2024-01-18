@@ -5,37 +5,37 @@
   </p>
 
   <p class="my-5">
-    <strong class="block font-medum mb-1">Description:</strong>
+    <strong class="block font-medium mb-1">Description:</strong>
     <%= task.description %>
   </p>
-  
+
   <p class="my-5">
-    <strong class="block font-medum mb-1">Due Date:</strong>
+    <strong class="block font-medium mb-1">Due Date:</strong>
     <%= task.due_date.strftime('%d/%m/%Y') %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medum mb-1">Project:</strong>
+    <strong class="block font-medium mb-1">Project:</strong>
     <%= task.project.title %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medum mb-1">Status</strong>
+    <strong class="block font-medium mb-1">Status:</strong>
     <%= task.status %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Assigned To</strong>
+    <strong class="block font-medium mb-1">Assigned To:</strong>
     <%= task.assigned_to.full_name %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Reporter</strong>
+    <strong class="block font-medium mb-1">Reporter:</strong>
     <%= task.reporter.full_name %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Team</strong>
+    <strong class="block font-medium mb-1">Team:</strong>
     <%= task.team.name %>
   </p>
 
@@ -44,10 +44,56 @@
     <%= task.created_at.strftime('%d/%m/%Y %H:%M') %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Updated At:</strong>
-    <%= task.updated_at.strftime('%d/%m/%Y %H:%M') %>
-  </p>
+ <h2>Task Comments</h2>
+
+  <div class="bg-opacity-20 rounded-lg p-4 mb-4">
+  <% if @comments.present? %>
+    <% @comments.each do |comment| %>
+      <div class="row flex items-center">
+        <% if comment.user.avatar.attached? %>
+          <div class="avatar mr-2">
+            <%= image_tag comment.user.avatar, alt: "#{comment.user.full_name}", class: "h-8 w-8 rounded-full" %>
+          </div>
+        <% else %>
+          <div class="avatar mr-2">
+            <%# heroicon "user-circle", variant: :outline, class: "h-8 w-8 rounded-full" %>
+          </div>
+        <% end %>
+
+        <div class="comment">
+          <span><%= comment.user.full_name %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small></span>
+          <br>
+
+          <% frame_id = dom_id(comment, "edit_comment") %>
+          <%= turbo_frame_tag frame_id do %>
+            <%= comment.body %>
+            <%= link_to 'Edit Comment', edit_company_team_project_task_comment_path(@company, @team, @project, comment.task.id, comment), class: "text-nepal-500 dark:text-white font-bold py-1 px-2 rounded-sm text-xs" %>
+          <% end %>
+
+          <br>
+
+          <button class="text-nepal-500 dark:text-white font-bold py-1 px-2 rounded-sm text-xs">
+            Reply
+          </button>
+
+          <%= link_to 'Delete', company_team_project_task_comment_path(@company, @team, @project, comment.task.id, comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-red-500 dark:text-red-500 font-bold py-1 px-2 rounded-sm text-xs" %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>There are no comments on this task.</p>
+  <% end %>
+
+  <% if @comments.present? %>
+    <div class="flex justify-center mt-4">
+      <%= pagy_nav(@pagy).html_safe %>
+    </div>
+  <% end %>
+
+  <% frame_id = dom_id(Comment.new, "new_comment") %>
+  <%= turbo_frame_tag frame_id do %>
+    <%= link_to "Add comment", new_company_team_project_task_comment_path(task_id: @task) %>
+  <% end %>
 
   <% if action_name != "show" %>
     <%= link_to "Show this task", task, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
