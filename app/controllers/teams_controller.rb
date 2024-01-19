@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_company
-  before_action :set_company_team, only: %i[edit update destroy]
+  before_action :set_team, only: %i[edit update destroy]
 
   layout 'dashboard'
 
@@ -22,7 +22,7 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
 
     if @team.save
-      redirect_to(company_team_url(@company, @team), notice: "Team was successfully created.")
+      redirect_to(company_team_url(@company, @team), notice: "Team was successfully created")
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -34,7 +34,7 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
-      redirect_to(company_team_url(@company, @team), notice: "Team was successfully updated.")
+      redirect_to(company_team_url(@company, @team), notice: "Team was successfully updated")
     else
       render(:edit, status: :unprocessable_entity)
     end
@@ -51,9 +51,8 @@ class TeamsController < ApplicationController
     @company = Company.friendly.find(params[:slug])
   end
 
-  def set_company_team
-    @company = Company.find(params[:company_id])
-    @team = @company.teams.find(params[:id])
+  def set_team
+    @team = Team.find(params[:id])
   end
 
   def team_params

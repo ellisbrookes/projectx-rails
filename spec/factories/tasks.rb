@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :task do
-    name { Faker::Company.name }
+    name { Faker::Company.name.gsub(/[^0-9a-zA-Z\s]/, '') }
     description { Faker::Lorem.sentence(word_count: 20) }
     due_date { Faker::Date.backward(days: 30) }
     project_id { 1 }
