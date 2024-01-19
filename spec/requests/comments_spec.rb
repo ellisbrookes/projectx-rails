@@ -12,8 +12,8 @@ RSpec.describe("Comments", type: :request) do
     sign_in(@user)
   end
 
-  describe "POST tasks/comments/new" do
-    it "should be able to create a new comment for a task" do
+  describe "/new" do
+    it "POST - should be able to create a new comment for a task" do
       get new_company_team_project_task_comment_path(@company, @team, @project, @task)
       expect(response).to(render_template(:new))
 
@@ -34,13 +34,13 @@ RSpec.describe("Comments", type: :request) do
     end
   end
 
-  describe "/tasks/show" do
+  describe "inline tasks /new" do
     before do
       get company_team_project_task_path(@company, @team, @project, @task)
       expect(response).to(render_template(:show))
     end
 
-    it "POST /tasks/show - should be able to create a new comment using the inline form on the tasks show page" do
+    it "POST - should be able to create a new comment using the inline form on the tasks show page" do
       # create the comment
       comment_params = FactoryBot.attributes_for(:comment, user_id: @user.id, task_id: @task.id)
       post company_team_project_task_comments_path(task_id: @task), params: { comment: comment_params }
@@ -59,7 +59,7 @@ RSpec.describe("Comments", type: :request) do
 
     it "POST - should not be able to create a new comment using the inline form on the tasks show page" do
       # create the comment
-      comment_params = FactoryBot.attributes_for(:comment, body: "", user_id: @user.id, task_id: @task.id)
+      comment_params = FactoryBot.attributes_for(:comment, body: nil, user_id: @user.id, task_id: @task.id)
       post company_team_project_task_comments_path(task_id: @task), params: { comment: comment_params }
 
       # redirect to comment
@@ -68,13 +68,10 @@ RSpec.describe("Comments", type: :request) do
       # render the show page
       expect(response).to(render_template(:new))
       expect(response.body).to(include("Body can&#39;t be blank"))
-
-      # testing task data
-      expect(response.body).to(include(comment_params[:body]))
     end
   end
 
-  describe "/tasks/comments/:id/edit" do
+  describe "/edit" do
     it "PUT - should be able to edit a comment using /tasks/comment/:id/edit page" do
       @comment = FactoryBot.create(:comment, user_id: @user.id, task_id: @task.id)
       get edit_company_team_project_task_comment_path(@company, @team, @project, @task, @comment)
@@ -95,7 +92,7 @@ RSpec.describe("Comments", type: :request) do
     end
   end
 
-  describe "/tasks/show" do
+  describe "iinline tasks /edit" do
     before do
       @comment = FactoryBot.create(:comment, user_id: @user.id, task_id: @task.id)
       get company_team_project_task_path(@company, @team, @project, @task)
@@ -119,7 +116,7 @@ RSpec.describe("Comments", type: :request) do
 
     it "PUT - should not be able to create a new comment using the inline form on the tasks show page" do
       # update the comment
-      comment_params = { comment: { body: "" } }
+      comment_params = { comment: { body: nil } }
       put company_team_project_task_comment_path(@company, @team, @project, @task, @comment), params: comment_params
 
       # redirect to comment
@@ -131,8 +128,8 @@ RSpec.describe("Comments", type: :request) do
     end
   end
 
-  describe "DELETE /tasks/show" do
-    it "should be able to delete a comment using the delete comment button on the tasks show page" do
+  describe "inline tasks /delete" do
+    it "DELETE - should be able to delete a comment using the delete comment button on the tasks show page" do
       @comment = FactoryBot.create(:comment, user_id: @user.id, task_id: @task.id)
       get company_team_project_task_path(@company, @team, @project, @task)
 

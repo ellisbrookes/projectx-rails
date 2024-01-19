@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   before_action :set_company
   before_action :set_team
   before_action :set_project
-  before_action :set_project_task, only: [:edit, :update, :destroy]
+  before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
     @tasks = @project.tasks
@@ -62,9 +62,8 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
   end
 
-  def set_project_task
-    @project = Project.find(params[:project_id])
-    @task = @project.tasks.find(params[:id])
+  def set_task
+    @task = Task.find(params[:id])
   end
 
   def task_params
