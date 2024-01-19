@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :dashboard, only: [:index] do
     collection do
-      resources :companies do
+      resources :companies, param: :slug do
         resources :teams do
           resources :projects do
             resources :tasks do
