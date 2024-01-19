@@ -6,7 +6,7 @@ RSpec.describe("Homepage", type: :request) do
       get root_path
 
       expect(response).to(be_successful)
-      expect(response.body).to(include("Pages#home"))
+      expect(response.body).to(include("ProjectX"))
     end
   end
 end
