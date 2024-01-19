@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_company
   before_action :set_team
-  before_action :set_company_project, only: [:edit, :update, :destroy]
+  before_action :set_project, only: [:edit, :update, :destroy]
 
   def index
     @projects = @company.projects
@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
-      redirect_to(company_team_project_url(@company, @team, @project), notice: "Project was successfully created.")
+      redirect_to(company_team_project_url(@company, @team, @project), notice: "Project was successfully created")
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to(company_team_project_url(@company, @team, @project), notice: "Project was successfully updated.")
+      redirect_to(company_team_project_url(@company, @team, @project), notice: "Project was successfully updated")
     else
       render(:edit, status: :unprocessable_entity)
     end
@@ -54,9 +54,8 @@ class ProjectsController < ApplicationController
     @team = Team.find(params[:team_id])
   end
 
-  def set_company_project
-    @company = Company.find(params[:company_id])
-    @project = @company.projects.find(params[:id])
+  def set_project
+    @project = Project.find(params[:id])
   end
 
   def project_params
