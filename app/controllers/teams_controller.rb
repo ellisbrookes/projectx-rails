@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_company
-  before_action :set_team, only: %i[edit update destroy]
+  before_action :set_team, only: %i[show edit update destroy]
 
   layout 'dashboard'
 
@@ -10,7 +10,6 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team = Team.friendly.find(params[:id])
   end
 
   def new
@@ -45,14 +44,12 @@ class TeamsController < ApplicationController
     redirect_to(company_teams_url(@company), notice: "Team was successfully destroyed")
   end
 
-  private
-
   def set_company
-    @company = Company.friendly.find(params[:slug])
+    @company = Company.friendly.find(params[:company_id])
   end
 
   def set_team
-    @team = Team.find(params[:id])
+    @team = Team.friendly.find(params[:id])
   end
 
   def team_params

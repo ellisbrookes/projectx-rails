@@ -1,16 +1,16 @@
 class ProjectsController < ApplicationController
   layout 'dashboard'
+
   before_action :authenticate_user!
   before_action :set_company
   before_action :set_team
-  before_action :set_project, only: [:edit, :update, :destroy]
+  before_action :set_project, only: %i[show edit update destroy]
 
   def index
     @projects = @company.projects
   end
 
   def show
-    @project = Project.find(params[:id])
     @tasks = @project.tasks
   end
 
@@ -47,15 +47,15 @@ class ProjectsController < ApplicationController
   private
 
   def set_company
-    @company = Company.find(params[:company_id])
+    @company = Company.friendly.find(params[:company_id])
   end
 
   def set_team
-    @team = Team.find(params[:team_id])
+    @team = Team.friendly.find(params[:team_id])
   end
 
   def set_project
-    @project = Project.find(params[:id])
+    @project = Project.friendly.find(params[:id])
   end
 
   def project_params

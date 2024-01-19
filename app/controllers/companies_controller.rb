@@ -9,7 +9,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @teams = Team.friendly.where(company_id: @company.id)
+    @teams = Team.where(company_id: @company.id)
   end
 
   def new
@@ -46,7 +46,7 @@ class CompaniesController < ApplicationController
   private
 
   def set_company
-    @company = Company.friendly.find(params[:slug])
+    @company = Company.friendly.find(params[:id])
   end
 
   def company_params
