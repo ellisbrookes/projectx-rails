@@ -123,7 +123,7 @@ RSpec.describe("Tasks", type: :request) do
       @task = FactoryBot.create(:task, reporter_id: @user.id, assigned_to_id: @user.id, team_id: @team.id, project_id: @project.id)
     end
 
-    it "DELETE - hould be able to delete a task" do
+    it "DELETE - should be able to delete a task" do
       get company_team_project_task_path(@company, @team, @project, @task)
       expect(response).to(render_template(:show))
 

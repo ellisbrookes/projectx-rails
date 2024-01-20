@@ -22,7 +22,7 @@ class SubTasksController < ApplicationController
     @sub_task = SubTask.new(sub_task_params)
 
     if @sub_task.save
-      redirect_to(company_team_project_task_sub_tasks_url(@company, @team, @project, @task, @sub_task), notice: "Task was successfully created.")
+      redirect_to(company_team_project_task_sub_task_url(@company, @team, @project, @task, @sub_task), notice: "Sub task was successfully created")
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -33,7 +33,7 @@ class SubTasksController < ApplicationController
 
   def update
     if @sub_task.update(sub_task_params)
-      redirect_to(company_team_project_task_sub_tasks_url(@company, @team, @project, @task, @sub_task), notice: "Task was successfully updated.")
+      redirect_to(company_team_project_task_sub_task_url(@company, @team, @project, @task, @sub_task), notice: "Sub task was successfully updated")
     else
       render(:edit, status: :unprocessable_entity)
     end
@@ -41,7 +41,7 @@ class SubTasksController < ApplicationController
 
   def destroy
     @sub_task.destroy
-    redirect_to(company_team_project_task_sub_tasks_url(@company, @team, @project, @task), notice: "Task was successfully destroyed")
+    redirect_to(company_team_project_task_sub_tasks_url(@company, @team, @project, @task), notice: "Sub task was successfully destroyed")
   end
 
   private
