@@ -113,3 +113,4 @@ gem "rails-controller-testing", "~> 1.0"
 gem "simplecov", "~> 0.22.0", group: :test
 
 gem "devise_invitable", "~> 2.0"
+gem "friendly_id", "~> 5.5"
