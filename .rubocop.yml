@@ -3,3 +3,5 @@ inherit_gem:
   rubocop-shopify: rubocop.yml
 Layout/LineLength:
   Max: 200
+AllCops:
+  NewCops: enable
