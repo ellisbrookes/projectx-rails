@@ -66,11 +66,6 @@ class SubTasksController < ApplicationController
     @sub_task = SubTask.friendly.find(params[:id])
   end
 
-  def set_task_sub_task
-    @task = Task.friendly.find(params[:task_id])
-    @sub_task = @task.sub_tasks.friendly.find(params[:id])
-  end
-
   def sub_task_params
     params.require(:sub_task).permit(:name, :description, :due_date, :project_id, :team_id, :reporter_id, :status, :assigned_to_id, :task_id)
   end
