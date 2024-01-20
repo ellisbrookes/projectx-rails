@@ -5,14 +5,13 @@ class TasksController < ApplicationController
   before_action :set_company
   before_action :set_team
   before_action :set_project
-  before_action :set_task, only: [:edit, :update, :destroy]
+  before_action :set_task, only: %i[show edit update destroy]
 
   def index
     @tasks = @project.tasks
   end
 
   def show
-    @task = Task.find(params[:id])
     @comments = @task.comments.order(created_at: :desc)
     @pagy, @comments = pagy(@comments, items: 5)
   end
@@ -51,19 +50,19 @@ class TasksController < ApplicationController
   private
 
   def set_company
-    @company = Company.find(params[:company_id])
+    @company = Company.friendly.find(params[:company_id])
   end
 
   def set_team
-    @team = Team.find(params[:team_id])
+    @team = Team.friendly.find(params[:team_id])
   end
 
   def set_project
-    @project = Project.find(params[:project_id])
+    @project = Project.friendly.find(params[:project_id])
   end
 
   def set_task
-    @task = Task.find(params[:id])
+    @task = Task.friendly.find(params[:id])
   end
 
   def task_params
