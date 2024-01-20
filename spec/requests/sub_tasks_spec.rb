@@ -89,7 +89,7 @@ RSpec.describe("SubTasks", type: :request) do
 
       # update name
       new_name = Faker::Company.name.gsub(/[^0-9a-zA-Z\s]/, '')
-      sub_task_params = { sub_task: {name: new_name } }
+      sub_task_params = { sub_task: { name: new_name } }
       put company_team_project_task_sub_task_path(@company, @team, @project, @task, @sub_task), params: sub_task_params
 
       # redirect to the sub task
@@ -101,7 +101,7 @@ RSpec.describe("SubTasks", type: :request) do
       expect(response.body).to(include(new_name))
       expect(response.body).to(include("Sub task was successfully updated"))
     end
-    
+
     it "PUT - should not be able to update a task" do
       get edit_company_team_project_task_sub_task_path(@company, @team, @project, @task, @sub_task)
       expect(response).to(render_template(:edit))
