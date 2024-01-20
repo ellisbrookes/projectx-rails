@@ -2,16 +2,16 @@ class SubTasksController < ApplicationController
   layout 'dashboard'
   before_action :authenticate_user!
   before_action :set_company
+  before_action :set_team
   before_action :set_project
   before_action :set_task
-  before_action :set_task_sub_task, only: [:edit, :update, :destroy]
+  before_action :set_sub_task, only: %i[show edit update destroy]
 
   def index
     @sub_tasks = @task.sub_tasks
   end
 
   def show
-    @sub_task = SubTask.find(params[:id])
   end
 
   def new
@@ -22,7 +22,7 @@ class SubTasksController < ApplicationController
     @sub_task = SubTask.new(sub_task_params)
 
     if @sub_task.save
-      redirect_to(company_project_task_sub_tasks_url(@company, @project, @task, @sub_task), notice: "Task was successfully created.")
+      redirect_to(company_team_project_task_sub_task_url(@company, @team, @project, @task, @sub_task), notice: "Sub task was successfully created")
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -33,7 +33,7 @@ class SubTasksController < ApplicationController
 
   def update
     if @sub_task.update(sub_task_params)
-      redirect_to(company_project_task_sub_tasks_url(@company, @project, @task, @sub_task), notice: "Task was successfully updated.")
+      redirect_to(company_team_project_task_sub_task_url(@company, @team, @project, @task, @sub_task), notice: "Sub task was successfully updated")
     else
       render(:edit, status: :unprocessable_entity)
     end
@@ -41,26 +41,29 @@ class SubTasksController < ApplicationController
 
   def destroy
     @sub_task.destroy
-    redirect_to(company_project_task_sub_tasks_url(@company, @project, @task), notice: "Task was successfully destroyed")
+    redirect_to(company_team_project_task_sub_tasks_url(@company, @team, @project, @task), notice: "Sub task was successfully destroyed")
   end
 
   private
 
   def set_company
-    @company = Company.find(params[:company_id])
+    @company = Company.friendly.find(params[:company_id])
+  end
+
+  def set_team
+    @team = Team.friendly.find(params[:team_id])
   end
 
   def set_project
-    @project = Project.find(params[:project_id])
+    @project = Project.friendly.find(params[:project_id])
   end
 
   def set_task
-    @task = Task.find(params[:task_id])
+    @task = Task.friendly.find(params[:task_id])
   end
 
-  def set_task_sub_task
-    @task = Task.find(params[:task_id])
-    @sub_task = @task.sub_tasks.find(params[:id])
+  def set_sub_task
+    @sub_task = SubTask.friendly.find(params[:id])
   end
 
   def sub_task_params
