@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_19_224308) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_20_202448) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -99,9 +99,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_19_224308) do
     t.bigint "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["assigned_to_id"], name: "index_sub_tasks_on_assigned_to_id"
     t.index ["project_id"], name: "index_sub_tasks_on_project_id"
     t.index ["reporter_id"], name: "index_sub_tasks_on_reporter_id"
+    t.index ["slug"], name: "index_sub_tasks_on_slug", unique: true
     t.index ["task_id"], name: "index_sub_tasks_on_task_id"
     t.index ["team_id"], name: "index_sub_tasks_on_team_id"
   end
