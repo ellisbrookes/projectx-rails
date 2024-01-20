@@ -47,19 +47,19 @@ class SubTasksController < ApplicationController
   private
 
   def set_company
-    @company = Company.find(params[:company_id])
+    @company = Company.friendly.find(params[:company_id])
   end
 
   def set_project
-    @project = Project.find(params[:project_id])
+    @project = Project.friendly.find(params[:project_id])
   end
 
   def set_task
-    @task = Task.find(params[:task_id])
+    @task = Task.friendly.find(params[:task_id])
   end
 
   def set_task_sub_task
-    @task = Task.find(params[:task_id])
+    @task = Task.friendly.find(params[:task_id])
     @sub_task = @task.sub_tasks.find(params[:id])
   end
 

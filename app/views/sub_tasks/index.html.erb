@@ -2,13 +2,13 @@
   title: "Sub Tasks", 
   text: "A list of Sub Tasks in your project including its name, description, status.", 
   link_title: "New Sub Task", 
-  link_path: new_company_project_task_sub_task_path
+  link_path: new_company_team_project_task_sub_task_path
 ) %>
 
 <%= render TableComponent.new(
   headers: %w[Name Description Due_Date Title Status Reporter Assigned_to Team Created_at Updated_at],
   rows:
     @sub_tasks.map do |sub_task|
-      [link_to(sub_task.name, company_project_task_sub_task_path(@company, @project, @task, sub_task)), sub_task.description, sub_task.due_date.strftime("%d/%m/%Y %H:%M"), sub_task.project.title, sub_task.status, sub_task.reporter.full_name, sub_task.assigned_to.full_name, sub_task.team.name, sub_task.created_at.strftime("%d/%m/%Y %H:%M"), sub_task.updated_at.strftime("%d/%m/%Y %H:%M") ]
+      [link_to(sub_task.name, company_team_project_task_sub_task_path(@company, @team, @project, @task, sub_task)), sub_task.description, sub_task.due_date.strftime("%d/%m/%Y %H:%M"), sub_task.project.title, sub_task.status, sub_task.reporter.full_name, sub_task.assigned_to.full_name, sub_task.team.name, sub_task.created_at.strftime("%d/%m/%Y %H:%M"), sub_task.updated_at.strftime("%d/%m/%Y %H:%M") ]
     end
 ) %>
