@@ -23,7 +23,6 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment = Comment.find(params[:id])
   end
 
   def update
@@ -47,19 +46,19 @@ class CommentsController < ApplicationController
   private
 
   def set_company
-    @company = Company.find(params[:company_id])
+    @company = Company.friendly.find(params[:company_id])
   end
 
   def set_team
-    @team = Team.find(params[:team_id])
+    @team = Team.friendly.find(params[:team_id])
   end
 
   def set_project
-    @project = Project.find(params[:project_id])
+    @project = Project.friendly.find(params[:project_id])
   end
 
   def set_task
-    @task = Task.find(params[:task_id])
+    @task = Task.friendly.find(params[:task_id])
   end
 
   def set_comment
