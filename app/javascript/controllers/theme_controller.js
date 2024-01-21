@@ -2,12 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="theme"
 export default class extends Controller {
-  static targets = ["lightIcon", "darkIcon", "themeToggle", "switcher"]
+  static targets = ["themeToggle", "switcher"]
 
   connect() {
     if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      this.lightIconTarget.classList.remove('hidden');
-
       // animation classes
       this.switcherTarget.classList.remove('translate-x-0');
       this.switcherTarget.classList.add('translate-x-5');
@@ -19,8 +17,6 @@ export default class extends Controller {
       // force dark mode when switched to dark but system preferences are dark mode
       document.documentElement.classList.add('dark');
     } else {
-      this.darkIconTarget.classList.remove('hidden');
-
       // animation classes
       this.switcherTarget.classList.remove('translate-x-5');
       this.switcherTarget.classList.add('translate-x-0');
@@ -35,12 +31,6 @@ export default class extends Controller {
   }
 
   toggleTheme() {
-    console.log('theme target clicked')
-
-    this.lightIconTarget.classList.toggle('hidden');
-    this.darkIconTarget.classList.toggle('hidden');
-    this.switcherTarget.classList.toggle('translate-x-0');
-
     if (localStorage.getItem('theme')) {
       if (localStorage.getItem('theme') === 'light') {
         localStorage.setItem('theme', 'dark');
