@@ -11,9 +11,10 @@
 
     <%= javascript_importmap_tags %>
     <%= hotwire_livereload_tags if Rails.env.development? %>
+    <%= render partial: "shared/theme_toggle" %>
   </head>
 
-  <body>
+  <body data-controller="theme">
     <main>
       <section class="relative h-screen">
         <%= yield %>
