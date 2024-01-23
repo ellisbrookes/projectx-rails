@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = @company.projects
+    add_breadcrumbs("Team", company_teams_path)
   end
 
   def show
