@@ -6,6 +6,7 @@ class CompaniesController < ApplicationController
 
   def index
     @companies = Company.where(user_id: current_user)
+    add_breadcrumbs("Companies", companies_path)
   end
 
   def show
