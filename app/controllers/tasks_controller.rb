@@ -16,7 +16,6 @@ class TasksController < ApplicationController
     @comments = @task.comments.order(created_at: :desc)
     @pagy, @comments = pagy(@comments, items: 5)
     add_breadcrumbs("Projects", company_team_projects_path)
-
   end
 
   def new
