@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
 
   def show
     @tasks = @project.tasks
+    add_breadcrumbs("Team", company_teams_path)
   end
 
   def new

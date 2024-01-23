@@ -7,9 +7,11 @@ class TeamsController < ApplicationController
 
   def index
     @teams = @company.teams
+    add_breadcrumbs("Companies", companies_path)
   end
 
   def show
+    add_breadcrumbs("Companies", companies_path)
   end
 
   def new
