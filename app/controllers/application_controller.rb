@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
   private
 
   def set_breadcrumbs
-    add_breadcrumbs("Dashbaord", dashboard_index_path)
+    add_breadcrumbs("Dashboard", dashboard_index_path)
   end
 end

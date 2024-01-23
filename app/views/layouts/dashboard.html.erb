@@ -23,8 +23,8 @@
         <section class="relative mt-16 ml-24 md:ml-60 flex flex-col p-4 sm:p-6 lg:p-8">
           <%= render partial: "shared/alerts" %>
           <nav>
-            <div class="breadcrumbs">
-              <div class="container container-md container-breadcrumbs">
+            <div>
+              <div class="w-full flex gap-4 p-2 mb-4 dark:bg-slate-900 bg-neutral-100">
                 <% breadcrumbs.each do |crumb| %>
                   <% if crumb.path.present? %>
                     <%= link_to crumb.name, crumb.path, class: "breadcrumb-link" %>
@@ -35,7 +35,7 @@
                   <% end %>
 
                   <% unless crumb == breadcrumbs.last %>
-                    <span class="breadcrumb-separator">/</span>
+                    <span>/</span>
                   <% end %>
                 <% end %>
               </div>
