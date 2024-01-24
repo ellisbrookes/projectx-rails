@@ -12,6 +12,7 @@ class CompaniesController < ApplicationController
   def show
     @teams = Team.where(company_id: @company.id)
     add_breadcrumbs("Companies", companies_path)
+    add_breadcrumbs(@company.name, companies_path)
   end
 
   def new
@@ -30,6 +31,8 @@ class CompaniesController < ApplicationController
 
   def edit
     add_breadcrumbs("Companies", companies_path)
+    add_breadcrumbs("Edit", companies_path)
+    add_breadcrumbs(@company.name, companies_path)
   end
 
   def update
