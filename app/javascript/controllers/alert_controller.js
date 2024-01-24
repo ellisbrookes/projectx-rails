@@ -5,6 +5,6 @@ export default class extends Controller {
 
   closeAlert() {
     this.closeAlertTarget.classList.add('animation-fadeOut');
-    // this.closeAlertTarget.style.display = "none";
+    this.closeAlertTarget.style.display = "none";
   }
 }
