@@ -15,7 +15,6 @@ class ProjectsController < ApplicationController
     @tasks = @project.tasks
     add_breadcrumbs("Project", company_team_project_path)
     add_breadcrumbs(@project.title, company_team_project_path)
-
   end
 
   def new
