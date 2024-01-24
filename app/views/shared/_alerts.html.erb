@@ -1,5 +1,5 @@
 <% if notice || alert %>
-  <div class="flex items-center bg-nepal-300 dark:bg-slate-600 px-6 py-4 mb-2 w-full" id="alertBox">
+  <div class="flex items-center bg-nepal-300 dark:bg-slate-600 px-6 py-4 mb-2 w-full" id="alertBox" data-controller="alerts">
     <p class="text-sm text-center leading-6 text-gray-900 dark:text-white w-full">
       <a href="#">
         <% if notice %>
@@ -16,11 +16,4 @@
       </button>
     </div>
   </div>
-
-  <script>
-    function closeAlert() {
-      var alertBox = document.getElementById('alertBox');
-      alertBox.style.display = 'none';
-    }
-  </script>
 <% end %>
