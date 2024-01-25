@@ -19,9 +19,9 @@ class InvoicesController < ApplicationController
   def create
     @invoice = Invoice.new(invoice_params)
     if @invoice.save
-      redirect_to company_team_project_invoices_path(@company, @team, @project), notice: 'Invoice was successfully created'
+      redirect_to(company_team_project_invoices_path(@company, @team, @project), notice: 'Invoice was successfully created')
     else
-      render :new
+      render(:new)
     end
   end
 
@@ -30,15 +30,15 @@ class InvoicesController < ApplicationController
 
   def update
     if @invoice.update(invoice_params)
-      redirect_to company_team_project_invoice_path(@company, @team, @project, @invoice), notice: 'Invoice was successfully updated'
+      redirect_to(company_team_project_invoice_path(@company, @team, @project, @invoice), notice: 'Invoice was successfully updated')
     else
-      render :edit
+      render(:edit)
     end
   end
 
   def destroy
     @invoice.destroy
-    redirect_to company_team_project_invoices_path(@company, @team, @project), notice: 'Invoice was successfully destroyed'
+    redirect_to(company_team_project_invoices_path(@company, @team, @project), notice: 'Invoice was successfully destroyed')
   end
 
   private
