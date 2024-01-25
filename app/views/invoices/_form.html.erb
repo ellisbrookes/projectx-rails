@@ -32,6 +32,16 @@
     <%= f.date_field :due_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
   </div>
 
+   <div class="my-5">
+    <%= f.label :client_address %>
+    <%= f.text_area :client_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+  </div>
+
+  <div class="my-5">
+    <%= f.label :company_address %>
+    <%= f.text_area :company_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+  </div>
+
   <div class="my-5">
     <%= f.label :project_id %>
     <%= f.collection_select :project_id, Project.order(:title), :id, :title, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:bg-slate-600 dark:text-white" } %>

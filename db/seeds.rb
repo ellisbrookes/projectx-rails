@@ -90,6 +90,8 @@ puts 'Seeded 10 projects into the database'
     issue_date: Faker::Date.backward(days: 30),
     due_date: Faker::Date.forward(days: 30),
     amount: Faker::Commerce.price,
+    company_address: Faker::Address.full_address,
+    client_address: Faker::Address.full_address,
     project_id: Faker::Number.within(range: 1..9),
   )
 end

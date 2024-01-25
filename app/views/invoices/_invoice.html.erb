@@ -25,6 +25,16 @@
   </p>
 
   <p class="my-5">
+    <strong class="block font-medium mb-1">Client Address</strong>
+    <%= invoice.client_address %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Company Address</strong>
+    <%= invoice.company_address %>
+  </p>
+
+  <p class="my-5">
     <strong class="block font-medium mb-1">Amount</strong>
     <%= number_to_currency(invoice.amount, unit: "£") %>
   </p>
