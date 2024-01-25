@@ -81,6 +81,21 @@ end
 
 puts 'Seeded 10 projects into the database'
 
+
+# Create invoices
+10.times do |_n|
+  Invoice.create(
+    invoice_number: Faker::Number.within(range: 1..9),
+    client_name:  Faker::Company.name,
+    issue_date: Faker::Date.backward(days: 30),
+    due_date: Faker::Date.forward(days: 30),
+    amount: Faker::Commerce.price,
+    project_id: Faker::Number.within(range: 1..9),
+  )
+end
+
+puts 'Seeded 10 invoices into the database'
+
 # Create tasks with description etc.
 10.times do |_n|
   Task.create(

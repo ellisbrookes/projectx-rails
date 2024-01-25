@@ -8,12 +8,13 @@
   rows:
     @invoices.map do |invoice|
       [
-        link_to(invoice.invoice_number, company_team_project_invoice(@company, team, @project, invoice)),
+        link_to(invoice.invoice_number, company_team_project_invoice_path(@company, @team, @project, invoice)),
         invoice.client_name,
         invoice.issue_date,
-        invoice.due_date,
-        invoice.amount,
-        link_to(invoice.project.title, company_team_project(@company, @team, @project))
+        invoice.due_date.strftime("%d/%m/%Y"),
+        number_to_currency(invoice.amount, unit: '£'),        
+        link_to(invoice.project.title, company_team_project_path(@company, @team, @project))
+
       ]
     end
 ) %>
