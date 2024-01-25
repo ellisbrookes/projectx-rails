@@ -1,0 +1,19 @@
+<%= render HeadingComponent.new(title: "Invoices", text: "A list of the invoices in your project including its number, client name and issue date",
+ link_title: "New Invoice",
+ link_path: new_company_team_project_invoice_path
+ ) %>
+
+ <%= render TableComponent.new(
+  headers: %w[invoice_number client_name issue_date due_date amount project_id],
+  rows:
+    @invoices.map do |invoice|
+      [
+        link_to(invoice.invoice_number, company_team_project_invoice(@company, team, @project, invoice)),
+        invoice.client_name,
+        invoice.issue_date,
+        invoice.due_date,
+        invoice.amount,
+        link_to(invoice.project.title, company_team_project(@company, @team, @project))
+      ]
+    end
+) %>
