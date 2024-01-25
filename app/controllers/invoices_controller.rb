@@ -1,9 +1,11 @@
 class InvoicesController < ApplicationController
+  layout 'dashboard'
+
   before_action :authenticate_user!
   before_action :set_company
   before_action :set_team
   before_action :set_project
-  before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :set_invoice, only: %i[show edit update destroy]
 
   def index
     @invoices = Invoice.all
@@ -18,10 +20,11 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.new(invoice_params)
+
     if @invoice.save
       redirect_to(company_team_project_invoices_path(@company, @team, @project), notice: 'Invoice was successfully created')
     else
-      render(:new)
+      render(:new, status: :unprocessable_entity)
     end
   end
 
@@ -52,7 +55,7 @@ class InvoicesController < ApplicationController
   end
 
   def set_project
-    # @project = Project.friendly.find(params[:id])
+    @project = Project.friendly.find(params[:project_id])
   end
 
   def set_invoice
