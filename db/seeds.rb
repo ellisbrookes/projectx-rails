@@ -81,7 +81,6 @@ end
 
 puts 'Seeded 10 projects into the database'
 
-
 # Create invoices
 10.times do |_n|
   Invoice.create(
@@ -92,6 +91,7 @@ puts 'Seeded 10 projects into the database'
     amount: Faker::Commerce.price,
     company_address: Faker::Address.full_address,
     client_address: Faker::Address.full_address,
+    notes: Faker::Lorem.sentence(word_count: 20),
     project_id: Faker::Number.within(range: 1..9),
   )
 end

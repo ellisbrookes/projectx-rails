@@ -4,7 +4,7 @@
  ) %>
 
 <%= render TableComponent.new(
-  headers: %w[invoice_number client_name issue_date due_date client_address company_address amount project_id],
+  headers: %w[invoice_number client_name issue_date due_date client_address company_address notes amount project_id],
   rows:
     @invoices.map do |invoice|
       [
@@ -14,6 +14,7 @@
         invoice.due_date.strftime("%d/%m/%Y"),
         invoice.client_address,
         invoice.company_address,
+        invoice.notes,
         number_to_currency(invoice.amount, unit: '£'),        
         link_to(invoice.project.title, company_team_project_path(@company, @team, @project))
 

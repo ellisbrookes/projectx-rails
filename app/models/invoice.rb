@@ -7,5 +7,6 @@ class Invoice < ApplicationRecord
   validates :due_date, presence: true
   validates :client_address, presence: true
   validates :company_address, presence: true
+  validates :notes, presence: true
   validates :amount, presence: true
 end
