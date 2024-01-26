@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_25_231649) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_26_003904) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -85,6 +85,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_25_231649) do
     t.string "client_address"
     t.string "notes"
     t.index ["project_id"], name: "index_invoices_on_project_id"
+  end
+
+  create_table "items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "invoice_id", null: false
+    t.integer "quantity"
+    t.bigint "company_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_items_on_company_id"
+    t.index ["invoice_id"], name: "index_items_on_invoice_id"
   end
 
   create_table "projects", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -197,6 +207,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_25_231649) do
   add_foreign_key "comments", "users"
   add_foreign_key "companies", "users"
   add_foreign_key "invoices", "projects"
+  add_foreign_key "items", "companies"
+  add_foreign_key "items", "invoices"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
   add_foreign_key "teams", "companies"
