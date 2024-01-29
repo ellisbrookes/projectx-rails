@@ -8,10 +8,13 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = @company.projects
+    add_breadcrumbs("Projects", company_team_projects_path)
   end
 
   def show
     @tasks = @project.tasks
+    add_breadcrumbs("Project", company_team_project_path)
+    add_breadcrumbs(@project.title, company_team_project_path)
   end
 
   def new
@@ -29,6 +32,9 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    add_breadcrumbs("Project", company_team_project_path)
+    add_breadcrumbs("Edit", edit_company_team_project_path)
+    add_breadcrumbs(@project.title, company_team_project_path)
   end
 
   def update

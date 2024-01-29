@@ -9,11 +9,14 @@ class TasksController < ApplicationController
 
   def index
     @tasks = @project.tasks
+    add_breadcrumbs("Tasks", company_team_project_tasks_path)
   end
 
   def show
     @comments = @task.comments.order(created_at: :desc)
     @pagy, @comments = pagy(@comments, items: 5)
+    add_breadcrumbs("Tasks", company_team_project_tasks_path)
+    add_breadcrumbs(@task.name, company_team_project_tasks_path)
   end
 
   def new
@@ -32,6 +35,9 @@ class TasksController < ApplicationController
   end
 
   def edit
+    add_breadcrumbs("Tasks", company_team_project_tasks_path)
+    add_breadcrumbs("Edit", edit_company_team_project_task_path)
+    add_breadcrumbs(@task.name, company_team_project_task_path)
   end
 
   def update
