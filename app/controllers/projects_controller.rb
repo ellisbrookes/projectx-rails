@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    add_breadcrumbs("Projects", company_team_project_path)
+    add_breadcrumbs("Projects", company_team_projects_path)
     add_breadcrumbs("Edit", edit_company_team_project_path)
     add_breadcrumbs(@project.title, company_team_project_path)
   end
