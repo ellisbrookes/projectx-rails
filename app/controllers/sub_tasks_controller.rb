@@ -9,9 +9,12 @@ class SubTasksController < ApplicationController
 
   def index
     @sub_tasks = @task.sub_tasks
+    add_breadcrumbs("Sub Tasks", company_team_project_task_sub_tasks_path)
   end
 
   def show
+    add_breadcrumbs("Sub Tasks", company_team_project_task_sub_tasks_path)
+    add_breadcrumbs(@sub_task.name, company_team_project_task_sub_tasks_path)
   end
 
   def new
@@ -29,6 +32,9 @@ class SubTasksController < ApplicationController
   end
 
   def edit
+    add_breadcrumbs("Sub Tasks", company_team_project_task_sub_tasks_path)
+    add_breadcrumbs("Edit", edit_company_team_project_task_sub_tasks_path)
+    add_breadcrumbs(@sub_task.name, company_team_project_task_sub_task_path)
   end
 
   def update
