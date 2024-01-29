@@ -33,7 +33,7 @@ class SubTasksController < ApplicationController
 
   def edit
     add_breadcrumbs("Sub Tasks", company_team_project_task_sub_tasks_path)
-    add_breadcrumbs("Edit", edit_company_team_project_task_sub_tasks_path)
+    add_breadcrumbs("Edit", edit_company_team_project_task_sub_task_path)
     add_breadcrumbs(@sub_task.name, company_team_project_task_sub_task_path)
   end
 
