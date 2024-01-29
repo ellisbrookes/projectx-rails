@@ -7,9 +7,12 @@ class TeamsController < ApplicationController
 
   def index
     @teams = @company.teams
+    add_breadcrumbs("Teams", company_teams_path)
   end
 
   def show
+    add_breadcrumbs("Teams", company_team_path)
+    add_breadcrumbs(@team.name, company_team_path)
   end
 
   def new
@@ -29,6 +32,9 @@ class TeamsController < ApplicationController
 
   def edit
     @team.team_members.build
+    add_breadcrumbs("Teams", company_team_path)
+    add_breadcrumbs("Edit", edit_company_team_path)
+    add_breadcrumbs(@team.name, company_team_path)
   end
 
   def update
