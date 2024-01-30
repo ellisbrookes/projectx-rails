@@ -31,10 +31,11 @@ u.save
 
 puts 'Seeded 9 users and 1 admin user into the database'
 
-# Create a company with a title and description
+# Create a company with a name, address, description and email
 10.times do |_n|
   Company.create(
     name: Faker::Company.name,
+    address: Faker::Address.full_address,
     description: Faker::Lorem.sentence(word_count: 20),
     email: Faker::Internet.email,
     user_id:
