@@ -106,8 +106,6 @@ puts 'Seeded 10 customers into the database'
     issue_date: Faker::Date.backward(days: 30),
     due_date: Faker::Date.forward(days: 30),
     amount: Faker::Commerce.price,
-    company_address: Faker::Address.full_address,
-    customer_address: Faker::Address.full_address,
     notes: Faker::Lorem.sentence(word_count: 20),
     company_id: Faker::Number.within(range: 1..9),
   )
