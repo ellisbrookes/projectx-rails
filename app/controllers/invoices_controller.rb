@@ -23,7 +23,7 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new(invoice_params)
 
     if @invoice.save
-      redirect_to(company_invoices_path(@company), notice: 'Invoice was successfully created')
+      redirect_to(company_invoice_path(@company, @invoice), notice: 'Invoice was successfully created')
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -39,7 +39,7 @@ class InvoicesController < ApplicationController
     if @invoice.update(invoice_params)
       redirect_to(company_invoice_path(@company, @invoice), notice: 'Invoice was successfully updated')
     else
-      render(:edit)
+      render(:edit, status: :unprocessable_entity)
     end
   end
 
@@ -54,6 +54,6 @@ class InvoicesController < ApplicationController
   end
 
   def invoice_params
-    params.require(:invoice).permit(:invoice_issue, :customer, :issue_date, :due_date, :customer_address, :company_address, :notes, :amount, :company_id)
+    params.require(:invoice).permit(:invoice_issue, :customer, :issue_date, :due_date, :customer_address, :company_address, :notes, :amount, :company_id, :currency)
   end
 end

@@ -10,7 +10,7 @@
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Client Name</strong>
+    <strong class="block font-medium mb-1">Customer</strong>
     <%= invoice.customer %>
   </p>
 
@@ -25,7 +25,7 @@
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Client Address</strong>
+    <strong class="block font-medium mb-1">Customer Address</strong>
     <%= invoice.customer_address %>
   </p>
 
@@ -41,7 +41,8 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Amount</strong>
-    <%= number_to_currency(invoice.amount, unit: "£") %>
+    <%# number_to_currency(invoice.amount, unit: "£") %>
+    <%= invoice.amount %>
   </p>
 
   <% if action_name != "show" %>

@@ -105,6 +105,7 @@ puts 'Seeded 10 customers into the database'
     company_address: Faker::Address.full_address,
     issue_date: Faker::Date.backward(days: 30),
     due_date: Faker::Date.forward(days: 30),
+    currency: Faker::Currency.code,
     amount: Faker::Commerce.price,
     notes: Faker::Lorem.sentence(word_count: 20),
     company_id: Faker::Number.within(range: 1..9),
