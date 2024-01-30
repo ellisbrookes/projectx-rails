@@ -4,7 +4,7 @@
  ) %>
 
 <%= render TableComponent.new(
-  headers: %w[invoice_issue customer issue_date due_date customer_address company_address notes amount],
+  headers: ["Invoice issue", "Customer", "Issue date", "Due date", "Customer address", "Company address", "Notes", "Amount"],
   rows:
     @invoices.map do |invoice|
       [
