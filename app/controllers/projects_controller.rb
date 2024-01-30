@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
   def show
     @tasks = @project.tasks
     add_breadcrumbs("Projects", company_team_projects_path)
-    add_breadcrumbs(@project.title, company_team_project_path)
+    add_breadcrumbs(@project.title)
   end
 
   def new
@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
 
   def edit
     add_breadcrumbs("Projects", company_team_projects_path)
-    add_breadcrumbs("Edit", edit_company_team_project_path)
+    add_breadcrumbs("Edit")
     add_breadcrumbs(@project.title, company_team_project_path)
   end
 

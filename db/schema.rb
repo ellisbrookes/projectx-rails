@@ -73,18 +73,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_26_003904) do
   end
 
   create_table "invoices", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "invoice_number"
-    t.string "client_name"
+    t.string "invoice_issue"
+    t.string "customer"
+    t.string "customer_address"
+    t.string "company_address"
+    t.string "notes"
     t.date "issue_date"
     t.date "due_date"
     t.decimal "amount", precision: 10
-    t.bigint "project_id", null: false
+    t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "company_address"
-    t.string "client_address"
-    t.string "notes"
-    t.index ["project_id"], name: "index_invoices_on_project_id"
+    t.index ["company_id"], name: "index_invoices_on_company_id"
   end
 
   create_table "items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -206,7 +206,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_26_003904) do
   add_foreign_key "comments", "tasks"
   add_foreign_key "comments", "users"
   add_foreign_key "companies", "users"
-  add_foreign_key "invoices", "projects"
+  add_foreign_key "invoices", "companies"
   add_foreign_key "items", "companies"
   add_foreign_key "items", "invoices"
   add_foreign_key "team_members", "teams"

@@ -16,7 +16,7 @@ class TasksController < ApplicationController
     @comments = @task.comments.order(created_at: :desc)
     @pagy, @comments = pagy(@comments, items: 5)
     add_breadcrumbs("Tasks", company_team_project_tasks_path)
-    add_breadcrumbs(@task.name, company_team_project_tasks_path)
+    add_breadcrumbs(@task.name)
   end
 
   def new
@@ -36,7 +36,7 @@ class TasksController < ApplicationController
 
   def edit
     add_breadcrumbs("Tasks", company_team_project_tasks_path)
-    add_breadcrumbs("Edit", edit_company_team_project_task_path)
+    add_breadcrumbs("Edit")
     add_breadcrumbs(@task.name, company_team_project_task_path)
   end
 
