@@ -45,7 +45,7 @@
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this invoice", company_team_project_invoice_path(@company, @team, @project, invoice), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this project", edit_company_team_project_invoice_path(@company, @team, @project, invoice), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Show this invoice", company_invoice_path(@company, invoice), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this project", edit_company_invoice_path(@company, invoice), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
   <% end %>
 </div>
