@@ -9,6 +9,7 @@ class Company < ApplicationRecord
   has_many :users
   has_many :teams, dependent: :destroy
   has_many :projects
+  has_many :invoices
 
   validates :name, presence: true
   validates :description, presence: true

@@ -6,7 +6,7 @@ class InvoicesController < ApplicationController
   before_action :set_invoice, only: %i[show edit update]
 
   def index
-    @invoices = Invoice.all
+    @invoices = @company.invoices
     add_breadcrumbs("Invoices", company_invoices_path)
   end
 
