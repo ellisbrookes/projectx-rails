@@ -7,9 +7,12 @@ class CustomersController < ApplicationController
 
   def index
     @customers = @company.customers
+    add_breadcrumbs("Customers", company_customers_path)
   end
 
   def show
+    add_breadcrumbs("Customers", company_customers_path)
+    add_breadcrumbs(@customer.full_name)
   end
 
   def new
@@ -27,6 +30,9 @@ class CustomersController < ApplicationController
   end
 
   def edit
+    add_breadcrumbs("Customers", company_customers_path)
+    add_breadcrumbs("Edit")
+    add_breadcrumbs(@customer.full_name, company_customer_path)
   end
 
   def update
