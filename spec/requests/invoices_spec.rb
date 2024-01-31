@@ -30,13 +30,13 @@ RSpec.describe("Invoices", type: :request) do
       # create the invoice
       invoice_params = FactoryBot.attributes_for(:invoice, company_id: @company.id)
       post company_invoices_path(@company), params: { invoice: invoice_params }
-      
+
       invoice = Invoice.first
-      
+
       # redirect to the invoice
       expect(response).to(have_http_status(:redirect))
       follow_redirect!
-      
+
       # render the show page
       expect(response).to(render_template(:show))
       expect(response.body).to(include("Invoice was successfully created"))
