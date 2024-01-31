@@ -1,15 +1,15 @@
 class CustomersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_company, only: %i[show edit update destroy]
+  before_action :set_company
+  before_action :set_customer, only: %i[show edit update destroy]
 
   layout 'dashboard'
 
   def index
-    @customers = Customer.all
+    @customers = @company.customers
   end
 
   def show
-    @companies = Company.where(company_id: @company.id)
   end
 
   def new
@@ -17,10 +17,10 @@ class CustomersController < ApplicationController
   end
 
   def create
-    @customer = current_user.customers.build(customer_params)
+    @customer = Customer.new(customer_params)
 
-    if @customer
-      redirect_to(company_customer_url(@company), notice: "Customer was successfully created")
+    if @customer.save
+      redirect_to(company_customer_url(@company, @customer), notice: "Customer was successfully created")
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -31,7 +31,7 @@ class CustomersController < ApplicationController
 
   def update
     if @customer.update(customer_params)
-      redirect_to(company_customer_url(@company), notice: "Customer was successfully updated")
+      redirect_to(company_customer_url(@company, @customer), notice: "Customer was successfully updated")
     else
       render(:edit, status: :unprocessable_entity)
     end
@@ -46,7 +46,11 @@ class CustomersController < ApplicationController
   private
 
   def set_company
-    @company = Company.friendly.find(params[:id])
+    @company = Company.friendly.find(params[:company_id])
+  end
+
+  def set_customer
+    @customer = Customer.find(params[:id])
   end
 
   def customer_params
