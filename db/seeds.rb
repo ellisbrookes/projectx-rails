@@ -114,6 +114,17 @@ end
 
 puts 'Seeded 10 invoices into the database'
 
+# Create items
+10.times do |_n|
+  Item.create(
+    invoice_id: Faker::Number.within(range: 1..1000),
+    quantity: Faker::Number.within(range: 1..9), 
+    company_id: Faker::Number.within(range: 1..9),
+  )
+end
+
+puts 'Seeded 10 items into the database'
+
 # Create tasks with description etc.
 10.times do |_n|
   Task.create(
