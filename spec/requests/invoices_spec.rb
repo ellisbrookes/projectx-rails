@@ -115,7 +115,3 @@ RSpec.describe("Invoices", type: :request) do
     end
   end
 end
-<<<<<<< HEAD
-
-=======
->>>>>>> 2243aecce9b7ff0dda547d3c946bf5df28e5d26c
