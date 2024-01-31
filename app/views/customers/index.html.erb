@@ -1,0 +1,15 @@
+<%= render HeadingComponent.new(
+  title: "Customers",
+  text:
+    "A list of the customers in your company including their name",
+  link_title: "New Customer",
+  link_path: new_company_customer_path
+) %>
+
+<%= render TableComponent.new(
+  headers: ["Name", "Email" "Phone number", "Notes", "Address"],
+  rows:
+    @customers.map do |customer|
+      [link_to(customer.full_name, customer), customer.email, customer.phone_number, customer.notes, customer.address]
+    end
+) %>
