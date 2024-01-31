@@ -60,7 +60,7 @@ RSpec.describe("Customers", type: :request) do
 
       # render error message
       expect(response).to(have_http_status(:unprocessable_entity))
-      
+
       # render customer new page
       expect(response).to(render_template(:new))
       expect(response.body).to(include("Address can&#39;t be blank"))

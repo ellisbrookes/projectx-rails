@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :customer do#
+  factory :customer do
     full_name { Faker::Name.name }
     address { Faker::Address.full_address }
     phone_number { Faker::PhoneNumber.phone_number_with_country_code }
