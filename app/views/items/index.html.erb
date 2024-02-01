@@ -7,9 +7,9 @@
 ) %>
 
 <%= render TableComponent.new(
-  headers: ["ID", "Quantity", "Company"],
+  headers: ["ID", "Quantity", "Unit Price", "Description", "Company"],
   rows:
     @items.map do |item|
-      [link_to(item.id, company_item_path(@company, item)),item.quantity, item.company_id]
+      [link_to(item.id, company_item_path(@company, item)),item.quantity, item.unit_price, item.description, item.company_id]
     end
 ) %>

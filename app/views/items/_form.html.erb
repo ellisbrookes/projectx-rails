@@ -17,6 +17,16 @@
     <%= f.text_field :quantity, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
   </div>
 
+  <div class="my-5">
+    <%= f.label :descripton %>
+    <%= f.text_field :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+  </div>
+
+  <div class="my-5">
+    <%= f.label :unit_price %>
+    <%= f.number_field :estimated_budget, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2 dark:text-white dark:border-black dark:bg-slate-600", step: "0.01" %>
+  </div>
+
   <%= f.hidden_field :invoice_id, value: @invoice.id %>
   <%= f.hidden_field :company_id, value: @company.id %>
 
