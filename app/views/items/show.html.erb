@@ -1,4 +1,12 @@
-<div>
-  <h1 class="font-bold text-4xl">Items#show</h1>
-  <p>Find me in app/views/items/show.html.erb</p>
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <%= render @item %>
+
+    <%= link_to "Edit this item", edit_company_item_path(@company), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700 dark:hover:bg-slate-600" %>
+    <%= link_to "Back to items", company_items_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700 dark:hover:bg-slate-600" %>
+
+    <div class="inline-block ml-2">
+      <%= link_to "Destroy this item", company_item_path(@company, @item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:"mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium bg-red-500 dark:bg-red-500 dark:hover:bg-red-400" %>
+    </div>
+  </div>
 </div>

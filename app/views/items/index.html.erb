@@ -1,4 +1,15 @@
-<div>
-  <h1 class="font-bold text-4xl">Items#index</h1>
-  <p>Find me in app/views/items/index.html.erb</p>
-</div>
+<%= render HeadingComponent.new(
+  title: "Items",
+  text:
+    "A list of the items in your company",
+  link_title: "New Item",
+  link_path: new_company_item_path
+) %>
+
+<%= render TableComponent.new(
+  headers: ["ID", "Quantity", "Company"],
+  rows:
+    @items.map do |item|
+      [link_to(item.id, company_item_path(@company, item)),item.quantity, item.company_id]
+    end
+) %>
