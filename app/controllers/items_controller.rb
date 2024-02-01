@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_company
+  before_action :set_invoice
   before_action :set_item, only: %i[show edit update destroy]
 
   layout 'dashboard'
@@ -30,6 +31,11 @@ class ItemsController < ApplicationController
   end
 
   def update
+    if @item.update(item_params)
+      redirect_to(company_item_path(@company, @item), notice: 'Item was successfully updated')
+    else
+      render(:edit, status: :unprocessable_entity)
+    end
   end
 
   def destroy
@@ -39,6 +45,10 @@ class ItemsController < ApplicationController
 
   def set_company
     @company = Company.friendly.find(params[:company_id])
+  end
+
+  def set_invoice
+    @invoice = Invoice.find_by(params[:id])
   end
 
   def set_item
