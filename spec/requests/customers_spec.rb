@@ -84,7 +84,7 @@ RSpec.describe("Customers", type: :request) do
       expect(response).to(render_template(:edit))
 
       # new addresss
-      new_address = Faker::Address.full_address
+      new_address = Faker::Address.full_address.gsub(/[^0-9a-zA-Z\s]/, '')
       customer_params = { customer: { address: new_address } }
       put company_customer_path(@company, @customer), params: customer_params
 
