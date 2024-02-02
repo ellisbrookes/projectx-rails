@@ -8,9 +8,12 @@ class ItemsController < ApplicationController
 
   def index
     @items = @company.items
+    add_breadcrumbs("Items", company_items_path)
   end
 
   def show
+    add_breadcrumbs("Items", company_items_path)
+    add_breadcrumbs(@item.name)
   end
 
   def new
@@ -28,6 +31,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    add_breadcrumbs("Items", company_items_path)
+    add_breadcrumbs("Edit")
+    add_breadcrumbs(@item.name, company_item_path)
   end
 
   def update
