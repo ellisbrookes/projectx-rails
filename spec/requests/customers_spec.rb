@@ -34,6 +34,8 @@ RSpec.describe("Customers", type: :request) do
       customer_params = FactoryBot.attributes_for(:customer, company_id: @company.id)
       post company_customers_path(@company, @customer), params: { customer: customer_params }
 
+      customer = Customer.first
+
       # redirect to the customer
       expect(response).to(have_http_status(:redirect))
       follow_redirect!
@@ -44,7 +46,7 @@ RSpec.describe("Customers", type: :request) do
 
       # testing customer data
       expect(response.body).to(include(customer_params[:full_name]))
-      expect(response.body).to(include(customer_params[:address]))
+      expect(response.body).to(include(customer.address.to_s))
       expect(response.body).to(include(customer_params[:phone_number]))
       expect(response.body).to(include(customer_params[:email]))
       expect(response.body).to(include(customer_params[:notes]))
