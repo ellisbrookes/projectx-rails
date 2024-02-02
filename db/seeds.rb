@@ -117,12 +117,12 @@ puts 'Seeded 10 invoices into the database'
 # Create items
 10.times do |_n|
   Item.create(
-    name: Faker::Company.name,
     invoice_id: Faker::Number.within(range: 1..9),
     quantity: Faker::Number.within(range: 1..9), 
     company_id: Faker::Number.within(range: 1..9),
     description: Faker::Lorem.sentence(word_count: 20),
     unit_price: Faker::Commerce.price,
+    name: Faker::Company.name,
   )
 end
 
