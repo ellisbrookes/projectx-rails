@@ -39,6 +39,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item.destroy
+    redirect_to(company_items_path(@company, @item), notice: 'Item was successfully destroyed')
   end
 
   private
