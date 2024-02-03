@@ -15,6 +15,15 @@
   </p>
 
   <p class="my-5">
+    <strong class="block font-medium mb-1">Logo:</strong>
+    <% if company.logo.attached? %>
+      <%= image_tag url_for(company.logo), class: "logo-image" %>
+    <% else %>
+      <span>No logo available</span>
+    <% end %>
+  </p>
+
+  <p class="my-5">
     <strong class="block font-medium mb-1">Address:</strong>
     <%= company.address %>
   </p>

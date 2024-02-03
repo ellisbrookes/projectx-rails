@@ -33,15 +33,20 @@ puts 'Seeded 9 users and 1 admin user into the database'
 
 # Create a company with a name, address, description and email
 10.times do |_n|
-  Company.create(
+  c = Company.create(
     name: Faker::Company.name,
-    logo: Faker::Avatar.image,
     address: Faker::Address.full_address,
     description: Faker::Lorem.sentence(word_count: 20),
     email: Faker::Internet.email,
     user_id:
         Faker::Number.within(range: 1..9),
   )
+
+  logo_io = StringIO.new(Faker::Avatar.image(size: "50x50", format: "jpg"))
+  logo_io.rewind
+
+  c.logo.attach(io: logo_io, filename: 'logo.jpg', content_type: "image/jpg")
+  c.save
 end
 
 puts 'Seeded 10 companies into the database'
