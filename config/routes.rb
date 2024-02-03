@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     collection do
       resources :companies do
         resources :customers
-        resources :items, except: %i[destroy]
+        resources :items
         resources :invoices, except: %i[destroy]
         resources :teams do
           resources :projects do
