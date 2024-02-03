@@ -6,6 +6,7 @@ class Company < ApplicationRecord
     slug.blank? || name_changed?
   end
 
+  has_one_attached :logo
   has_many :users
   has_many :teams, dependent: :destroy
   has_many :projects

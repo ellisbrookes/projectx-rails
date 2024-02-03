@@ -35,6 +35,7 @@ puts 'Seeded 9 users and 1 admin user into the database'
 10.times do |_n|
   Company.create(
     name: Faker::Company.name,
+    logo: Faker::Avatar.image,
     address: Faker::Address.full_address,
     description: Faker::Lorem.sentence(word_count: 20),
     email: Faker::Internet.email,
