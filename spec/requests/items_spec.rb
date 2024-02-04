@@ -110,4 +110,25 @@ RSpec.describe("Items", type: :request) do
       expect(response.body).to(include("Name can&#39;t be blank"))
     end
   end
+
+  describe "/delete" do
+    before do
+      @item = FactoryBot.create(:item, company_id: @company.id, invoice_id: @invoice.id)
+    end
+
+    it "DELETE - should be able to delete a item" do
+      get company_item_path(@company, @item)
+      expect(response).to(render_template(:show))
+
+      # delete a item
+      delete company_item_path(@company, @item)
+
+      # redirect to the item
+      expect(response).to(have_http_status(:redirect))
+      follow_redirect!
+
+      expect(response).to(render_template(:index))
+      expect(response.body).to(include("Item was successfully destoryed"))
+    end
+  end
 end
