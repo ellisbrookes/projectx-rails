@@ -11,6 +11,7 @@ class CompaniesController < ApplicationController
 
   def show
     @teams = Team.where(company_id: @company.id)
+    @items = Item.where(company_id: @company.id)
     add_breadcrumbs("Companies", companies_path)
     add_breadcrumbs(@company.name)
   end

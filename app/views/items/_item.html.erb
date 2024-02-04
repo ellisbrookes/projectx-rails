@@ -18,7 +18,7 @@
     <strong class="block font-medium mb-1">Description:</strong>
     <%= item.description %>
   <p>
-  
+
   <p class="my-5">
     <strong class="block font-medium mb-1">Unit Price:</strong>
     <%= item.unit_price %>
@@ -26,7 +26,7 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Company ID:</strong>
-    <%= item.company_id %>
+    <%= link_to item.company.name, company_path(@company) %>
   <p>
 
   <% if action_name != "show" %>
