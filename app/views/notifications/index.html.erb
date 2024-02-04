@@ -5,9 +5,9 @@
 ) %>
 
 <%= render TableComponent.new(
-  headers: ["Content"],
+  headers: ["Content", "Created at"],
   rows:
     @notifications.map do |notification|
-      [link_to(notifcation.content, notification), notification.content]
+      [notification.content, notification.created_At]
     end
 ) %>
