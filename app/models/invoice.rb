@@ -2,6 +2,7 @@
 class Invoice < ApplicationRecord
   belongs_to :company
   has_many :items
+
   validates :invoice_issue, presence: true
   validates :customer, presence: true
   validates :customer_address, presence: true
