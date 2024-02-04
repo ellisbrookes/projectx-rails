@@ -1,0 +1,13 @@
+<%= render HeadingComponent.new(
+  title: "Notifications",
+  text:
+    "A list of the companies in your account including its name, description, assigned email, status and address",
+) %>
+
+<%= render TableComponent.new(
+  headers: ["Content"],
+  rows:
+    @notifications.map do |notification|
+      [link_to(notifcation.content, notification), notification.content]
+    end
+) %>

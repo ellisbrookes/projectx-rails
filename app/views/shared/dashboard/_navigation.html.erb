@@ -9,7 +9,9 @@
         <input type="search" name="search" title="search" placeholder="Search..." required={false} class="w-full pl-12 text-sm dark:bg-slate-800 dark:text-white dark:border-white" />
       </form>
 
-      <%= heroicon "bell", variant: :outline %>
+      <%= link_to notifications_path do %>
+        <%= heroicon "bell", variant: :outline %>
+      <% end %>
     </div>
   </div>
 </nav>
