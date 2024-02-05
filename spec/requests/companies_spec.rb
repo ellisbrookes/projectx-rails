@@ -60,7 +60,7 @@ RSpec.describe("Companies", type: :request) do
 
       # render company new page
       expect(response).to(render_template(:new))
-      expect(response.body).to(include("Email can&#39;t be blank"))
+      expect(response.body).to(include("Contact email can&#39;t be blank"))
     end
   end
 
@@ -106,7 +106,7 @@ RSpec.describe("Companies", type: :request) do
 
       # render company edit page
       expect(response).to(render_template(:edit))
-      expect(response.body).to(include("Email can&#39;t be blank"))
+      expect(response.body).to(include("Contact email can&#39;t be blank"))
     end
   end
 

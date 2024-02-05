@@ -7,9 +7,9 @@
 ) %>
 
 <%= render TableComponent.new(
-  headers: ["Name", "Logo", "Contact email", "Billing email" "Description", "Address"],
+  headers: ["Name", "Logo", "Contact email", "Billing email", "Description", "Address"],
   rows:
     @companies.map do |company|
-      [link_to(company.name, company), company.logo.attached? ? image_tag(url_for(company.logo), class: "logo-image") : "No logo", company.contact_email, company.billing_email company.description, company.address]
+      [link_to(company.name, company), company.logo.attached? ? image_tag(url_for(company.logo), class: "logo-image") : "No logo", company.contact_email, company.billing_email, company.description, company.address]
     end
 ) %>

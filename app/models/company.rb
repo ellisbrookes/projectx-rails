@@ -15,6 +15,7 @@ class Company < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
-  validates :email, presence: true
+  validates :billing_email, presence: true
+  validates :contact_email, presence: true
   validates :address, presence: true
 end
