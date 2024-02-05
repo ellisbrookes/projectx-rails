@@ -51,6 +51,14 @@ end
 
 puts 'Seeded 10 companies into the database'
 
+10.times do |_n|
+  Notification.create(
+    content: Faker::Lorem.sentence(word_count: 20),
+  )
+end
+
+puts 'Seeded 10 notifcations into the databse'
+
 # Create team
 10.times do |_n|
   Team.create(
