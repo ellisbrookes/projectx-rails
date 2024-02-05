@@ -113,3 +113,5 @@ gem "rails-controller-testing", "~> 1.0"
 gem "simplecov", "~> 0.22.0", group: :test
 
 gem "friendly_id", "~> 5.5"
+
+gem "receipts", "~> 2.2"

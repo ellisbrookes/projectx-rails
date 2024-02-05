@@ -1,10 +1,10 @@
-<%= form_with(model: [@company, @team, @project, @task, @sub_task], class: "contents") do |f| %>
-  <% if @sub_task.errors.any? %>
+<%= form_with(model: [@company, @team, @project, @task, sub_task], class: "contents") do |f| %>
+  <% if sub_task.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(@sub_task.errors.count, "error") %> prohibited this sub task from being saved:</h2>
+      <h2><%= pluralize(sub_task.errors.count, "error") %> prohibited this sub task from being saved:</h2>
 
       <ul>
-        <% @sub_task.errors.each do |error| %>
+        <% sub_task.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -32,31 +32,20 @@
     <%= f.select :status, options_for_select(['pending', 'in_progress', 'complete'], 'pending'), class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2 dark:bg-slate-600 dark:text-white" %>
   </div>
 
-    <div class="my-5">
-      <%= f.label :assigned_to_id %>
-      <%= f.collection_select :assigned_to_id, User.order(:full_name), :id, :full_name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:bg-slate-600 dark:text-white" } %>
-    </div>
+  <div class="my-5">
+    <%= f.label :assigned_to_id %>
+    <%= f.collection_select :assigned_to_id, User.order(:full_name), :id, :full_name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:bg-slate-600 dark:text-white" } %>
+  </div>
 
-    <div class="my-5">
-      <%= f.label :task_id %>
-      <%= f.collection_select :task_id, Task.order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:bg-slate-600 dark:text-white" } %>
-    </div>
+  <div class="my-5">
+    <%= f.label :reporter_id %>
+    <%= f.collection_select :reporter_id, User.order(:full_name), :id, :full_name, { prompt: true, selected: current_user.id }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:bg-slate-600 dark:text-white" } %>
+  </div>
 
-    <div class="my-5">
-      <%= f.label :reporter_id %>
-      <%= f.collection_select :reporter_id, User.order(:full_name), :id, :full_name, { prompt: true, selected: current_user.id }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:bg-slate-600 dark:text-white" } %>
-    </div>
-
-    <div class="my-5">
-      <%= f.label :project_id %>
-      <%= f.collection_select :project_id, Project.order(:title), :id, :title, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:bg-slate-600 dark:text-white" } %>
-    </div>
-
-     <div class="my-5">
-      <%= f.label :team_id %>
-      <%= f.collection_select :team_id, Team.order(:name), :id, :name, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:bg-slate-600 dark:text-white" } %>
-    </div>
-  
+  <%= f.hidden_field :task_id, value: @task.id %>
+  <%= f.hidden_field :project_id, value: @project.id %>
+  <%= f.hidden_field :team_id, value: @team.id %>
+    
   <div class="inline">
     <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer dark:bg-slate-600 dark:text-white" %>
   </div>

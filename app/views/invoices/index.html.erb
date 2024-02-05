@@ -1,0 +1,21 @@
+<%= render HeadingComponent.new(title: "Invoices", text: "A list of the invoices in your company including its number, customer and issue date",
+  link_title: "New Invoice",
+  link_path: new_company_invoice_path
+ ) %>
+
+<%= render TableComponent.new(
+  headers: ["Invoice issue", "Customer", "Issue date", "Due date", "Customer address", "Company address", "Notes", "Amount"],
+  rows:
+    @invoices.map do |invoice|
+      [
+        link_to(invoice.invoice_issue, company_invoice_path(@company, invoice)),
+        invoice.customer,
+        invoice.issue_date,
+        invoice.due_date.strftime("%d/%m/%Y"),
+        invoice.customer_address,
+        invoice.company_address,
+        invoice.notes,
+        number_to_currency(invoice.amount, unit: '£'),
+      ]
+    end
+) %>

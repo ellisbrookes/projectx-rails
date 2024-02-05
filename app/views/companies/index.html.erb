@@ -1,15 +1,15 @@
 <%= render HeadingComponent.new(
   title: "Companies",
   text:
-    "A list of the companies in your account including its name, description, assigned email and status.",
+    "A list of the companies in your account including its name, description, assigned email, status and address",
   link_title: "New Company",
   link_path: new_company_path
 ) %>
 
 <%= render TableComponent.new(
-  headers: %w[Name Email Description],
+  headers: ["Name", "Logo", "Contact email", "Billing email", "Description", "Address"],
   rows:
     @companies.map do |company|
-      [link_to(company.name, company), company.email, company.description]
+      [link_to(company.name, company), company.logo.attached? ? image_tag(url_for(company.logo), class: "logo-image") : "No logo", company.contact_email, company.billing_email, company.description, company.address]
     end
 ) %>

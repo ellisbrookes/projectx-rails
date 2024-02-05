@@ -12,7 +12,7 @@ class CompaniesController < ApplicationController
   def show
     @teams = Team.where(company_id: @company.id)
     add_breadcrumbs("Companies", companies_path)
-    add_breadcrumbs(@company.name, companies_path)
+    add_breadcrumbs(@company.name)
   end
 
   def new
@@ -31,8 +31,8 @@ class CompaniesController < ApplicationController
 
   def edit
     add_breadcrumbs("Companies", companies_path)
-    add_breadcrumbs("Edit", companies_path)
-    add_breadcrumbs(@company.name, companies_path)
+    add_breadcrumbs("Edit")
+    add_breadcrumbs(@company.name, company_path)
   end
 
   def update
@@ -56,6 +56,6 @@ class CompaniesController < ApplicationController
   end
 
   def company_params
-    params.require(:company).permit(:name, :description, :email)
+    params.require(:company).permit(:name, :logo, :description, :contact_email, :billing_email, :address)
   end
 end

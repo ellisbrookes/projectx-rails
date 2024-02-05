@@ -11,8 +11,8 @@ class TeamsController < ApplicationController
   end
 
   def show
-    add_breadcrumbs("Teams", company_team_path)
-    add_breadcrumbs(@team.name, company_team_path)
+    add_breadcrumbs("Teams", company_teams_path)
+    add_breadcrumbs(@team.name)
   end
 
   def new
@@ -32,8 +32,8 @@ class TeamsController < ApplicationController
 
   def edit
     @team.team_members.build
-    add_breadcrumbs("Teams", company_team_path)
-    add_breadcrumbs("Edit", edit_company_team_path)
+    add_breadcrumbs("Teams", company_teams_path)
+    add_breadcrumbs("Edit")
     add_breadcrumbs(@team.name, company_team_path)
   end
 

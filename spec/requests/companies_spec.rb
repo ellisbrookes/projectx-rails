@@ -44,7 +44,7 @@ RSpec.describe("Companies", type: :request) do
       # testing company data
       expect(response.body).to(include(company_params[:name]))
       expect(response.body).to(include(company_params[:description]))
-      expect(response.body).to(include(company_params[:email]))
+      expect(response.body).to(include(company_params[:contact_email]))
     end
 
     it "POST - should not be able to create a company" do
@@ -52,7 +52,7 @@ RSpec.describe("Companies", type: :request) do
       expect(response).to(render_template(:new))
 
       # create company without an email
-      company_params = { company: { email: nil } }
+      company_params = { company: { contact_email: nil } }
       post companies_path, params: { company: company_params }
 
       # render error message
@@ -60,7 +60,7 @@ RSpec.describe("Companies", type: :request) do
 
       # render company new page
       expect(response).to(render_template(:new))
-      expect(response.body).to(include("Email can&#39;t be blank"))
+      expect(response.body).to(include("Contact email can&#39;t be blank"))
     end
   end
 
@@ -78,9 +78,9 @@ RSpec.describe("Companies", type: :request) do
       get edit_company_path(@company)
       expect(response).to(render_template(:edit))
 
-      # update email
+      # update contact email
       new_email = Faker::Internet.email
-      company_params = { company: { email: new_email } }
+      company_params = { company: { contact_email: new_email } }
       put company_path(@company), params: company_params
 
       # redirect to company
@@ -98,7 +98,7 @@ RSpec.describe("Companies", type: :request) do
       expect(response).to(render_template(:edit))
 
       # update company without an email
-      company_params = FactoryBot.attributes_for(:company, email: nil)
+      company_params = FactoryBot.attributes_for(:company, contact_email: nil)
       put company_path(@company), params: { company: company_params }
 
       # render error message
@@ -106,7 +106,7 @@ RSpec.describe("Companies", type: :request) do
 
       # render company edit page
       expect(response).to(render_template(:edit))
-      expect(response.body).to(include("Email can&#39;t be blank"))
+      expect(response.body).to(include("Contact email can&#39;t be blank"))
     end
   end
 

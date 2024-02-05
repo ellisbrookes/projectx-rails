@@ -1,0 +1,52 @@
+<div id="<%= dom_id invoice %>">
+  <%= render HeadingComponent.new(
+    title: invoice.invoice_issue,
+    text: invoice.customer,
+  ) %>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Inovice Number:</strong>
+    <%= invoice.invoice_issue %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Customer</strong>
+    <%= invoice.customer %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Issue Date</strong>
+    <%= invoice.issue_date.strftime("%d/%m/%Y") %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Due Date</strong>
+    <%= invoice.due_date.strftime("%d/%m/%Y") %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Customer Address</strong>
+    <%= invoice.customer_address %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Company Address</strong>
+    <%= invoice.company_address %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Notes</strong>
+    <%= invoice.notes %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Amount</strong>
+    <%# number_to_currency(invoice.amount, unit: "£") %>
+    <%= invoice.amount %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this invoice", company_invoice_path(@company, invoice), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this project", edit_company_invoice_path(@company, invoice), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+  <% end %>
+</div>

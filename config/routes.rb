@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :dashboard, only: [:index] do
     collection do
       resources :companies do
+        resources :customers
+        resources :invoices, except: %i[destroy]
         resources :teams do
           resources :projects do
             resources :tasks do
