@@ -37,9 +37,9 @@ puts 'Seeded 9 users and 1 admin user into the database'
     name: Faker::Company.name,
     address: Faker::Address.full_address,
     description: Faker::Lorem.sentence(word_count: 20),
-    email: Faker::Internet.email,
-    user_id:
-        Faker::Number.within(range: 1..9),
+    contact_email: Faker::Internet.email,
+    billing_email: Faker::Internet.email,
+    user_id: Faker::Number.within(range: 1..9),
   )
 
   logo_io = StringIO.new(Faker::Avatar.image(size: "50x50", format: "jpg"))

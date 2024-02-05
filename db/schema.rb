@@ -52,7 +52,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_201815) do
   create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.string "email"
+    t.string "contact_email"
+    t.string "billing_email"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -107,9 +108,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_201815) do
     t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "unit_price", precision: 10
-    t.string "description"
-    t.string "name"
     t.index ["company_id"], name: "index_items_on_company_id"
     t.index ["invoice_id"], name: "index_items_on_invoice_id"
   end
