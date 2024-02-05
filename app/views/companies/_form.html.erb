@@ -17,6 +17,11 @@
     <%= f.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
   </div>
 
+   <div class="my-5">
+    <%= f.label :logo %>
+    <%= f.file_field :logo, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+  </div>
+
   <div class="my-5">
     <%= f.label :description %>
     <%= f.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
@@ -28,8 +33,13 @@
   </div>
 
   <div class="my-5">
-    <%= f.label :email %>
-    <%= f.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+    <%= f.label :contact_email %>
+    <%= f.text_field :contact_email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+  </div>
+
+  <div class="my-5">
+    <%= f.label :billing_email %>
+    <%= f.text_field :billing_email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
   </div>
 
   <div class="inline">
