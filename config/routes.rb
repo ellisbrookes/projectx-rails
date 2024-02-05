@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :dashboard, only: [:index] do
     collection do
-      resources :notifications, only: [:index]
+      resources :notifications
       resources :companies do
         resources :customers
         resources :invoices, except: %i[destroy]
