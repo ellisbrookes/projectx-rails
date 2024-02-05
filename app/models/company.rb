@@ -6,6 +6,7 @@ class Company < ApplicationRecord
     slug.blank? || name_changed?
   end
 
+  has_one_attached :logo
   has_many :users
   has_many :teams, dependent: :destroy
   has_many :projects
@@ -15,6 +16,7 @@ class Company < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
-  validates :email, presence: true
+  validates :billing_email, presence: true
+  validates :contact_email, presence: true
   validates :address, presence: true
 end
