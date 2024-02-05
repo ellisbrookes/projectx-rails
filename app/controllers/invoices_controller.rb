@@ -17,6 +17,7 @@ class InvoicesController < ApplicationController
 
   def new
     @invoice = Invoice.new
+    @items = Item.where(company_id: @company.id)
   end
 
   def create
@@ -53,7 +54,17 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
   end
 
+  # method to get the customer details
+  def get_customer
+    @target = params[:target]
+    @customer = Customer.find(params[:id])
+
+    respond_to do |format|
+      format&.turbo_stream
+    end
+  end
+
   def invoice_params
-    params.require(:invoice).permit(:invoice_issue, :customer, :issue_date, :due_date, :customer_address, :company_address, :notes, :amount, :company_id, :currency)
+    params.require(:invoice).permit(:invoice_issue, :customer, :issue_date, :due_date, :customer_address, :company_address, :notes, :amount, :company_id, :currency, items: [])
   end
 end

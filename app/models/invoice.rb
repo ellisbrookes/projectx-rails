@@ -1,6 +1,7 @@
 # app/models/invoice.rb
 class Invoice < ApplicationRecord
   belongs_to :company
+  belongs_to :customer
   has_many :items
 
   validates :invoice_issue, presence: true
