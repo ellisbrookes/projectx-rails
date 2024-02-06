@@ -54,7 +54,6 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
   end
 
-  # method to get the customer details
   def invoice_params
     params.require(:invoice).permit(:invoice_issue, :customer, :issue_date, :due_date, :customer_address, :company_address, :notes, :amount, :company_id, :currency, items: [])
   end

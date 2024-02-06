@@ -115,5 +115,3 @@ gem "simplecov", "~> 0.22.0", group: :test
 gem "friendly_id", "~> 5.5"
 
 gem "receipts", "~> 2.2"
-
-gem "requestjs-rails", "~> 0.0.11"
