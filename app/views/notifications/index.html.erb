@@ -7,7 +7,7 @@
 <%= render TableComponent.new(
   headers: ["Content", "Created at"],
   rows:
-    @notifications.map do |notification|
-      [notification.content, notification.created_At]
+    @user.notifications.map do |notification|
+      [notification.message, notification.url]
     end
 ) %>
