@@ -12,54 +12,54 @@
     </div>
   <% end %>
 
-  <div data-controller="invoice">
-    <div class="my-5">
-      <%= f.label :invoice_issue %>
-      <%= f.text_field :invoice_issue, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
-    </div>
+  <div class="my-5">
+    <%= f.label :invoice_issue %>
+    <%= f.text_field :invoice_issue, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+  </div>
 
-    <div class="my-5">
-      <%= f.label :customer %>
-      <%= f.collection_select :customer, Customer.where(company_id: @company).order(:full_name), :id, :full_name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600", data: { action: "change->invoice#handleChange" } } %>
-    </div>
+  <div class="my-5">
+    <%= f.label :customer %>
+    <%= f.collection_select :customer, Customer.where(company_id: @company).order(:full_name), :id, :full_name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
+  </div>
 
-    <div class="my-5">
-      <%= f.label :issue_date %>
-      <%= f.date_field :issue_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", value: Time.now.strftime('%Y-%m-%d') %>
-    </div>
+  <div class="my-5">
+    <%= f.label :issue_date %>
+    <%= f.date_field :issue_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", value: Time.now.strftime('%Y-%m-%d') %>
+  </div>
 
-    <div class="my-5">
-      <%= f.label :due_date %>
-      <%= f.date_field :due_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
-    </div>
+  <div class="my-5">
+    <%= f.label :due_date %>
+    <%= f.date_field :due_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+  </div>
 
-    <div class="my-5">
+  <div class="my-5">
+    <% if Customer.present? %>
       <%= f.label :customer_address %>
-      <%= f.text_area :customer_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", data: { invoice_target: 'customerAddress' } %>
-    </div>
+      <%= f.text_area :customer_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", value: @customer&.address %>
+    <% end %>
+  </div>
 
-    <div class="my-5">
-      <%= f.label :company_address %>
-      <%= f.text_area :company_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", value: @company.address %>
-    </div>
+  <div class="my-5">
+    <%= f.label :company_address %>
+    <%= f.text_area :company_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", value: @company&.address %>
+  </div>
 
-    <div class="my-5">
-      <%= f.label :items %>
-      <%= f.collection_select :items, Item.where(company_id: @company).order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
-    </div>
+  <div class="my-5">
+    <%= f.label :items %>
+    <%= f.collection_select :items, Item.where(company_id: @company).order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
+  </div>
 
-    <div class="my-5">
-      <%= f.label :notes %>
-      <%= f.text_area :notes, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
-    </div>
+  <div class="my-5">
+    <%= f.label :notes %>
+    <%= f.text_area :notes, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+  </div>
 
-    <div class="my-5">
-      <%= f.label :amount %>
+  <div class="my-5">
+    <%= f.label :amount %>
 
-      <div class="flex items-center space-x-3 dark:text-black">
-        <%= f.number_field :amount, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2 dark:text-white dark:border-black dark:bg-slate-600", step: "0.01" %>
-        <%= f.select :currency, options_for_select(%w[GBP USD EUR], "GBP"), {}, { class: "block shadow rounded-md border border-gray-200 p-2 pr-8 mt-2 dark:text-white dark:border-black dark:bg-slate-600" } %>
-      </div>
+    <div class="flex items-center space-x-3 dark:text-black">
+      <%= f.number_field :amount, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2 dark:text-white dark:border-black dark:bg-slate-600", step: "0.01" %>
+      <%= f.select :currency, options_for_select(%w[GBP USD EUR], "GBP"), {}, { class: "block shadow rounded-md border border-gray-200 p-2 pr-8 mt-2 dark:text-white dark:border-black dark:bg-slate-600" } %>
     </div>
 
     <%= f.hidden_field :company_id, value: @company.id %>

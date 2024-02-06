@@ -28,7 +28,7 @@ RSpec.describe("Items", type: :request) do
       get new_company_item_path(@company)
       expect(response).to(render_template(:new))
 
-      item_params = FactoryBot.attributes_for(:item, invoice_id: @invoice.id, company_id: @company.id)
+      item_params = FactoryBot.attributes_for(:item, company_id: @company.id)
       post company_items_path(@company), params: { item: item_params }
 
       item = Item.first
@@ -53,7 +53,7 @@ RSpec.describe("Items", type: :request) do
       expect(response).to(render_template(:new))
 
       # create an item without an name
-      item_params = FactoryBot.attributes_for(:item, name: nil, invoice_id: @invoice.id, company_id: @company.id)
+      item_params = FactoryBot.attributes_for(:item, name: nil, company_id: @company.id)
       post company_items_path(@company), params: { item: item_params }
 
       # redirect back to item
@@ -67,7 +67,7 @@ RSpec.describe("Items", type: :request) do
 
   describe "/edit" do
     before do
-      @item = FactoryBot.create(:item, company_id: @company.id, invoice_id: @invoice.id)
+      @item = FactoryBot.create(:item, company_id: @company.id)
     end
 
     it "GET - should be able to render edit page of an item" do
@@ -113,7 +113,7 @@ RSpec.describe("Items", type: :request) do
 
   describe "/delete" do
     before do
-      @item = FactoryBot.create(:item, company_id: @company.id, invoice_id: @invoice.id)
+      @item = FactoryBot.create(:item, company_id: @company.id)
     end
 
     it "DELETE - should be able to delete a item" do
