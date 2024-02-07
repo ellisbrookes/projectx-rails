@@ -98,6 +98,8 @@ group :test do
   gem "webdrivers"
 end
 
+gem 'dotenv-rails', groups: [:development, :test]
+
 gem "view_component", "~> 3.9"
 
 gem "tailwindcss-rails", "~> 2.3"

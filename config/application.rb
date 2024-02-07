@@ -2,6 +2,8 @@ require_relative "boot"
 
 require "rails/all"
 
+require 'dotenv/load' if Rails.env.development? || Rails.env.test?
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -23,11 +25,5 @@ module ProjectxRails
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-
-    Rails.configuration.stripe = {
-      publishable_key: 'pk_live_bfHkuPrhi9EryV55SLhjxYtM',
-      secret_key: 'sk_live_hS1kzYBeWkKSTuilsj8KieyE'
-    }
-    Stripe.api_key = Rails.configuration.stripe[:secret_key]
   end
 end

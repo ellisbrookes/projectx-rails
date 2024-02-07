@@ -126,6 +126,10 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
     docile (1.4.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     drb (2.2.0)
       ruby2_keywords
     e2mmap (0.1.0)
@@ -435,6 +439,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9)
+  dotenv-rails
   erb-formatter (~> 0.4.3)
   factory_bot_rails (~> 6.2)
   faker (~> 3.2)
@@ -462,7 +467,7 @@ DEPENDENCIES
   solargraph (~> 0.49.0)
   sprockets-rails
   stimulus-rails
-  stripe
+  stripe (~> 10.7)
   tailwindcss-rails (~> 2.3)
   turbo-rails
   tzinfo-data
