@@ -1,13 +1,12 @@
 <%= render HeadingComponent.new(
   title: "Notifications",
-  text:
-    "A list of the notifications in your account"
+  text: "A list of the notifications in your account"
 ) %>
 
 <%= render TableComponent.new(
-  headers: ["Content", "Created at"],
+  headers: ["Message", "Created at"],
   rows:
-    @user.notifications.map do |notification|
-      [notification.message, notification.url]
+    @notifications.map do |notification|
+      [notification.message, notification.created_at]
     end
 ) %>

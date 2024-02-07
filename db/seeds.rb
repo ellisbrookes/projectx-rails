@@ -53,7 +53,8 @@ puts 'Seeded 10 companies into the database'
 
 10.times do |_n|
   Notification.create(
-    content: Faker::Lorem.sentence(word_count: 20),
+    message: Faker::Lorem.sentence(word_count: 20),
+    user_id: Faker::Number.within(range: 1..9),
   )
 end
 
