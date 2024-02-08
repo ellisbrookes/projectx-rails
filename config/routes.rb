@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :notifications
       resources :companies do
         resources :customers
+        resources :items
         resources :invoices, except: %i[destroy]
         resources :teams do
           resources :projects do
