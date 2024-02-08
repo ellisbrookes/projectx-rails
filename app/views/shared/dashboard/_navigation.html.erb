@@ -9,8 +9,12 @@
         <input type="search" name="search" title="search" placeholder="Search..." required={false} class="w-full pl-12 text-sm dark:bg-slate-800 dark:text-white dark:border-white" />
       </form>
 
-      <%= link_to notifications_path do %>
+      <%= link_to notifications_path, class: "relative" do %>
         <%= heroicon "bell", variant: :outline %>
+        
+        <div class="absolute bg-red-500 py-1 px-2 rounded-full -top-3 text-xs -right-2">
+          <%= current_user.notifications.size %>
+        </div>
       <% end %>
     </div>
   </div>

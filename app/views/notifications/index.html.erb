@@ -1,9 +1,15 @@
-<h1>Notifications</h1>
+<% render HeadingComponent.new(
+  title: "Notifications",
+  text: "A list of notifications in your acount"
+) %>
 
-<ul>
-  <% @notifications.each do |notification| %>
-    <li>
-      <%= notification.message %>
-    </li>
-  <% end %>
-</ul>
+<%= render TableComponent.new(
+  headers: ["Message", "Created at"],
+  rows:
+    @notifications.map do |notification|
+      [
+        notification.message,
+        "#{time_ago_in_words(notification.created_at)} ago"
+      ]
+    end
+) %>
