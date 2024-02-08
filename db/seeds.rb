@@ -51,14 +51,6 @@ end
 
 puts 'Seeded 10 companies into the database'
 
-10.times do |_n|
-  Notification.create(
-    message: Faker::Lorem.sentence(word_count: 20),
-    user_id: Faker::Number.within(range: 1..9),
-  )
-end
-
-puts 'Seeded 10 notifcations into the databse'
 
 # Create team
 10.times do |_n|
@@ -67,8 +59,8 @@ puts 'Seeded 10 notifcations into the databse'
     description: Faker::Lorem.sentence(word_count: 20),
     email: Faker::Internet.email,
     company_id: Faker::Number.within(range: 1..9),
-  )
-end
+    )
+  end
 
 puts 'Seeded 10 teams in the database'
 
@@ -106,10 +98,10 @@ puts 'Seeded 10 projects into the database'
     email: Faker::Internet.email,
     notes: Faker::Lorem.sentence(word_count: 20),
     company_id: Faker::Number.within(range: 1..9),
-  )
-end
+    )
+  end
 
-puts 'Seeded 10 customers into the database'
+  puts 'Seeded 10 customers into the database'
 
 # Create invoices
 10.times do |_n|
@@ -181,7 +173,7 @@ puts 'Seeded 10 comments into the database'
     assigned_to_id: Faker::Number.within(range: 1..9),
     team_id: Faker::Number.within(range: 1..9),
     task_id: Faker::Number.within(range: 1..9),
-  )
+    )
 end
 
 puts 'Seeded 10 sub_tasks into the database'

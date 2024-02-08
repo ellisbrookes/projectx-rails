@@ -5,7 +5,8 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
-  has_many :notifications, dependent: :destroy
+  has_many :notifications, as: :recipient, dependent: :destroy, class_name: "Noticed::Notification"
+  has_many :notification_mentions, as: :record, dependent: :destroy, class_name: "Noticed::Event"
   has_many :companies, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :team_members

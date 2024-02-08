@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_07_183531) do
-  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+ActiveRecord::Schema[7.1].define(version: 2024_02_06_165341) do
+  create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -113,10 +113,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_07_183531) do
     t.index ["company_id"], name: "index_items_on_company_id"
   end
 
-  create_table "noticed_events", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "noticed_events", force: :cascade do |t|
     t.string "type"
     t.string "record_type"
-    t.bigint "record_id"
+    t.integer "record_id"
     t.json "params"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -124,11 +124,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_07_183531) do
     t.index ["record_type", "record_id"], name: "index_noticed_events_on_record"
   end
 
-  create_table "noticed_notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "noticed_notifications", force: :cascade do |t|
     t.string "type"
-    t.bigint "event_id", null: false
+    t.integer "event_id", null: false
     t.string "recipient_type", null: false
-    t.bigint "recipient_id", null: false
+    t.integer "recipient_id", null: false
     t.datetime "read_at", precision: nil
     t.datetime "seen_at", precision: nil
     t.datetime "created_at", null: false
@@ -137,15 +137,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_07_183531) do
     t.index ["recipient_type", "recipient_id"], name: "index_noticed_notifications_on_recipient"
   end
 
-  create_table "notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "message"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_notifications_on_user_id"
-  end
-
-  create_table "projects", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "projects", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.date "start_date"
@@ -257,8 +249,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_07_183531) do
   add_foreign_key "customers", "companies"
   add_foreign_key "invoices", "companies"
   add_foreign_key "items", "companies"
-  add_foreign_key "items", "invoices"
-  add_foreign_key "notifications", "users"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
   add_foreign_key "teams", "companies"

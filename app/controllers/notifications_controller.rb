@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
   layout 'dashboard'
 
   def index
-    @notifications = current_user.notifications.order(created_at: :desc)
+    @notifications = current_user.notifications.order(:event_id)
     add_breadcrumbs("Notifications", notifications_path)
   end
 

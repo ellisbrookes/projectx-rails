@@ -1,12 +1,9 @@
-<%= render HeadingComponent.new(
-  title: "Notifications",
-  text: "A list of the notifications in your account"
-) %>
+<h1>Notifications</h1>
 
-<%= render TableComponent.new(
-  headers: ["Message", "Created at"],
-  rows:
-    @notifications.map do |notification|
-      [notification.message, notification.created_at.strftime("%B %d, %Y %H:%M"),]
-    end
-) %>
+<ul>
+  <% @notifications.each do |notification| %>
+    <li>
+      <%= notification.message %>
+    </li>
+  <% end %>
+</ul>
