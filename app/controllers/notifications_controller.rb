@@ -5,7 +5,7 @@ class NotificationsController < ApplicationController
 
   def index
     @notifications = current_user.notifications.unread.order(:event_id)
-    @pagy, @notifications = pagy(@notifications, items: 5)
+    @pagy, @notifications = pagy(@notifications, items: 10)
     add_breadcrumbs("Notifications", notifications_path)
   end
 
