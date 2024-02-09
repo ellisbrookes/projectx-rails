@@ -17,14 +17,19 @@
 
 <%= render TableComponent.new(
   headers: ["", "Message", "Created at"],
-  rows:
-  @notifications.map do |notification|
-      [
-        (form_for(notification, url: mark_as_read_notifications_path, method: :post) do |f|
-          f.check_box :read_at, class: 'mark-as-read-checkbox', data: { remote: true }
-        end),
-        notification.message,
-        "#{time_ago_in_words(notification.created_at)} ago"
-      ]
-    end
+  rows: @notifications.map do |notification|
+    [
+      (form_for(notification, url: mark_as_read_notifications_path, method: :post) do |f|
+        f.check_box :read_at, class: 'mark-as-read-checkbox', data: { remote: true }
+      end),
+      notification.message,
+      "#{time_ago_in_words(notification.created_at)} ago"
+    ]
+  end
 ) %>
+
+<% if @notifications.present? %>
+  <div class="flex justify-center mt-4">
+    <%= pagy_nav(@pagy).html_safe %>
+  </div>
+<% end %>
