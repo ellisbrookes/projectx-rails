@@ -6,6 +6,13 @@
 <div class="dark:bg-slate-900 bg-neutral-100 p-4 rounded-md flex items-center">
   <%= link_to("Mark all as read", mark_as_read_notifications_path, { class: "dark:text-white text-black px-4 py-2 rounded-md bg-neutral-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition duration-150 ease-in-out", data: { turbo_method: :post } }) %>
   <%= link_to("Mark all as unread", mark_as_unread_notifications_path, { class: "dark:text-white text-black px-4 py-2 rounded-md bg-neutral-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition duration-150 ease-in-out ml-4", data: { turbo_method: :post } }) %>
+  <form class="relative w-full">
+    <div class="absolute inset-0 ml-2 flex w-5 items-center border-r-2 border-solid border-gray-700 dark:border-white">
+      <%= heroicon "magnifying-glass", variant: :outline %>
+    </div>
+
+    <input type="search" name="fitler" title="filter" placeholder="Filter" required={false} class="w-full pl-12 text-sm dark:bg-slate-800 dark:text-white dark:border-white" />
+  </form>
 </div>
 
 
