@@ -12,7 +12,7 @@
       <%= link_to notifications_path, class: "relative" do %>
         <%= heroicon "bell", variant: :outline %>
         
-        <div class="absolute bg-red-500 py-1 px-2 rounded-full -top-3 text-xs -right-2">
+        <div class="absolute bg-red-500 hover:bg-red-700 py-1 px-2 rounded-full -top-3 text-xs -right-2">
           <%= current_user.notifications.size %>
         </div>
       <% end %>

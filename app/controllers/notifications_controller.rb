@@ -4,8 +4,18 @@ class NotificationsController < ApplicationController
   layout 'dashboard'
 
   def index
-    @notifications = current_user.notifications.order(:event_id)
+    @notifications = current_user.notifications.unread.order(:event_id)
     add_breadcrumbs("Notifications", notifications_path)
+  end
+
+  def mark_as_read
+    current_user.notifications.mark_as_read
+    redirect_to(notifications_path, notice: "All notifications marked as read")
+  end
+
+  def mark_as_unread
+    current_user.notifications.mark_as_unread
+    redirect_to(notifications_path, notice: "All notifications marked as unread")
   end
 
   private
