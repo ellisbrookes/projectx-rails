@@ -5,4 +5,4 @@ Rails.configuration.stripe = {
   secret_key: Rails.application.credentials.stripe[:sk]
 }
 
-Stripe.api_key = Rails.configuration.stripe[:secret_key]
+Stripe.api_key = Rails.configuration.stripe[:sk]
