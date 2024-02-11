@@ -6,10 +6,16 @@ module Products
         ui_mode: 'embedded',
         line_items: [{
           quantity: 1,
-          unit_amount: @product.price * 100
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: @product.name,
+            },
+            unit_amount: (@product.price * 100).to_i
+          }
         }],
         mode: 'payment',
-        return_url: success_product_purchases_path(@product)
+        return_url: success_product_purchases_url(@product)
       })
 
       render json: { clientSecret: session.client_secret }

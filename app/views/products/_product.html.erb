@@ -15,7 +15,7 @@
     <%= product.price %>
   </p>
 
-  <%= link_to "Purchase", new_product_purchase_path(product), class: "bg-green-500 p-2 rounded-lg" %>
+  <%= link_to "Purchase", new_product_purchase_path(@product), class: "bg-green-500 p-2 rounded-lg" %>
 
   <% if action_name != "show" %>
     <%= link_to "Show this product", product_path(@product), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

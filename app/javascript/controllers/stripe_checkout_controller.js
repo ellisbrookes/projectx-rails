@@ -1,19 +1,16 @@
 import { Controller } from "@hotwired/stimulus";
 import { post } from "@rails/request.js";
 
-function initialize() {}
-
 export default class extends Controller {
-  static values = { publishableKey: String, url: String };
-
+  static values = { publishableKey: String, url: String};
   async connect() {
     try {
-      const stripe = stripe(this.publishableKeyValue);
+      const stripe = Stripe(this.publishableKeyValue);
       const response = await post(this.urlValue);
-      const { clientSecret } = await response.json();
+      const { fetchClientSecret } = response.json;
       
       const checkout = await stripe.initEmbeddedCheckout({
-        clientSecret,
+        fetchClientSecret,
       });
       
       checkout.mount(this.element);
