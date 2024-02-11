@@ -1,0 +1,37 @@
+<%= form_with(model: @product, class: "contents") do |f| %>
+  <% if product && product.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(product.errors.count, "error") %>
+        prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+  </div>
+
+  <div class="my-5">
+    <%= f.label :price %>
+
+    <div class="flex items-center space-x-3 dark:text-black">
+      <%= f.number_field :price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2 dark:text-white dark:border-black dark:bg-slate-600", step: "0.01" %>
+      <%= f.select :currency, options_for_select(%w[GBP USD EUR], "GBP"), {}, { class: "block shadow rounded-md border border-gray-200 outline-none p-2 pr-8 mt-2 dark:text-white dark:border-black dark:bg-slate-600" } %>
+    </div>
+  </div>
+  
+  <div class="my-5">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+  </div>
+
+  <div class="inline">
+    <%= f.submit class:"rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer dark:bg-slate-600" %>
+  </div>
+<% end %>

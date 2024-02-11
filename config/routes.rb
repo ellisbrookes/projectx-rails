@@ -7,7 +7,15 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations/registrations' }
 
   root 'pages#home'
-
+  resources :products do
+    scope module: :products do
+      resources :purchases, only: [:new] do
+        get :success, on: :collection
+      end
+      resources :stripe_checkouts, only: [:create]
+    end
+  end
+  
   resources :dashboard, only: [:index] do
     collection do
       resources :companies do
