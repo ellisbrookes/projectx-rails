@@ -12,6 +12,7 @@ class Company < ApplicationRecord
   has_many :projects
   has_many :invoices
   has_many :customers
+  has_many :items
 
   validates :name, presence: true
   validates :description, presence: true

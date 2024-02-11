@@ -1,0 +1,33 @@
+<div id="<%= dom_id item %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= item.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Quantity</strong>
+    <%= item.quantity %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= item.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Unit Price:</strong>
+    <%= item.unit_price %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Company ID:</strong>
+    <%= link_to item.company.name, company_path(@company) %>
+  </p>
+
+
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this item", company_item_path(@company, item), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this item", edit_company_item_path(@company, item), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+  <% end %>
+</div>
