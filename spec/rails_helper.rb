@@ -1,10 +1,22 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'simplecov'
+
+SimpleCov.start do
+  add_filter "/helpers"
+  add_filter "/config"
+  add_filter "/spec"
+
+  add_group "Controllers", "app/controllers"
+  add_group "Models", "app/models"
+end
+
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'support/factory_bot'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -62,4 +74,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  # Faker configs
+  Faker::Config.locale = :en
 end
