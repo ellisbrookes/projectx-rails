@@ -5,7 +5,7 @@ class CheckoutsController < ApplicationController
     @checkout_session = current_user.payment_processor.checkout(
       mode: 'payment',
       line_items: [{
-        price:'price_1OjpdvHhcsFflMX4D5Xer0oT',
+        price: 'price_1OjpdvHhcsFflMX4D5Xer0oT',
         quantity: 1
       }]
     )
