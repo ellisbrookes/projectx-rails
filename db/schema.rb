@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_02_193446) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_14_204902) do
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -111,6 +121,135 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_02_193446) do
     t.string "description"
     t.string "name"
     t.index ["company_id"], name: "index_items_on_company_id"
+  end
+
+  create_table "noticed_events", force: :cascade do |t|
+    t.string "type"
+    t.string "record_type"
+    t.integer "record_id"
+    t.json "params"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "notifications_count"
+    t.index ["record_type", "record_id"], name: "index_noticed_events_on_record"
+  end
+
+  create_table "noticed_notifications", force: :cascade do |t|
+    t.string "type"
+    t.integer "event_id", null: false
+    t.string "recipient_type", null: false
+    t.integer "recipient_id", null: false
+    t.datetime "read_at", precision: nil
+    t.datetime "seen_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_noticed_notifications_on_event_id"
+    t.index ["recipient_type", "recipient_id"], name: "index_noticed_notifications_on_recipient"
+  end
+
+  create_table "pay_charges", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.bigint "subscription_id"
+    t.string "processor_id", null: false
+    t.integer "amount", null: false
+    t.string "currency"
+    t.integer "application_fee_amount"
+    t.integer "amount_refunded"
+    t.json "metadata"
+    t.json "data"
+    t.string "stripe_account"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id", "processor_id"], name: "index_pay_charges_on_customer_id_and_processor_id", unique: true
+    t.index ["subscription_id"], name: "index_pay_charges_on_subscription_id"
+  end
+
+  create_table "pay_customers", force: :cascade do |t|
+    t.string "owner_type"
+    t.bigint "owner_id"
+    t.string "processor", null: false
+    t.string "processor_id"
+    t.boolean "default"
+    t.json "data"
+    t.string "stripe_account"
+    t.datetime "deleted_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_type", "owner_id", "deleted_at"], name: "pay_customer_owner_index", unique: true
+    t.index ["processor", "processor_id"], name: "index_pay_customers_on_processor_and_processor_id", unique: true
+  end
+
+  create_table "pay_merchants", force: :cascade do |t|
+    t.string "owner_type"
+    t.bigint "owner_id"
+    t.string "processor", null: false
+    t.string "processor_id"
+    t.boolean "default"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_type", "owner_id", "processor"], name: "index_pay_merchants_on_owner_type_and_owner_id_and_processor"
+  end
+
+  create_table "pay_payment_methods", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.string "processor_id", null: false
+    t.boolean "default"
+    t.string "type"
+    t.json "data"
+    t.string "stripe_account"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id", "processor_id"], name: "index_pay_payment_methods_on_customer_id_and_processor_id", unique: true
+  end
+
+  create_table "pay_subscriptions", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.string "name", null: false
+    t.string "processor_id", null: false
+    t.string "processor_plan", null: false
+    t.integer "quantity", default: 1, null: false
+    t.string "status", null: false
+    t.datetime "current_period_start", precision: nil
+    t.datetime "current_period_end", precision: nil
+    t.datetime "trial_ends_at", precision: nil
+    t.datetime "ends_at", precision: nil
+    t.boolean "metered"
+    t.string "pause_behavior"
+    t.datetime "pause_starts_at", precision: nil
+    t.datetime "pause_resumes_at", precision: nil
+    t.decimal "application_fee_percent", precision: 8, scale: 2
+    t.json "metadata"
+    t.json "data"
+    t.string "stripe_account"
+    t.string "payment_method_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id", "processor_id"], name: "index_pay_subscriptions_on_customer_id_and_processor_id", unique: true
+    t.index ["metered"], name: "index_pay_subscriptions_on_metered"
+    t.index ["pause_starts_at"], name: "index_pay_subscriptions_on_pause_starts_at"
+  end
+
+  create_table "pay_webhooks", force: :cascade do |t|
+    t.string "processor"
+    t.string "event_type"
+    t.json "event"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pays", force: :cascade do |t|
+    t.string "User"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "projects", force: :cascade do |t|
@@ -225,6 +364,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_02_193446) do
   add_foreign_key "customers", "companies"
   add_foreign_key "invoices", "companies"
   add_foreign_key "items", "companies"
+  add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
+  add_foreign_key "pay_charges", "pay_subscriptions", column: "subscription_id"
+  add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
+  add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
   add_foreign_key "teams", "companies"

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
+  resources :checkout, to: "checkouts#show"
+
   resources :dashboard, only: [:index] do
     collection do
       resources :companies do
