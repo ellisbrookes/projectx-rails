@@ -49,5 +49,3 @@ config/master.key
 coverage
 
 node_modules
-
-/config/credentials/development.key
