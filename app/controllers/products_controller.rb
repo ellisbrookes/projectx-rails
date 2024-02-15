@@ -1,8 +1,30 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_product, only: %i[index]
 
   def index
     @products = Product.all
+    @checkout_session_product1 = current_user.payment_processor.checkout(
+      mode: 'payment',
+      line_items: [{
+        price: 'price_1OjpdvHhcsFflMX4D5Xer0oT',
+        quantity: 1
+      }]
+    )
+    @checkout_session_product2 = current_user.payment_processor.checkout(
+    mode: 'payment',
+    line_items: [{
+      price: 'price_1Ok8o8HhcsFflMX4yvHHKvc7',
+      quantity: 1
+    }]
+  )
+  @checkout_session_product3 = current_user.payment_processor.checkout(
+    mode: 'payment',
+    line_items: [{
+      price: 'price_1Ok8raHhcsFflMX4SjlQ5pn9',
+      quantity: 1
+    }]
+  )
   end
 
   private
