@@ -10,6 +10,9 @@ class ProductsController < ApplicationController
         price: 'price_1OjpdvHhcsFflMX4D5Xer0oT',
         quantity: 1
       }]
+      subcription_data: {
+        trial_period_days: 30,
+      },
     )
     @checkout_session_product2 = current_user.payment_processor.checkout(
     mode: 'subscription',
@@ -17,6 +20,9 @@ class ProductsController < ApplicationController
       price: 'price_1Ok8o8HhcsFflMX4yvHHKvc7',
       quantity: 1
     }]
+    subcription_data: {
+      trial_period_days: 30,
+    },
   )
   @checkout_session_product3 = current_user.payment_processor.checkout(
     mode: 'subscription',
@@ -24,6 +30,9 @@ class ProductsController < ApplicationController
       price: 'price_1Ok8raHhcsFflMX4SjlQ5pn9',
       quantity: 1
     }]
+    subcription_data: {
+      trial_period_days: 30,
+    },
   )
   end
 
