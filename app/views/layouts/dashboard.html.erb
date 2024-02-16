@@ -9,6 +9,8 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
+    <%= tag.meta name: "stripe-key", content: Pay::Stripe.public_key %>
+    <script src="https://js.stripe.com/v3/" defer />
     <%= javascript_importmap_tags %>
     <%= hotwire_livereload_tags if Rails.env.development? %>
     <%= render partial: "shared/theme_toggle" %>

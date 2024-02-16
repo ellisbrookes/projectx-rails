@@ -1,4 +1,5 @@
 <div>
   <h1 class="font-bold text-2xl">Dashboard</h1>
   <p class="mt-4 text-sm font-semibold">Find me in app/views/dashboard/index.html.erb</p>
+  <%= render partial: "pay/stripe/checkout_button", locals: { session: @checkout_session_product1, title: "30 Day Free Trial" }, class: "block w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg" %>
 </div>
