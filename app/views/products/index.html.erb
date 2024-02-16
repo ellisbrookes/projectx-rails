@@ -6,49 +6,61 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     <div class="rounded-lg shadow-lg bg-white dark:bg-slate-900 dark:text-white">
-      <div class="px-6 py-8">
-        <h2 class="text-center font-semibold text-lg mb-4">Basic</h2>
-        <p class="text-gray-700 dark:text-white text-center mb-8">Perfect for starters</p>
-        <div class="text-center mb-6">
-          <span class="text-4xl font-semibold">£9</span>
-          <span class="text-gray-600 dark:text-white">/month</span>
+      <div class="h-full flex flex-col justify-between px-6 py-8"">
+        <div>
+          <h2 class="text-center font-semibold text-lg mb-4">Basic</h2>
+          <p class="text-gray-700 dark:text-white text-center mb-8">For startups</p>
+          <div class="text-center mb-6">
+            <span class="text-4xl font-semibold">£10</span>
+            <span class="text-gray-600 dark:text-white">/month</span>
+          </div>
+          <ul class="text-sm text-center text-gray-600 dark:text-white mb-6">
+            <li class="mb-3">1 Team</li>
+            <li class="mb-3">1 Team</li>
+            <li class="mb-3">1 Team</li>
+          </ul>
         </div>
-        <ul class="text-sm text-center text-gray-600 dark:text-white mb-6">
-          <li class="mb-3">1 Company</li>
-          <li class="mb-3">1 Team</li>
-          <li class="mb-3">1 Project</li>
-        </ul>
-          <%= render partial: "pay/stripe/checkout_button", locals: { session: @checkout_session_product1, title: "30 Day Free Trial", class: "block w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg" } %>
+        <div>
+          <%= link_to "Start your 30-day free trial", new_user_registration_path, class: "text-center block w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg" %>
+        </div>
       </div>
     </div>
 
     <div class="rounded-lg shadow-lg bg-white dark:bg-slate-900 dark:text-white">
-      <div class="px-6 py-8">
-        <h2 class="text-center font-semibold text-lg mb-4">Business</h2>
-        <p class="text-gray-700 dark:text-white text-center mb-8">For startups</p>
-        <div class="text-center mb-6">
-          <span class="text-4xl font-semibold">£19</span>
-          <span class="text-gray-600 dark:text-white">/month</span>
+      <div class="h-full flex flex-col justify-between px-6 py-8"">
+        <div>
+          <h2 class="text-center font-semibold text-lg mb-4">Business</h2>
+          <p class="text-gray-700 dark:text-white text-center mb-8">For startups</p>
+          <div class="text-center mb-6">
+            <span class="text-4xl font-semibold">£19</span>
+            <span class="text-gray-600 dark:text-white">/month</span>
+          </div>
+          <ul class="text-sm text-center text-gray-600 dark:text-white mb-6">
+            <li class="mb-3">Unlimited Projects</li>
+          </ul>
         </div>
-        <ul class="text-sm text-center text-gray-600 dark:text-white mb-6">
-          <li class="mb-3">Unlimited Projects</li>
-        </ul>
-          <%= render partial: "pay/stripe/checkout_button", locals: { session: @checkout_session_product2, title: "30 Day Free Trial", class: "block w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg" } %>
+        <div>
+          <%= link_to "Start your 30-day free trial", new_user_registration_path, class: "text-center block w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg" %>
+        </div>
       </div>
     </div>
 
     <div class="rounded-lg shadow-lg bg-white dark:bg-slate-900 dark:text-white">
-      <div class="px-6 py-8">
-        <h2 class="text-center font-semibold text-lg mb-4">Enterprise</h2>
-        <p class="text-gray-700 dark:text-white text-center mb-8">For Large Businesses</p>
-        <div class="text-center mb-6">
-          <span class="text-4xl font-semibold">£49</span>
-          <span class="text-gray-600 dark:text-white">/month</span>
+      <div class="h-full flex flex-col justify-between px-6 py-8"">
+        <div>
+          <h2 class="text-center font-semibold text-lg mb-4">Enterprise</h2>
+          <p class="text-gray-700 dark:text-white text-center mb-8">For Businesses</p>
+          <div class="text-center mb-6">
+            <span class="text-4xl font-semibold">£49</span>
+            <span class="text-gray-600 dark:text-white">/month</span>
+          </div>
+          <ul class="text-sm text-center text-gray-600 dark:text-white mb-6">
+            <li class="mb-3">Unlimited Projects</li>
+          </ul>
         </div>
-        <ul class="text-sm text-center text-gray-600 dark:text-white mb-6">
-          <li class="mb-3">Unlimited Projects</li>
-        </ul>
-          <%= render partial: "pay/stripe/checkout_button", locals: { session: @checkout_session_product3, title: "30 Day Free Trial", class: "block w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg" } %>
+        <div>
+          <%= link_to "Start your 30-day free trial", new_user_registration_path, class: "text-center block w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg" %>
+        </div>
       </div>
     </div>
   </div>
