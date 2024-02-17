@@ -1,5 +1,16 @@
 <div>
   <h1 class="font-bold text-2xl">Dashboard</h1>
   <p class="mt-4 text-sm font-semibold">Find me in app/views/dashboard/index.html.erb</p>
-  <%= render partial: "pay/stripe/checkout_button", locals: { session: @checkout_session_product1, title: "30 Day Free Trial" }, class: "block w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg" %>
+  <%# if current_user.trial_ends_at.present? && current_user.trial_ends_at > Date.today %>
+    <div class="bg-yellow-200 text-yellow-800 p-4 dark:bg-slate-800 dark:text-white">
+      You have <%# distance_of_time_in_words(Date.today, current_user.trial_ends_at) %> left on your free trial. Please upgrade now to keep your account.
+    </div>
+  <%# end %>
+  <%# if @subscription.trial_ends_at %>
+    <p>Your trial ends on: <%# @subscription.trial_ends_at.strftime('%Y-%m-%d') %></p>
+  <%# else %>
+    <p>You are not currently on a trial.</p>
+  <%# end %>
+
+  <%= render partial: "pay/stripe/checkout_button", locals: { session: @session, title: "30 Day Free Trial" }, class: "block w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg" %>
 </div>
