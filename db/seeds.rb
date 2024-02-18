@@ -31,6 +31,16 @@ u.save
 
 puts 'Seeded 9 users and 1 admin user into the database'
 
+10.times do |_n|
+  Product.create(
+    name: Faker::Name.name,
+    price: Faker::Commerce.price,    
+    features: Faker::Lorem.sentence(word_count: 20),
+  )
+end
+
+puts 'Seeded 1 product in the database'
+
 # Create a company with a name, address, description and email
 10.times do |_n|
   c = Company.create(

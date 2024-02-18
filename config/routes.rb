@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
-  resources :checkout, to: "checkouts#show"
+  resources :products, to: "products#index"
 
   resources :dashboard, only: [:index] do
     collection do
