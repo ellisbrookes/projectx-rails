@@ -116,6 +116,5 @@ gem "friendly_id", "~> 5.5"
 
 gem "receipts", "~> 2.2"
 
-gem "pay", "~> 7.1"
 
 gem "stripe", "~> 10.8"

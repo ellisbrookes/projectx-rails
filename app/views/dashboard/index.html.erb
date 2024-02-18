@@ -7,7 +7,7 @@
     </div>
   <%# end %>
   <%# if @subscription.trial_ends_at %>
-    <p>Your trial ends on: <%# @subscription.trial_ends_at.strftime('%Y-%m-%d') %></p>
+    <p>Your trial ends on: <%=  %></p>
   <%# else %>
     <p>You are not currently on a trial.</p>
   <%# end %>
