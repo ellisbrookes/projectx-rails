@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   before_action :set_breadcrumbs
+  before_action :set_billing_portal
 
   include Pagy::Backend
+  include ApplicationHelper
 
   helper_method :breadcrumbs
 
@@ -19,4 +21,10 @@ class ApplicationController < ActionController::Base
     add_breadcrumbs("Dashboard", dashboard_index_path)
   end
 
+  def set_billing_portal
+    @portal_session = Stripe::BillingPortal::Session.create({
+      customer: Stripe::Customer.list(email: current_user.email).data.first.id,
+      return_url: 'http://localhost:3000/dashboard',
+    }) if dashboard_request
+  end
 end

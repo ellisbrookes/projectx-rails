@@ -11,6 +11,8 @@ class Stripe::CheckoutController < ApplicationController
         quantity: 1,
         price: params[:price_id]
       }],
+      # success_url: stripe_checkout_success_path,
+      # cancel_url: stripe_checkout_cancel_path,
       success_url: 'http://localhost:3000',
       cancel_url: 'http://localhost:3000',
       subscription_data: {
