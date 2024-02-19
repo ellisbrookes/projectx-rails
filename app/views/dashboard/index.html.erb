@@ -11,6 +11,4 @@
   <%# else %>
     <p>You are not currently on a trial.</p>
   <%# end %>
-
-  <%= render partial: "pay/stripe/checkout_button", locals: { session: @session, title: "30 Day Free Trial" }, class: "block w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg" %>
 </div>
