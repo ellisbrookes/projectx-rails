@@ -33,7 +33,7 @@
           </div>
 
           <div>
-            <%= button_to "Join Now", stripe_checkout_path(price_id: price.id), data: { turbo: false }, class: "text-center block w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg" %>
+            <%= button_to "Join Now", stripe_checkout_path(price_id: price.id), data: { turbo: false } %>
           </div>
         </div>
       </div>
