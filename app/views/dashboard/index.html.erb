@@ -6,7 +6,7 @@
       You have <%# distance_of_time_in_words(Date.today, current_user.trial_ends_at) %> left on your free trial. Please upgrade now to keep your account.
     </div>
   <%# end %>
-  <%# if @subscription.trial_ends_at %>
+  <%= if @subscription.trial_ends_at %>
     <p>Your trial ends on: <%=  %></p>
   <%# else %>
     <p>You are not currently on a trial.</p>

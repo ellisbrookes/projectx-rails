@@ -1,9 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :set_breadcrumbs
-  before_action :set_billing_portal
 
   include Pagy::Backend
-  include ApplicationHelper
 
   helper_method :breadcrumbs
 
@@ -21,7 +19,4 @@ class ApplicationController < ActionController::Base
     add_breadcrumbs("Dashboard", dashboard_index_path)
   end
 
-  def set_billing_portal
-    # @portal_session = current_user&.payment_processor&.billing_portal if dashboard_request
-  end
 end
