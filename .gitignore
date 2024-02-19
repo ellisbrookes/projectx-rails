@@ -8,6 +8,7 @@
 .vscode
 .idea
 config/master.key
+.DS_Store
 
 # Ignore bundler config.
 /.bundle
@@ -49,5 +50,3 @@ config/master.key
 coverage
 
 node_modules
-
-config/credentials/development.key
