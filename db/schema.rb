@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_15_005539) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_18_235853) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -113,14 +113,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_15_005539) do
     t.index ["company_id"], name: "index_items_on_company_id"
   end
 
-  create_table "products", force: :cascade do |t|
-    t.string "name"
-    t.decimal "price"
-    t.text "features"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -219,6 +211,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_15_005539) do
     t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "stripe_customer_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

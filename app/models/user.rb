@@ -3,6 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :confirmable, :lockable, :timeoutable, :validatable
 
+  # create a stripe customer
+  after_create do
+    Stripe::Customer.create(email: email)
+  end
+
   has_one_attached :avatar
 
   has_many :companies, dependent: :destroy

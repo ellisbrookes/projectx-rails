@@ -10,6 +10,14 @@ Rails.application.routes.draw do
 
   resources :products, to: "products#index"
 
+  # Stripe checkouts
+  get 'pricing', to: 'stripe/checkout#pricing'
+  post 'stripe/checkout', to: 'stripe/checkout#checkout'
+  post 'stripe/checkout/success', to: 'stripe/checkout#success'
+  post 'stripe/checkout/cancel', to: 'stripe/checkout#cancel'
+  # stripe listen --forward-to localhost:3000/stripe/webhooks
+  post 'stipe/webhooks', to: 'stripe/webhooks#create'
+
   resources :dashboard, only: [:index] do
     collection do
       resources :companies do
