@@ -23,7 +23,7 @@ class User < ApplicationRecord
   end
 
   def subscription_expired?
-    Stripe::Subscription.list.data.first.nil? || Stripe::Subscription.list.data.first.status === 'cancelled'
+    Stripe::Subscription.list.data.first.nil? || Stripe::Subscription.list.data.first.status === 'trialing'
   end
 
   def subscription_expiring_soon?
