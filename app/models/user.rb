@@ -22,8 +22,13 @@ class User < ApplicationRecord
     Stripe::Customer.list(email: email).data.first
   end
 
+  # def subscription_expired?
+  #   Stripe::Subscription.list.data.first.nil? || !Stripe::Subscription.list.data.first.status === 'active'
+  # end
+
   def subscription_expired?
-    Stripe::Subscription.list.data.first.nil? || !Stripe::Subscription.list.data.first.status === 'active'
+    subscriptions = Stripe::Subscription.list.data
+    subscriptions.none? { |subscription| subscription.status == 'active' }
   end
 
   def subscription_expiring_soon?
