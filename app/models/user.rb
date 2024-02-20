@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Rabarber::HasRoles
   include ActionView::Helpers::DateHelper
 
   # Include default devise modules. Others available are:
