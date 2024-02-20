@@ -3,6 +3,10 @@ class DashboardController < ApplicationController
   layout 'dashboard'
 
   def index
-    flash[:notice] = "You have 2 days left on your free trial. Please upgrade now to keep your account"
+    if current_user.subscription_expired?
+      flash[:notice] = "Your free trial has expired. Please upgrade now to keep your account."
+    else
+      flash[:notice] = "You have #{current_user.days_until_subscription_expiration} days left on your free trial. Please upgrade now to keep your account."
+    end
   end
 end
