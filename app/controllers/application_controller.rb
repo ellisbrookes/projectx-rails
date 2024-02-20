@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :set_billing_portal
 
   include Pagy::Backend
+  include Rabarber::Authorization
   include ApplicationHelper
 
   helper_method :breadcrumbs
