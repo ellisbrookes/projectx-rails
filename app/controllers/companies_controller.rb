@@ -4,6 +4,8 @@ class CompaniesController < ApplicationController
 
   layout 'dashboard'
 
+  grant_access
+
   def index
     @companies = Company.where(user_id: current_user)
     add_breadcrumbs("Companies", companies_path)

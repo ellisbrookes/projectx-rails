@@ -2,9 +2,9 @@ class ApplicationController < ActionController::Base
   before_action :set_breadcrumbs
   before_action :set_billing_portal
 
-  include Pagy::Backend
   include Rabarber::Authorization
   include ApplicationHelper
+  include Pagy::Backend
 
   helper_method :breadcrumbs
 
@@ -26,6 +26,6 @@ class ApplicationController < ActionController::Base
     @portal_session = Stripe::BillingPortal::Session.create({
       customer: Stripe::Customer.list(email: current_user.email).data.first.id,
       return_url: 'http://localhost:3000/dashboard',
-    }) if dashboard_request
+    }) if dashboard_request && user_signed_in?
   end
 end

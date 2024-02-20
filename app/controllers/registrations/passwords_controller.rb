@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Registrations::PasswordsController < Devise::PasswordsController
+  grant_access
+
   # GET /resource/password/new
   # def new
   #   super

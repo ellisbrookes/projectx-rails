@@ -1,10 +1,12 @@
 class ProjectsController < ApplicationController
-  layout 'dashboard'
-
   before_action :authenticate_user!
   before_action :set_company
   before_action :set_team
   before_action :set_project, only: %i[show edit update destroy]
+
+  layout 'dashboard'
+
+  grant_access
 
   def index
     @projects = @company.projects

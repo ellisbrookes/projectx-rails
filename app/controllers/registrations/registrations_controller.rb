@@ -6,6 +6,8 @@ class Registrations::RegistrationsController < Devise::RegistrationsController
 
   layout 'dashboard', only: [:edit, :update]
 
+  grant_access
+
   # GET /resource/sign_up
   # def new
   #   super

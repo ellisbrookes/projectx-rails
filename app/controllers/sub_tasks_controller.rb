@@ -1,11 +1,14 @@
 class SubTasksController < ApplicationController
-  layout 'dashboard'
   before_action :authenticate_user!
   before_action :set_company
   before_action :set_team
   before_action :set_project
   before_action :set_task
   before_action :set_sub_task, only: %i[show edit update destroy]
+
+  layout 'dashboard'
+
+  grant_access
 
   def index
     @sub_tasks = @task.sub_tasks

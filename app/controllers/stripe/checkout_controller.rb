@@ -1,4 +1,6 @@
 class Stripe::CheckoutController < ApplicationController
+  grant_access
+
   def pricing
     lookup_keys = %w[montly yearly]
     @prices = Stripe::Price.list(lookup_keys: lookup_keys, expand: ['data.product']).data.sort_by(&:unit_amount)

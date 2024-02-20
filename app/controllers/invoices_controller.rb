@@ -1,9 +1,11 @@
 class InvoicesController < ApplicationController
-  layout 'dashboard'
-
   before_action :authenticate_user!
   before_action :set_company
   before_action :set_invoice, only: %i[show edit update]
+
+  layout 'dashboard'
+
+  grant_access
 
   def index
     @invoices = @company.invoices
