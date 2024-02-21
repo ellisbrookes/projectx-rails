@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Registrations::UnlocksController < Devise::UnlocksController
+class Users::UnlocksController < Devise::UnlocksController
   grant_access
 
   # GET /resource/unlock/new

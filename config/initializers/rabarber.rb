@@ -8,10 +8,10 @@ Rabarber.configure do |config|
   end
 
   config.when_roles_missing = -> (missing_roles, context) do
-    redirect_to dashboard_index_path, alert: 'You do not have sufficient permissions'
+    redirect_to root_path, alert: 'You do not have sufficient permissions'
   end
 
   config.when_unauthorized = -> (controller) do
-    redirect_to dashboard_index_path, alert: 'You are not authorized to access this page'
+    redirect_to root_path, alert: 'You are not authorized to access this page'
   end
 end
