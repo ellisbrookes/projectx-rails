@@ -1,5 +1,4 @@
 class Stripe::WebhooksController < ApplicationController
-
   def create
     # Replace this endpoint secret with your endpoint's unique secret
     # If you are testing with the CLI, find the secret by running 'stripe listen'
@@ -69,6 +68,6 @@ class Stripe::WebhooksController < ApplicationController
       puts "Subscription trial will end: #{event.id}"
     end
 
-    render json: { message: 'success'}
+    render(json: { message: 'success' })
   end
 end

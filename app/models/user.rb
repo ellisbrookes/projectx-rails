@@ -10,20 +10,12 @@ class User < ApplicationRecord
     Stripe::Customer.create(email: email)
   end
 
-  # create roles
-  # after_create :assign_default_roles
-
   has_one_attached :avatar
 
   has_many :companies, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :team_members
   has_many :teams, through: :team_members
-
-  # assign roles
-  # def assign_default_roles
-  #   assign_roles(:accountant, :marketer)
-  # end
 
   # stripe methods
   def stripe_customer
