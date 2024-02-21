@@ -5,8 +5,6 @@ class TeamsController < ApplicationController
 
   layout 'dashboard'
 
-  grant_access
-
   def index
     @teams = @company.teams
     add_breadcrumbs("Teams", company_teams_path)

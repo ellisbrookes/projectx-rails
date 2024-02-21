@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  include Rabarber::HasRoles
   include ActionView::Helpers::DateHelper
 
   # Include default devise modules. Others available are:
@@ -12,7 +11,7 @@ class User < ApplicationRecord
   end
 
   # create roles
-  after_create :assign_default_roles
+  # after_create :assign_default_roles
 
   has_one_attached :avatar
 
@@ -22,9 +21,9 @@ class User < ApplicationRecord
   has_many :teams, through: :team_members
 
   # assign roles
-  def assign_default_roles
-    assign_roles(:accountant, :marketer)
-  end
+  # def assign_default_roles
+  #   assign_roles(:accountant, :marketer)
+  # end
 
   # stripe methods
   def stripe_customer
@@ -50,7 +49,7 @@ class User < ApplicationRecord
     if subscription.present? && subscription.respond_to?(:current_period_end)
       seconds_until_expiration = subscription.current_period_end - Time.now.to_i
       days_until_expiration = (seconds_until_expiration / 86400).ceil # Convert seconds to days
-      return days_until_expiration
+      days_until_expiration
     end
   end
 end

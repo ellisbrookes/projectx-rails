@@ -108,4 +108,5 @@ gem "simplecov", "~> 0.22.0", group: :test
 gem "friendly_id", "~> 5.5"
 gem "receipts", "~> 2.2"
 gem "stripe", "~> 10.8"
-gem "rabarber", "~> 1.2"
+
+gem "pundit", "~> 2.3"

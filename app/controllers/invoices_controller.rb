@@ -5,8 +5,6 @@ class InvoicesController < ApplicationController
 
   layout 'dashboard'
 
-  grant_access
-
   def index
     @invoices = @company.invoices
     add_breadcrumbs("Invoices", company_invoices_path)

@@ -7,8 +7,6 @@ class CommentsController < ApplicationController
 
   layout 'dashboard'
 
-  grant_access
-
   def new
     @comment = Comment.new
   end

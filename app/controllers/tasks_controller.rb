@@ -7,8 +7,6 @@ class TasksController < ApplicationController
 
   layout 'dashboard'
 
-  grant_access
-
   def index
     @tasks = @project.tasks
     add_breadcrumbs("Tasks", company_team_project_tasks_path)

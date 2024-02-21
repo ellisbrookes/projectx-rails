@@ -1,5 +1,4 @@
 class Stripe::CheckoutController < ApplicationController
-  grant_access
 
   def pricing
     lookup_keys = %w[montly yearly]

@@ -8,8 +8,6 @@ class SubTasksController < ApplicationController
 
   layout 'dashboard'
 
-  grant_access
-
   def index
     @sub_tasks = @task.sub_tasks
     add_breadcrumbs("Sub Tasks", company_team_project_task_sub_tasks_path)

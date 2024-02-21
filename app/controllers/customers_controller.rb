@@ -5,8 +5,6 @@ class CustomersController < ApplicationController
 
   layout 'dashboard'
 
-  grant_access
-
   def index
     @customers = @company.customers
     add_breadcrumbs("Customers", company_customers_path)
