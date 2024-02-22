@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_21_213449) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_22_000219) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -72,7 +72,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_21_213449) do
     t.integer "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["company_id"], name: "index_customers_on_company_id"
+    t.index ["slug"], name: "index_customers_on_slug", unique: true
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -88,7 +90,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_21_213449) do
 
   create_table "invoices", force: :cascade do |t|
     t.string "invoice_issue"
-    t.string "customer"
     t.string "customer_address"
     t.string "company_address"
     t.string "notes"
@@ -99,7 +100,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_21_213449) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "currency"
+    t.integer "customer_id", null: false
     t.index ["company_id"], name: "index_invoices_on_company_id"
+    t.index ["customer_id"], name: "index_invoices_on_customer_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -126,21 +129,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_21_213449) do
     t.decimal "actual_budget", precision: 10, scale: 2
     t.string "slug"
     t.index ["slug"], name: "index_projects_on_slug", unique: true
-  end
-
-  create_table "rabarber_roles", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_rabarber_roles_on_name", unique: true
-  end
-
-  create_table "rabarber_roles_roleables", id: false, force: :cascade do |t|
-    t.integer "role_id", null: false
-    t.integer "roleable_id", null: false
-    t.index ["role_id", "roleable_id"], name: "index_rabarber_roles_roleables_on_role_id_and_roleable_id", unique: true
-    t.index ["role_id"], name: "index_rabarber_roles_roleables_on_role_id"
-    t.index ["roleable_id"], name: "index_rabarber_roles_roleables_on_roleable_id"
   end
 
   create_table "sub_tasks", force: :cascade do |t|
@@ -240,9 +228,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_21_213449) do
   add_foreign_key "companies", "users"
   add_foreign_key "customers", "companies"
   add_foreign_key "invoices", "companies"
+  add_foreign_key "invoices", "customers"
   add_foreign_key "items", "companies"
-  add_foreign_key "rabarber_roles_roleables", "rabarber_roles", column: "role_id"
-  add_foreign_key "rabarber_roles_roleables", "users", column: "roleable_id"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
   add_foreign_key "teams", "companies"

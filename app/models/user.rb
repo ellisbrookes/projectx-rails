@@ -1,9 +1,11 @@
 class User < ApplicationRecord
+  include ActionView::Helpers::DateHelper
+
   # Include default devise modules.
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable, :lockable, :timeoutable, :trackable
 
   # Roles
-  enum role: [:user, :mod, :admin]
+  enum role: [:default, :mod, :admin]
 
   # Associations
   has_one_attached :avatar
@@ -20,6 +22,10 @@ class User < ApplicationRecord
   def stripe_customer
     Stripe::Customer.list(email: email).data.first
   end
+
+  # def subscription_expired?
+  #   Stripe::Subscription.list.data.first.nil? || !Stripe::Subscription.list.data.first.status === 'active'
+  # end
 
   def subscription_expired?
     subscriptions.none? { |subscription| subscription.status == 'active' }
@@ -41,7 +47,7 @@ class User < ApplicationRecord
   private
 
   def set_default_role
-    self.role ||= :user
+    self.role ||= :default
   end
 
   def create_stripe_customer

@@ -4,7 +4,6 @@ FactoryBot.define do
     email { Faker::Internet.unique.email }
     password { "testing1234" }
     confirmed_at { Time.now }
-    is_admin { false }
   end
 
   factory :admin do
@@ -12,6 +11,6 @@ FactoryBot.define do
     email { Faker::Internet.unique.email }
     password { "admin1234" }
     confirmed_at { Time.now }
-    is_admin { true }
+    role { 2 }
   end
 end

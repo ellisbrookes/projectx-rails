@@ -23,23 +23,13 @@ u = User.create(
   full_name: Faker::Name.name,
   email: Faker::Internet.email,
   password: 'admin123',
-  is_admin: '1',
+  role: 2,
 )
 
 u.skip_confirmation!
 u.save
 
 puts 'Seeded 9 users and 1 admin user into the database'
-
-10.times do |_n|
-  Product.create(
-    name: Faker::Name.name,
-    price: Faker::Commerce.price,    
-    features: Faker::Lorem.sentence(word_count: 20),
-  )
-end
-
-puts 'Seeded 1 product in the database'
 
 # Create a company with a name, address, description and email
 10.times do |_n|
@@ -116,7 +106,7 @@ puts 'Seeded 10 customers into the database'
 10.times do |_n|
   Invoice.create(
     invoice_issue: Faker::Number.within(range: 1..1000),
-    customer: Faker::Company.name,
+    customer_id: Faker::Company.name,
     customer_address: Faker::Address.full_address,
     company_address: Faker::Address.full_address,
     issue_date: Faker::Date.backward(days: 30),
