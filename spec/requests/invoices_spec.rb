@@ -43,7 +43,7 @@ RSpec.describe("Invoices", type: :request) do
 
       # testing invoice data
       expect(response.body).to(include(invoice_params[:invoice_issue].to_s))
-      expect(response.body).to(include(invoice_params[:customer]))
+      expect(response.body).to(include(invoice_params[:customer_id].to_s))
       expect(response.body).to(include(invoice_params[:customer_address]))
       expect(response.body).to(include(invoice_params[:company_address]))
       expect(response.body).to(include(invoice.issue_date.strftime('%d/%m/%Y')))
@@ -85,7 +85,7 @@ RSpec.describe("Invoices", type: :request) do
 
       # update customer name
       new_name = Faker::Company.name.gsub(/[^0-9a-zA-Z\s]/, '')
-      invoice_params = { invoice: { customer: new_name } }
+      invoice_params = { invoice: { customer_id: new_name } }
       put company_invoice_path(@company, @invoice), params: invoice_params
 
       # redirect to the invoice
@@ -103,7 +103,7 @@ RSpec.describe("Invoices", type: :request) do
       expect(response).to(render_template(:edit))
 
       # update a invoice without a customer name
-      invoice_params = { invoice: { customer: nil } }
+      invoice_params = { invoice: { customer_id: nil } }
       put company_invoice_path(@company, @invoice), params: invoice_params
 
       # render error messsage

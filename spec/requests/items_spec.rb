@@ -4,7 +4,6 @@ RSpec.describe("Items", type: :request) do
   before do
     @user = FactoryBot.create(:user)
     @company = FactoryBot.create(:company, user_id: @user.id)
-    @invoice = FactoryBot.create(:invoice, company_id: @company.id)
     sign_in(@user)
   end
 

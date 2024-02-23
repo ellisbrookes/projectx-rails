@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_18_235853) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_23_230439) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -72,7 +72,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_18_235853) do
     t.integer "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["company_id"], name: "index_customers_on_company_id"
+    t.index ["slug"], name: "index_customers_on_slug", unique: true
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -88,7 +90,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_18_235853) do
 
   create_table "invoices", force: :cascade do |t|
     t.string "invoice_issue"
-    t.string "customer"
     t.string "customer_address"
     t.string "company_address"
     t.string "notes"
@@ -99,7 +100,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_18_235853) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "currency"
+    t.integer "customer_id", null: false
     t.index ["company_id"], name: "index_invoices_on_company_id"
+    t.index ["customer_id"], name: "index_invoices_on_customer_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -192,7 +195,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_18_235853) do
   create_table "users", force: :cascade do |t|
     t.string "full_name", default: "", null: false
     t.string "email", default: "", null: false
-    t.string "is_admin", default: "f", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -212,6 +214,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_18_235853) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "stripe_customer_id"
+    t.integer "role", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -225,6 +228,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_18_235853) do
   add_foreign_key "companies", "users"
   add_foreign_key "customers", "companies"
   add_foreign_key "invoices", "companies"
+  add_foreign_key "invoices", "customers"
   add_foreign_key "items", "companies"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"

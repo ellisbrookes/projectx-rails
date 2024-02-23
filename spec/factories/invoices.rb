@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :invoice do
     invoice_issue { Faker::Number.within(range: 1..1000) }
-    customer { Faker::Company.name }
+    customer_id { Faker::Company.name }
     customer_address { Faker::Address.full_address }
     company_address { Faker::Address.full_address }
     issue_date { Faker::Date.backward(days: 30) }
