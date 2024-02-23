@@ -45,8 +45,6 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
-    authorize!(:delete, @company)
-
     if @company.destroy
       flash[:notice] = "Company was successfully deleted."
       redirect_to(companies_url)

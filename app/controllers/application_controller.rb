@@ -15,10 +15,6 @@ class ApplicationController < ActionController::Base
     breadcrumbs << Breadcrumb.new(name, path)
   end
 
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to main_app.dashboard_index_url, alert: exception.message
-  end
-
   private
 
   def set_breadcrumbs
