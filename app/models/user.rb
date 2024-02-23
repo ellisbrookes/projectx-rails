@@ -7,6 +7,11 @@ class User < ApplicationRecord
   # roles
   enum role: [:default, :admin]
 
+  # create a stripe customer
+  after_create do
+    Stripe::Customer.create(email: email)
+  end
+
   # Associations
   has_one_attached :avatar
   has_many :companies, dependent: :destroy
