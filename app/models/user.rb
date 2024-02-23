@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   include ActionView::Helpers::DateHelper
 
-  # rolify
-  rolify
-
   # Include default devise modules.
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable, :lockable, :timeoutable, :trackable
+
+  # roles
+  enum role: [:default, :admin]
 
   # Associations
   has_one_attached :avatar
@@ -15,12 +15,12 @@ class User < ApplicationRecord
   has_many :teams, through: :team_members
 
   # Callbacks
-  after_create :assign_default_role
+  after_initialize :set_default_role, if: :new_record?
   after_create :create_stripe_customer
 
-  # default user Role
-  def assign_default_role
-    add_role(:default) if roles.blank?
+  # default Role
+  def set_default_role
+    self.role ||= :default
   end
 
   # Stripe methods

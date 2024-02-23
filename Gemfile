@@ -118,6 +118,5 @@ gem "receipts", "~> 2.2"
 
 gem "stripe", "~> 10.8"
 
-gem "cancancan", "~> 3.5"
 
 gem "rolify", "~> 6.0"

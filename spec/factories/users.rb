@@ -11,6 +11,6 @@ FactoryBot.define do
     email { Faker::Internet.unique.email }
     password { "admin1234" }
     confirmed_at { Time.now }
-    role { 2 }
+    role { 1 }
   end
 end
