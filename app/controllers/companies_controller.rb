@@ -46,11 +46,9 @@ class CompaniesController < ApplicationController
 
   def destroy
     if @company.destroy
-      flash[:notice] = "Company was successfully deleted."
-      redirect_to(companies_url)
+      redirect_to(companies_url, notice: "Company was successfully destroyed.")
     else
-      flash[:alert] = "There was an error deleting the company."
-      render(:show)
+      render(:show, alert: "There was an error deleting the company.")
     end
   end
 
