@@ -45,15 +45,16 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
-    authorize @company
+    begin
+      authorize @company
 
-    if @company.destroy
-      flash[:notice] = "#{@company.name} was successfully deleted."
-      redirect_to companies_url
-    else
-      flash.now[:alert] = "There was an error deleting the company."
-      render :show
-    end
+      if @company.destroy
+        flash[:notice] = "#{@company.name} was successfully deleted."
+        redirect_to companies_url
+      else
+        flash.now[:alert] = "There was an error deleting the company."
+        render :show
+      end
   end
 
   private

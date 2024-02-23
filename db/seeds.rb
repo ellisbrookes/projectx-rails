@@ -22,12 +22,16 @@ end
 u = User.create(
   full_name: Faker::Name.name,
   email: Faker::Internet.email,
-  password: 'admin123',
-  role: 2,
+  password: 'admin123'
 )
 
 u.skip_confirmation!
 u.save
+
+# set last user to admin
+u = User.last
+u.add_role :admin
+u.save!
 
 puts 'Seeded 9 users and 1 admin user into the database'
 

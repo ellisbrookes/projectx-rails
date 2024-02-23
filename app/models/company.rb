@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
+  resourcify
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 

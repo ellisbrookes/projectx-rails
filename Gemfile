@@ -99,14 +99,25 @@ group :test do
 end
 
 gem "view_component", "~> 3.9"
+
 gem "tailwindcss-rails", "~> 2.3"
+
 gem "erb-formatter", "~> 0.4.3"
+
 gem "pry-byebug"
+
 gem "faker", "~> 3.2"
+
 gem "rails-controller-testing", "~> 1.0"
+
 gem "simplecov", "~> 0.22.0", group: :test
+
 gem "friendly_id", "~> 5.5"
+
 gem "receipts", "~> 2.2"
+
 gem "stripe", "~> 10.8"
 
-gem "pundit", "~> 2.3"
+gem "cancancan", "~> 3.5"
+
+gem "rolify", "~> 6.0"
