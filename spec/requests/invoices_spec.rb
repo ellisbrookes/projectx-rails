@@ -45,7 +45,7 @@ RSpec.describe("Invoices", type: :request) do
 
       # testing invoice data
       expect(response.body).to(include(invoice_params[:invoice_issue].to_s))
-      expect(response.body).to(include(invoice_params[:customer_id]))
+      expect(response.body).to(include(invoice_params[:customer_id].to_s))
       expect(response.body).to(include(invoice_params[:customer_address]))
       expect(response.body).to(include(invoice_params[:company_address]))
       expect(response.body).to(include(invoice.issue_date.strftime('%d/%m/%Y')))
