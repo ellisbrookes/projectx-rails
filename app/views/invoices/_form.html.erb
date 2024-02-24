@@ -18,8 +18,8 @@
   </div>
 
   <div class="my-5">
-    <%= f.label :customer %>
-    <%= f.collection_select :customer, Customer.where(company_id: @company).order(:full_name), :id, :full_name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
+    <%= f.label :customer_id %>
+    <%= f.collection_select :customer_id, Customer.where(company_id: @company).order(:full_name), :id, :full_name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
   </div>
 
   <div class="my-5">
@@ -35,7 +35,7 @@
   <div class="my-5">
     <% if Customer.present? %>
       <%= f.label :customer_address %>
-      <%= f.text_area :customer_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", value: @customer&.address %>
+      <%= f.text_area :customer_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
     <% end %>
   </div>
 
@@ -45,8 +45,8 @@
   </div>
 
   <div class="my-5">
-    <%= f.label :items %>
-    <%= f.collection_select :items, Item.where(company_id: @company).order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
+    <%# f.label :items %>
+    <%# f.collection_select :items, Item.where(company_id: @company).order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
   </div>
 
   <div class="my-5">
