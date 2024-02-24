@@ -5,7 +5,6 @@ RSpec.describe("Invoices", type: :request) do
     @user = FactoryBot.create(:user)
     @company = FactoryBot.create(:company, user_id: @user.id)
     @customer = FactoryBot.create(:customer, company_id: @company.id)
-
     sign_in(@user)
   end
 
@@ -86,8 +85,7 @@ RSpec.describe("Invoices", type: :request) do
       expect(response).to(render_template(:edit))
 
       # update customer name
-      new_name = Faker::Company.name.gsub(/[^0-9a-zA-Z\s]/, '')
-      invoice_params = { invoice: { customer_id: new_name } }
+      invoice_params = { invoice: { customer_id: @customer.id } }
       put company_invoice_path(@company, @invoice), params: invoice_params
 
       # redirect to invoice
@@ -96,7 +94,7 @@ RSpec.describe("Invoices", type: :request) do
 
       # render the show page
       expect(response).to(render_template(:show))
-      expect(response.body).to(include(new_name))
+      expect(response.body).to(include(invoice_params[:customer_id].to_s))
       expect(response.body).to(include("Invoice was successfully updated"))
     end
 
