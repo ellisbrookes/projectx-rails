@@ -23,7 +23,6 @@ u = User.create(
   full_name: Faker::Name.name,
   email: Faker::Internet.email,
   password: 'admin123',
-  is_admin: '1',
 )
 
 u.skip_confirmation!
@@ -123,7 +122,7 @@ puts 'Seeded 10 invoices into the database'
 # Create items
 10.times do |_n|
   Item.create(
-    quantity: Faker::Number.within(range: 1..9), 
+    quantity: Faker::Number.within(range: 1..9),
     company_id: Faker::Number.within(range: 1..9),
     description: Faker::Lorem.sentence(word_count: 20),
     unit_price: Faker::Commerce.price,
