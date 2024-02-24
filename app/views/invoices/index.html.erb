@@ -4,12 +4,12 @@
  ) %>
 
 <%= render TableComponent.new(
-  headers: ["Invoice issue", "Customer", "Issue date", "Due date", "Customer address", "Company address", "Notes", "Amount"],
+  headers: ["Invoice issue", "Customer ID", "Issue date", "Due date", "Customer address", "Company address", "Notes", "Amount"],
   rows:
     @invoices.map do |invoice|
       [
         link_to(invoice.invoice_issue, company_invoice_path(@company, invoice)),
-        invoice.customer,
+        invoice.customer_id,
         invoice.issue_date,
         invoice.due_date.strftime("%d/%m/%Y"),
         invoice.customer_address,
