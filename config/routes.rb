@@ -8,8 +8,6 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
-  resources :products, to: "products#index"
-
   # Stripe checkouts
   get 'pricing', to: 'stripe/checkout#pricing'
   post 'stripe/checkout', to: 'stripe/checkout#checkout'
