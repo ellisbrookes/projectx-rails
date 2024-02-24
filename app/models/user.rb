@@ -4,8 +4,8 @@ class User < ApplicationRecord
   # Include default devise modules.
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable, :lockable, :timeoutable, :trackable
 
-  # roles
-  enum role: [:default, :admin]
+  # rolify
+  rolify
 
   # create a stripe customer
   after_create do
@@ -28,7 +28,7 @@ class User < ApplicationRecord
 
   # default Role
   def set_default_role
-    self.role ||= :default
+    add_role(:default) if roles.blank?
   end
 
   # Stripe methods

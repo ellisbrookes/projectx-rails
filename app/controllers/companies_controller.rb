@@ -45,6 +45,8 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
+    authorize(@company)
+
     if @company.destroy
       redirect_to(companies_url, notice: "Company was successfully destroyed.")
     else
