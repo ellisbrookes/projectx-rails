@@ -16,8 +16,12 @@ class Stripe::CheckoutController < ApplicationController
       success_url: 'http://localhost:3000',
       cancel_url: 'http://localhost:3000',
       subscription_data: {
+        trial_settings: {
+          end_behavior: { missing_payment_method: 'cancel' }
+        },
         trial_period_days: 30,
       },
+      payment_method_collection: 'if_required',
     })
 
     redirect_to(session.url, allow_other_host: true)

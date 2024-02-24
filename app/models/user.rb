@@ -7,11 +7,6 @@ class User < ApplicationRecord
   # rolify
   rolify
 
-  # create a stripe customer
-  after_create do
-    Stripe::Customer.create(email: email)
-  end
-
   # Associations
   has_one_attached :avatar
 
@@ -35,10 +30,6 @@ class User < ApplicationRecord
   def stripe_customer
     Stripe::Customer.list(email: email).data.first
   end
-
-  # def subscription_expired?
-  #   Stripe::Subscription.list.data.first.nil? || !Stripe::Subscription.list.data.first.status === 'active'
-  # end
 
   def subscription_expired?
     subscriptions.none? { |subscription| subscription.status == 'active' }

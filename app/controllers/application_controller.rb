@@ -10,6 +10,20 @@ class ApplicationController < ActionController::Base
 
   helper_method :breadcrumbs
 
+  # sign in redirects
+  def after_sign_in_path_for(resource)
+    if resource.is_a?(User)
+      if resource.sign_in_count == 1
+        pricing_path
+      else
+        dashboard_index_path
+      end
+    else
+      super
+    end
+  end
+
+  # breadcrumbs
   def breadcrumbs
     @breadcrumbs ||= []
   end
