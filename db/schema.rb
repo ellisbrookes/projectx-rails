@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_24_215105) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_24_220209) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -100,7 +100,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_215105) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "currency"
+    t.string "belongs_to"
+    t.integer "customer_id", null: false
     t.index ["company_id"], name: "index_invoices_on_company_id"
+    t.index ["customer_id"], name: "index_invoices_on_customer_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -268,6 +271,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_215105) do
   add_foreign_key "companies", "users"
   add_foreign_key "customers", "companies"
   add_foreign_key "invoices", "companies"
+  add_foreign_key "invoices", "customers"
   add_foreign_key "items", "companies"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
