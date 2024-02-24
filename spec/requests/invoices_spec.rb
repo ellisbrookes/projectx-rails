@@ -111,7 +111,7 @@ RSpec.describe("Invoices", type: :request) do
 
       # render invoice edit page
       expect(response).to(render_template(:edit))
-      expect(response.body).to(include("Customer id can&#39;t be blank"))
+      expect(response.body).to(include("Customer can&#39;t be blank"))
     end
   end
 end
