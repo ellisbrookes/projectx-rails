@@ -1,7 +1,7 @@
 <div id="<%= dom_id invoice %>">
   <%= render HeadingComponent.new(
     title: invoice.invoice_issue,
-    text: invoice.customer,
+    text: invoice.customer_id,
   ) %>
 
   <p class="my-5">
@@ -10,8 +10,8 @@
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Customer</strong>
-    <%= invoice.customer %>
+    <strong class="block font-medium mb-1">Customer ID</strong>
+    <%= invoice.customer_id %>
   </p>
 
   <p class="my-5">
