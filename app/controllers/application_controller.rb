@@ -2,8 +2,11 @@ class ApplicationController < ActionController::Base
   before_action :set_breadcrumbs
   before_action :set_billing_portal
 
-  include Pagy::Backend
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  include Pundit::Authorization
   include ApplicationHelper
+  include Pagy::Backend
 
   helper_method :breadcrumbs
 
@@ -25,6 +28,11 @@ class ApplicationController < ActionController::Base
     @portal_session = Stripe::BillingPortal::Session.create({
       customer: Stripe::Customer.list(email: current_user.email).data.first.id,
       return_url: 'http://localhost:3000/dashboard',
-    }) if dashboard_request
+    }) if dashboard_request && user_signed_in?
+  end
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_back(fallback_location: dashboard_index_path)
   end
 end

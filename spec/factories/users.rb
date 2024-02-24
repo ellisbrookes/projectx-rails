@@ -4,13 +4,9 @@ FactoryBot.define do
     email { Faker::Internet.unique.email }
     password { "testing1234" }
     confirmed_at { Time.now }
-  end
 
-  factory :admin do
-    full_name { Faker::Name.name }
-    email { Faker::Internet.unique.email }
-    password { "admin1234" }
-    confirmed_at { Time.now }
-    role { 1 }
+    trait :admin do
+      after(:create) { |user| user.add_role(:admin) }
+    end
   end
 end

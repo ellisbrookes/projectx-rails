@@ -68,6 +68,6 @@ class Stripe::WebhooksController < ApplicationController
       puts "Subscription trial will end: #{event.id}"
     end
 
-    render json: { message: 'success'}
+    render(json: { message: 'success' })
   end
 end
