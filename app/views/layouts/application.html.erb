@@ -9,8 +9,8 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
+    <script src="https://js.stripe.com/v3/" defer></script>
     <%= javascript_importmap_tags %>
-    <script src="https://js.stripe.com/v3/" defer</script>
     <%= hotwire_livereload_tags if Rails.env.development? %>
     <%= render partial: "shared/theme_toggle" %>
   </head>
