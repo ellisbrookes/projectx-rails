@@ -32,12 +32,7 @@ class User < ApplicationRecord
   end
 
   def subscription_expired?
-    subscriptions.none? { |subscription| subscription.status == 'active' }
-  end
-
-  def subscription_expiring_soon?
-    first_subscription = subscriptions.first
-    first_subscription.present? && first_subscription.trial_end && first_subscription.trial_end < Time.now.to_i
+    subscriptions.none? { |subscription| subscription.status == 'trialing' }
   end
 
   def days_until_subscription_expiration
