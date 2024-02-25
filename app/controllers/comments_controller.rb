@@ -19,6 +19,7 @@ class CommentsController < ApplicationController
       CommentNotifier.with(
         comment_task: @comment.task.name,
         commenter_name: current_user.full_name,
+        commenter_url: company_team_project_task_path(@company, @team, @project, @task),
       ).deliver(User.all)
 
       redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Comment was created successfully")

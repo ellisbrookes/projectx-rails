@@ -141,30 +141,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_220209) do
     t.index ["recipient_type", "recipient_id"], name: "index_noticed_notifications_on_recipient"
   end
 
-  create_table "noticed_events", force: :cascade do |t|
-    t.string("type")
-    t.string("record_type")
-    t.integer("record_id")
-    t.json("params")
-    t.datetime("created_at", null: false)
-    t.datetime("updated_at", null: false)
-    t.integer("notifications_count")
-    t.index(["record_type", "record_id"], name: "index_noticed_events_on_record")
-  end
-
-  create_table "noticed_notifications", force: :cascade do |t|
-    t.string("type")
-    t.integer("event_id", null: false)
-    t.string("recipient_type", null: false)
-    t.integer("recipient_id", null: false)
-    t.datetime("read_at", precision: nil)
-    t.datetime("seen_at", precision: nil)
-    t.datetime("created_at", null: false)
-    t.datetime("updated_at", null: false)
-    t.index(["event_id"], name: "index_noticed_notifications_on_event_id")
-    t.index(["recipient_type", "recipient_id"], name: "index_noticed_notifications_on_recipient")
-  end
-
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -295,6 +271,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_220209) do
   add_foreign_key "companies", "users"
   add_foreign_key "customers", "companies"
   add_foreign_key "invoices", "companies"
+  add_foreign_key "invoices", "customers"
   add_foreign_key "items", "companies"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
