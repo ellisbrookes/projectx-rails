@@ -4,9 +4,17 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  devise_for :users, controllers: { registrations: 'registrations/registrations' }
+  devise_for :users, controllers: { sessions: 'users/sessions' }
 
   root 'pages#home'
+
+  # Stripe checkouts
+  get 'pricing', to: 'stripe/checkout#pricing'
+  post 'stripe/checkout', to: 'stripe/checkout#checkout'
+  post 'stripe/checkout/success', to: 'stripe/checkout#success'
+  post 'stripe/checkout/cancel', to: 'stripe/checkout#cancel'
+  # stripe listen --forward-to localhost:3000/stripe/webhooks
+  post 'stipe/webhooks', to: 'stripe/webhooks#create'
 
   resources :dashboard, only: [:index] do
     collection do

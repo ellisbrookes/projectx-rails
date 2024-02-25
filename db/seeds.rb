@@ -28,6 +28,11 @@ u = User.create(
 u.skip_confirmation!
 u.save
 
+# set last user to admin
+u = User.last
+u.add_role(:admin)
+u.save!
+
 puts 'Seeded 9 users and 1 admin user into the database'
 
 # Create a company with a name, address, description and email
@@ -106,7 +111,7 @@ puts 'Seeded 10 projects into the database'
 10.times do |_n|
   Invoice.create(
     invoice_issue: Faker::Number.within(range: 1..1000),
-    customer_id: Faker::Company.name,
+    customer_id: Faker::Number.within(range: 1..9),
     customer_address: Faker::Address.full_address,
     company_address: Faker::Address.full_address,
     issue_date: Faker::Date.backward(days: 30),

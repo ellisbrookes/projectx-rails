@@ -23,8 +23,6 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
-# Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
@@ -99,21 +97,16 @@ group :test do
 end
 
 gem "view_component", "~> 3.9"
-
 gem "tailwindcss-rails", "~> 2.3"
-
 gem "erb-formatter", "~> 0.4.3"
-
 gem "pry-byebug"
-
 gem "faker", "~> 3.2"
-
 gem "rails-controller-testing", "~> 1.0"
-
 gem "simplecov", "~> 0.22.0", group: :test
-
 gem "friendly_id", "~> 5.5"
-
 gem "receipts", "~> 2.2"
-
+gem "stripe", "~> 10.8"
+gem "noticed", "~> 2.1"
+gem "rolify", "~> 6.0"
+gem "pundit", "~> 2.3"
 gem "noticed", "~> 2.1"
