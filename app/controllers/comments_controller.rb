@@ -16,6 +16,11 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
+      CommentNotifier.with(
+        comment_task: @comment.task.name,
+        commenter_name: current_user.full_name,
+      ).deliver(User.all)
+
       redirect_to(company_team_project_task_path(@company, @team, @project, @task), notice: "Comment was created successfully")
     else
       render(:new, status: :unprocessable_entity)

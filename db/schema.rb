@@ -72,9 +72,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_161713) do
     t.integer("company_id", null: false)
     t.datetime("created_at", null: false)
     t.datetime("updated_at", null: false)
-    t.string("slug")
     t.index(["company_id"], name: "index_customers_on_company_id")
-    t.index(["slug"], name: "index_customers_on_slug", unique: true)
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -100,9 +98,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_161713) do
     t.datetime("created_at", null: false)
     t.datetime("updated_at", null: false)
     t.string("currency")
-    t.integer("customer_id", null: false)
     t.index(["company_id"], name: "index_invoices_on_company_id")
-    t.index(["customer_id"], name: "index_invoices_on_customer_id")
   end
 
   create_table "items", force: :cascade do |t|
@@ -114,6 +110,30 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_161713) do
     t.string("description")
     t.string("name")
     t.index(["company_id"], name: "index_items_on_company_id")
+  end
+
+  create_table "noticed_events", force: :cascade do |t|
+    t.string("type")
+    t.string("record_type")
+    t.integer("record_id")
+    t.json("params")
+    t.datetime("created_at", null: false)
+    t.datetime("updated_at", null: false)
+    t.integer("notifications_count")
+    t.index(["record_type", "record_id"], name: "index_noticed_events_on_record")
+  end
+
+  create_table "noticed_notifications", force: :cascade do |t|
+    t.string("type")
+    t.integer("event_id", null: false)
+    t.string("recipient_type", null: false)
+    t.integer("recipient_id", null: false)
+    t.datetime("read_at", precision: nil)
+    t.datetime("seen_at", precision: nil)
+    t.datetime("created_at", null: false)
+    t.datetime("updated_at", null: false)
+    t.index(["event_id"], name: "index_noticed_notifications_on_event_id")
+    t.index(["recipient_type", "recipient_id"], name: "index_noticed_notifications_on_recipient")
   end
 
   create_table "projects", force: :cascade do |t|
@@ -195,6 +215,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_161713) do
   create_table "users", force: :cascade do |t|
     t.string("full_name", default: "", null: false)
     t.string("email", default: "", null: false)
+    t.string("is_admin", default: "f", null: false)
     t.string("encrypted_password", default: "", null: false)
     t.string("reset_password_token")
     t.datetime("reset_password_sent_at")
@@ -213,8 +234,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_161713) do
     t.datetime("locked_at")
     t.datetime("created_at", null: false)
     t.datetime("updated_at", null: false)
-    t.string("stripe_customer_id")
-    t.integer("role", default: 0)
     t.index(["confirmation_token"], name: "index_users_on_confirmation_token", unique: true)
     t.index(["email"], name: "index_users_on_email", unique: true)
     t.index(["reset_password_token"], name: "index_users_on_reset_password_token", unique: true)
@@ -228,7 +247,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_161713) do
   add_foreign_key "companies", "users"
   add_foreign_key "customers", "companies"
   add_foreign_key "invoices", "companies"
-  add_foreign_key "invoices", "customers"
   add_foreign_key "items", "companies"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
