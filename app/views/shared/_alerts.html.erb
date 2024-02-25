@@ -2,9 +2,9 @@
   <div class="transition-all flex items-center bg-neutral-100 dark:bg-slate-900 px-6 py-4 mb-2 w-full" data-controller="alert" data-alert-target="closeAlert">
     <p class="text-center leading-6 text-gray-900 dark:text-white w-full">
       <% if notice %>
-        <%= notice %>
+        <%= notice.html_safe %>
       <% elsif alert %>
-        <%= alert %>
+        <%= alert.html_safe %>
       <% end %>
     </p>
 
