@@ -1,9 +1,4 @@
 class Stripe::CheckoutController < ApplicationController
-  def pricing
-    lookup_keys = ['montly', 'yearly']
-    @prices = Stripe::Price.list(lookup_keys: lookup_keys, expand: ['data.product']).data.sort_by(&:unit_amount)
-  end
-
   def checkout
     session = Stripe::Checkout::Session.create({
       mode: 'subscription',
@@ -17,7 +12,7 @@ class Stripe::CheckoutController < ApplicationController
       cancel_url: 'http://localhost:3000',
       subscription_data: {
         trial_settings: {
-          end_behavior: { missing_payment_method: 'cancel' }
+          end_behavior: { missing_payment_method: 'cancel' },
         },
         trial_period_days: 30,
       },

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   # Stripe checkouts
-  get 'pricing', to: 'stripe/checkout#pricing'
+  get 'pricing', to: 'stripe/pricing#index'
   post 'stripe/checkout', to: 'stripe/checkout#checkout'
   post 'stripe/checkout/success', to: 'stripe/checkout#success'
   post 'stripe/checkout/cancel', to: 'stripe/checkout#cancel'
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
           post 'mark_as_unread', to: 'notifications#mark_as_unread', as: 'mark_as_unread'
         end
       end
-      
+
       resources :companies do
         resources :customers
         resources :items

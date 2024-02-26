@@ -28,11 +28,12 @@ class User < ApplicationRecord
 
   # Stripe methods
   def stripe_customer
-    Stripe::Customer.list(email: email).data.first
+    customer = Stripe::Customer.list(email: email).data.first
+    user.update(stripe_customer_id: customer.id)
   end
 
   def subscription_expired?
-    subscriptions.none? { |subscription| subscription.status == 'trialing' }
+    subscriptions.none? { |subscription| subscription.status == 'canceled' }
   end
 
   def days_until_subscription_expiration
