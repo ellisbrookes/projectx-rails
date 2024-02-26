@@ -1,48 +1,41 @@
-<div class="container mx-auto px-4 mt-10">
+<div class="container mx-auto px-10 my-10">
   <div class="text-center mb-8">
-    <h1 class="text-2xl font-semibold mb-2 dark:text-white">Explore Our Product Plans</h1>
+    <h1 class="text-2xl font-semibold mb-2 dark:text-white">Pricing plans</h1>
     <p class="text-gray-700 dark:text-white">Find the perfect plan that suits your needs!</p>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <% @prices.each do |price| %>
-      <div class="rounded-lg shadow-lg bg-white dark:bg-slate-900 dark:text-white">
-        <div class="h-full flex flex-col justify-between px-6 py-8">
-          <div>
-            <h2 class="text-center font-semibold text-lg mb-4">
-              <%= price.product.name %>
-            </h2>
-
-            <p class="text-gray-700 dark:text-white text-center mb-8">
-              <%= price.product.description %>
-            </p>
-
-            <div class="text-center mb-6">
-              <span class="text-4xl font-semibold">
-                <%= number_to_currency(price.unit_amount/100, unit: "£") %>
-              </span>
-
-              <span class="text-gray-600 dark:text-white">
-                /<%= price.recurring.interval %>
-              </span>
-            </div>
-
-            <ul class="text-sm text-center text-gray-600 dark:text-white mb-6 pricing-features">
-              <% price.product.features.each do |feature| %>
-                <li class="py-3 border-y"><%= feature.name %></li>
-              <% end %>
-            </ul>
-          </div>
-
-          <div class="flex justify-center">
-            <%= button_to "Join Now", stripe_checkout_path(price_id: price.id), data: { turbo: false }, class: "dark:bg-slate-700 text-black dark:hover:bg-slate-600 dark:text-white font-bold py-2 px-4 rounded shadow-md" %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+    <%= render "monthly" %>
   </div>
 
-  <div class="mt-8 text-center">
-    <p class="text-gray-600 dark:text-white"><b>**</b>Accounts will be terminated after the 30-day free trial if you do not continue paying for the subscription.</p>
+  <%# price comparision table %>
+  <div class="text-center mt-8">
+    <h1 class="text-2xl font-semibold mb-2 dark:text-white">Compare our plans</h1>
+  </div>
+
+  <div class="inline-block min-w-full align-middle">
+    <table class="min-w-full divide-y divide-gray-200 dark:divide-slate-700 table-auto">
+      <thead>
+        <tr>
+          <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Basic</th>
+          <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Business</th>
+          <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">Enterprise</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @prices.map(&:product).uniq.each do |product| %>
+          <% product.features.each do |feature| %>
+            <tr class="even:bg-gray-100 dark:even:bg-slate-900">
+              <td class="whitespace-nowrap px-3 py-5 text-sm">
+                <div class="text-gray-900 dark:text-white text-center">
+                  <%= feature.name %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
