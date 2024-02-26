@@ -1,5 +1,4 @@
 class UserMailer < ApplicationMailer
-
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -8,6 +7,6 @@ class UserMailer < ApplicationMailer
   def new_comment
     @greeting = "Hi"
 
-    mail to: params[:user].email
+    mail(to: params[:user].email)
   end
 end
