@@ -1,5 +1,5 @@
 <% @yearly.each do |price| %>
-  <div class="hidden rounded-lg shadow-lg bg-white dark:bg-slate-900 dark:text-white" data-price-toggle-target="yearly">
+  <div class="rounded-lg shadow-lg bg-white dark:bg-slate-900 dark:text-white">
     <div class="h-full flex flex-col justify-between px-6 py-8">
       <div>
         <h2 class="text-center font-semibold text-lg mb-4">
@@ -16,7 +16,7 @@
           </span>
 
           <span class="text-gray-600 dark:text-white">
-            /<%= price.recurring.interval %>
+            / <%= price.recurring.interval %>
           </span>
         </div>
       </div>
