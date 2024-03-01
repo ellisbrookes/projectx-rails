@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :dashboard, only: [:index] do
     collection do
+        resources :admin, only: %i[index]
       resources :notifications, only: %i[index] do
         collection do
           post 'mark_as_read', to: 'notifications#mark_as_read', as: 'mark_as_read'

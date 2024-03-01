@@ -1,0 +1,12 @@
+<%= render HeadingComponent.new(
+  title: "Admin Area",
+  text:
+    "Welcome to the admin area",
+) %>
+
+<div class="bg-neutral-200 dark:bg-slate-700 dark:text-white text-black rounded-lg shadow-lg p-8">
+  <h2 class="text-lg font-semibold mb-2">Total Users</h2>
+  <div class="text-4xl font-bold text-gray-800">
+    <%= @total_users %>
+  </div>
+</div>

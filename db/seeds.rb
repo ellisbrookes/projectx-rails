@@ -33,7 +33,21 @@ u = User.last
 u.add_role(:admin)
 u.save!
 
-puts 'Seeded 9 users and 1 admin user into the database'
+u = User.create(
+  full_name: Faker::Name.name,
+  email: Faker::Internet.email,
+  password: 'admin123',
+)
+
+u.skip_confirmation!
+u.save
+
+# set last user to admin
+u = User.last
+u.add_role(:superadmin)
+u.save!
+
+puts 'Seeded 9 users, 1 admin and 1 super admin into the database'
 
 # Create a company with a name, address, description and email
 10.times do |_n|
