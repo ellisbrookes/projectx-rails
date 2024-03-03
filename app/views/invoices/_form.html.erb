@@ -54,6 +54,12 @@
     <%= f.text_area :notes, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
   </div>
 
+  <div id="items_fields" data-controller="items">
+      <!-- Fields for the items (will be dynamically added) -->
+    </div>
+
+  <%= button_to "Add Item", "#", type: "button", data: { action: "click->items#addField" } %>
+
   <div class="my-5">
     <%= f.label :amount %>
 
