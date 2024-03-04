@@ -45,24 +45,23 @@
   </div>
 
   <div class="my-5">
-    <%# f.label :items %>
-    <%# f.collection_select :items, Item.where(company_id: @company).order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
-  </div>
-
-  <div class="my-5">
     <%= f.label :notes %>
     <%= f.text_area :notes, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
   </div>
 
   <div class="my-5">
     <%= f.label 'Add Items' %>
+
+    <div class="my-5">
+      <%= f.label :items %>
+      <%= f.collection_select :items, Item.where(company_id: @company).order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
+    </div>
+
     <%= f.fields_for :items do |item| %>
-      <%= item.label :name %>
-      <%= item.text_area :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
       <%= item.label :description %>
-      <%= item.text_area :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+      <%= item.rich_text_area :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
       <%= item.label :quantity %>
-      <%= item.text_area :quantity, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+      <%= item.number_field :quantity, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
       <%= item.label :unit_price %>
       <%= item.number_field :unit_price %>
     <% end %>
