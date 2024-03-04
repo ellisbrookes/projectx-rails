@@ -13,7 +13,7 @@ class Invoice < ApplicationRecord
   validates :company_address, presence: true
   validates :amount, presence: true
 
-  accepts_nested_attributes_for :items
+  accepts_nested_attributes_for :items, reject_if: :all_blank, allow_destroy: true
 
   def items_attributes=(item_attributes)
     item_attributes.values.each do |item_attribute|

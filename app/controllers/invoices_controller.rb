@@ -66,7 +66,7 @@ class InvoicesController < ApplicationController
       :amount,
       :company_id,
       :currency,
-      items_attributes: [:id, :name, :company_id, :description, :quantity],
+      items_attributes: [:id, :name, :company_id, :description, :quantity, :_destroy],
     )
   end
 end
