@@ -25,7 +25,9 @@ export default class extends Controller {
       )
         .then((res) => res.json())
         .then((data) => {
-          this.addressTarget.value = data.value;
+          console.log(data);
+          this.addressTarget.value = data.address;
+          this.notesTarget.value = data.notes;
         })
         .catch((e) => {
           console.error("Error:", e);
