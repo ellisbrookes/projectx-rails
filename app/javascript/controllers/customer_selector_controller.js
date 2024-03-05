@@ -2,13 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="customer-selector"
 export default class extends Controller {
-  static targets = [
-    "customerId",
-    "companyId",
-    "address",
-    "notes",
-    "descritpion",
-  ];
+  static targets = ["customerId", "companyId", "address", "notes"];
 
   connect() {
     this.element.addEventListener("change", this.onChange.bind(this));
@@ -34,7 +28,6 @@ export default class extends Controller {
           console.log(data);
           this.addressTarget.value = data.address;
           this.notesTarget.value = data.notes;
-          this.descriptionTarget.value = data.description;
         })
         .catch((e) => {
           console.error("Error:", e);

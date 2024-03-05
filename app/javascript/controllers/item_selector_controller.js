@@ -1,29 +1,40 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="item-selector"
+// Connects to data-controller="customer-selector"
 export default class extends Controller {
+  static targets = ["companyId", "itemId", "description"];
+
   connect() {
-    console.log("hello from stimulus!");
+    this.element.addEventListener("change", this.onChange.bind(this));
+    this.load();
   }
 
-  load(event) {
-    let companyId = this.data.get("companyId");
-    let itemId = event.target.value;
+  load() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    let companyId = this.companyIdTarget.value;
+    let itemId = this.customerIdTarget.value;
+
+    console.log(itemId.value);
 
     if (companyId && itemId) {
-      fetch("/dashboard/company/${companyId}/items/${itemId}/load_data")
-        .then((res) => res.text())
-        .then((html) => {
-          this.targets.find("data-target").innerHTML = html;
+      fetch(
+        `fetch("/dashboard/company/${companyId}/items/${itemId}/load_data")`,
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          this.descriptionTarget.value = data.description;
         })
         .catch((e) => {
-          console.error("Error", e);
+          console.error("Error:", e);
         });
     }
   }
 
-  // Access the company ID from the data attribute
-  get companyId() {
-    return this.data.get("companyId");
+  onChange() {
+    this.load();
   }
 }
