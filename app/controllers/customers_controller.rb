@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_company
-  before_action :set_customer, only: %i[show edit update destroy]
+  before_action :set_customer, only: %i[show edit update destroy load_data]
 
   layout 'dashboard'
 
@@ -45,8 +45,11 @@ class CustomersController < ApplicationController
 
   def destroy
     @customer.destroy
-
     redirect_to(company_customers_url(@company), notice: "Customer was successfully destroyed")
+  end
+
+  def load_data
+    render json: { value: @customer.address }
   end
 
   private

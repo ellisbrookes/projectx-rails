@@ -26,7 +26,12 @@ Rails.application.routes.draw do
       end
 
       resources :companies do
-        resources :customers
+        resources :customers do
+          member do
+            get 'load_data', to: 'customers#load_data', as: 'load_data'
+          end
+        end
+
         resources :items
         resources :invoices, except: %i[destroy]
         resources :teams do

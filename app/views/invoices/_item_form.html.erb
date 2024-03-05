@@ -1,0 +1,21 @@
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <div class="my-5">
+    <%= f.label :name, "Item" %>
+    <%= f.collection_select :name, Item.where(company_id: @company.id), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
+  </div>
+
+  <div class="my-5">
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", value: 1, min: 1 %>
+  </div>
+
+  <div class="my-5">
+    <%= f.label :description %>
+    <%= f.rich_text_area :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", value: :description %>
+  </div>
+
+  <div class="my-5">
+    <button type="button" data-action="nested-form#remove">Remove item</button>
+    <%= f.hidden_field :_destroy %>
+  </div>
+</div>
