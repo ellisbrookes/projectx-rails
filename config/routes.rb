@@ -32,7 +32,12 @@ Rails.application.routes.draw do
           end
         end
 
-        resources :items
+        resources :items do
+          member do
+            get 'load_data', to: 'items#load_data', as: 'load_data'
+          end
+        end
+
         resources :invoices, except: %i[destroy]
         resources :teams do
           resources :projects do

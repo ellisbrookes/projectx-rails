@@ -15,18 +15,18 @@ export default class extends Controller {
 
   fetchData() {
     let companyId = this.companyIdTarget.value;
-    let itemId = this.customerIdTarget.value;
+    let itemId = this.itemIdTarget.value;
 
     console.log(itemId.value);
 
     if (companyId && itemId) {
       fetch(
-        `fetch("/dashboard/company/${companyId}/items/${itemId}/load_data")`,
+        `fetch("/dashboard/companies/${companyId}/items/${itemId}/load_data")`,
       )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          this.descriptionTarget.value = data.description;
+          this.ItemIdTarget.value = data.description;
         })
         .catch((e) => {
           console.error("Error:", e);
