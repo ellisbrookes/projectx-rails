@@ -1,19 +1,26 @@
 <div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
-  <div class="my-5">
-    <%= f.label :name, "Item" %>
-    <%= f.collection_select :name, Item.where(company_id: @company.id), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
-  </div>
-
-  <div class="my-5">
-    <%= f.label :quantity %>
-    <%= f.number_field :quantity, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", value: 1, min: 1 %>
-  </div>
-
   <div data-controller="item-selector">
     <div class="my-5">
-      <%= f.label :description %>
-      <%= f.rich_text_area :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", data: { item_selector_target: "description" }%>
+      <%= f.label :id %>
+      <%= f.collection_select(:id, Item.where(company_id: @company.id).order(:name), :id, :name, { prompt: "Select an item" }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600", data: { item_selector_target: "itemId" } }) %>
     </div>
+
+    <div class="my-5">
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", value: 1, min: 1 %>
+    </div>
+
+    <div class="my-5">
+      <h3>Description</h3>
+      <div data-item-selector-target="description"></div>
+    </div>
+
+    <div class="my-5">
+      <h3>Unit price</h3>
+      <div data-item-selector-target="unitPrice"></div>
+    </div>
+
+    <%= f.hidden_field :company_id, value: @company.id, data: { item_selector_target: "companyId" } %>
   </div>
 
   <div class="my-5">

@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_company
   before_action :set_invoice
-  before_action :set_item, only: %i[show edit update destroy]
+  before_action :set_item, only: %i[show edit update destroy load_data]
 
   layout 'dashboard'
 
@@ -47,6 +47,10 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     redirect_to(company_items_path(@company, @item), notice: 'Item was successfully destoryed')
+  end
+
+  def load_data
+    render(json: { description: @item.description, unit_price: @item.unit_price })
   end
 
   private

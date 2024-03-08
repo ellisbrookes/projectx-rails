@@ -3,7 +3,7 @@ class Invoice < ApplicationRecord
   belongs_to :company
   belongs_to :customer
 
-  has_many :items
+  has_and_belongs_to_many :items
 
   validates :invoice_issue, presence: true
   validates :customer_id, presence: true
@@ -20,5 +20,9 @@ class Invoice < ApplicationRecord
       item = Item.find_or_create_by(item_attribute)
       items << item
     end
+  end
+
+  def calculate_total_amount
+    self.total_amount = items.sum(&:total_price)
   end
 end

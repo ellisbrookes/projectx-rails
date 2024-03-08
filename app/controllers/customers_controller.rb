@@ -49,7 +49,7 @@ class CustomersController < ApplicationController
   end
 
   def load_data
-    render json: { address: @customer.address, notes: @customer.notes }
+    render(json: { address: @customer.address, notes: @customer.notes })
   end
 
   private

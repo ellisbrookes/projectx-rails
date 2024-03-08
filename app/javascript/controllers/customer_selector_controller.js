@@ -17,15 +17,12 @@ export default class extends Controller {
     let companyId = this.companyIdTarget.value;
     let customerId = this.customerIdTarget.value;
 
-    console.log(customerId.value);
-
     if (companyId && customerId) {
       fetch(
         `/dashboard/companies/${companyId}/customers/${customerId}/load_data`,
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           this.addressTarget.value = data.address;
           this.notesTarget.value = data.notes;
         })
