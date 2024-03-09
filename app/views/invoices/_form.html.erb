@@ -12,42 +12,42 @@
 
   <div class="my-5">
     <%= f.label :invoice_issue %>
-    <%= f.text_field :invoice_issue, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+    <%= f.text_field :invoice_issue, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full dark:border-black dark:bg-indigo-900" %>
   </div>
 
   <div data-controller="customer-selector">
     <div class="my-5">
       <%= f.label :customer_id %>
-      <%= f.collection_select(:customer_id, Customer.where(company_id: @company).order(:full_name), :id, :full_name, { prompt: "Select an customer" }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600", data: { customer_selector_target: "customerId" } }) %>
+      <%= f.collection_select(:customer_id, Customer.where(company_id: @company).order(:full_name), :id, :full_name, { prompt: "Select an customer" }, { class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:border-black dark:bg-indigo-900", data: { customer_selector_target: "customerId" } }) %>
       <%= f.hidden_field :company_id, value: @company.id, data: { customer_selector_target: "companyId" } %>
     </div>
 
     <div class="my-5">
       <% if Customer.present? %>
         <%= f.label :customer_address %>
-        <%= f.text_area :customer_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", data: { customer_selector_target: "address" } %>
+        <%= f.text_area :customer_address, rows: 4, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full dark:border-black dark:bg-indigo-900", data: { customer_selector_target: "address" } %>
       <% end %>
     </div>
 
     <div class="my-5">
       <%= f.label :notes %>
-      <%= f.text_area :notes, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", data: { customer_selector_target: "notes" } %>
+      <%= f.text_area :notes, rows: 4, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full dark:border-black dark:bg-indigo-900", data: { customer_selector_target: "notes" } %>
     </div>
   </div>
 
   <div class="my-5">
     <%= f.label :issue_date %>
-    <%= f.date_field :issue_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", value: Time.now.strftime('%Y-%m-%d') %>
+    <%= f.date_field :issue_date, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full dark:border-black dark:bg-indigo-900", value: Time.now.strftime('%Y-%m-%d') %>
   </div>
 
   <div class="my-5">
     <%= f.label :due_date %>
-    <%= f.date_field :due_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+    <%= f.date_field :due_date, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full dark:border-black dark:bg-indigo-900" %>
   </div>
 
   <div class="my-5">
     <%= f.label :company_address %>
-    <%= f.text_area :company_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", value: @company&.address %>
+    <%= f.text_area :company_address, rows: 4, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full dark:border-black dark:bg-indigo-900", value: @company&.address %>
   </div>
 
   <template data-nested-form-target="template">
@@ -63,18 +63,18 @@
   </div>
 
   <div data-nested-form-target="target"></div>
-  <button type="button" data-action="nested-form#add", class="mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700 dark:hover:bg-slate-600">Add an Item</button>
+  <button type="button" data-action="nested-form#addbg-neutral-100 dark:bg-slate-70indigok9hover:bg-indigo-950">Add an Item</button>
 
   <div class="my-5">
     <%= f.label :amount %>
 
     <div class="flex items-center space-x-3 dark:text-black">
-      <%= f.number_field :amount, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2 dark:text-white dark:border-black dark:bg-slate-600", step: "0.01" %>
-      <%= f.select :currency, options_for_select(%w[GBP USD EUR], "GBP"), {}, { class: "block shadow rounded-md border border-gray-200 p-2 pr-8 mt-2 dark:text-white dark:border-black dark:bg-slate-600" } %>
+      <%= f.number_field :amount, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-1/2 dark:border-black dark:bg-indigo-900", step: "0.01" %>
+      <%= f.select :currency, options_for_select(%w[GBP USD EUR], "GBP"), {}, { class: "block rounded-md border border-neutral-200 p-2 pr-8 mt-2 dark:border-black dark:bg-indigo-900" } %>
     </div>
   </div>
 
   <div class="inline">
-    <%= f.submit class:"rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer dark:bg-slate-600" %>
+    <%= f.submit class:"rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer dark:bg-indigo-900 cursor-pointer" %>
   </div>
 <% end %>

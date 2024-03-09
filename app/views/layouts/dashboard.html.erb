@@ -15,16 +15,16 @@
     <%= render partial: "shared/theme_toggle" %>
   </head>
 
-  <body class="dark:bg-slate-800" data-controller="theme">
+  <body class="dark:bg-black dark:text-white" data-controller="theme">
     <main>
-      <section class="relative dark:text-white">
+      <section class="relative">
         <%= render "shared/dashboard/sidebar" %>
         <%= render "shared/dashboard/navigation" %>
 
         <section class="relative mt-16 ml-24 md:ml-60 flex flex-col p-4 sm:p-6 lg:p-8">
           <nav>
             <div>
-              <div class="w-full flex gap-4 p-2 mb-4 rounded-lg dark:bg-slate-900 bg-neutral-100">
+              <div class="w-full flex gap-4 p-2 mb-4 rounded-lg dark:bg-indigo-900 bg-neutral-100">
                 <% breadcrumbs.each do |crumb| %>
                   <% if crumb.path.present? %>
                     <%= link_to crumb.name, crumb.path, class: "breadcrumb-link" %>

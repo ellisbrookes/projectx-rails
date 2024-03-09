@@ -16,7 +16,7 @@ export default class extends Controller {
 
       // button bg colour classes
       this.themeToggleTarget.classList.remove("bg-gray-200");
-      this.themeToggleTarget.classList.add("bg-nepal-500");
+      this.themeToggleTarget.classList.add("bg-indigo-900");
 
       // force dark mode when switched to dark but system preferences are dark mode
       document.documentElement.classList.add("dark");
@@ -26,7 +26,7 @@ export default class extends Controller {
       this.switcherTarget.classList.add("translate-x-0");
 
       // button bg colour classes
-      this.themeToggleTarget.classList.remove("bg-nepal-500");
+      this.themeToggleTarget.classList.remove("bg-indigo-900");
       this.themeToggleTarget.classList.add("bg-gray-200");
 
       // force light mode when switched to light but system preferences are light mode
@@ -47,7 +47,7 @@ export default class extends Controller {
 
         // button bg colour classes
         this.themeToggleTarget.classList.remove("bg-gray-200");
-        this.themeToggleTarget.classList.add("bg-nepal-500");
+        this.themeToggleTarget.classList.add("bg-indigo-900");
       } else {
         localStorage.setItem("theme", "light");
 
@@ -58,7 +58,7 @@ export default class extends Controller {
         this.switcherTarget.classList.add("translate-x-0");
 
         // button bg colour classes
-        this.themeToggleTarget.classList.remove("bg-nepal-500");
+        this.themeToggleTarget.classList.remove("bg-indigo-900");
         this.themeToggleTarget.classList.add("bg-gray-200");
       }
     } else {
@@ -73,7 +73,7 @@ export default class extends Controller {
         this.switcherTarget.classList.add("translate-x-0");
 
         // button bg colour classes
-        this.themeToggleTarget.classList.remove("bg-nepal-500");
+        this.themeToggleTarget.classList.remove("bg-indigo-900");
         this.themeToggleTarget.classList.add("bg-gray-200");
       } else {
         localStorage.setItem("theme", "dark");
@@ -86,7 +86,7 @@ export default class extends Controller {
 
         // button bg colour classes
         this.themeToggleTarget.classList.remove("bg-gray-200");
-        this.themeToggleTarget.classList.add("bg-nepal-500");
+        this.themeToggleTarget.classList.add("bg-indigo-900");
       }
     }
   }

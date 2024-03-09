@@ -1,12 +1,12 @@
 <% @monthly.each do |price| %>
-  <div class="rounded-lg shadow-lg bg-white dark:bg-slate-900 dark:text-white">
+  <div class="rounded-lg bg-white dark:bg-slate-900">
     <div class="h-full flex flex-col justify-between px-6 py-8">
       <div>
         <h2 class="text-center font-semibold text-lg mb-4">
           <%= price.product.name %>
         </h2>
 
-        <p class="text-gray-700 dark:text-white text-center mb-8">
+        <p class="text-gray-700 text-center mb-8">
           <%= price.product.description %>
         </p>
 
@@ -15,14 +15,14 @@
             <%= number_to_currency(price.unit_amount/100, unit: "£") %>
           </span>
 
-          <span class="text-gray-600 dark:text-white">
+          <span class="text-gray-600">
             /<%= price.recurring.interval %>
           </span>
         </div>
       </div>
 
       <div class="flex justify-center">
-        <%= button_to "Join Now", stripe_checkout_path(price_id: price.id), data: { turbo: false }, class: "dark:bg-slate-700 text-black dark:hover:bg-slate-600 dark:text-white font-bold py-2 px-4 rounded shadow-md" %>
+        <%= button_to "Join Now", stripe_checkout_path(price_id: price.id), data: { turbo: false }, class: "dark:bg-slate-700 text-black dark:hover:bg-slate-600 font-bold py-2 px-4 rounded" %>
       </div>
     </div>
   </div>

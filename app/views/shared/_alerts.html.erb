@@ -1,6 +1,6 @@
 <% if notice || alert %>
-  <div class="transition-all flex items-center bg-neutral-100 dark:bg-slate-900 px-6 py-4 mb-2 w-full" data-controller="alert" data-alert-target="closeAlert">
-    <p class="text-center leading-6 text-gray-900 dark:text-white w-full">
+  <div class="transition-all flex items-center bg-neutral-100 dark:bg-indigo-900 px-6 py-4 mb-2 w-full" data-controller="alert" data-alert-target="closeAlert">
+    <p class="text-center leading-6 w-full">
       <% if notice %>
         <%= notice.html_safe %>
       <% elsif alert %>
@@ -9,7 +9,7 @@
     </p>
 
     <div class="flex flex-1 justify-end">
-      <button type="button" class="-m-3 p-3 focus-visible:outline-offset-[-4px] dark:text-white" data-action="click->alert#closeAlert">
+      <button type="button" class="-m-3 p-1 focus-visible:outline-offset-[-4px] dark:hover:bg-indigo-950 rounded-md" data-action="click->alert#closeAlert">
         <%= heroicon "x-mark", variant: :outline %>
       </button>
     </div>

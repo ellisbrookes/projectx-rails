@@ -13,27 +13,27 @@
 
   <div class="my-5">
     <%= f.label :name %>
-    <%= f.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+    <%= f.text_field :name, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full dark:border-black dark:bg-indigo-900" %>
   </div>
 
   <div class="my-5">
     <%= f.label :description %>
-    <%= f.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+    <%= f.text_area :description, rows: 4, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full dark:border-black dark:bg-indigo-900" %>
   </div>
 
   <div class="my-5">
     <%= f.label :email %>
-    <%= f.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+    <%= f.text_field :email, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full dark:border-black dark:bg-indigo-900" %>
   </div>
 
   <div class="my-5">
     <%= f.label :team_members %>
-    <%= f.collection_select :user_id, User.order(:full_name), :id, :full_name, { prompt: true, multiple: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:bg-slate-600 dark:text-white" } %>
+    <%= f.collection_select :user_id, User.order(:full_name), :id, :full_name, { prompt: true, multiple: true }, { class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:bg-indigo-900" } %>
   </div>
 
   <%= f.hidden_field :company_id, value: @company.id  %>
 
   <div class="inline">
-    <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-mezium cursor-pointer dark:bg-slate-600" %>
+    <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-mezium cursor-pointer dark:bg-indigo-900" %>
   </div>
 <% end %>

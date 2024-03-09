@@ -1,4 +1,4 @@
-<nav class="bg-neutral-100 dark:bg-slate-900 z-50 fixed top-0 left-0 right-0 w-full ml-24 md:ml-60 flex items-center pl-4 pr-6 pt-3 pb-[0.88rem]">
+<nav class="bg-neutral-100 dark:bg-black z-50 fixed top-0 left-0 right-0 w-full ml-24 md:ml-60 flex items-center pl-4 pr-6 pt-3 pb-[0.88rem] border-b">
   <div class="w-[calc(100%-5rem)] md:w-[calc(100%-15rem)]">
     <div class="flex items-center gap-4">
       <form class="relative w-full">
@@ -6,12 +6,12 @@
           <%= heroicon "magnifying-glass", variant: :outline %>
         </div>
 
-        <input type="search" name="search" title="search" placeholder="Search..." required={false} class="w-full pl-12 text-sm dark:bg-slate-800 dark:text-white dark:border-white" />
+        <input type="search" name="search" title="search" placeholder="Search..." required={false} class="w-full pl-12 text-sm dark:bg-black dark:placeholder:text-white dark:border-white" />
       </form>
 
       <%= link_to notifications_path, class: "relative" do %>
         <%= heroicon "bell", variant: :outline %>
-        
+
         <div class="absolute bg-red-500 hover:bg-red-700 py-1 px-2 rounded-full -top-3 text-xs -right-2">
           <%= current_user.notifications.size %>
         </div>

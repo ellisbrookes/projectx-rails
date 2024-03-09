@@ -67,12 +67,12 @@
           <% frame_id = dom_id(comment, "edit_comment") %>
           <%= turbo_frame_tag frame_id do %>
             <%= comment.body %>
-            <%= link_to 'Edit Comment', edit_company_team_project_task_comment_path(@company, @team, @project, comment.task.id, comment), class: "text-nepal-500 dark:text-white font-bold py-1 px-2 rounded-sm text-xs" %>
+            <%= link_to 'Edit Comment', edit_company_team_project_task_comment_path(@company, @team, @project, comment.task.id, comment), class: "text-nepal-500 font-bold py-1 px-2 rounded-sm text-xs" %>
           <% end %>
 
           <br>
 
-          <button class="text-nepal-500 dark:text-white font-bold py-1 px-2 rounded-sm text-xs">
+          <button class="text-nepal-500 font-bold py-1 px-2 rounded-sm text-xs">
             Reply
           </button>
 

@@ -5,7 +5,7 @@
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-    <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+    <div class="bg-white px-6 py-12 sm:rounded-lg sm:px-12">
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'space-y-6' }) do |f| %>
@@ -15,7 +15,7 @@
           <%= f.label :password, "New password", class: "block text-sm font-medium leading-6 text-gray-900" %>
 
           <div class="mt-2">
-            <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nepal-500 sm:text-sm sm:leading-6" %>
+            <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nepal-500 sm:text-sm sm:leading-6" %>
           </div>
         </div>
 
@@ -23,12 +23,12 @@
           <%= f.label :password_confirmation, "Confirm new password", class: "block text-sm font-medium leading-6 text-gray-900" %>
 
           <div class="mt-2">
-            <%= f.password_field :password_confirmation,autofocus: true, autocomplete: "new-password", class:"block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nepal-500 sm:text-sm sm:leading-6" %>
+            <%= f.password_field :password_confirmation,autofocus: true, autocomplete: "new-password", class:"block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nepal-500 sm:text-sm sm:leading-6" %>
           </div>
         </div>
 
         <div>
-          <%= f.submit "Change my password", class: "flex cursor-pointer w-full justify-center rounded-md bg-nepal-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-nepal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-nepal-500" %>
+          <%= f.submit "Change my password", class: "flex cursor-pointer w-full justify-center rounded-md bg-nepal-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white hover:bg-nepal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-nepal-500" %>
         </div>
       <% end %>
 

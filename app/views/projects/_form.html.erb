@@ -14,35 +14,35 @@
 
   <div class="my-5">
     <%= f.label :title %>
-    <%= f.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+    <%= f.text_field :title, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full dark:border-black dark:bg-indigo-900" %>
   </div>
 
   <div class="my-5">
     <%= f.label :description %>
-    <%= f.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+    <%= f.text_area :description, rows: 4, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full dark:border-black dark:bg-indigo-900" %>
   </div>
 
   <div class="my-5">
     <%= f.label :team_id %>
-    <%= f.collection_select :team_id, Team.where(company_id: @company).order(:name), :id, :name, { prompt: true }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
+    <%= f.collection_select :team_id, Team.where(company_id: @company).order(:name), :id, :name, { prompt: true }, { class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:border-black dark:bg-indigo-900" } %>
   </div>
 
   <div class="my-5">
     <%= f.label :start_date %>
-    <%= f.date_field :start_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+    <%= f.date_field :start_date, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full dark:border-black dark:bg-indigo-900" %>
   </div>
 
   <div class="my-5">
     <%= f.label :completion_date %>
-    <%= f.date_field :completion_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+    <%= f.date_field :completion_date, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-full dark:border-black dark:bg-indigo-900" %>
   </div>
 
   <div class="my-5">
     <%= f.label :estimated_budget %>
 
     <div class="flex items-center space-x-3 dark:text-black">
-      <%= f.number_field :estimated_budget, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2 dark:text-white dark:border-black dark:bg-slate-600", step: "0.01" %>
-      <%= f.select :currency, options_for_select(%w[GBP USD EUR], "GBP"), {}, { class: "block shadow rounded-md border border-gray-200 p-2 pr-8 mt-2 dark:text-white dark:border-black dark:bg-slate-600" } %>
+      <%= f.number_field :estimated_budget, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-1/2 dark:border-black dark:bg-indigo-900", step: "0.01" %>
+      <%= f.select :currency, options_for_select(%w[GBP USD EUR], "GBP"), {}, { class: "block rounded-md border border-neutral-200 p-2 pr-8 mt-2 dark:border-black dark:bg-indigo-900" } %>
     </div>
   </div>
 
@@ -50,14 +50,14 @@
     <%= f.label :actual_budget %>
 
     <div class="flex items-center space-x-3 dark:text-black">
-      <%= f.number_field :actual_budget, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-1/2 dark:text-white dark:border-black dark:bg-slate-600", step: "0.01" %>
-      <%= f.select :currency, options_for_select(%w[GBP USD EUR], "GBP"), {}, { class: "block shadow rounded-md border border-gray-200 outline-none p-2 pr-8 mt-2 dark:text-white dark:border-black dark:bg-slate-600" } %>
+      <%= f.number_field :actual_budget, class: "block rounded-md border border-neutral-200 outline-none px-3 py-2 mt-2 w-1/2 dark:border-black dark:bg-indigo-900", step: "0.01" %>
+      <%= f.select :currency, options_for_select(%w[GBP USD EUR], "GBP"), {}, { class: "block rounded-md border border-neutral-200 outline-none p-2 pr-8 mt-2 dark:border-black dark:bg-indigo-900" } %>
     </div>
 
     <%= f.hidden_field :company_id, value: @company.id  %>
   </div>
 
   <div class="inline">
-    <%= f.submit class:"rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer dark:bg-slate-600" %>
+    <%= f.submit class:"rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer dark:bg-indigo-900 cursor-pointer" %>
   </div>
 <% end %>
