@@ -45,7 +45,7 @@
             <% if current_user.avatar.attached? %>
               <%= image_tag current_user.avatar, alt: "#{current_user.full_name}", class: "h-8 w-8 rounded-full" %>
             <% else %>
-              <%= heroicon "user-circle", variant: :outline, class: "h-8 w-8 text-gray-600" %>
+              <%= heroicon "user-circle", variant: :outline %>
             <% end %>
             <div class="hidden h-full md:block md:mx-1">|</div>
             <span class="hidden md:block">
