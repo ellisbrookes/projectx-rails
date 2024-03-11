@@ -45,6 +45,13 @@
     <%= invoice.amount %>
   </p>
 
+  <h2>Items</h2>
+  <ul>
+    <% @invoice.invoice_items.each do |invoice_item| %>
+      <li><%= invoice_item.item.name %> - <%= invoice_item.quantity %></li>
+    <% end %>
+  </ul>
+
   <% if action_name != "show" %>
     <%= link_to "Show this invoice", company_invoice_path(@company, invoice), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Edit this project", edit_company_invoice_path(@company, invoice), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
