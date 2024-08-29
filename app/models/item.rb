@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :company
-  has_and_belongs_to_many :invoices
+  has_many :invoice_items
 
   has_rich_text :description
 

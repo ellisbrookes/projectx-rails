@@ -51,15 +51,39 @@
   </div>
 
   <template data-nested-form-target="template">
-    <%= f.fields_for :items, Item.new, child_index: 'NEW_RECORD' do |item_fields| %>
-      <%= render "item_form", f: item_fields %>
-    <% end %>
+    <%# f.fields_for :invoice_items, Item.new, child_index: 'NEW_RECORD' do |item_fields| %>
+      <%# render "item_form", f: item_fields %>
+    <%# end %>
   </template>
 
-  <div class="my-5">
-    <%= f.fields_for :items do |item_fields| %>
-      <%= render "item_form", f: item_fields %>
+
+    <%= f.fields_for :invoice_items do |item_fields| %>
+      <div class="my-5">
+        <%= item_fields.label :item_id %>
+        <%= item_fields.collection_select :item_id, @items, :id, :name, { prompt: "Select an item" }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600" } %>
+      </div>
+
+      <div class="my-5">
+        <%= item_fields.label :quantity %>
+        <%= item_fields.number_field :quantity, min: 1, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+      </div>
     <% end %>
+
+    <div class="my-5">
+      <h3>Description</h3>
+      <div data-item-selector-target="description"></div>
+    </div>
+
+    <div class="my-5">
+      <h3>Unit price</h3>
+      <div data-item-selector-target="unitPrice"></div>
+    </div>
+
+    <%= f.hidden_field :company_id, value: @company.id, data: { item_selector_target: "companyId" } %>
+
+  <div class="my-5">
+    <button type="button" data-action="nested-form#remove">Remove item</button>
+    <%= f.hidden_field :_destroy %>
   </div>
 
   <div data-nested-form-target="target"></div>

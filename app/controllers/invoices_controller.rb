@@ -17,6 +17,8 @@ class InvoicesController < ApplicationController
 
   def new
     @invoice = Invoice.new
+    @items = Item.where(company_id: @company.id).order(:name)
+    @invoice.invoice_items.build
   end
 
   def create
@@ -65,7 +67,7 @@ class InvoicesController < ApplicationController
       :amount,
       :company_id,
       :currency,
-      items_attributes: [:id, :name, :description, :quantity, :_destroy],
+      invoice_items_attributes: [:id, :item_id, :quantity, :_destroy],
     )
   end
 end
