@@ -44,7 +44,7 @@ RSpec.configure do |config|
   # config.use_active_record = false
 
   RSpec.configure do |config|
-    config.include Devise::Test::IntegrationHelpers, type: :request
+    config.include(Devise::Test::IntegrationHelpers, type: :request)
   end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
