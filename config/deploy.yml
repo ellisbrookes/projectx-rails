@@ -2,17 +2,17 @@
 service: projectX
 
 # Name of the container image.
-image: ellisbrookes/projectX
+image: itzkai/projectx-rails
 
 # Deploy to these servers.
 servers:
-  - 192.168.0.1
+ - 64.227.34.80
 
 # Credentials for your image host.
 registry:
   # Specify the registry server, if you're not using Docker Hub
   # server: registry.digitalocean.com / ghcr.io / ...
-  username: my-user
+  username: itzkai
 
   # Always use an access token rather than real password when possible.
   password:
@@ -20,11 +20,12 @@ registry:
 
 # Inject ENV variables into containers (secrets come from .env).
 # Remember to run `kamal env push` after making changes!
-# env:
-#   clear:
-#     DB_HOST: 192.168.0.2
-#   secret:
-#     - RAILS_MASTER_KEY
+env:
+  clear:
+    DB_HOST: 188.166.144.59
+  secret:
+    - RAILS_MASTER_KEY
+    - POSTGRES_PASSWORD
 
 # Use a different ssh user than root
 # ssh:
@@ -41,28 +42,26 @@ registry:
 #     host: ssh://app@192.168.0.1
 
 # Use accessory services (secrets come from .env).
-# accessories:
-#   db:
-#     image: mysql:8.0
-#     host: 192.168.0.2
-#     port: 3306
-#     env:
-#       clear:
-#         MYSQL_ROOT_HOST: '%'
-#       secret:
-#         - MYSQL_ROOT_PASSWORD
-#     files:
-#       - config/mysql/production.cnf:/etc/mysql/my.cnf
-#       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
-#     directories:
-#       - data:/var/lib/mysql
-#   redis:
-#     image: redis:7.0
-#     host: 192.168.0.2
-#     port: 6379
-#     directories:
-#       - data:/data
-
+accessories:
+  db:
+    image: postgres:15.0  # Use the PostgreSQL image
+    host: 188.166.144.59
+    port: 5432
+    env:
+      clear:
+        POSTGRES_HOST_AUTH_METHOD: trust  # For local setup; adjust for production
+      secret:
+        - POSTGRES_PASSWORD  # PostgreSQL root password
+    files:
+      - config/postgresql/production.conf:/etc/postgresql/postgresql.conf  # Custom configuration file (adjust path as needed)
+    directories:
+      - data:/var/lib/postgresql/data  # PostgreSQL data directory
+  # redis:
+  #   image: redis:7.0
+  #   host: 192.168.0.2
+  #   port: 6379
+  #   directories:
+  #     - data:/data
 # Configure custom arguments for Traefik. Be sure to reboot traefik when you modify it.
 # traefik:
 #   args:

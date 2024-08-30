@@ -107,3 +107,4 @@ gem "rolify", "~> 6.0"
 gem "pundit", "~> 2.3"
 gem "noticed", "~> 2.1"
 gem 'pg'
+gem "kamal", "~> 1.8"

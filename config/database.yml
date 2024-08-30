@@ -14,4 +14,4 @@ production:
   <<: *default
   database: projectx-rails_production
   username: projectx-rails
-  password: <%= ENV['YOUR_APP_NAME_HERE_DATABASE_PASSWORD'] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
