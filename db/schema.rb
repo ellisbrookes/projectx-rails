@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_04_001814) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -51,8 +54,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
 
   create_table "comments", force: :cascade do |t|
     t.string "body"
-    t.integer "user_id", null: false
-    t.integer "task_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "task_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_id"], name: "index_comments_on_task_id"
@@ -64,7 +67,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
     t.text "description"
     t.string "contact_email"
     t.string "billing_email"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
@@ -79,7 +82,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
     t.string "phone_number"
     t.string "email"
     t.string "notes"
-    t.integer "company_id", null: false
+    t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
@@ -98,16 +101,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
-  create_table "invoice_items", force: :cascade do |t|
-    t.integer "invoice_id", null: false
-    t.integer "item_id", null: false
-    t.integer "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["invoice_id"], name: "index_invoice_items_on_invoice_id"
-    t.index ["item_id"], name: "index_invoice_items_on_item_id"
-  end
-
   create_table "invoices", force: :cascade do |t|
     t.string "invoice_issue"
     t.string "customer_address"
@@ -116,18 +109,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
     t.date "issue_date"
     t.date "due_date"
     t.decimal "amount"
-    t.integer "company_id", null: false
+    t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "currency"
     t.string "belongs_to"
-    t.integer "customer_id", null: false
+    t.bigint "customer_id", null: false
     t.index ["company_id"], name: "index_invoices_on_company_id"
     t.index ["customer_id"], name: "index_invoices_on_customer_id"
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "company_id", null: false
+    t.bigint "company_id", null: false
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -139,8 +132,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
   create_table "noticed_events", force: :cascade do |t|
     t.string "type"
     t.string "record_type"
-    t.integer "record_id"
-    t.json "params"
+    t.bigint "record_id"
+    t.jsonb "params"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "notifications_count"
@@ -149,9 +142,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
 
   create_table "noticed_notifications", force: :cascade do |t|
     t.string "type"
-    t.integer "event_id", null: false
+    t.bigint "event_id", null: false
     t.string "recipient_type", null: false
-    t.integer "recipient_id", null: false
+    t.bigint "recipient_id", null: false
     t.datetime "read_at", precision: nil
     t.datetime "seen_at", precision: nil
     t.datetime "created_at", null: false
@@ -178,7 +171,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
@@ -191,11 +184,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
     t.string "description"
     t.string "status"
     t.date "due_date"
-    t.integer "assigned_to_id"
-    t.integer "project_id"
-    t.integer "team_id"
-    t.integer "reporter_id"
-    t.integer "task_id"
+    t.bigint "assigned_to_id"
+    t.bigint "project_id"
+    t.bigint "team_id"
+    t.bigint "reporter_id"
+    t.bigint "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
@@ -212,10 +205,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
     t.string "description"
     t.string "status"
     t.date "due_date"
-    t.integer "assigned_to_id"
-    t.integer "project_id"
-    t.integer "team_id"
-    t.integer "reporter_id"
+    t.bigint "assigned_to_id"
+    t.bigint "project_id"
+    t.bigint "team_id"
+    t.bigint "reporter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
@@ -227,8 +220,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
   end
 
   create_table "team_members", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "team_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_team_members_on_team_id"
@@ -240,7 +233,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "company_id"
+    t.bigint "company_id"
     t.string "email"
     t.string "slug"
     t.index ["company_id"], name: "index_teams_on_company_id"
@@ -276,8 +269,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
   end
 
   create_table "users_roles", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "role_id"
+    t.bigint "user_id"
+    t.bigint "role_id"
     t.index ["role_id"], name: "index_users_roles_on_role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
@@ -289,8 +282,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_11_002638) do
   add_foreign_key "comments", "users"
   add_foreign_key "companies", "users"
   add_foreign_key "customers", "companies"
-  add_foreign_key "invoice_items", "invoices"
-  add_foreign_key "invoice_items", "items"
   add_foreign_key "invoices", "companies"
   add_foreign_key "invoices", "customers"
   add_foreign_key "items", "companies"
