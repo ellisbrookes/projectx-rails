@@ -23,11 +23,15 @@ u = User.create(
   full_name: Faker::Name.name,
   email: Faker::Internet.email,
   password: 'admin123',
-  is_admin: '1',
 )
 
 u.skip_confirmation!
 u.save
+
+# set last user to admin
+u = User.last
+u.add_role(:admin)
+u.save!
 
 puts 'Seeded 9 users and 1 admin user into the database'
 
@@ -51,6 +55,7 @@ end
 
 puts 'Seeded 10 companies into the database'
 
+
 # Create team
 10.times do |_n|
   Team.create(
@@ -58,8 +63,8 @@ puts 'Seeded 10 companies into the database'
     description: Faker::Lorem.sentence(word_count: 20),
     email: Faker::Internet.email,
     company_id: Faker::Number.within(range: 1..9),
-  )
-end
+    )
+  end
 
 puts 'Seeded 10 teams in the database'
 
@@ -97,16 +102,16 @@ puts 'Seeded 10 projects into the database'
     email: Faker::Internet.email,
     notes: Faker::Lorem.sentence(word_count: 20),
     company_id: Faker::Number.within(range: 1..9),
-  )
-end
+    )
+  end
 
-puts 'Seeded 10 customers into the database'
+  puts 'Seeded 10 customers into the database'
 
 # Create invoices
 10.times do |_n|
   Invoice.create(
     invoice_issue: Faker::Number.within(range: 1..1000),
-    customer: Faker::Company.name,
+    customer_id: Faker::Number.within(range: 1..9),
     customer_address: Faker::Address.full_address,
     company_address: Faker::Address.full_address,
     issue_date: Faker::Date.backward(days: 30),
@@ -119,6 +124,19 @@ puts 'Seeded 10 customers into the database'
 end
 
 puts 'Seeded 10 invoices into the database'
+
+# Create items
+10.times do |_n|
+  Item.create(
+    quantity: Faker::Number.within(range: 1..9),
+    company_id: Faker::Number.within(range: 1..9),
+    description: Faker::Lorem.sentence(word_count: 20),
+    unit_price: Faker::Commerce.price,
+    name: Faker::Company.name,
+  )
+end
+
+puts 'Seeded 10 items into the database'
 
 # Create tasks with description etc.
 10.times do |_n|
@@ -159,7 +177,7 @@ puts 'Seeded 10 comments into the database'
     assigned_to_id: Faker::Number.within(range: 1..9),
     team_id: Faker::Number.within(range: 1..9),
     task_id: Faker::Number.within(range: 1..9),
-  )
+    )
 end
 
 puts 'Seeded 10 sub_tasks into the database'

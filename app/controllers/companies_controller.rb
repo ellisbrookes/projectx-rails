@@ -11,6 +11,7 @@ class CompaniesController < ApplicationController
 
   def show
     @teams = Team.where(company_id: @company.id)
+    @items = Item.where(company_id: @company.id)
     add_breadcrumbs("Companies", companies_path)
     add_breadcrumbs(@company.name)
   end
@@ -44,9 +45,13 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
-    @company.destroy
+    authorize(@company)
 
-    redirect_to(companies_url, notice: "Company was successfully destroyed")
+    if @company.destroy
+      redirect_to(companies_url, notice: "Company was successfully destroyed.")
+    else
+      render(:show, alert: "There was an error deleting the company.")
+    end
   end
 
   private

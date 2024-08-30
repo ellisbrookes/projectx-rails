@@ -1,9 +1,7 @@
-<%= form_with(model: [@company, invoice], class: "contents") do |f| %>
+<%= form_with(model: [@company, invoice], data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }, class: "contents") do |f| %>
   <% if invoice.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(invoice.errors.count, "error") %>
-        prohibited this invoice from being saved:</h2>
-
+      <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
       <ul>
         <% invoice.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -17,14 +15,29 @@
     <%= f.text_field :invoice_issue, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
   </div>
 
-  <div class="my-5">
-    <%= f.label :customer %>
-    <%= f.text_area :customer, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+  <div data-controller="customer-selector">
+    <div class="my-5">
+      <%= f.label :customer_id %>
+      <%= f.collection_select(:customer_id, Customer.where(company_id: @company).order(:full_name), :id, :full_name, { prompt: "Select an customer" }, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full appearance-none dark:text-white dark:border-black dark:bg-slate-600", data: { customer_selector_target: "customerId" } }) %>
+      <%= f.hidden_field :company_id, value: @company.id, data: { customer_selector_target: "companyId" } %>
+    </div>
+
+    <div class="my-5">
+      <% if Customer.present? %>
+        <%= f.label :customer_address %>
+        <%= f.text_area :customer_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", data: { customer_selector_target: "address" } %>
+      <% end %>
+    </div>
+
+    <div class="my-5">
+      <%= f.label :notes %>
+      <%= f.text_area :notes, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", data: { customer_selector_target: "notes" } %>
+    </div>
   </div>
 
   <div class="my-5">
     <%= f.label :issue_date %>
-    <%= f.date_field :issue_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+    <%= f.date_field :issue_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", value: Time.now.strftime('%Y-%m-%d') %>
   </div>
 
   <div class="my-5">
@@ -32,20 +45,25 @@
     <%= f.date_field :due_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
   </div>
 
-   <div class="my-5">
-    <%= f.label :customer_address %>
-    <%= f.text_area :customer_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
-  </div>
-
   <div class="my-5">
     <%= f.label :company_address %>
-    <%= f.text_area :company_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+    <%= f.text_area :company_address, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600", value: @company&.address %>
   </div>
 
+  <template data-nested-form-target="template">
+    <%= f.fields_for :items, Item.new, child_index: 'NEW_RECORD' do |item_fields| %>
+      <%= render "item_form", f: item_fields %>
+    <% end %>
+  </template>
+
   <div class="my-5">
-    <%= f.label :notes %>
-    <%= f.text_area :notes, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full dark:text-white dark:border-black dark:bg-slate-600" %>
+    <%= f.fields_for :items do |item_fields| %>
+      <%= render "item_form", f: item_fields %>
+    <% end %>
   </div>
+
+  <div data-nested-form-target="target"></div>
+  <button type="button" data-action="nested-form#add", class="mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium dark:bg-slate-700 dark:hover:bg-slate-600">Add an Item</button>
 
   <div class="my-5">
     <%= f.label :amount %>
@@ -55,8 +73,6 @@
       <%= f.select :currency, options_for_select(%w[GBP USD EUR], "GBP"), {}, { class: "block shadow rounded-md border border-gray-200 p-2 pr-8 mt-2 dark:text-white dark:border-black dark:bg-slate-600" } %>
     </div>
   </div>
-
-  <%= f.hidden_field :company_id, value: @company.id %>
 
   <div class="inline">
     <%= f.submit class:"rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer dark:bg-slate-600" %>

@@ -1,11 +1,11 @@
 class TasksController < ApplicationController
-  layout 'dashboard'
-
   before_action :authenticate_user!
   before_action :set_company
   before_action :set_team
   before_action :set_project
   before_action :set_task, only: %i[show edit update destroy]
+
+  layout 'dashboard'
 
   def index
     @tasks = @project.tasks

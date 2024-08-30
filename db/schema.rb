@@ -10,8 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_30_201815) do
-  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+ActiveRecord::Schema[7.1].define(version: 2024_03_08_004509) do
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -21,7 +31,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_201815) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "active_storage_blobs", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,28 +43,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_201815) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "active_storage_variant_records", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.string "body"
-    t.bigint "user_id", null: false
-    t.bigint "task_id", null: false
+    t.integer "user_id", null: false
+    t.integer "task_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_id"], name: "index_comments_on_task_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "companies", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.string "contact_email"
     t.string "billing_email"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
@@ -63,56 +73,93 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_201815) do
     t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
-  create_table "customers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "customers", force: :cascade do |t|
     t.string "full_name"
     t.string "address"
     t.string "phone_number"
     t.string "email"
     t.string "notes"
-    t.bigint "company_id", null: false
+    t.integer "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["company_id"], name: "index_customers_on_company_id"
+    t.index ["slug"], name: "index_customers_on_slug", unique: true
   end
 
-  create_table "friendly_id_slugs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
     t.string "scope"
     t.datetime "created_at"
-    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, length: { slug: 70, scope: 70 }
-    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", length: { slug: 140 }
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
-  create_table "invoices", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "invoice_items", force: :cascade do |t|
+    t.integer "invoice_id", null: false
+    t.integer "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_invoice_items_on_invoice_id"
+    t.index ["item_id"], name: "index_invoice_items_on_item_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
     t.string "invoice_issue"
-    t.string "customer"
     t.string "customer_address"
     t.string "company_address"
     t.string "notes"
     t.date "issue_date"
     t.date "due_date"
-    t.decimal "amount", precision: 10
-    t.bigint "company_id", null: false
+    t.decimal "amount"
+    t.integer "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "currency"
+    t.string "belongs_to"
+    t.integer "customer_id", null: false
     t.index ["company_id"], name: "index_invoices_on_company_id"
+    t.index ["customer_id"], name: "index_invoices_on_customer_id"
   end
 
-  create_table "items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "invoice_id", null: false
+  create_table "items", force: :cascade do |t|
+    t.integer "company_id", null: false
     t.integer "quantity"
-    t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "unit_price"
+    t.string "name"
     t.index ["company_id"], name: "index_items_on_company_id"
-    t.index ["invoice_id"], name: "index_items_on_invoice_id"
   end
 
-  create_table "projects", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "noticed_events", force: :cascade do |t|
+    t.string "type"
+    t.string "record_type"
+    t.integer "record_id"
+    t.json "params"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "notifications_count"
+    t.index ["record_type", "record_id"], name: "index_noticed_events_on_record"
+  end
+
+  create_table "noticed_notifications", force: :cascade do |t|
+    t.string "type"
+    t.integer "event_id", null: false
+    t.string "recipient_type", null: false
+    t.integer "recipient_id", null: false
+    t.datetime "read_at", precision: nil
+    t.datetime "seen_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_noticed_notifications_on_event_id"
+    t.index ["recipient_type", "recipient_id"], name: "index_noticed_notifications_on_recipient"
+  end
+
+  create_table "projects", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.date "start_date"
@@ -127,16 +174,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_201815) do
     t.index ["slug"], name: "index_projects_on_slug", unique: true
   end
 
-  create_table "sub_tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.integer "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["name"], name: "index_roles_on_name"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
+  create_table "sub_tasks", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "status"
     t.date "due_date"
-    t.bigint "assigned_to_id"
-    t.bigint "project_id"
-    t.bigint "team_id"
-    t.bigint "reporter_id"
-    t.bigint "task_id"
+    t.integer "assigned_to_id"
+    t.integer "project_id"
+    t.integer "team_id"
+    t.integer "reporter_id"
+    t.integer "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
@@ -148,15 +206,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_201815) do
     t.index ["team_id"], name: "index_sub_tasks_on_team_id"
   end
 
-  create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "status"
     t.date "due_date"
-    t.bigint "assigned_to_id"
-    t.bigint "project_id"
-    t.bigint "team_id"
-    t.bigint "reporter_id"
+    t.integer "assigned_to_id"
+    t.integer "project_id"
+    t.integer "team_id"
+    t.integer "reporter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
@@ -167,31 +225,30 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_201815) do
     t.index ["team_id"], name: "index_tasks_on_team_id"
   end
 
-  create_table "team_members", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "team_id", null: false
+  create_table "team_members", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_team_members_on_team_id"
     t.index ["user_id"], name: "index_team_members_on_user_id"
   end
 
-  create_table "teams", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "teams", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "company_id"
+    t.integer "company_id"
     t.string "email"
     t.string "slug"
     t.index ["company_id"], name: "index_teams_on_company_id"
     t.index ["slug"], name: "index_teams_on_slug", unique: true
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "full_name", default: "", null: false
     t.string "email", default: "", null: false
-    t.string "is_admin", default: "0", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -210,10 +267,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_201815) do
     t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "stripe_customer_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  end
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -222,9 +288,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_201815) do
   add_foreign_key "comments", "users"
   add_foreign_key "companies", "users"
   add_foreign_key "customers", "companies"
+  add_foreign_key "invoice_items", "invoices"
+  add_foreign_key "invoice_items", "items"
   add_foreign_key "invoices", "companies"
+  add_foreign_key "invoices", "customers"
   add_foreign_key "items", "companies"
-  add_foreign_key "items", "invoices"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
   add_foreign_key "teams", "companies"

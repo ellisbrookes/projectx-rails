@@ -1,9 +1,9 @@
 class InvoicesController < ApplicationController
-  layout 'dashboard'
-
   before_action :authenticate_user!
   before_action :set_company
   before_action :set_invoice, only: %i[show edit update]
+
+  layout 'dashboard'
 
   def index
     @invoices = @company.invoices
@@ -54,6 +54,18 @@ class InvoicesController < ApplicationController
   end
 
   def invoice_params
-    params.require(:invoice).permit(:invoice_issue, :customer, :issue_date, :due_date, :customer_address, :company_address, :notes, :amount, :company_id, :currency)
+    params.require(:invoice).permit(
+      :invoice_issue,
+      :customer_id,
+      :issue_date,
+      :due_date,
+      :customer_address,
+      :company_address,
+      :notes,
+      :amount,
+      :company_id,
+      :currency,
+      items_attributes: [:id, :name, :description, :quantity, :_destroy],
+    )
   end
 end

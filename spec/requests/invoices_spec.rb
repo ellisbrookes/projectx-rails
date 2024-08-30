@@ -4,6 +4,7 @@ RSpec.describe("Invoices", type: :request) do
   before do
     @user = FactoryBot.create(:user)
     @company = FactoryBot.create(:company, user_id: @user.id)
+    @customer = FactoryBot.create(:customer, company_id: @company.id)
     sign_in(@user)
   end
 
@@ -28,7 +29,7 @@ RSpec.describe("Invoices", type: :request) do
       expect(response).to(render_template(:new))
 
       # create the invoice
-      invoice_params = FactoryBot.attributes_for(:invoice, company_id: @company.id)
+      invoice_params = FactoryBot.attributes_for(:invoice, company_id: @company.id, customer_id: @customer.id)
       post company_invoices_path(@company), params: { invoice: invoice_params }
 
       invoice = Invoice.first
@@ -43,7 +44,7 @@ RSpec.describe("Invoices", type: :request) do
 
       # testing invoice data
       expect(response.body).to(include(invoice_params[:invoice_issue].to_s))
-      expect(response.body).to(include(invoice_params[:customer]))
+      expect(response.body).to(include(invoice_params[:customer_id].to_s))
       expect(response.body).to(include(invoice_params[:customer_address]))
       expect(response.body).to(include(invoice_params[:company_address]))
       expect(response.body).to(include(invoice.issue_date.strftime('%d/%m/%Y')))
@@ -57,7 +58,7 @@ RSpec.describe("Invoices", type: :request) do
       expect(response).to(render_template(:new))
 
       # create an invoice with an invoice_issue
-      invoice_params = FactoryBot.attributes_for(:invoice, invoice_issue: nil, company_id: @company.id)
+      invoice_params = FactoryBot.attributes_for(:invoice, invoice_issue: nil, company_id: @company.id, customer_id: @customer.id)
       post company_invoices_path(@company), params: { invoice: invoice_params }
 
       # redirect back to the invoice
@@ -71,10 +72,10 @@ RSpec.describe("Invoices", type: :request) do
 
   describe "/edit" do
     before do
-      @invoice = FactoryBot.create(:invoice, company_id: @company.id)
+      @invoice = FactoryBot.create(:invoice, company_id: @company.id, customer_id: @customer.id)
     end
 
-    it "GET - should be able to render edit page of a invoice" do
+    it "GET - should be able to render the edit page" do
       get edit_company_invoice_path(@company, @invoice)
       expect(response).to(render_template(:edit))
     end
@@ -84,17 +85,16 @@ RSpec.describe("Invoices", type: :request) do
       expect(response).to(render_template(:edit))
 
       # update customer name
-      new_name = Faker::Company.name.gsub(/[^0-9a-zA-Z\s]/, '')
-      invoice_params = { invoice: { customer: new_name } }
+      invoice_params = { invoice: { customer_id: @customer.id } }
       put company_invoice_path(@company, @invoice), params: invoice_params
 
-      # redirect to the invoice
+      # redirect to invoice
       expect(response).to(have_http_status(:redirect))
       follow_redirect!
 
       # render the show page
       expect(response).to(render_template(:show))
-      expect(response.body).to(include(new_name))
+      expect(response.body).to(include(invoice_params[:customer_id].to_s))
       expect(response.body).to(include("Invoice was successfully updated"))
     end
 
@@ -102,14 +102,14 @@ RSpec.describe("Invoices", type: :request) do
       get edit_company_invoice_path(@company, @invoice)
       expect(response).to(render_template(:edit))
 
-      # update a invoice without a customer name
-      invoice_params = { invoice: { customer: nil } }
-      put company_invoice_path(@company, @invoice), params: invoice_params
+      # update invoice without an customer id
+      invoice_params = FactoryBot.attributes_for(:invoice, customer_id: nil)
+      put company_invoice_path(@company, @invoice), params: { invoice: invoice_params }
 
-      # render error messsage
+      # render error message
       expect(response).to(have_http_status(:unprocessable_entity))
 
-      # render the edit page
+      # render invoice edit page
       expect(response).to(render_template(:edit))
       expect(response.body).to(include("Customer can&#39;t be blank"))
     end

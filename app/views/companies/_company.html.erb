@@ -12,7 +12,7 @@
     <strong class="block font-medium mb-1">Name:</strong>
     <%= company.name %>
   </p>
-  
+
   <p class="my-5">
     <strong class="block font-medium mb-1">Description:</strong>
     <%= company.description %>
@@ -43,6 +43,20 @@
       </li>
     <% end %>
   </ul>
+
+  <br />
+
+  <ul>
+    <h2>Items</h2>
+
+    <% @items.each do |i| %>
+      <li>
+        <%= link_to i.name, company_item_path(@company, i) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <br />
 
   <% if action_name != "show" %>
     <%= link_to "Show this company", company_path(@company), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

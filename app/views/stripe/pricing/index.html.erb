@@ -1,0 +1,74 @@
+<div class="container mx-auto px-10 my-10">
+  <div class="text-center mb-8">
+    <h1 class="text-2xl font-semibold mb-2 dark:text-white">Pricing plans</h1>
+    <p class="text-gray-700 dark:text-white">Find the perfect plan that suits your needs!</p>
+  </div>
+
+  <div data-controller="price-toggle">
+    <div class="flex justify-center mb-8">
+      <button data-action="click->price-toggle#showMonthly" class="cursor-pointer dark:bg-slate-600 dark:hover:bg-slate-500 bg-neutral-200 hover:bg-neutral-300 text-black dark:text-white font-bold py-2 px-4 rounded mr-2">Monthly</button>
+      <button data-action="click->price-toggle#showYearly" class="cursor-pointer dark:bg-slate-600 dark:hover:bg-slate-500 bg-neutral-200 hover:bg-neutral-300 text-black dark:text-white font-bold py-2 px-4 rounded">Yearly</button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8" data-price-toggle-target="monthly">
+      <%= render "monthly" %>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8" data-price-toggle-target="yearly">
+      <%= render "yearly" %>
+    </div>
+  </div>
+
+  <div class="text-center mt-8 mb-8">
+    <h1 class="text-2xl font-semibold mb-2 dark:text-white">Compare our plans</h1>
+  </div>
+
+  <div class="inline-block min-w-full align-middle">
+    <table class="min-w-full divide-y divide-gray-200 dark:divide-slate-700 table-auto">
+      <thead>
+        <tr>
+          <% @prices.map(&:product).uniq.each do |product| %>
+            <th scope="col" class="bg-gray-100 p-3 dark:bg-slate-900 dark:text-white text-gray-900 lg:table-cell">
+              <%= product.name %>
+            </th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%# each product in a sepatate row %>
+        <% @prices.map(&:product).uniq.each do |product| %>
+          <tr class="even:bg-gray-100 dark:even:bg-slate-900">
+            <% product.features.each do |feature| %>
+              <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-900 dark:text-white text-center">
+                <%= feature.name %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+
+        <%# correct but all in one column %>
+        <tr class="even:bg-gray-100 dark:even:bg-slate-900">
+          <% @prices.map(&:product).uniq.each do |product| %>
+            <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-900 dark:text-white text-center">
+              <% product.features.each do |feature| %>
+                <%= feature.name %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+
+        <%# striped but all in one column %>
+        <% @prices.map(&:product).uniq.each do |product| %>
+          <% product.features.each do |feature| %>
+            <tr class="even:bg-gray-100 dark:even:bg-slate-900">
+              <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-900 dark:text-white text-center">
+                <%= feature.name %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

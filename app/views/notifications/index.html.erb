@@ -1,0 +1,31 @@
+<div class="dark:bg-slate-900 bg-neutral-100 p-2 rounded-md flex items-center">
+  <%= button_to("Mark all as read", mark_as_read_notifications_path, { class:"dark:text-white text-black px-2 py-2 rounded-md bg-neutral-200 dark:bg-slate-800 dark:hover:bg-slate-700 hover:bg-neutral-300 transition duration-150 ease-in-out", data: { turbo_method: :post } }) %>
+  <%= button_to("Mark all as unread", mark_as_unread_notifications_path, { class: "dark:text-white text-black px-2 py-2 rounded-md bg-neutral-200 dark:bg-slate-800 dark:hover:bg-slate-700 hover:bg-neutral-300 transition duration-150 ease-in-out ml-2", data: { turbo_method: :post } }) %>
+
+  <form class="relative w-full">
+    <div class="absolute inset-0 ml-3 flex w-5 items-center">
+      <%= heroicon "adjustments-horizontal", variant: :outline %>
+    </div>
+
+    <input type="search" name="fitler" title="filter" placeholder="Filter Notifications" required={false} class="w-full pl-8 text-sm dark:bg-slate-800 dark:text-white dark:border-white ml-2" />
+  </form>
+</div>
+
+<%= render TableComponent.new(
+  headers: ["", "Message", "Created at"],
+  rows: @notifications.map do |notification|
+    [
+      (form_for(notification, url: mark_as_read_notifications_path, method: :post) do |f|
+        f.check_box :read_at, class: 'mark-as-read-checkbox', data: { remote: true }
+      end),
+      link_to(notification.message, notification.url),
+      "#{time_ago_in_words(notification.created_at)} ago"
+    ]
+  end
+) %>
+
+<% if @notifications.present? %>
+  <div class="flex justify-center mt-4">
+    <%= pagy_nav(@pagy).html_safe %>
+  </div>
+<% end %>

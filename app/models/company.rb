@@ -6,12 +6,15 @@ class Company < ApplicationRecord
     slug.blank? || name_changed?
   end
 
+  resourcify
+
   has_one_attached :logo
   has_many :users
   has_many :teams, dependent: :destroy
   has_many :projects
   has_many :invoices
   has_many :customers
+  has_many :items
 
   validates :name, presence: true
   validates :description, presence: true

@@ -111,6 +111,11 @@ RSpec.describe("Companies", type: :request) do
   end
 
   describe "/delete" do
+    before do
+      @admin = FactoryBot.create(:user, :admin)
+      sign_in(@admin)
+    end
+
     it "DELETE - should be able to delete a company" do
       @company = FactoryBot.create(:company, user_id: @user.id)
       get company_path(@company)

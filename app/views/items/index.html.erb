@@ -1,0 +1,15 @@
+<%= render HeadingComponent.new(
+  title: "Items",
+  text:
+    "A list of the items in your company",
+  link_title: "New Item",
+  link_path: new_company_item_path
+) %>
+
+<%= render TableComponent.new(
+  headers: ["Name", "Quantity", "Unit Price", "Description", "Company"],
+  rows:
+    @items.map do |item|
+      [link_to(item.name, company_item_path(@company, item)),item.quantity, item.unit_price, item.description, item.company_id]
+    end
+) %>
