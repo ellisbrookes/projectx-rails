@@ -106,5 +106,5 @@ gem "stripe", "~> 10.8"
 gem "rolify", "~> 6.0"
 gem "pundit", "~> 2.3"
 gem "noticed", "~> 2.1"
-gem 'pg'
+gem 'pg', '~> 0.18.4'
 gem "kamal", "~> 1.8"
