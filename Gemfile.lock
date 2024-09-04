@@ -511,7 +511,7 @@ DEPENDENCIES
   kamal (~> 1.8)
   noticed (~> 2.1)
   pagy
-  pg (~> 0.18.4)
+  pg (= 0.18.4)
   pry-byebug
   puma (~> 6.4.2)
   pundit (~> 2.3)
