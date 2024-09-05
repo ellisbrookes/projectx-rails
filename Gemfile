@@ -102,7 +102,7 @@ gem "rails-controller-testing", "~> 1.0"
 gem "simplecov", "~> 0.22.0", group: :test
 gem "friendly_id", "~> 5.5"
 gem "receipts", "~> 2.2"
-gem "pg", "= 0.18.4"
+gem "pg", "= 1.5.7"
 gem "stripe", "~> 10.8"
 gem "rolify", "~> 6.0"
 gem "pundit", "~> 2.3"
