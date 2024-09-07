@@ -12,8 +12,7 @@ test:
   database: projectx-rails_test
 production:
   <<: *default
-  database: projectx-rails_production
-  username: projectx-rails
+  database: projectx_rails_production
+  username: root
   password: <%= ENV["POSTGRES_PASSWORD"] %>
-  port: <%= ENV["POSTGRES_PORT"] %>
   host: <%= ENV["POSTGRES_HOST"] %>

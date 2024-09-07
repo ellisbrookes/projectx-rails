@@ -1,0 +1,1 @@
+CREATE DATABASE projectx_rails_production;
