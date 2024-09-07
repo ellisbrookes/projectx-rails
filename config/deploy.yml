@@ -45,7 +45,6 @@ env:
 accessories:
   db:
     image: postgres:15.0  # Use the PostgreSQL image
-    database_url: postgresql://postgres:postgres@188.166.144.59:5000/production
     host: 188.166.144.59
     port: 5432
     env:

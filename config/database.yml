@@ -15,3 +15,5 @@ production:
   database: projectx-rails_production
   username: projectx-rails
   password: <%= ENV["POSTGRES_PASSWORD"] %>
+  port: <%= ENV["POSTGRES_PORT"] %>
+  host: <%= ENV["POSTGRES_HOST"] %>
