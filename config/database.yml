@@ -13,6 +13,6 @@ test:
 production:
   <<: *default
   database: projectx_rails_production
-  username: root
+  username: postgres
   password: <%= ENV["POSTGRES_PASSWORD"] %>
-  host: <%= ENV["POSTGRES_HOST"] %>
+  host: <%= ENV["DB_HOST"] %>

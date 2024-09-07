@@ -50,6 +50,8 @@ accessories:
     env:
       clear:
         POSTGRES_HOST_AUTH_METHOD: trust  # For local setup; adjust for production
+        POSTGRES_USER: postgres  # PostgreSQL username
+        POSTGRES_DB: projectx_rails_production
       secret:
         - POSTGRES_PASSWORD  # PostgreSQL root password
     files:
