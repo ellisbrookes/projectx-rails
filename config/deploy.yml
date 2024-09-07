@@ -6,7 +6,7 @@ image: ebrookes/projectx-rails
 
 # Deploy to these servers.
 servers:
- - 64.227.34.80
+ - 161.35.172.182
 
 # Credentials for your image host.
 registry:
@@ -22,7 +22,7 @@ registry:
 # Remember to run `kamal env push` after making changes!
 env:
   clear:
-    DB_HOST: 188.166.144.59
+    DB_HOST: 139.59.170.131
   secret:
     - RAILS_MASTER_KEY
     - POSTGRES_PASSWORD
@@ -45,7 +45,7 @@ env:
 accessories:
   db:
     image: postgres:15.0  # Use the PostgreSQL image
-    host: 188.166.144.59
+    host: 139.59.170.131
     port: 5432
     env:
       clear:
