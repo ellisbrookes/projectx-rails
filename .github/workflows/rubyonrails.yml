@@ -22,14 +22,25 @@ jobs:
         run: bundle exec rubocop --parallel
   test:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
     env:
       RAILS_ENV: test
-      DATABASE_PORT: 3306
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
+      DATABASE_PORT: 5432
     steps:
-      - uses: actions/checkout@v4
-      - uses: shogo82148/actions-setup-mysql@v1
-        with:
-          mysql-version: '8.0'
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install Ruby and gems
@@ -40,9 +51,11 @@ jobs:
         run: bundle install
       - name: Security audit dependencies
         run: bundle exec bundler-audit --update
-      - name: Install rails
+      - name: Install Rails
         run: gem install rails
-      - name: Creating a database
+      - name: Wait for PostgreSQL to be ready
+        run: sleep 15 # Give PostgreSQL some time to be fully up
+      - name: Create the database
         run: rails db:create
       - name: Setup database schema
         run: rails db:schema:load

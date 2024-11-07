@@ -8,9 +8,6 @@ gem "rails", "~> 7.1.2"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
-
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 6.4.2'
 
@@ -93,7 +90,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
+  gem "webdrivers", "= 5.3.0"
 end
 
 gem "view_component", "~> 3.9"
@@ -105,7 +102,9 @@ gem "rails-controller-testing", "~> 1.0"
 gem "simplecov", "~> 0.22.0", group: :test
 gem "friendly_id", "~> 5.5"
 gem "receipts", "~> 2.2"
+gem "pg", "= 1.5.7"
 gem "stripe", "~> 10.8"
 gem "rolify", "~> 6.0"
 gem "pundit", "~> 2.3"
 gem "noticed", "~> 2.1"
+gem "kamal", "~> 1.8"
