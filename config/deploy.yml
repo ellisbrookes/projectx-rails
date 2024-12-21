@@ -26,10 +26,9 @@ env:
   secret:
     - RAILS_MASTER_KEY
     - POSTGRES_PASSWORD
-    
+
 builder:
-  remote:
-    arch: amd64
+  remote: amd64
 
 # Use a different ssh user than root
 # ssh:
