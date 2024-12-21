@@ -28,7 +28,8 @@ env:
     - POSTGRES_PASSWORD
 
 builder:
-  remote: amd64
+  arch:
+    - amd64
 
 # Use a different ssh user than root
 # ssh:
